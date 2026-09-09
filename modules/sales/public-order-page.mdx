@@ -1,138 +1,140 @@
 ---
-title: "How buyers place orders on your Kaspert shop page"
-sidebarTitle: "Order Page"
-description: "Understand how customers browse your public shop, select products, answer questions, apply discount codes, pay, and receive their order confirmation."
+title: "Hoe kopers bestellingen plaatsen op je Kaspert bestelpagina"
+sidebarTitle: "Bestelpagina"
+description: "Ontdek hoe kopers je publieke winkel browsen, producten selecteren, vragen beantwoorden, kortingscodes toepassen, betalen en hun bestelbevestiging ontvangen."
 ---
 
-The public order page is what your buyers see — parents ordering camp tickets, neighbours buying waffles for the fundraiser, or members picking up their new hoodie. It is a clean, mobile-first page hosted by Kaspert that reflects your organisation's branding and requires no login whatsoever from the buyer. You share a single link, and the rest takes care of itself.
+De publieke bestelpagina is wat je kopers zien: ouders die kamptickets bestellen, buren die wafels kopen voor de fondsenwerving, of leden die hun nieuwe hoodie ophalen. Het is een schone, mobiel-eerste pagina gehost door Kaspert die de branding van je vereniging weergeeft en geen login vereist van de koper. Je deelt één link, en de rest regelt zichzelf.
 
-## The public order URL
+## De publieke bestel-URL
 
-Every sale you publish gets its own unique URL:
+Elke verkoop die je publiceert, krijgt een eigen unieke URL:
 
-```
+```text
 https://kaspert.be/bestellen/{companySlug}/{saleSlug}
 ```
 
-For example, a Chiro group called *De Beemdratten* selling waffles might have:
+Bijvoorbeeld, een Chiro-groep genaamd _De Beemdratten_ die wafels verkoopt, zou kunnen hebben:
 
-```
+```text
 https://kaspert.be/bestellen/beemdratten/wafelverkoop-2025
 ```
 
-You can find and copy this URL at the top of your sale's detail page in the Kaspert dashboard. Share it anywhere — a newsletter, a Facebook event, a printed QR code, or a WhatsApp message.
+Je kunt deze URL vinden en kopiëren bovenaan de detailpagina van je verkoop in het Kaspert-dashboard. Deel deze overal: een nieuwsbrief, een Facebook-evenement, een geprinte QR-code of een WhatsApp-bericht.
 
 <Info>
-  **No account required for buyers.** Anyone with the link can browse and order. Kaspert does not ask buyers to create a profile or remember a password.
+  **Geen account nodig voor kopers.** Iedereen met de link kan browsen en bestellen. Kaspert vraagt kopers niet om een profiel aan te maken of een wachtwoord te onthouden.
 </Info>
 
-## What buyers see on the page
+## Wat kopers zien op de pagina
 
-When a buyer opens the order URL, they land on a page that includes:
+Wanneer een koper de bestel-URL opent, komt hij of zij op een pagina die het volgende bevat:
 
-- Your **organisation logo** and primary brand colour
-- The **hero title and description** you set under Instellingen → Lay-out
-- An optional **hero image** and gallery photos
-- All your **products** grouped by category (if you created categories), with names, descriptions, prices, and product photos
-- A **shopping cart** that updates in real time as the buyer selects items
+- Je **organisatielogo** en primaire merkkleur
+- De **hero-titel en beschrijving** die je hebt ingesteld onder Instellingen → Lay-out
+- Een optionele **hero-afbeelding** en galerijfoto's
+- Al je **producten** gegroepeerd per categorie (als je categorieën hebt aangemaakt), met namen, beschrijvingen, prijzen en productfoto's
+- Een **winkelwagentje** dat in real time bijwerkt terwijl de koper artikelen selecteert
 
-## The buying flow
+## Het koopproces
 
 <Steps>
+  ### Open de URL en browse
 
-### Open the URL and browse
+  De koper opent de link op elk apparaat. Producten worden weergegeven in een raster of lijst, afhankelijk van de schermgrootte. Als een product een voorraadlimiet heeft en uitverkocht is, wordt het als niet beschikbaar getoond.
 
-The buyer opens the link on any device. Products are displayed in a grid or list depending on screen size. If a product has a stock limit set and is sold out, it is shown as unavailable.
+  ### Selecteer producten en hoeveelheden
 
-### Select products and quantities
+  De koper gebruikt **+** en **−** knoppen om de hoeveelheid voor elk product in te stellen. Het lopende winkelwagentotaal wordt onmiddellijk bijgewerkt. Als je een limiet per bestelling hebt ingesteld op een product, stopt de hoeveelheidskiezer bij dat maximum.
 
-The buyer uses **+** and **−** buttons to set the quantity for each product. The running cart total updates instantly. If you set a per-order limit on a product, the quantity picker stops at that maximum.
+  ### Beantwoord aangepaste vragen
 
-### Answer custom questions
+  Als een product vragen heeft geconfigureerd (bijv. "Grootte T-shirt", "Vleeskeuze"), verschijnt een formulier wanneer de koper dat product aan zijn winkelwagen toevoegt. Verplichte vragen moeten worden beantwoord voordat de koper verder kan naar het afrekenen. Optionele vragen kunnen worden overgeslagen.
 
-If any product has questions configured (e.g. "Grootte T-shirt", "Vleeskeuze"), a form appears when the buyer adds that product to their cart. Required questions must be answered before the buyer can proceed to checkout. Optional questions can be skipped.
+  Vraagtypen die de koper kan tegenkomen:
 
-Question types the buyer may encounter:
+  | Type                | Wat de koper doet                                            |
+  | ------------------- | ------------------------------------------------------------ |
+  | Single choice       | Selecteert één optie uit een keuzelijst                      |
+  | Multiple choice     | Vinkt één of meer checkboxen aan                             |
+  | Quantity per option | Voert een getal in naast elke optie (bijv. 2× Kip, 1× Worst) |
+  | Number              | Typt een getal                                               |
+  | Free text           | Typt een vrij antwoord                                       |
+  | Checkbox            | Vinkt een enkele ja/nee box aan                              |
 
-| Type | What the buyer does |
-|------|---------------------|
-| Single choice | Selects one option from a radio list |
-| Multiple choice | Ticks one or more checkboxes |
-| Quantity per option | Enters a number next to each option (e.g. 2× Kip, 1× Worst) |
-| Number | Types a number |
-| Free text | Types a free-form answer |
-| Checkbox | Ticks a single yes/no box |
+  Sommige antwoordopties kunnen een prijsopslag toevoegen: dit wordt getoond naast het optielabel.
 
-Some answer options may add a price surcharge — this is shown next to the option label.
+  ### Voer een kortingscode in (optioneel)
 
-### Enter a discount code (optional)
+  In het winkelwagentotaal kan de koper het veld **Kortingscode** uitklappen en een promocode intypen. Kaspert valideert de code onmiddellijk:
 
-In the cart summary, the buyer can expand the **Kortingscode** field and type a promo code. Kaspert validates the code immediately:
+  * Bij geldig: het kortingsbedrag verschijnt als een aftrek in het winkelwagentotaal.
+  * Bij ongeldig (verkeerde code, verlopen, of limiet bereikt): een foutmelding legt uit waarom.
 
-- If valid, the discount amount appears as a deduction in the cart total.
-- If invalid (wrong code, expired, or limit reached), an error message explains why.
+  ### Voer contactgegevens in
 
-### Enter contact details
+  De koper vult zijn **naam** en **e-mailadres** in: deze worden gebruikt om de bestelbevestiging te versturen. Afhankelijk van de instellingen die je hebt gekozen onder Instellingen → Klantvelden, kan hij of zij ook worden gevraagd om een **telefoonnummer** of een **tak**.
 
-The buyer fills in their **name** and **email address** — these are used to send the order confirmation. Depending on the settings you chose under Instellingen → Klantvelden, they may also be asked for a **phone number** or a **department/section** (tak).
+  Als je levering hebt ingeschakeld, voert de koper ook een leveringsadres in bij deze stap.
 
-If you have enabled delivery, the buyer also enters a delivery address at this step.
+  ### Kies een betaalmethode
 
-### Choose a payment method
+  De koper ziet alleen de betaalmethodes die je hebt ingeschakeld voor deze verkoop:
 
-The buyer sees only the payment methods you have enabled for this sale:
+  <CardGroup cols={2}>
+    <Card title="Bankoverschrijving" icon="building-columns">
+      De koper ontvangt je IBAN en een betalingsreferentie in de bevestigingsmail. Er wordt geen online betaling afgenomen bij het afrekenen: de bestelling wordt onmiddellijk geplaatst en de koper betaalt later via overschrijving.
+    </Card>
 
-<CardGroup cols={2}>
-  <Card title="Bank transfer (Overschrijving)" icon="building-columns">
-    The buyer receives your IBAN and a payment reference in the confirmation email. No online payment is taken at checkout — the order is placed immediately and the buyer pays later by bank transfer.
-  </Card>
-  <Card title="EPC QR code" icon="qrcode">
-    An EPC-standard QR code is displayed at checkout. The buyer scans it with any Belgian banking app (KBC, ING, Belfius, etc.) to pre-fill the transfer. The order is placed immediately; payment is confirmed once you manually mark it as paid.
-  </Card>
-  <Card title="Bancontact Pro" icon="smartphone">
-    The buyer pays directly via the Bancontact Pro app (formerly Payconiq). Kaspert polls the payment status in the background and marks the order as paid automatically once the transaction is confirmed.
-  </Card>
-  <Card title="Stripe (card / Bancontact)" icon="credit-card">
-    The buyer is redirected to a Stripe-hosted checkout page to pay by credit card or Bancontact. After payment, they are returned to the Kaspert confirmation page.
-  </Card>
-  <Card title="On-site payment" icon="hand-holding-euro">
-    No payment is taken online. The order is placed with a pending (Openstaand) status. The buyer pays at pick-up; you mark the order as paid manually in the Bestellingen tab.
-  </Card>
-</CardGroup>
+    <Card title="EPC QR-code" icon="qrcode">
+      Een EPC-standaard QR-code wordt getoond bij het afrekenen. De koper scant deze met elke Belgische bankapp (KBC, ING, Belfius, enz.) om de overschrijvingsgegevens vooraf in te vullen. De bestelling wordt onmiddellijk geplaatst; de betaling wordt bevestigd zodra je deze handmatig als betaald markeert.
+    </Card>
 
-### Complete payment and receive confirmation
+    <Card title="Bancontact Pro" icon="smartphone">
+      De koper betaalt rechtstreeks via de Bancontact Pro app (voorheen Payconiq). Kaspert vraagt de betalingsstatus op in de achtergrond en markeert de bestelling automatisch als betaald zodra de transactie is bevestigd.
+    </Card>
 
-After a successful payment (or after placing an on-site order), the buyer is redirected to a **confirmation page** that shows their order number and a summary of what they ordered.
+    <Card title="Stripe (kaart / Bancontact)" icon="credit-card">
+      De koper wordt doorgestuurd naar een Stripe-gehoste afrekenpagina om te betalen met creditcard of Bancontact. Na betaling wordt hij of zij teruggebracht naar de Kaspert bevestigingspagina.
+    </Card>
 
-At the same moment, Kaspert sends an **order confirmation email** to the address the buyer provided. The email contains:
+    <Card title="Ter plaatse betalen" icon="hand-holding-euro">
+      Er wordt geen online betaling afgenomen. De bestelling wordt geplaatst met een openstaande status. De koper betaalt bij afhaling; je markeert de bestelling handmatig als betaald in het tabblad Bestellingen.
+    </Card>
+  </CardGroup>
 
-- The order number and sale name
-- A full product and price breakdown
-- Payment instructions (IBAN + reference for bank transfer, or an on-site payment notice — depending on the payment method chosen)
-- Your custom intro and closing text
+  ### Voltooi de betaling en ontvang de bevestiging
 
+  Na een succesvolle betaling (of na het plaatsen van een ter-plaatse-bestelling), wordt de koper doorgestuurd naar een **bevestigingspagina** die zijn bestelnummer en een samenvatting toont van wat hij heeft besteld.
+
+  Op hetzelfde moment stuurt Kaspert een **bestelbevestigingsmail** naar het adres dat de koper heeft opgegeven. De e-mail bevat:
+
+  * Het bestelnummer en de verkoopnaam
+  * Een volledige product- en prijsopbouw
+  * Betalingsinstructies (IBAN + referentie voor overschrijving, of een bericht voor ter plaatse betaling, afhankelijk van de gekozen betaalmethode)
+  * Je aangepaste intro- en afsluitingstekst
 </Steps>
 
-## What happens on your side
+## Wat er aan jouw kant gebeurt
 
-Every completed order appears in your Kaspert dashboard immediately:
+Elke voltooide bestelling verschijnt onmiddellijk in je Kaspert-dashboard:
 
-- **Verkoop → [sale name] → Bestellingen** — the order row shows buyer name, products, total, and payment status in real time.
-- **Kasboek** — for orders paid via Stripe or Bancontact Pro, a corresponding income transaction is automatically created and linked to the correct werkjaar. For bank-transfer and on-site orders, you mark the order as paid manually in the Bestellingen tab.
-- **Notification email** — if you configured notification addresses under Instellingen → Meldingen, you receive an email alert for each new order.
+- **Verkoop → [verkoopnaam] → Bestellingen**: de bestelrij toont in real time de naam van de koper, producten, totaal en betalingsstatus.
+- **Kasboek**: voor bestellingen betaald via Stripe of Bancontact Pro, wordt automatisch een corresponderende inkomstentransactie aangemaakt en gekoppeld aan het juiste werkjaar. Voor overschrijvings- en ter-plaatse-bestellingen markeer je de bestelling handmatig als betaald in het tabblad Bestellingen.
+- **Notificatiemail**: als je notificatie-adressen hebt geconfigureerd onder Instellingen → Meldingen, ontvang je een e-mailalert voor elke nieuwe bestelling.
 
-For Stripe payments, funds are batched and paid out to your linked bank account on Stripe's standard payout schedule (typically T+2 business days for Belgian accounts).
+Voor Stripe-betalingen worden gelden gebundeld en uitbetaald aan je gekoppelde bankrekening volgens Stripe's standaard uitbetalingschema (doorgaans T+2 werkdagen voor Belgische accounts).
 
 <Note>
-  **Bancontact Pro payment status.** When a buyer pays via Bancontact Pro, Kaspert polls the payment status in the background. The order status in your dashboard updates to **Betaald** as soon as the transaction is confirmed. This usually takes only a few seconds, but may occasionally take up to a minute.
+  **Bancontact Pro betalingsstatus.** Wanneer een koper betaalt via Bancontact Pro, vraagt Kaspert de betalingsstatus op in de achtergrond. De bestelstatus in je dashboard wordt bijgewerkt naar **Betaald** zodra de transactie is bevestigd. Dit duurt meestal slechts enkele seconden, maar kan incidenteel tot een minuut duren.
 </Note>
 
 <Warning>
-  **Inactive sales show a closed page.** If you toggle the **Actief** switch off (or if the sale has passed its automatic close time), the public order page displays a "closed" message and new orders cannot be placed. Existing orders and completed payments are not affected in any way — only new orders are blocked.
+  **Inactieve verkopen tonen een gesloten pagina.** Als je de **Actief** schakelaar uitzet (of als de verkoop zijn automatische sluittijd heeft bereikt), toont de publieke bestelpagina een "gesloten" bericht en kunnen er geen nieuwe bestellingen worden geplaatst. Bestaande bestellingen en voltooide betalingen worden op geen enkele manier beïnvloed: alleen nieuwe bestellingen worden geblokkeerd.
 </Warning>
 
-## Fulfilment and pick-up slots
+## Afhaling en afhaalslots
 
-If your sale involves physical pick-up (e.g. a waffle sale with multiple collection time windows), you can configure **fulfilment slots** under Instellingen → Afhalen & leveren. Each slot has a label (e.g. `17u – 18u`) and an optional capacity. Buyers choose a slot at checkout and the slot's booking count is updated in real time, preventing overbooking.
+Als je verkoop fysieke afhaling omvat (bijv. een wafelverkoop met meerdere afhaaltijdvensters), kun je **afhaalslots** configureren onder Instellingen → Afhalen & leveren. Elke slot heeft een label (bijv. `17u – 18u`) en een optionele capaciteit. Kopers kiezen een slot bij het afrekenen en de boekingstelling van het slot wordt in real time bijgewerkt, waardoor overboeking wordt voorkomen.
 
-For sales with home delivery, you can enable the delivery address field and configure a delivery cost that is added to the order total automatically.
+Voor verkopen met thuislevering kun je het leveringsadresveld inschakelen en een leveringskost configureren die automatisch aan het bestellingstotaal wordt toegevoegd.

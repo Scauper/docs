@@ -1,71 +1,71 @@
 ---
-title: "Create and manage payment types for your Kaspert events"
-sidebarTitle: "Payment Types"
-description: "Payment types group obligations for one event or fee category — such as a camp or membership fee. Create, switch between, and delete them at any time."
+title: "Betalingstypes aanmaken en beheren voor je Kaspert-evenementen"
+sidebarTitle: "Betalingstypes"
+description: "Betalingstypes groeperen verplichtingen voor een evenement of vergoedingscategorie, zoals een kamp of lidgeld. Maak ze aan, schakel tussen types, en verwijder ze op elk moment."
 ---
 
-A **payment type** is the top-level container for a set of payment obligations. Every obligation in the Betalingsopvolging module belongs to exactly one payment type, so you can cleanly separate different fee events from one another — your summer camp obligations stay completely separate from your annual membership fees. You can create as many payment types as you need, and switch between them at any time using the dropdown at the top of the Betalingen page (`/betalingen`).
+Een **betalingstype** is de bovenste container voor een set betalingsverplichtingen. Elke verplichting in de Betalingsopvolging module hoort bij precies een betalingstype, zodat je verschillende vergoedingsgebeurtenissen netjes van elkaar kunt scheiden. Je zomerkampverplichtingen blijven volledig gescheiden van je jaarlijkse lidgelden. Je kunt zoveel betalingstypes aanmaken als je nodig hebt, en op elk moment tussen hen schakelen via de dropdown bovenaan de Betalingen pagina (`/betalingen`).
 
-## When to create a new payment type
+## Wanneer maak je een nieuw betalingstype aan
 
-Create a new payment type whenever you start tracking a distinct payment event. Common examples include:
+Maak een nieuw betalingstype aan wanneer je begint met het bijhouden van een afzonderlijke betalingsgebeurtenis. Veelvoorkomende voorbeelden zijn:
 
-- **"Kamp 2025"** — camp fees for a specific season
-- **"Inschrijvingsgeld 2024–2025"** — annual membership fees for a werkjaar
-- **"Fuif oktober"** — event tickets where you want to track who has paid
-- **"Weekendkamp lente"** — a shorter trip with its own price and participant list
+- **"Kamp 2025"** - kampgelden voor een specifiek seizoen
+- **"Inschrijvingsgeld 2024-2025"** - jaarlijks lidgeld voor een werkjaar
+- **"Fuif oktober"** - evenemententickets waarbij je wilt bijhouden wie betaald heeft
+- **"Weekendkamp lente"** - een kortere trip met eigen prijs en deelnemerslijst
 
-Each of these becomes its own type, with its own list of obligations and its own statistics.
+Elk van deze wordt een eigen type, met een eigen lijst van verplichtingen en eigen statistieken.
 
-## Create a payment type
+## Een betalingstype aanmaken
 
 <Steps>
-  <Step title="Go to Betalingen">
-    Navigate to **Betalingen** in the sidebar, or go directly to `/betalingen`. You must have admin rights to create payment types.
+  <Step title="Ga naar Betalingen">
+    Navigeer naar **Betalingen** in de zijbalk, of ga rechtstreeks naar `/betalingen`. Je moet adminrechten hebben om betalingstypes aan te maken.
   </Step>
-  <Step title="Click 'Nieuw type'">
-    Click the **Nieuw type** button to the right of the payment type dropdown. A small dialog appears.
+  <Step title="Klik op 'Nieuw type'">
+    Klik de **Nieuw type** knop rechts van de betalingstype dropdown. Een klein dialoogvenster verschijnt.
   </Step>
-  <Step title="Enter a name and confirm">
-    Type a descriptive name for the payment type — for example, "Kamp zomer 2025". Names must be unique within your organisation. Click **Toevoegen** to save. The new type is immediately selected in the dropdown.
+  <Step title="Voer een naam in en bevestig">
+    Typ een beschrijvende naam voor het betalingstype, bijvoorbeeld "Kamp zomer 2025". Namen moeten uniek zijn binnen je jeugdvereniging. Klik **Toevoegen** om op te slaan. Het nieuwe type wordt meteen geselecteerd in de dropdown.
   </Step>
 </Steps>
 
 <Tip>
-  Choose names that are specific and include the year or season. This makes it easy to distinguish between types as your list grows over multiple werkjaren.
+  Kies namen die specifiek zijn en het jaar of seizoen bevatten. Dit maakt het makkelijk om types uit elkaar te houden naarmate je lijst groeit over meerdere werkjaren.
 </Tip>
 
-## Switch between payment types
+## Schakelen tussen betalingstypes
 
-Use the dropdown at the top of the Betalingen page to switch between your payment types. All statistics, obligations, and matching suggestions shown on the page update instantly to reflect the selected type.
+Gebruik de dropdown bovenaan de Betalingen pagina om te schakelen tussen je betalingstypes. Alle statistieken, verplichtingen, en matchingsuggesties op de pagina worden meteen bijgewerkt om het geselecteerde type weer te geven.
 
-## Understanding the statistics summary
+## De samenvatting van statistieken begrijpen
 
-Once a payment type has at least one obligation, Kaspert displays two summary cards at the top of the page:
+Zodra een betalingstype minstens een verplichting heeft, toont Kaspert twee samenvattingskaarten bovenaan de pagina:
 
-- **Betaald** — the number of obligations marked as paid, shown as a fraction of the total (e.g. *12/40*), with a colour-coded progress bar: red below 50 %, amber between 50 % and 80 %, and green at 80 % or above.
-- **Ontvangen** — the total amount received so far versus the total expected amount (e.g. *€540.00 / €1,800.00*), with the same colour-coded progress bar.
+- **Betaald** - het aantal verplichtingen dat als betaald is gemarkeerd, weergegeven als een fractie van het totaal (bijv. _12/40_), met een kleurgecodeerde voortgangsbalk: rood onder 50%, oranje tussen 50% en 80%, en groen vanaf 80%.
+- **Ontvangen** - het totale bedrag dat tot nu toe ontvangen is versus het totaal verwachte bedrag (bijv. _540,00 euro / 1.800,00 euro_), met dezelfde kleurgecodeerde voortgangsbalk.
 
-These statistics are calculated from all obligations in the current type, regardless of any active search filter or status filter you may have applied.
+Deze statistieken worden berekend uit alle verplichtingen in het huidige type, ongeacht eventuele actieve zoekfilters of statusfilters die je hebt toegepast.
 
-## Delete a payment type
+## Een betalingstype verwijderen
 
 <Warning>
-  Deleting a payment type is permanent and cannot be undone. All obligations linked to that type — including their payment status and any transaction links — are deleted along with it.
+  Het verwijderen van een betalingstype is permanent en kan niet ongedaan worden gemaakt. Alle verplichtingen gekoppeld aan dat type, inclusief hun betaalstatus en eventuele transactiekoppelingen, worden mee verwijderd.
 </Warning>
 
 <Steps>
-  <Step title="Select the type to delete">
-    Use the dropdown to select the payment type you want to remove.
+  <Step title="Selecteer het te verwijderen type">
+    Gebruik de dropdown om het betalingstype te selecteren dat je wilt verwijderen.
   </Step>
-  <Step title="Click the trash icon">
-    Click the red trash icon that appears to the right of the dropdown. A confirmation dialog appears, showing the name of the type and warning that all linked obligations will be permanently deleted.
+  <Step title="Klik op het prullenbakicoon">
+    Klik het rode prullenbakicoon dat rechts van de dropdown verschijnt. Een bevestigingsdialoog verschijnt, met de naam van het type en een waarschuwing dat alle gekoppelde verplichtingen permanent worden verwijderd.
   </Step>
-  <Step title="Confirm deletion">
-    Click **Verwijderen** to confirm. The type and all its obligations are removed immediately. If you were viewing that type, the page resets to an empty state until you select or create another type.
+  <Step title="Bevestig de verwijdering">
+    Klik **Verwijderen** om te bevestigen. Het type en al zijn verplichtingen worden meteen verwijderd. Als je dat type aan het bekijken was, reset de pagina naar een lege toestand tot je een ander type selecteert of aanmaakt.
   </Step>
 </Steps>
 
 <Note>
-  Only admins (penningmeester or organisatiebeheerder) can create and delete payment types. Regular members can view the Betalingen page in read-only mode if they have been granted access.
+  Alleen admins (penningmeester of organisatiebeheerder) kunnen betalingstypes aanmaken en verwijderen. Gewone leden kunnen de Betalingen pagina alleen-lezen bekijken als hen toegang is verleend.
 </Note>

@@ -1,81 +1,81 @@
 ---
-title: "User roles and access permissions in Kaspert admin"
-sidebarTitle: "Roles"
-description: "Kaspert has two roles — admin and member — controlling who can view, edit, and manage finances, members, and organisation settings."
+title: "Gebruikersrollen en toegangsrechten in Kaspert"
+sidebarTitle: "Rollen"
+description: "Kaspert kent twee rollen, admin en lid, die bepalen wie financien, leden en organisatie-instellingen mag bekijken, bewerken en beheren."
 ---
 
-Every person you invite to your Kaspert organisation is assigned a **role** that determines what they can see and do across all modules. Kaspert keeps this model deliberately simple: there are exactly two roles, **admin** and **member**, so you always know who can change things and who can only observe. Admins — typically the treasurer (*penningmeester*) and group leaders — have full control over the organisation's data, while members get enough visibility to stay informed and submit their own expense requests.
+Elke persoon die je uitnodigt voor je Kaspert-organisatie krijgt een **rol** toegewezen die bepaalt wat hij of zij mag zien en doen in alle modules. Kaspert houdt dit model expres eenvoudig: er zijn precies twee rollen, **admin** en **lid**, zodat je altijd weet wie dingen kan wijzigen en wie alleen kan observeren. Admins, doorgaans de penningmeester en groepsleiders, hebben volledige controle over de organisatiedata, terwijl leden genoeg zichtbaarheid krijgen om op de hoogte te blijven en hun eigen onkostenverzoeken kunnen indienen.
 
-## Role comparison
+## Rolvergelijking
 
-The table below lists every significant action in Kaspert and whether each role can perform it.
+De tabel hieronder toont elke belangrijke actie in Kaspert en of elke rol die mag uitvoeren.
 
-| Action | Admin | Member |
-|---|:---:|:---:|
-| View kasboek (ledger) | ✅ | ✅ (read-only) |
-| Add / edit / delete transactions | ✅ | ❌ |
-| Import bank CSV | ✅ | ❌ |
-| Manage categories | ✅ | ❌ |
-| View betalingsopvolging | ✅ | ❌ |
-| Manage payment obligations | ✅ | ❌ |
-| Manage webshop | ✅ | ❌ |
-| Submit expense requests | ✅ | ✅ |
-| Approve / reject expense requests | ✅ | ❌ |
-| View members list | ✅ | ❌ |
-| Add / edit / delete members | ✅ | ❌ |
-| Change organisation settings | ✅ | ❌ |
-| Invite / remove team members | ✅ | ❌ |
-| Change plan / billing | ✅ | ❌ |
+| Actie | Admin | Lid |
+| --- | :-: | :-: |
+| Kasboek bekijken | ✅ | ✅ (alleen-lezen) |
+| Transacties toevoegen / bewerken / verwijderen | ✅ | ❌ |
+| Bank-CSV importeren | ✅ | ❌ |
+| Categorieen beheren | ✅ | ❌ |
+| Betalingsopvolging bekijken | ✅ | ❌ |
+| Betalingsverplichtingen beheren | ✅ | ❌ |
+| Webshop beheren | ✅ | ❌ |
+| Onkostenverzoeken indienen | ✅ | ✅ |
+| Onkostenverzoeken goedkeuren / afwijzen | ✅ | ❌ |
+| Ledenlijst bekijken | ✅ | ❌ |
+| Leden toevoegen / bewerken / verwijderen | ✅ | ❌ |
+| Organisatie-instellingen wijzigen | ✅ | ❌ |
+| Teamleden uitnodigen / verwijderen | ✅ | ❌ |
+| Plan / facturering wijzigen | ✅ | ❌ |
 
 ---
 
-## How roles are assigned
+## Hoe rollen worden toegewezen
 
 <Steps>
-  <Step title="Organisation creator becomes admin automatically">
-    The first user who creates an organisation in Kaspert is granted the **admin** role immediately. No manual assignment is needed.
+  <Step title="De organisatie-aanmaker wordt automatisch admin">
+    De eerste gebruiker die een organisatie aanmaakt in Kaspert krijgt onmiddellijk de rol **admin**. Er is geen handmatige toewijzing nodig.
   </Step>
-  <Step title="Invited users start as Member">
-    When you invite someone via **Beheer → Leden → Uitnodigen**, they receive an email with a sign-up link. Once they accept and create their account, they join with the **Member** role by default. You can promote them to Admin straight away from the Leden list (see below).
+  <Step title="Uitgenodigde gebruikers starten als Lid">
+    Wanneer je iemand uitnodigt via **Beheer > Leden > Uitnodigen**, ontvangt die een e-mail met een aanmeldinglink. Zodra die accepteert en een account aanmaakt, wordt hij of zij lid met de rol **Lid**. Je kunt die meteen promoveren tot Admin vanuit de Leden-lijst (zie hieronder).
   </Step>
-  <Step title="Change a role at any time">
-    Admins can promote a member to admin — or demote an admin to member — at any time from **Beheer (`/admin`) → Leden**. Role changes take effect the next time the affected user loads the app.
+  <Step title="Wijzig een rol op elk moment">
+    Admins kunnen een lid promoveren tot admin, of een admin degraderen tot lid, op elk moment via **Beheer (`/admin`) > Leden**. Rolwijzigingen worden actief de volgende keer dat de betreffende gebruiker de app laadt.
   </Step>
 </Steps>
 
 <Warning>
-  Your organisation must always have at least one active admin. Kaspert will block an action that would leave the organisation without any admin (e.g. the last admin demoting themselves).
+  Je organisatie moet altijd minstens één actieve admin hebben. Kaspert blokkeert een actie die de organisatie zonder enige admin zou achterlaten, bijvoorbeeld als de laatste admin zichzelf degradeert.
 </Warning>
 
 ---
 
-## Read-only mode for members
+## Alleen-lezen modus voor leden
 
-Members can open the kasboek at `/dashboard` and see the full transaction list and running balance for any werkjaar — but they cannot add, edit, or delete anything. Kaspert makes this state visible with a **"Read-only"** banner in the page header, so members are never confused about why the "Add transaction" button is absent.
+Leden kunnen het kasboek openen op `/dashboard` en de volledige transactielijst en het lopende saldo voor elk werkjaar zien, maar ze kunnen niets toevoegen, bewerken of verwijderen. Kaspert maakt deze staat zichtbaar met een **"Alleen-lezen"** banner in de paginakop, zodat leden nooit in de war zijn over waarom de knop "Transactie toevoegen" ontbreekt.
 
 <Info>
-  Read-only access to the kasboek is intentional. Sharing financial transparency with your team builds trust and makes it easier for members to reconcile their own expense submissions against the ledger — without risking accidental edits.
+  Alleen-lezen toegang tot het kasboek is expres zo ontworpen. Financiele transparantie delen met je team bouwt vertrouwen op en maakt het voor leden makkelijker om hun eigen onkostenindieningen af te stemmen tegen het kasboek, zonder het risico op onbedoelde wijzigingen.
 </Info>
 
 ---
 
-## What members *can* do
+## Wat leden wel kunnen doen
 
-Even without write access to the kasboek, members are not locked out of participation:
+Ondanks het ontbreken van schrijftoegang tot het kasboek zijn leden niet uitgesloten van deelname:
 
 <CardGroup cols={2}>
-  <Card title="Submit expense requests" icon="receipt">
-    Members can navigate to **Onkosten (`/onkosten`)** and submit a reimbursement request with a description, amount, date, and an optional photo of the receipt. The request enters the queue as a `pending_expense` and awaits admin approval.
+  <Card title="Onkostenverzoeken indienen" icon="receipt">
+    Leden kunnen navigeren naar **Onkosten (`/onkosten`)** en een terugbetalingsverzoek indienen met een beschrijving, bedrag, datum en een optionele foto van het bonnetje. Het verzoek komt in de wachtrij als een `pending_expense` en wacht op goedkeuring door een admin.
   </Card>
-  <Card title="View the kasboek" icon="eye">
-    Members see the full transaction history and balance for any werkjaar in read-only mode. This gives them insight into how group funds are being used without granting edit rights.
+  <Card title="Het kasboek bekijken" icon="eye">
+    Leden zien de volledige transactiegeschiedenis en het saldo voor elk werkjaar in alleen-lezen modus. Dit geeft hen inzicht in hoe groepsfondsen worden gebruikt zonder bewerkingsrechten.
   </Card>
 </CardGroup>
 
 ---
 
-## Public pages (no account required)
+## Publieke pagina's (geen account nodig)
 
 <Note>
-  Several Kaspert pages are **fully public** — no Kaspert account is needed to access them. This covers the webshop order page, the member enrolment form, and the expense submission form. Parents ordering camp gear, new members signing up, or volunteers submitting receipts can all do so without creating an account. Only the back-office data (approvals, ledger, reports) requires a login.
+  Verschillende Kaspert-pagina's zijn **volledig publiek**: je hebt geen Kaspert-account nodig om ze te openen. Dit geldt voor de webshopbestelpagina, het ledeninschrijvingsformulier en het onkostenindieningsformulier. Ouders die kampuitrusting bestellen, nieuwe leden die zich inschrijven, of vrijwilligers die bonnetjes indienen kunnen dit allemaal doen zonder account aan te maken. Alleen de back-office data (goedkeuringen, kasboek, rapporten) vereist een login.
 </Note>

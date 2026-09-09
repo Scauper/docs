@@ -1,93 +1,93 @@
 ---
-title: "Enable and disable Kaspert feature modules per plan"
+title: "Schakel Kaspert-functiemodules in of uit per plan"
 sidebarTitle: "Modules"
-description: "Enable or disable the kasboek, payments, webshop, expenses, and members modules for your organisation — each toggleable per plan from Beheer > Modules."
+description: "Schakel het kasboek, betalingen, webshop, onkosten en ledenmodules in of uit voor je organisatie, elk aanpasbaar per plan via Beheer > Modules."
 ---
 
-Kaspert is built around a modular architecture. Each module is an independent feature area that you can switch on or off for your organisation. Disabling a module removes it from the navigation immediately, but your data is always preserved — re-enabling a module restores full access to everything that was there before. You manage modules in **Beheer** (`/admin`) > **Modules** tab.
+Kaspert is gebouwd rond een modulaire architectuur. Elke module is een onafhankelijk functiegebied dat je aan of uit kunt zetten voor je organisatie. Als je een module uitschakelt, verdwijnt deze onmiddellijk uit de navigatie, maar je data blijft altijd bewaard. Als je de module weer inschakelt, herstel je de volledige toegang tot alles wat er eerder stond. Je beheert modules in **Beheer** (`/admin`) > **Modules**.
 
-## Available modules
+## Beschikbare modules
 
-| Module | Minimum plan | Description |
-|--------|-------------|-------------|
-| **Kasboek** | All plans (Free+) | Record income and expenses per werkjaar, import bank statements, and generate year-end reports |
-| **Betalingsopvolging** | Basic, Pro, Premium | Track payment obligations (membership fees, drink tabs, etc.) and match incoming payments |
-| **Verkoop** | All plans (Free+) | Create sales campaigns with public order pages for merchandise, camps, and events |
-| **Onkosten** | Basic, Pro, Premium | Let members submit expense claims with receipts; admins review and approve from the dashboard |
-| **Leden** | Basic, Pro, Premium | Manage member records, age sections (takken), enrollments, and a parent portal |
+| Module | Minimaal plan | Beschrijving |
+| --- | --- | --- |
+| **Kasboek** | Alle plans (Free+) | Registreer inkomsten en onkosten per werkjaar, importeer bankafschriften en genereer jaarrapporten |
+| **Betalingsopvolging** | Basic, Pro, Premium | Volg betalingsverplichtingen (lidgeld, drinktabs, enz.) af en match binnenkomende betalingen |
+| **Verkoop** | Alle plans (Free+) | Maak verkoopcampagnes met publieke bestelpagina's voor merchandise, kampen en evenementen |
+| **Onkosten** | Basic, Pro, Premium | Laat leden onkostenclaims met bonnetjes indienen; admins keuren goed of af vanuit het dashboard |
+| **Leden** | Basic, Pro, Premium | Beheer ledenrecords, leeftijdsgroepen (takken), inschrijvingen en een ouderportaal |
 
-## How to enable a module
-
-<Steps>
-  <Step title="Open Beheer > Modules">
-    Navigate to `/admin` and click the **Modules** tab.
-  </Step>
-  <Step title="Toggle the module on">
-    Click the switch next to the module you want to enable. If your plan includes the module, the switch activates immediately and a confirmation toast appears.
-  </Step>
-  <Step title="Find the module in the navigation">
-    The module's entry appears in the top navigation bar straight away — no page reload required. You can start using it immediately.
-  </Step>
-</Steps>
-
-## How to disable a module
+## Een module inschakelen
 
 <Steps>
   <Step title="Open Beheer > Modules">
-    Navigate to `/admin` and click the **Modules** tab.
+    Navigeer naar `/admin` en klik op het tabblad **Modules**.
   </Step>
-  <Step title="Toggle the module off">
-    Click the active switch next to the module. It turns off immediately.
+  <Step title="Schakel de module in">
+    Klik op de schakelaar naast de module die je wilt inschakelen. Als je plan de module omvat, activeert de schakelaar onmiddellijk en verschijnt er een bevestigingstoast.
+  </Step>
+  <Step title="Vind de module in de navigatie">
+    De module verschijnt onmiddellijk in de bovenste navigatiebalk. Je hoeft de pagina niet te vernieuwen. Je kunt meteen aan de slag.
   </Step>
 </Steps>
 
-Disabling a module:
-- Removes the module's entry from the navigation header for all users in your organisation
-- Does **not** delete any data — all transactions, member records, expenses, and orders remain stored
-- Can be reversed at any time by toggling the module back on
+## Een module uitschakelen
 
-## Module access by role
+<Steps>
+  <Step title="Open Beheer > Modules">
+    Navigeer naar `/admin` en klik op het tabblad **Modules**.
+  </Step>
+  <Step title="Schakel de module uit">
+    Klik op de actieve schakelaar naast de module. Deze schakelt onmiddellijk uit.
+  </Step>
+</Steps>
+
+Het uitschakelen van een module:
+- Verwijdert de module uit de navigatiebalk voor alle gebruikers in je organisatie
+- Verwijdert **geen enkele data**. Alle transacties, ledenrecords, onkosten en bestellingen blijven opgeslagen
+- Kan op elk moment ongedaan worden gemaakt door de module weer in te schakelen
+
+## Moduletoegang per rol
 
 <CardGroup cols={2}>
   <Card title="Admin" icon="shield-check">
-    Admins can access all enabled modules in full. They can read and write transactions, manage members, approve expenses, and configure module settings.
+    Admins hebben volledige toegang tot alle ingeschakelde modules. Ze kunnen transacties lezen en schrijven, leden beheren, onkosten goedkeuren en module-instellingen configureren.
   </Card>
-  <Card title="Member" icon="user">
-    Members have limited module access regardless of which modules are enabled. They can view the kasboek in read-only mode and submit expense requests via the public Onkosten link. They cannot access Betalingsopvolging, Verkoop settings, or Leden admin pages.
+  <Card title="Lid" icon="user">
+    Leden hebben beperkte moduletoegang, ongeacht welke modules zijn ingeschakeld. Ze kunnen het kasboek in alleen-lezen modus bekijken en onkostenverzoeken indienen via de publieke Onkosten-link. Ze hebben geen toegang tot Betalingsopvolging, Verkoop-instellingen of Leden-adminpagina's.
   </Card>
 </CardGroup>
 
-## Modules and plan limits
+## Modules en planlimieten
 
-Some modules are only available on certain plans. If a module requires a higher plan than your current one, the toggle is shown as disabled with an **Upgrade** badge next to the module name.
+Sommige modules zijn alleen beschikbaar op bepaalde plans. Als een module een hoger plan vereist dan je huidige, wordt de schakelaar weergegeven als uitgeschakeld met een badge **Upgrade** naast de modulenaam.
 
 <Warning>
-  If you **downgrade your plan** and the new plan does not include a module that is currently enabled, that module is **automatically disabled**. Your data is safely preserved, but it becomes inaccessible until you upgrade your plan again or manually remove the data. You will see a warning listing which modules will be lost before you confirm a downgrade.
+  Als je **je plan downgradet** en het nieuwe plan een module niet meer omvat die momenteel is ingeschakeld, dan wordt die module **automatisch uitgeschakeld**. Je data blijft veilig bewaard, maar wordt ontoegankelijk totdat je je plan weer upgradet of de data handmatig verwijdert. Je ziet een waarschuwing met een lijst van modules die verloren gaan voordat je de downgrade bevestigt.
 </Warning>
 
 <Tabs>
   <Tab title="Free plan">
-    **Included modules:** Kasboek, Verkoop
+    **Inbegrepen modules:** Kasboek, Verkoop
 
-    The Free plan is ideal for small groups that want to track their finances and run a simple webshop without a subscription fee. Advanced features like payment tracking, expense management, and member administration require a paid plan.
+    Het Free-plan is ideaal voor kleine groepen die hun financiën willen bijhouden en een eenvoudige webshop willen runnen zonder abonnementskosten. Geavanceerde functies zoals betalingsopvolging, onkostenbeheer en ledenadministratie vereisen een betaald plan.
   </Tab>
-  <Tab title="Basic plan (€4.99/mo)">
-    **Included modules:** Kasboek, Betalingsopvolging, Verkoop, Onkosten, Leden
+  <Tab title="Basic plan (€4.99/maand)">
+    **Inbegrepen modules:** Kasboek, Betalingsopvolging, Verkoop, Onkosten, Leden
 
-    All five modules are available on Basic. This is the recommended starting point for most active youth organisations.
+    Alle vijf modules zijn beschikbaar op Basic. Dit is het aanbevolen startpunt voor de meeste actieve jeugdverenigingen.
   </Tab>
-  <Tab title="Pro plan (€8.99/mo)">
-    **Included modules:** All modules + bank import, OCR receipt scanning
+  <Tab title="Pro plan (€8.99/maand)">
+    **Inbegrepen modules:** Alle modules + bankimport, OCR bonnetjesscanner
 
-    Pro adds power-user features on top of all Basic modules: automatic bank statement import and AI-powered OCR for scanning expense receipts.
+    Pro voegt power-userfuncties toe bovenop alle Basic-modules: automatisch importeren van bankafschriften en AI-aangedreven OCR voor het scannen van onkostenbonnetjes.
   </Tab>
-  <Tab title="Premium plan (€14.99/mo)">
-    **Included modules:** All Pro features + benchmark reports, unlimited admins
+  <Tab title="Premium plan (€14.99/maand)">
+    **Inbegrepen modules:** Alle Pro-functies + benchmarkrapporten, onbeperkt admins
 
-    Premium is designed for large organisations or umbrella groups that need advanced analytics and unlimited team members.
+    Premium is ontworpen voor grote organisaties of overkoepelende groepen die geavanceerde analyses en onbeperkt teamleden nodig hebben.
   </Tab>
 </Tabs>
 
 <Tip>
-  Choose **yearly billing** in Beheer > Abonnement to get approximately two months free on any paid plan (roughly 17% off the monthly rate).
+  Kies **jaarlijkse facturering** in Beheer > Abonnement om ongeveer twee maanden gratis te krijgen op elk betaald plan (ongeveer 17% korting op het maandtarief).
 </Tip>

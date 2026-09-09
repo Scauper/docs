@@ -1,59 +1,59 @@
 ---
-title: "Create takken: age-based sections with membership fees"
+title: "Takken aanmaken: leeftijdsgroepen met lidgelden"
 sidebarTitle: "Takken"
-description: "Create takken with age ranges and membership fees that auto-fill the enrollment form and calculate payment obligations for every new member."
+description: "Maak takken aan met leeftijdsgrenzen en lidgelden die het inschrijvingsformulier automatisch vullen en betalingsverplichtingen voor elk nieuw lid berekenen."
 ---
 
-A **tak** (plural: **takken**) is an age-based section within your youth organisation. In Chiro, for example, children move from Rakwis to Tito's to Keti's as they grow older; in Scouts the progression runs from Welpen through Jonggivers up to Rovers. Kaspert uses your takken to populate the section dropdown on the public enrollment form and to set the correct membership fee for each new member automatically. Each tak has an optional age range that lets Kaspert suggest the right section when a parent enters a child's birth date — the parent can always override the suggestion.
+Een **tak** (meervoud: **takken**) is een leeftijdsgroep binnen je jeugdvereniging. In Chiro bijvoorbeeld gaan kinderen van Rakwis naar Tito's naar Keti's naarmate ze ouder worden; bij Scouts loopt de opvolging van Welpen via Jonggivers tot Rovers. Kaspert gebruikt je takken om de tak-dropdown op het publieke inschrijvingsformulier te vullen en om automatisch het juiste lidgeld voor elk nieuw lid in te stellen. Elke tak heeft een optionele leeftijdsgrens waarmee Kaspert de juiste tak voorstelt wanneer een ouder de geboortedatum van een kind invult; de ouder kan die suggestie altijd overschrijven.
 
-## Creating a tak
+## Een tak aanmaken
 
 <Steps>
-  <Step title="Open the Takken tab">
-    Navigate to **Leden** (`/leden`) and click the **Takken** tab in the top navigation.
+  <Step title="Open het tabblad Takken">
+    Ga naar **Leden** (`/leden`) en klik op het tabblad **Takken** in de bovenste navigatie.
   </Step>
-  <Step title="Fill in the tak details">
-    In the **Nieuwe tak toevoegen** card at the top of the page, complete the four fields:
+  <Step title="Vul de takgegevens in">
+    Vul in de kaart **Nieuwe tak toevoegen** bovenaan de pagina de vier velden in:
 
-    | Field | Required | Description |
-    |-------|----------|-------------|
-    | **Naam** | Yes | The display name, e.g. *Rakwis* or *Welpen*. |
-    | **Leeftijd vanaf** | No | Minimum age (inclusive) used for automatic section suggestions. |
-    | **Leeftijd tot** | No | Maximum age (inclusive). Leave both age fields empty to show the tak for all ages. |
-    | **Lidgeld (€)** | No | The membership fee for this section. Defaults to €0. |
+    | Veld | Verplicht | Beschrijving |
+    | --- | --- | --- |
+    | **Naam** | Ja | De weergavenaam, bijvoorbeeld _Rakwis_ of _Welpen_. |
+    | **Leeftijd vanaf** | Nee | Minimumleeftijd (inclusief) die wordt gebruikt voor automatische taksuggesties. |
+    | **Leeftijd tot** | Nee | Maximumleeftijd (inclusief). Laat beide leeftijdsvelden leeg om de tak voor alle leeftijden te tonen. |
+    | **Lidgeld (€)** | Nee | Het lidgeld voor deze tak. Standaard €0. |
   </Step>
-  <Step title="Click Toevoegen">
-    The tak is added to the list immediately and will appear in the enrollment form dropdown on your next save.
+  <Step title="Klik op Toevoegen">
+    De tak wordt onmiddellijk aan de lijst toegevoegd en verschijnt na het opslaan in de dropdown van het inschrijvingsformulier.
   </Step>
 </Steps>
 
-## Editing a tak
+## Een tak bewerken
 
-Click the **pencil icon** (✏️) on any tak row to open the edit dialog. You can change the name, age range, and membership fee. Click **Opslaan** to confirm. Changes take effect immediately — the updated fee applies to new enrollments going forward, but does not retroactively change existing enrollment records.
+Klik op het **potloodicoon** (✏️) in een takrij om het bewerkingsvenster te openen. Je kunt de naam, leeftijdsgrenzen en lidgeld wijzigen. Klik op **Opslaan** om te bevestigen. Wijzigingen zijn onmiddellijk van kracht: het bijgewerkte lidgeld geldt voor nieuwe inschrijvingen, maar wordt niet met terugwerkende kracht toegepast op bestaande inschrijvingsrecords.
 
-## Reordering takken
+## Takken rangschikken
 
-Use the **↑** and **↓** arrow buttons on each tak row to change the sort order. The order is reflected directly in the enrollment form dropdown, so put the most common sections near the top.
+Gebruik de knoppen **↑** en **↓** in elke takrij om de sorteervolgorde te wijzigen. De volgorde wordt direct weergegeven in de dropdown van het inschrijvingsformulier, dus zet de meest voorkomende takken bovenaan.
 
-## Activating and deactivating
+## Activeren en deactiveren
 
-Each tak has an **active/inactive toggle** (the switch on the right side of the row). When a tak is deactivated:
+Elke tak heeft een **actief/inactief-schakelaar** (de schakelaar aan de rechterkant van de rij). Wanneer een tak is gedeactiveerd:
 
-- It no longer appears in the enrollment form dropdown — parents cannot select it for new enrollments.
-- It no longer appears in the admin **filter by tak** dropdown on the Leden tab.
-- Existing enrollments linked to that tak are unaffected.
+- verschijnt deze niet meer in de dropdown van het inschrijvingsformulier: ouders kunnen deze niet meer selecteren voor nieuwe inschrijvingen;
+- verschijnt deze niet meer in de admin-dropdown **filteren op tak** op het tabblad Leden;
+- bestaande inschrijvingen gekoppeld aan die tak blijven onveranderd.
 
-Deactivation is the safe way to "hide" a tak that is no longer in use without losing historical data.
+Deactiveren is de veilige manier om een tak die niet meer in gebruik is te "verbergen" zonder historische gegevens te verliezen.
 
-## Deleting a tak
+## Een tak verwijderen
 
-Click the **trash icon** (🗑️) on a tak row and confirm the alert dialog. Deleting a tak is permanent and cannot be undone.
+Klik op het **prullenbakicoon** (🗑️) in een takrij en bevestig het waarschuwingsvenster. Het verwijderen van een tak is definitief en kan niet ongedaan worden gemaakt.
 
 <Warning>
-  Deleting a tak does **not** delete any members or enrollments. Existing enrollments that referenced the deleted tak will simply show no tak. If you want to preserve the historical link, consider deactivating the tak instead.
+  Het verwijderen van een tak verwijdert **geen** leden of inschrijvingen. Bestaande inschrijvingen die naar de verwijderde tak verwezen, tonen gewoon geen tak meer. Wil je de historische koppeling behouden, overweeg dan om de tak te deactiveren in plaats van te verwijderen.
 </Warning>
 
-## Example takken for a Chiro group
+## Voorbeeldtakken voor een Chiropgroep
 
 | Tak | Leeftijd | Lidgeld |
 |-----|----------|---------|
@@ -64,8 +64,8 @@ Click the **trash icon** (🗑️) on a tak row and confirm the alert dialog. De
 | Keti's | 14–17 jaar | €40.00 |
 | Aspi's | 17+ jaar | €40.00 |
 
-You can model your own group after a similar table — the exact names, age ranges, and fees are entirely up to you.
+Je kunt je eigen groep modelleren naar een vergelijkbare tabel: de exacte namen, leeftijdsgrenzen en lidgelden bepaal je volledig zelf.
 
 <Tip>
-  Set a realistic membership fee on each tak before opening enrollment. The fee is pre-filled in the enrollment form and used automatically to create a payment obligation in Betalingsopvolging when a parent enrolls a child. Getting this right up front saves manual corrections later.
+  Stel voor elk tak een realistisch lidgeld in voordat je de inschrijving opent. Het lidgeld wordt vooraf ingevuld in het inschrijvingsformulier en gebruikt om automatisch een betalingsverplichting aan te maken in Betalingsopvolging wanneer een ouder een kind inschrijft. Als je dit vanaf het begin correct instelt, bespaar je later handmatige correcties.
 </Tip>

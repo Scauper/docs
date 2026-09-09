@@ -1,36 +1,36 @@
 ---
-title: "Use Kaspert AI assistant for financial queries and tasks"
-sidebarTitle: "AI Assistant"
-description: "Query transactions, get financial summaries, track payment obligations, and create ledger entries using Kaspert MCP-based AI tools with natural language."
+title: "Gebruik de Kaspert AI-assistent voor financiele vragen en taken"
+sidebarTitle: "AI-assistent"
+description: "Bevraag transacties, krijg financiele samenvattingen, volg betalingsverplichtingen en maak kasboekboekingen met de Kaspert MCP-gebaseerde AI-tools in natuurlijke taal."
 ---
 
-Kaspert exposes a set of AI-callable tools through the **Model Context Protocol (MCP)** that allow AI assistants — such as Claude — to query and interact with your organisation's financial data in natural language. Instead of manually filtering your kasboek to answer questions like "How much did we spend on camp this year?" or "Who still owes their membership fee?", you can ask your AI assistant directly and get a structured answer in seconds. All tools operate within the context of your logged-in organisation, so data from other groups is never accessible.
+Kaspert biedt een set AI-aanroepbare tools aan via het **Model Context Protocol (MCP)** waarmee AI-assistenten, zoals Claude, de financiele data van je organisatie kunnen bevragen en bewerken in natuurlijke taal. In plaats van handmatig je kasboek te filteren om vragen te beantwoorden zoals "Hoeveel hebben we dit jaar aan kamp uitgegeven?" of "Wie moet nog hun lidgeld betalen?", kun je je AI-assistent rechtstreeks vragen stellen en binnen enkele seconden een gestructureerd antwoord krijgen. Alle tools werken binnen de context van je ingelogde organisatie, zodat data van andere groepen nooit toegankelijk is.
 
 <Note>
-  The AI assistant feature requires MCP access credentials. Contact **support@kaspert.be** for setup instructions for your preferred AI client (Claude Desktop, Cursor, etc.).
+  De AI-assistentfunctie vereist MCP-toegangsgegevens. Neem contact op met [**support@kaspert.be**](mailto:support@kaspert.be) voor instructies om je favoriete AI-client (Claude Desktop, Cursor, enz.) in te stellen.
 </Note>
 
 ---
 
-## Available tools
+## Beschikbare tools
 
-Kaspert's MCP server exposes five tools. Each tool requires authentication — they use the OAuth session of the logged-in user and automatically scope all queries to that user's active organisation.
+De MCP-server van Kaspert biedt vijf tools. Elke tool vereist authenticatie: ze gebruiken de OAuth-sessie van de ingelogde gebruiker en beperken alle queries automatisch tot de actieve organisatie van die gebruiker.
 
 <CardGroup cols={2}>
   <Card title="financial_summary" icon="chart-pie">
-    Get totals for income, expenses, balance, and a per-category breakdown for any date range.
+    Krijg totalen voor inkomsten, onkosten, saldo en een opsplitsing per categorie voor elke datumbereik.
   </Card>
   <Card title="list_transactions" icon="list">
-    Retrieve a filtered list of transactions by type, category, and date range.
+    Haal een gefilterde lijst van transacties op basis van type, categorie en datumbereik.
   </Card>
   <Card title="list_categories" icon="tags">
-    Get all active categories defined for your organisation, optionally filtered by werkjaar.
+    Haal alle actieve categorieen op die voor je organisatie zijn gedefinieerd, optioneel gefilterd op werkjaar.
   </Card>
   <Card title="list_payment_obligations" icon="circle-check">
-    List payment obligations (membership fees, camp fees, etc.) with paid/unpaid status and person search.
+    Toon betalingsverplichtingen (lidgeld, kampkosten, enz.) met betaald/onbetaald-status en zoeken op persoon.
   </Card>
   <Card title="create_transaction" icon="plus">
-    Add a new income or expense entry directly to the kasboek.
+    Voeg een nieuwe inkomsten- of onkostenboeking rechtstreeks toe aan het kasboek.
   </Card>
 </CardGroup>
 
@@ -38,7 +38,7 @@ Kaspert's MCP server exposes five tools. Each tool requires authentication — t
 
 ### `financial_summary`
 
-Returns total income, total expenses, running balance, transaction count, and a breakdown of amounts by category for the specified period. Both `from` and `to` are optional — omitting them returns all-time figures.
+Geeft totale inkomsten, totale onkosten, lopend saldo, aantal transacties en een opsplitsing van bedragen per categorie voor de opgegeven periode. Zowel `from` als `to` zijn optioneel. Als je ze weglaat, krijg je cijfers over de volledige periode.
 
 <Tabs>
   <Tab title="Request">
@@ -53,10 +53,10 @@ Returns total income, total expenses, running balance, transaction count, and a 
     ```
 
     <ParamField body="from" type="string">
-      Start date in `YYYY-MM-DD` format (optional). If omitted, no lower date bound is applied.
+      Startdatum in `YYYY-MM-DD`-formaat (optioneel). Als weggelaten, wordt geen ondergrens toegepast.
     </ParamField>
     <ParamField body="to" type="string">
-      End date in `YYYY-MM-DD` format (optional). If omitted, no upper date bound is applied.
+      Einddatum in `YYYY-MM-DD`-formaat (optioneel). Als weggelaten, wordt geen bovengrens toegepast.
     </ParamField>
   </Tab>
   <Tab title="Response">
@@ -76,19 +76,19 @@ Returns total income, total expenses, running balance, transaction count, and a 
     ```
 
     <ResponseField name="income" type="number">
-      Total income for the period in euros, rounded to 2 decimal places.
+      Totale inkomsten voor de periode in euro, afgerond op 2 decimalen.
     </ResponseField>
     <ResponseField name="expense" type="number">
-      Total expenses for the period in euros, rounded to 2 decimal places.
+      Totale onkosten voor de periode in euro, afgerond op 2 decimalen.
     </ResponseField>
     <ResponseField name="balance" type="number">
-      `income - expense`. Positive means your organisation is in credit; negative means you've spent more than you've received.
+      `income - expense`. Positief betekent dat je organisatie in het zwart staat; negatief betekent dat je meer hebt uitgegeven dan ontvangen.
     </ResponseField>
     <ResponseField name="transaction_count" type="integer">
-      Total number of transactions in the period.
+      Totaal aantal transacties in de periode.
     </ResponseField>
     <ResponseField name="by_category" type="object">
-      Each key is a category name. Each value has `income` and `expense` sub-totals for that category.
+      Elke sleutel is een categorienaam. Elke waarde bevat `income`- en `expense`-subtotalen voor die categorie.
     </ResponseField>
   </Tab>
 </Tabs>
@@ -97,7 +97,7 @@ Returns total income, total expenses, running balance, transaction count, and a 
 
 ### `list_transactions`
 
-Returns a list of individual transactions matching the provided filters, sorted newest-first. Results are capped at 200 per request; use narrower date ranges for large data sets.
+Geeft een lijst van individuele transacties die overeenkomen met de opgegeven filters, gesorteerd op nieuwste eerst. Resultaten zijn beperkt tot 200 per aanvraag; gebruik smallere datumbereiken voor grote datasets.
 
 <Tabs>
   <Tab title="Request">
@@ -115,19 +115,19 @@ Returns a list of individual transactions matching the provided filters, sorted 
     ```
 
     <ParamField body="type" type="string">
-      Filter to `"income"` or `"expense"`. Omit to return both types.
+      Filter op `"income"` of `"expense"`. Laat weg om beide types te tonen.
     </ParamField>
     <ParamField body="category" type="string">
-      Filter by exact category name (case-sensitive). Use `list_categories` to get valid names.
+      Filter op exacte categorienaam (hoofdlettergevoelig). Gebruik `list_categories` om geldige namen op te halen.
     </ParamField>
     <ParamField body="from" type="string">
-      Start date `YYYY-MM-DD` (optional).
+      Startdatum `YYYY-MM-DD` (optioneel).
     </ParamField>
     <ParamField body="to" type="string">
-      End date `YYYY-MM-DD` (optional).
+      Einddatum `YYYY-MM-DD` (optioneel).
     </ParamField>
     <ParamField body="limit" type="integer" default="50">
-      Maximum number of results to return. Must be between 1 and 200.
+      Maximum aantal resultaten. Moet tussen 1 en 200 liggen.
     </ParamField>
   </Tab>
   <Tab title="Response">
@@ -157,7 +157,7 @@ Returns a list of individual transactions matching the provided filters, sorted 
     ```
 
     <ResponseField name="transactions" type="array">
-      Array of transaction objects. Each object includes `id`, `date`, `type`, `amount`, `description`, `category`, and `source` (`"manual"` or `"bank_import"`).
+      Array van transactie-objecten. Elk object bevat `id`, `date`, `type`, `amount`, `description`, `category` en `source` (`"manual"` of `"bank_import"`).
     </ResponseField>
   </Tab>
 </Tabs>
@@ -166,7 +166,7 @@ Returns a list of individual transactions matching the provided filters, sorted 
 
 ### `list_categories`
 
-Returns all categories defined for your organisation. Use this tool before calling `create_transaction` to make sure you use a valid category name.
+Geeft alle categorieen die voor je organisatie zijn gedefinieerd. Gebruik deze tool voordat je `create_transaction` aanroept om zeker te zijn dat je een geldige categorienaam doorgeeft.
 
 <Tabs>
   <Tab title="Request">
@@ -181,10 +181,10 @@ Returns all categories defined for your organisation. Use this tool before calli
     ```
 
     <ParamField body="werkjaar" type="string">
-      Filter by werkjaar label (e.g. `"2024-2025"`). Omit to return categories for all werkjaren.
+      Filter op werkjaar-label (bijvoorbeeld `"2024-2025"`). Laat weg om categorieen voor alle werkjaren op te halen.
     </ParamField>
     <ParamField body="only_active" type="boolean" default="true">
-      When `true` (default), only active categories are returned. Set to `false` to include archived categories.
+      Wanneer `true` (standaard), worden alleen actieve categorieen geretourneerd. Stel in op `false` om gearchiveerde categorieen op te nemen.
     </ParamField>
   </Tab>
   <Tab title="Response">
@@ -200,7 +200,7 @@ Returns all categories defined for your organisation. Use this tool before calli
     ```
 
     <ResponseField name="categories" type="array">
-      Array of category objects, each with `id`, `name`, `werkjaar`, and `is_active`.
+      Array van categorie-objecten, elk met `id`, `name`, `werkjaar` en `is_active`.
     </ResponseField>
   </Tab>
 </Tabs>
@@ -209,7 +209,7 @@ Returns all categories defined for your organisation. Use this tool before calli
 
 ### `list_payment_obligations`
 
-Lists payment obligations — membership fees, camp fees, or any other tracked payment — with their paid/unpaid status. Useful for answering questions like "Who still hasn't paid their camp fee?".
+Toont betalingsverplichtingen, lidgeld, kampkosten of elke andere gevolgde betaling, met hun betaald/onbetaald-status. Handig voor vragen zoals "Wie moet nog hun kampgeld betalen?".
 
 <Tabs>
   <Tab title="Request">
@@ -225,13 +225,13 @@ Lists payment obligations — membership fees, camp fees, or any other tracked p
     ```
 
     <ParamField body="is_paid" type="boolean">
-      Filter to paid (`true`) or unpaid (`false`) obligations. Omit to return both.
+      Filter op betaalde (`true`) of onbetaalde (`false`) verplichtingen. Laat weg om beide te tonen.
     </ParamField>
     <ParamField body="search" type="string">
-      Case-insensitive partial search on the person's name (e.g. `"Janssen"` matches `"Jan Janssen"` and `"Lies Janssens"`).
+      Zoeken zonder onderscheid tussen hoofd- en kleine letters op gedeelten van de persoonsnaam (bijvoorbeeld `"Janssen"` matcht `"Jan Janssen"` en `"Lies Janssens"`).
     </ParamField>
     <ParamField body="limit" type="integer" default="50">
-      Maximum number of results. Must be between 1 and 200.
+      Maximum aantal resultaten. Moet tussen 1 en 200 liggen.
     </ParamField>
   </Tab>
   <Tab title="Response">
@@ -259,7 +259,7 @@ Lists payment obligations — membership fees, camp fees, or any other tracked p
     ```
 
     <ResponseField name="obligations" type="array">
-      Array of payment obligation objects with `id`, `person_name`, `amount`, `description`, `is_paid`, and `created_at`.
+      Array van betalingsverplichting-objecten met `id`, `person_name`, `amount`, `description`, `is_paid` en `created_at`.
     </ResponseField>
   </Tab>
 </Tabs>
@@ -268,7 +268,7 @@ Lists payment obligations — membership fees, camp fees, or any other tracked p
 
 ### `create_transaction`
 
-Adds a new income or expense entry to your kasboek. Use `list_categories` first to ensure you pass a valid category name. This is the only tool that **writes** data — all other tools are read-only.
+Voegt een nieuwe inkomsten- of onkostenboeking toe aan je kasboek. Gebruik eerst `list_categories` om zeker te zijn dat je een geldige categorienaam doorgeeft. Dit is de enige tool die **data schrijft**: alle andere tools zijn alleen-lezen.
 
 <Tabs>
   <Tab title="Request">
@@ -286,19 +286,19 @@ Adds a new income or expense entry to your kasboek. Use `list_categories` first 
     ```
 
     <ParamField body="type" type="string" required>
-      `"income"` for money received, `"expense"` for money spent.
+      `"income"` voor ontvangen geld, `"expense"` voor uitgegeven geld.
     </ParamField>
     <ParamField body="amount" type="number" required>
-      Amount in euros. Must be a positive number (e.g. `45.50`). Never pass a negative value.
+      Bedrag in euro. Moet een positief getal zijn (bijvoorbeeld `45.50`). Geef nooit een negatieve waarde door.
     </ParamField>
     <ParamField body="description" type="string" required>
-      A short description of the transaction. Maximum 300 characters.
+      Een korte beschrijving van de transactie. Maximum 300 tekens.
     </ParamField>
     <ParamField body="category" type="string" required>
-      Category name. Must exactly match an existing active category for your organisation. Call `list_categories` first if unsure.
+      Categorienaam. Moet exact overeenkomen met een bestaande actieve categorie voor je organisatie. Roep eerst `list_categories` aan als je twijfelt.
     </ParamField>
     <ParamField body="date" type="string">
-      Date in `YYYY-MM-DD` format. Defaults to today if omitted.
+      Datum in `YYYY-MM-DD`-formaat. Standaard vandaag als weggelaten.
     </ParamField>
   </Tab>
   <Tab title="Response">
@@ -316,17 +316,17 @@ Adds a new income or expense entry to your kasboek. Use `list_categories` first 
     ```
 
     <ResponseField name="transaction" type="object">
-      The newly created transaction with its `id`, `date`, `type`, `amount`, `description`, and `category`.
+      De nieuw aangemaakte transactie met zijn `id`, `date`, `type`, `amount`, `description` en `category`.
     </ResponseField>
   </Tab>
 </Tabs>
 
 ---
 
-## Authentication
+## Authenticatie
 
-All five MCP tools require an authenticated user session. When you connect your AI client to the Kaspert MCP endpoint, you will be prompted to log in with your Kaspert credentials — the tools then automatically operate on your active organisation's data.
+Alle vijf MCP-tools vereisen een geauthenticeerde gebruikerssessie. Wanneer je je AI-client verbindt met het Kaspert MCP-endpoint, word je gevraagd om in te loggen met je Kaspert-credentials. De tools werken dan automatisch op de data van je actieve organisatie.
 
 <Warning>
-  Because `create_transaction` writes data to your live kasboek, be specific when asking your AI assistant to create entries. Review the response to confirm the amount, category, and description are correct before proceeding.
+  Omdat `create_transaction` data schrijft naar je live kasboek, wees specifiek wanneer je je AI-assistent vraagt om boekingen aan te maken. Controleer het antwoord om te bevestigen dat het bedrag, de categorie en de beschrijving correct zijn voordat je verdergaat.
 </Warning>

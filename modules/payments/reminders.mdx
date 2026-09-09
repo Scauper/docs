@@ -1,80 +1,80 @@
 ---
-title: "Send payment reminders to members via e-mail in Kaspert"
-sidebarTitle: "Reminders"
-description: "Send personalised e-mail payment reminders with amount, IBAN, and a Payconiq QR code to members whose obligations are still outstanding."
+title: "Betalingsherinneringen naar leden sturen via e-mail in Kaspert"
+sidebarTitle: "Herinneringen"
+description: "Stuur gepersonaliseerde e-mailherinneringen voor betaling met bedrag, IBAN, en een Payconiq QR-code naar leden met nog openstaande verplichtingen."
 ---
 
-When a member hasn't paid and the deadline is approaching, Kaspert lets you send a personalised payment reminder directly from the Betalingen page. The reminder e-mail includes all the information the recipient needs to complete their payment: the amount due, a description of what the payment is for, your organisation's name, and your IBAN — ready to copy or scan. You don't have to draft a separate e-mail or look up the bank details; Kaspert takes care of the content and remembers your IBAN for the next reminder you send.
+Wanneer een lid nog niet betaald heeft en de deadline nadert, laat Kaspert je toe om rechtstreeks vanaf de Betalingen pagina een gepersonaliseerde betalingsherinnering te versturen. De herinnerings-e-mail bevat alle informatie die de ontvanger nodig heeft om zijn of haar betaling te voltooien: het verschuldigde bedrag, een beschrijving waarvoor de betaling is, de naam van je jeugdvereniging, en je IBAN, klaar om te kopiëren of te scannen. Je hoeft geen aparte e-mail op te stellen of de bankgegevens op te zoeken. Kaspert verzorgt de inhoud en onthoudt je IBAN voor de volgende herinnering die je verstuurt.
 
-## Send a reminder
+## Een herinnering versturen
 
 <Steps>
-  <Step title="Find the open obligation">
-    On the Betalingen page (`/betalingen`), locate the obligation with status **Openstaand** that you want to remind. You can use the search bar or the status filter set to "Openstaand" to find it quickly.
+  <Step title="Zoek de openstaande verplichting">
+    Op de Betalingen pagina (`/betalingen`), localiseer de verplichting met status **Openstaand** die je wilt herinneren. Je kunt de zoekbalk gebruiken of het statusfilter op "Openstaand" zetten om hem snel te vinden.
   </Step>
-  <Step title="Open the reminder dialog">
-    Click the **three-dot menu** (⋯) on the obligation row and choose **Herinnering sturen**. A dialog opens showing the person's name, the amount, and the memo.
+  <Step title="Open het herinneringsdialoog">
+    Klik het **drie puntjes menu** (⋯) op de verplichtingsrij en kies **Herinnering sturen**. Een dialoog opent met de naam van de persoon, het bedrag, en de mededeling.
   </Step>
-  <Step title="Enter the recipient's e-mail address">
-    Type the member's e-mail address in the **E-mailadres ontvanger** field. The address is not stored after you close the dialog — you will need to enter it again if you send a second reminder later.
+  <Step title="Voer het e-mailadres van de ontvanger in">
+    Typ het e-mailadres van het lid in het **E-mailadres ontvanger** veld. Het adres wordt niet opgeslagen nadat je het dialoog sluit. Je zult het opnieuw moeten invoeren als je later een tweede herinnering verstuurt.
   </Step>
-  <Step title="Enter your organisation's IBAN">
-    Type or paste your organisation's IBAN in the **IBAN** field. Kaspert validates the format before allowing you to send. The IBAN is saved in the browser for next time — you only need to enter it once per device.
+  <Step title="Voer het IBAN van je jeugdvereniging in">
+    Typ of plak het IBAN van je jeugdvereniging in het **IBAN** veld. Kaspert valideert het formaat voordat je kunt versturen. Het IBAN wordt opgeslagen in je browser voor de volgende keer. Je hoeft het slechts een keer per toestel in te voeren.
   </Step>
-  <Step title="Send the reminder">
-    Click **Verstuur herinnering**. Kaspert calls a secure backend function to dispatch the e-mail. A confirmation toast appears once the message has been queued successfully.
+  <Step title="Verstuur de herinnering">
+    Klik **Verstuur herinnering**. Kaspert roept een secure backend functie aan om de e-mail te verzenden. Een bevestigingstoast verschijnt zodra het bericht succesvol in de wachtrij is geplaatst.
   </Step>
 </Steps>
 
-## What the reminder e-mail contains
+## Wat de herinnerings-e-mail bevat
 
-The reminder e-mail is generated automatically from the obligation data and your organisation settings. It includes:
+De herinnerings-e-mail wordt automatisch gegenereerd uit de verplichtingsgegevens en je organisatie-instellingen. Hij bevat:
 
 <CardGroup cols={2}>
-  <Card title="Personal details" icon="user">
-    The recipient's name and the exact amount still due, so there is no ambiguity about which payment is being requested.
+  <Card title="Persoonlijke gegevens" icon="user">
+    De naam van de ontvanger en het exacte nog verschuldigde bedrag, zodat er geen onduidelijkheid is over welke betaling wordt gevraagd.
   </Card>
-  <Card title="Payment reference" icon="receipt">
-    The obligation's memo or description — for example, "Kamp 2025" — so the recipient knows what the payment is for and can use it as the transfer reference.
+  <Card title="Betalingsmededeling" icon="receipt">
+    De mededeling of beschrijving van de verplichting, bijvoorbeeld "Kamp 2025", zodat de ontvanger weet waarvoor de betaling is en het kan gebruiken als overmakingsmededeling.
   </Card>
-  <Card title="Organisation info" icon="building">
-    Your organisation's name (as configured in Kaspert) and the IBAN you entered, formatted clearly so it is easy to copy.
+  <Card title="Organisatiegegevens" icon="building">
+    De naam van je jeugdvereniging (zoals geconfigureerd in Kaspert) en het IBAN dat je invoerde, duidelijk geformatteerd zodat het makkelijk te kopiëren is.
   </Card>
-  <Card title="QR code" icon="qrcode">
-    A Payconiq-style payment QR code generated from your IBAN, allowing recipients with a mobile banking app to scan and pay without manually typing the account number.
+  <Card title="QR-code" icon="qrcode">
+    Een Payconiq-achtige betalings-QR-code gegenereerd uit je IBAN, zodat ontvangers met een mobiele bankapp kunnen scannen en betalen zonder het rekeningnummer handmatig in te typen.
   </Card>
 </CardGroup>
 
-## The IBAN is remembered
+## Het IBAN wordt onthouden
 
-Kaspert saves the IBAN you enter in your browser so you don't have to retype it every time. This means:
+Kaspert slaat het IBAN dat je invoert op in je browser, zodat je het niet elke keer opnieuw hoeft te typen. Dit betekent:
 
-- The next time you open the reminder dialog, the IBAN field is pre-filled automatically.
-- The IBAN is stored per device and per browser — if you switch to a different computer or clear your browser data, you will need to enter it again.
-- The IBAN is never sent to Kaspert's servers except as part of the reminder e-mail payload when you click **Verstuur herinnering**.
+- De volgende keer dat je het herinneringsdialoog opent, is het IBAN veld automatisch vooraf ingevuld.
+- Het IBAN wordt per toestel en per browser opgeslagen. Als je overschakelt naar een andere computer of je browsergegevens wist, moet je het opnieuw invoeren.
+- Het IBAN wordt nooit naar Kasperts servers gestuurd, behalve als onderdeel van de herinnerings-e-mail payload wanneer je **Verstuur herinnering** klikt.
 
 <Tip>
-  Use a consistent memo format like **"Kamp 2025 — Naam"** in your obligations (for example, "Kamp 2025 — Jan Janssen"). When the recipient makes the payment and uses that memo as the transfer reference, Kaspert's smart matching engine is far more likely to find and suggest the correct transaction automatically. This saves you from manually linking payments later.
+  Gebruik een consistent mededelingformaat zoals **"Kamp 2025 - Naam"** in je verplichtingen (bijvoorbeeld "Kamp 2025 - Jan Janssen"). Wanneer de ontvanger de betaling doet en dat als overmakingsmededeling gebruikt, is Kasperts slimme matching engine veel waarschijnlijker om de juiste transactie automatisch te vinden en voor te stellen. Dit bespaart je het handmatig koppelen van betalingen achteraf.
 </Tip>
 
-## Prerequisites and validation
+## Vereisten en validatie
 
 <Note>
-  Sending a reminder requires both a valid e-mail address and a valid IBAN. Kaspert validates the IBAN format before enabling the **Verstuur herinnering** button. If either field is empty or invalid, the button stays disabled. The reminder option is only available for obligations that are currently **Openstaand** — you cannot send a reminder for an obligation already marked as paid.
+  Het versturen van een herinnering vereist zowel een geldig e-mailadres als een geldig IBAN. Kaspert valideert het IBAN-formaat voordat de **Verstuur herinnering** knop wordt ingeschakeld. Als een van beide velden leeg of ongeldig is, blijft de knop uitgeschakeld. De herinneringsoptie is alleen beschikbaar voor verplichtingen die momenteel **Openstaand** zijn. Je kunt geen herinnering sturen voor een verplichting die al als betaald is gemarkeerd.
 </Note>
 
-## Reminder not received?
+## Herinnering niet ontvangen?
 
-If the member reports they did not receive the reminder e-mail, check the following:
+Als het lid meldt dat hij of zij de herinnerings-e-mail niet heeft ontvangen, controleer dan het volgende:
 
-<Accordion title="The e-mail landed in the spam folder">
-  Transactional e-mails from SaaS platforms sometimes end up in spam or junk folders. Ask the member to check their spam folder and mark the sender as safe.
+<Accordion title="De e-mail belandde in de spammap">
+  Transactionele e-mails van SaaS-platforms belanden soms in de spam- of junkmap. Vraag het lid om de spammap te controleren en de afzender als veilig te markeren.
 </Accordion>
 
-<Accordion title="The e-mail address was entered incorrectly">
-  The reminder dialog does not validate that the address exists — only that it has a valid format. Double-check that you entered the correct address. If needed, open the reminder dialog again and re-send to the correct address.
+<Accordion title="Het e-mailadres werd verkeerd ingevoerd">
+  Het herinneringsdialoog valideert niet of het adres bestaat, alleen of het een geldig formaat heeft. Controleer of je het juiste adres hebt ingevoerd. Indien nodig, open het herinneringsdialoog opnieuw en stuur opnieuw naar het juiste adres.
 </Accordion>
 
-<Accordion title="There was a temporary delivery issue">
-  Kaspert uses a backend Edge Function to dispatch reminder e-mails. Temporary network errors can occur. If the toast shows an error message rather than a success confirmation, wait a moment and try again.
+<Accordion title="Er was een tijdelijk leveringsprobleem">
+  Kaspert gebruikt een backend Edge Function om herinnerings-e-mails te verzenden. Tijdelijke netwerkfouten kunnen voorkomen. Als de toast een foutmelding toont in plaats van een succesbevestiging, wacht even en probeer opnieuw.
 </Accordion>

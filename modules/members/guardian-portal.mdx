@@ -1,87 +1,87 @@
 ---
-title: "Guardian portal for family re-enrollment in Kaspert"
-sidebarTitle: "Guardian Portal"
-description: "Send personalised family links to returning guardians so they can re-enroll their children in seconds with pre-filled data from the previous season."
+title: "Ouderportaal voor gezinsherinschrijving in Kaspert"
+sidebarTitle: "Ouderportaal"
+description: "Stuur gepersonaliseerde gezinslinks naar terugkerende ouders zodat ze hun kinderen in seconden kunnen herinschrijven met vooraf ingevulde gegevens uit het vorige seizoen."
 ---
 
-The guardian portal is a personalised web page that shows a family's existing children and lets guardians re-enroll them for the new season with a single click. From a guardian's perspective, the experience is seamless: they receive an email, click a personal link, and find a pre-filled form with all their children's names, birth dates, and addresses already filled in from last year. They review the details, select the correct tak, confirm, and they're done — no account required, no re-typing data from scratch.
+Het ouderportaal is een gepersonaliseerde webpagina die de bestaande kinderen van een gezin toont en ouders in staat stelt om ze met één klik voor het nieuwe seizoen te herinschrijven. Vanuit het perspectief van een ouder verloopt de ervaring naadloos: ze ontvangen een e-mail, klikken op een persoonlijke link en vinden een vooraf ingevuld formulier met de namen, geboortedata en adressen van al hun kinderen al ingevuld van vorig jaar. Ze controleren de gegevens, selecteren de juiste tak, bevestigen en ze zijn klaar: geen account nodig, geen gegevens opnieuw intypen vanaf nul.
 
-## How the guardian portal works
+## Hoe het ouderportaal werkt
 
-The portal is accessible at:
+Het portaal is bereikbaar via:
 
 ```text
 https://kaspert.be/gezin/{slug}?token={token}
 ```
 
-Each guardian receives a **unique personal link** that is valid for **30 days** from the moment it is generated. When a guardian opens their link they see:
+Elke ouder ontvangt een **unieke persoonlijke link** die **30 dagen** geldig is vanaf het moment dat deze wordt gegenereerd. Wanneer een ouder zijn link opent, ziet hij of zij:
 
-- Their own contact details (name, email, phone)
-- A card for each child linked to their guardian record from the previous season
-- The enrollment status and payment status for each child in the current werkjaar
-- Buttons to update personal details and the child's medical record
+- Zijn of haar eigen contactgegevens (naam, e-mail, telefoon)
+- Een kaart voor elk kind dat gekoppeld is aan zijn of haar ouderrecord uit het vorige seizoen
+- De inschrijvingsstatus en betalingsstatus voor elk kind in het huidige werkjaar
+- Knoppen om persoonlijke gegevens en het medisch dossier van het kind bij te werken
 
-If a child is **already enrolled** for the current werkjaar, their card shows a green "Lidgeld betaald" or an open payment balance with payment options. To enroll a child who is not yet enrolled for the current year, the guardian clicks **Kind (her)inschrijven**, which opens the standard enrollment form with their family data pre-filled.
+Als een kind **al is ingeschreven** voor het huidige werkjaar, toont de kaart een groene "Lidgeld betaald" of een openstaand saldo met betalingsopties. Om een kind dat nog niet is ingeschreven voor het huidige jaar in te schrijven, klikt de ouder op **Kind (her)inschrijven**, wat het standaard inschrijvingsformulier opent met hun gezinsgegevens vooraf ingevuld.
 
-### What guardians can update
+### Wat ouders kunnen bijwerken
 
-From the guardian portal, parents can update the following without contacting you:
+Vanuit het ouderportaal kunnen ouders het volgende bijwerken zonder contact met je op te nemen:
 
-- Child's address (street, postal code, municipality)
-- Photo consent
-- Guardian's phone number
-- Full medical record (with explicit consent checkbox)
+- Adres van het kind (straat, postcode, gemeente)
+- Toestemming voor foto's
+- Telefoonnummer van de ouder
+- Volledig medisch dossier (met expliciet toestemmingsselectievakje)
 
-These updates take effect immediately in the Kaspert member database.
+Deze wijzigingen worden onmiddellijk doorgevoerd in de Kaspert-ledendatabase.
 
-### Online payment from the portal
+### Online betalen vanuit het portaal
 
-If your organisation has Stripe or Bancontact (Payconiq) connected, the guardian portal also shows an **online pay** button per child next to the membership fee. Guardians can pay directly from their family page without logging in.
+Als je organisatie Stripe of Bancontact (Payconiq) heeft gekoppeld, toont het ouderportaal ook een knop **online betalen** per kind naast het lidgeld. Ouders kunnen rechtstreeks vanaf hun gezinspagina betalen zonder in te loggen.
 
-## Sending re-enrollment invitations
+## Herinschrijvingsuitnodigingen versturen
 
 <Steps>
-  <Step title="Make sure enrollment is open">
-    Before sending invitations, confirm that the enrollment toggle is switched on in **Leden → Instellingen → Inschrijvingen open**. Guardians who receive a link cannot do anything useful if enrollment is closed.
+  <Step title="Controleer of inschrijving open is">
+    Controleer voordat je uitnodigingen verstuurt of de inschrijvingsschakelaar is ingeschakeld in **Leden → Instellingen → Inschrijvingen open**. Ouders die een link ontvangen, kunnen niets doen als de inschrijving gesloten is.
   </Step>
-  <Step title="Go to Leden → Instellingen">
-    Navigate to **Leden** (`/leden`) and click the **Instellingen** tab.
+  <Step title="Ga naar Leden → Instellingen">
+    Navigeer naar **Leden** (`/leden`) en klik op het tabblad **Instellingen**.
   </Step>
-  <Step title="Click 'Nodig alle ouders uit voor herinschrijving'">
-    Scroll to the **Herinschrijving** section and click the button. A confirmation dialog explains how many guardians will be contacted.
+  <Step title="Klik op 'Nodig alle ouders uit voor herinschrijving'">
+    Scroll naar de sectie **Herinschrijving** en klik op de knop. Een bevestigingsvenster geeft aan hoeveel ouders worden gecontacteerd.
   </Step>
-  <Step title="Confirm">
-    Click **Verstuur uitnodigingen** in the dialog. Kaspert immediately begins sending personalised emails to every guardian on file who has a valid email address and has not been invited in the last 7 days.
+  <Step title="Bevestig">
+    Klik in het venster op **Verstuur uitnodigingen**. Kaspert begint onmiddellijk met het verzenden van gepersonaliseerde e-mails naar elke ouder in je bestand die een geldig e-mailadres heeft en de afgelopen 7 dagen geen uitnodiging heeft ontvangen.
   </Step>
-  <Step title="Read the result">
-    After sending, a toast notification shows how many emails were **sent** and how many were **skipped**. Skipped guardians either had no valid email address or were already invited recently.
+  <Step title="Lees het resultaat">
+    Na het verzenden toont een melding hoeveel e-mails zijn **verstuurd** en hoeveel zijn **overgeslagen**. Overgeslagen ouders hadden ofwel geen geldig e-mailadres of zijn recent al uitgenodigd.
   </Step>
 </Steps>
 
-## What the invitation email contains
+## Wat de uitnodigingsmail bevat
 
-Each guardian receives a personalised email with:
+Elke ouder ontvangt een gepersonaliseerde e-mail met:
 
-- A greeting using their first name
-- A short explanation that the new season is starting and their family data is ready
-- A prominent **Open mijn gezinslink** button
-- The full link in plain text (for guardians whose email client blocks buttons)
-- A note that the link is valid for 30 days
+- Een begroeting met zijn of haar voornaam
+- Een korte uitleg dat het nieuwe seizoen begint en hun gezinsgegevens klaarstaan
+- Een opvallende knop **Open mijn gezinslink**
+- De volledige link in platte tekst (voor ouders van wie de e-mailclient knoppen blokkeert)
+- Een mededeling dat de link 30 dagen geldig is
 
-The email is sent from `inschrijving@kaspert.be` on behalf of your organisation, with your organisation name as the displayed sender.
+De e-mail wordt verzonden vanaf `inschrijving@kaspert.be` namens je organisatie, met je organisatienaam als weergegeven afzender.
 
-## Rate limiting
+## Beperkingen op herhaald verzenden
 
 <Note>
-  To prevent accidental spam, Kaspert enforces a limit of **one invitation per guardian per 7 days**. If a guardian was already sent a link in the past 7 days — whether by a previous bulk send or by the system during enrollment — they are automatically skipped. The result toast shows the exact count of skipped guardians.
+  Om onbedoelde spam te voorkomen, hanteert Kaspert een limiet van **één uitnodiging per ouder per 7 dagen**. Als een ouder de afgelopen 7 dagen al een link heeft ontvangen, hetzij door een eerdere bulkverzending hetzij door het systeem tijdens de inschrijving, wordt hij of zij automatisch overgeslagen. De resultaatmeldingsmelding toont het exacte aantal overgeslagen ouders.
 </Note>
 
-## Requesting a new link (guardian self-service)
+## Een nieuwe link aanvragen (zelfservice voor ouders)
 
-If a guardian's link has expired or they have lost it, they can request a fresh one themselves. On the public enrollment form (`kaspert.be/inschrijven/{slug}`), a **"Was je kind vorig jaar al lid?"** card appears on the first step. The guardian enters their email address and clicks **Stuur mijn gezinslink**. If the email is found in your guardian records, a new personal link is sent immediately.
+Als de link van een ouder is verlopen of verloren is gegaan, kan hij of zij zelf een nieuwe aanvragen. Op het publieke inschrijvingsformulier (`kaspert.be/inschrijven/{slug}`) verschijnt op de eerste stap een kaart **"Was je kind vorig jaar al lid?"**. De ouder voert zijn of haar e-mailadres in en klikt op **Stuur mijn gezinslink**. Als het e-mailadres wordt gevonden in je ouderrecords, wordt onmiddellijk een nieuwe persoonlijke link verzonden.
 
-The same self-service request is also available on the guardian portal page itself when the link is invalid or expired — the page shows a form to request a new link.
+Dezelfde zelfserviceaanvraag is ook beschikbaar op de pagina van het ouderportaal zelf wanneer de link ongeldig of verlopen is: de pagina toont dan een formulier om een nieuwe link aan te vragen.
 
 <Tip>
-  Send re-enrollment invitations two to four weeks before the start of the new season. Make sure your enrollment form is fully configured — correct takken, up-to-date membership fees, and the right IBAN — before you send, so that guardians see accurate information when they arrive at their family portal.
+  Verstuur herinschrijvingsuitnodigingen twee tot vier weken voor het begin van het nieuwe seizoen. Zorg ervoor dat je inschrijvingsformulier volledig is geconfigureerd: juiste takken, up-to-date lidgelden en het juiste IBAN, zodat ouders accurate informatie zien wanneer ze op hun gezinsportaal aankomen.
 </Tip>

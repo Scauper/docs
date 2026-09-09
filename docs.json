@@ -10,10 +10,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Documentatie",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Aan de slag",
             "pages": [
               "introduction",
               "quickstart",
@@ -81,10 +81,10 @@
         ]
       },
       {
-        "tab": "Reference",
+        "tab": "Referentie",
         "groups": [
           {
-            "group": "Concepts",
+            "group": "Concepten",
             "pages": [
               "reference/werkjaar",
               "reference/roles",
@@ -92,7 +92,7 @@
             ]
           },
           {
-            "group": "Integrations",
+            "group": "Integraties",
             "pages": [
               "reference/bank-csv-import",
               "reference/payconiq",

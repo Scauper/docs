@@ -1,54 +1,54 @@
 ---
-title: "Understanding werkjaren — fiscal seasons in Kaspert"
+title: "Werkjaren begrijpen, de seizoenen in Kaspert"
 sidebarTitle: "Werkjaar"
-description: "A werkjaar is the date-bounded season that groups every transaction, member enrollment, and report in Kaspert — the foundation of all financial data."
+description: "Een werkjaar is het datumgebonden seizoen dat elke transactie, ledeninschrijving en elk rapport in Kaspert groepeert, de basis van alle financiele data."
 ---
 
-A **werkjaar** (literally "work year") is Kaspert's fundamental unit of time. Every transaction you book, every member you enrol, and every report you generate belongs to exactly one werkjaar. Because youth organisations like Chiro, Scouts, KSA, and KLJ run on a September-to-August season rather than a calendar year, the werkjaar mirrors that rhythm — keeping last season's finances cleanly separated from this season's, no matter when you open the app.
+Een **werkjaar** (letterlijk "werkjaar") is de fundamentele tijdseenheid in Kaspert. Elke transactie die je boekt, elk lid dat je inschrijft en elk rapport dat je genereert behoort tot precies één werkjaar. Omdat jeugdverenigingen zoals Chiro, Scouts, KSA en KLJ werken met een seizoen van september tot augustus in plaats van een kalenderjaar, volgt het werkjaar dat ritme. Zo blijven de financien van vorig seizoen netjes gescheiden van dit seizoen, ongeacht wanneer je de app opent.
 
-## What a werkjaar consists of
+## Wat een werkjaar bevat
 
-Each werkjaar has three fields:
+Elk werkjaar heeft drie velden:
 
 <CardGroup cols={3}>
   <Card title="Label" icon="tag">
-    A human-readable identifier for the season, e.g. `"2024-2025"`. Must be unique within your organisation. This is what you'll see in every drop-down and report heading.
+    Een leesbare identificatie voor het seizoen, bijvoorbeeld `"2024-2025"`. Moet uniek zijn binnen je organisatie. Dit zie je in elke dropdown en rapportkop.
   </Card>
-  <Card title="Start date" icon="calendar-days">
-    The first day of the season, in `YYYY-MM-DD` format. Typically 1 September. All transactions on or after this date belong to this werkjaar.
+  <Card title="Startdatum" icon="calendar-days">
+    De eerste dag van het seizoen, in `YYYY-MM-DD`-formaat. Doorgaans 1 september. Alle transacties op of na deze datum behoren tot dit werkjaar.
   </Card>
-  <Card title="End date" icon="calendar-check">
-    The last day of the season, in `YYYY-MM-DD` format. Typically 31 August. Transactions up to and including this date fall within this werkjaar.
+  <Card title="Einddatum" icon="calendar-check">
+    De laatste dag van het seizoen, in `YYYY-MM-DD`-formaat. Doorgaans 31 augustus. Transacties tot en met deze datum vallen binnen dit werkjaar.
   </Card>
 </CardGroup>
 
-### Label format convention
+### Labelformaat-conventie
 
-The conventional label format is `YYYY-YYYY` — for example, `"2024-2025"` for the season that runs from September 2024 through August 2025. Kaspert does **not** enforce this pattern, so you could technically use any string, but sticking to the convention ensures labels sort correctly and are immediately recognisable to every team member.
+Het conventionele labelformaat is `YYYY-YYYY`, bijvoorbeeld `"2024-2025"` voor het seizoen dat loopt van september 2024 tot en met augustus 2025. Kaspert **dwingt dit patroon niet af**, dus je kunt technisch gezien elke string gebruiken, maar het is aan te raden om je aan de conventie te houden. Zo sorteren labels correct en zijn ze meteen herkenbaar voor elk teamlid.
 
 <Note>
-  Labels must be unique per organisation. If you try to save a duplicate label, Kaspert will show **"Dit werkjaar bestaat al"** and block the save.
+  Labels moeten uniek zijn per organisatie. Als je probeert een duplicaatlabel op te slaan, toont Kaspert **"Dit werkjaar bestaat al"** en blokkeert het opslaan.
 </Note>
 
 ---
 
-## How the "current" werkjaar is determined
+## Hoe het "huidige" werkjaar wordt bepaald
 
-Kaspert automatically highlights the active werkjaar throughout the interface. The logic works as follows:
+Kaspert markeert automatisch het actieve werkjaar doorheen de interface. De logica werkt als volgt:
 
 <Steps>
-  <Step title="Check today's date">
-    Kaspert takes today's date and derives the expected season label. For months September through December, the label is `YYYY-(YYYY+1)`. For January through August, the label is `(YYYY-1)-YYYY`.
+  <Step title="Controleer de datum van vandaag">
+    Kaspert neemt de datum van vandaag en leidt het verwachte seizoenlabel af. Voor de maanden september tot en met december is het label `YYYY-(YYYY+1)`. Voor januari tot en met augustus is het label `(YYYY-1)-YYYY`.
   </Step>
-  <Step title="Match found — use it">
-    If a werkjaar in your organisation has a label matching today's expected season, that werkjaar is considered current and is pre-selected in all filters.
+  <Step title="Match gevonden, gebruik het">
+    Als een werkjaar in je organisatie een label heeft dat overeenkomt met het verwachte seizoen van vandaag, dan wordt dat werkjaar als huidig beschouwd en vooraf geselecteerd in alle filters.
   </Step>
-  <Step title="No match — fall back to most recent">
-    If no werkjaar label matches (e.g. you haven't created next season's werkjaar yet, or you use non-standard labels), Kaspert falls back to the most recently created werkjaar.
+  <Step title="Geen match, val terug op het meest recente">
+    Als geen werkjaar-label overeenkomt (bijvoorbeeld omdat je het werkjaar voor volgend seizoen nog niet hebt aangemaakt, of omdat je niet-standaard labels gebruikt), valt Kaspert terug op het meest recent aangemaakte werkjaar.
   </Step>
 </Steps>
 
-The underlying utility that drives this logic is published for transparency:
+De onderliggende utility die deze logiek aandrijft is gepubliceerd voor transparantie:
 
 ```typescript title="src/lib/werkjaar.ts"
 /**
@@ -75,39 +75,39 @@ export function getUniqueWerkjaren(werkjaren: string[]): string[] {
 
 ---
 
-## Where werkjaren matter
+## Waar werkjaren belangrijk zijn
 
-Every major module in Kaspert is scoped to a werkjaar. Here is how each one uses it:
+Elke belangrijke module in Kaspert is gekoppeld aan een werkjaar. Zo gebruikt elke module het werkjaar:
 
 <CardGroup cols={2}>
-  <Card title="Kasboek (ledger)" icon="book-open" href="/modules/kasboek/overview">
-    The transaction list and running balance are filtered by werkjaar. Switching the werkjaar selector at the top of `/dashboard` instantly reloads the ledger for that season. Transactions dated outside the selected werkjaar are hidden from view.
+  <Card title="Kasboek" icon="book-open" href="/modules/kasboek/overview">
+    De transactielijst en het lopende saldo worden gefilterd op werkjaar. Als je de werkjaarselector bovenaan `/dashboard` wijzigt, laadt het kasboek onmiddellijk opnieuw voor dat seizoen. Transacties met een datum buiten het geselecteerde werkjaar worden verborgen.
   </Card>
-  <Card title="Ledenbeheer (member management)" icon="users" href="/modules/members/overview">
-    Member enrolments are recorded per werkjaar. A member who was active in `2023-2024` is not automatically enrolled in `2024-2025` — they need a new enrolment record for the new season.
+  <Card title="Ledenbeheer" icon="users" href="/modules/members/overview">
+    Ledeninschrijvingen worden per werkjaar geregistreerd. Een lid dat actief was in `2023-2024` is niet automatisch ingeschreven voor `2024-2025`. Er is een nieuwe inschrijving nodig voor het nieuwe seizoen.
   </Card>
-  <Card title="Jaarverslag (annual report)" icon="file-chart-column">
-    Reports are always generated for a single werkjaar at a time. The report pulls totals, category breakdowns, and balance figures exclusively from transactions within the selected werkjaar's date range.
+  <Card title="Jaarverslag" icon="file-chart-column">
+    Rapporten worden altijd gegenereerd voor één werkjaar tegelijk. Het rapport haalt totalen, categorie-opdelingen en saldocijfers uitsluitend uit transacties binnen het datumbereik van het geselecteerde werkjaar.
   </Card>
-  <Card title="Betalingsopvolging (payment tracking)" icon="circle-check" href="/modules/payments/overview">
-    Payment obligations can span multiple werkjaren, but the kasboek filter controls which transactions are available for matching. Set the correct werkjaar before reconciling obligations to avoid cross-season mismatches.
+  <Card title="Betalingsopvolging" icon="circle-check" href="/modules/payments/overview">
+    Betalingsverplichtingen kunnen meerdere werkjaren beslaan, maar het kasboekfilter bepaalt welke transacties beschikbaar zijn voor matching. Stel het juiste werkjaar in voordat je verplichtingen afstemt om verwarring tussen seizoenen te voorkomen.
   </Card>
 </CardGroup>
 
 ---
 
-## Managing werkjaren
+## Werkjaren beheren
 
-Admins manage werkjaren under **Beheer (`/admin`) > Organisatie > Werkjaren**. From there you can:
+Admins beheren werkjaren onder **Beheer (`/admin`) > Organisatie > Werkjaren**. Daar kun je:
 
-- **Create** a new werkjaar by entering a label, a start date, and an end date.
-- **Edit** the label or dates of an existing werkjaar (changes take effect immediately for all filtered views).
-- **Delete** a werkjaar — a confirmation dialog is shown before deletion proceeds.
+- **Aanmaken** een nieuw werkjaar door een label, een startdatum en een einddatum in te voeren.
+- **Bewerken** het label of de datums van een bestaand werkjaar (wijzigingen worden onmiddellijk doorgevoerd voor alle gefilterde weergaven).
+- **Verwijderen** een werkjaar. Er verschijnt eerst een bevestigingsvenster.
 
 <Warning>
-  Deleting a werkjaar does not delete linked transactions or member records, but those records become effectively invisible because no werkjaar range covers them. Archive old seasons rather than deleting them to preserve your financial history.
+  Het verwijderen van een werkjaar verwijdert geen gekoppelde transacties of ledenrecords, maar die records worden effectief onzichtbaar omdat geen werkjaarbereik ze meer omvat. Archiveer oude seizoenen in plaats van ze te verwijderen om je financiele geschiedenis te bewaren.
 </Warning>
 
 <Tip>
-  Create the new werkjaar **before** the season starts — ideally in August. That way your team can begin booking transactions and enrolling members on 1 September without any configuration delay.
+  Maak het nieuwe werkjaar **voor** het seizoen begint, idealiter in augustus. Zo kan je team op 1 september meteen beginnen met het boeken van transacties en het inschrijven van leden, zonder configuratievertraging.
 </Tip>

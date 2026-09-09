@@ -1,44 +1,44 @@
 ---
-title: "Track who has paid and who owes — Kaspert payments"
-sidebarTitle: "Overview"
-description: "Kaspert's payment module links bank transactions to obligations automatically, so you always know who has paid and who still owes money."
+title: "Bijhouden wie betaald heeft en wie nog moet betalen"
+sidebarTitle: "Overzicht"
+description: "De betalingsmodule van Kaspert koppelt banktransacties automatisch aan verplichtingen, zodat je altijd weet wie al betaald heeft en wie nog geld verschuldigd is."
 ---
 
-The **Betalingsopvolging** module is Kaspert's answer to one of the most time-consuming tasks for any treasurer: figuring out who has actually transferred money for a camp, event, or annual membership fee. Instead of manually comparing your bank statement against a spreadsheet, Kaspert does the matching for you — comparing incoming bank transactions with a list of expected payments and surfacing the results in a clear, actionable overview.
+De **Betalingsopvolging** module is Kasperts antwoord op een van de meest tijdrovende taken voor elke penningmeester: uitzoeken wie er eigenlijk geld heeft overgemaakt voor een kamp, activiteit of jaarlijks lidgeld. In plaats van handmatig je bankafschrift te vergelijken met een spreadsheet, doet Kaspert de matching voor je. Het vergelijkt inkomende banktransacties met een lijst van verwachte betalingen en toont de resultaten in een duidelijk, actiegericht overzicht.
 
-## What problem does this module solve?
+## Welk probleem lost deze module op?
 
-When you organise a summer camp for forty members, you expect forty payments to arrive in your bank account over the course of several weeks. Each payment may have a slightly different reference, and some payers will forget to include their name altogether. Without tooling, tracking this down requires opening your online banking, finding each transaction, and checking it off a list — one by one.
+Als je een zomerkamp organiseert voor veertig leden, verwacht je dat er veertig betalingen binnenkomen op je bankrekening in de loop van enkele weken. Elke betaling kan een iets andere mededeling hebben, en sommige betalers vergeten hun naam helemaal te vermelden. Zonder hulpmiddelen vereist het bijhouden hiervan dat je je online bankieren opent, elke transactie zoekt en afvinkt op een lijst, een voor een.
 
-Kaspert's payment module solves this by letting you define exactly who should pay and how much, then automatically comparing those obligations against the income transactions already recorded in your kasboek. The result: a live view of who has paid, who is still outstanding, and which bank transaction corresponds to each person.
+Kasperts betalingsmodule lost dit op door je precies te laten bepalen wie moet betalen en hoeveel, en vervolgens automatisch die verplichtingen te vergelijken met de inkomsten die al in je kasboek zijn opgenomen. Het resultaat: een live weergave van wie betaald heeft, wie nog openstaat, en welke banktransactie bij welke persoon hoort.
 
-## Key concepts
+## Kernbegrippen
 
-**Payment type** (*betalingstype*) is a named category for a payment event. Think of it as the top-level container. Examples include "Kamp zomer 2025", "Inschrijvingsgeld 2024–2025", or "Fuif oktober". Every obligation belongs to exactly one payment type, and you can switch between types using the dropdown at the top of the Betalingen page (`/betalingen`).
+**Betalingstype** is een benoemde categorie voor een betalingsgebeurtenis. Zie het als de bovenste container. Voorbeelden zijn "Kamp zomer 2025", "Inschrijvingsgeld 2024-2025", of "Fuif oktober". Elke verplichting hoort bij precies een betalingstype, en je kunt tussen types schakelen via de dropdown bovenaan de Betalingen pagina (`/betalingen`).
 
-**Payment obligation** (*betalingsverplichting*) is a single person's expected payment within a payment type. It stores the person's name, the expected amount in euros, and an optional memo or description. For example: *Jan Janssen — €45.00 — Kamp zomer 2025*. Obligations can be added one by one, or imported in bulk from an Excel or CSV file.
+**Betalingsverplichting** is de verwachte betaling van een enkele persoon binnen een betalingstype. Het slaat de naam van de persoon op, het verwachte bedrag in euro, en een optionele mededeling of beschrijving. Bijvoorbeeld: _Jan Janssen - 45,00 euro - Kamp zomer 2025_. Verplichtingen kunnen een voor een worden toegevoegd, of in bulk worden geimporteerd uit een Excel- of CSV-bestand.
 
-**Matching** is the process by which Kaspert links a bank transaction to an obligation. Kaspert uses a scoring algorithm that checks the person's name against the transaction description (using both exact and fuzzy matching), compares the payment type name and obligation memo against the transaction reference, and verifies the amount. A transaction is only suggested as a match when at least one textual clue is found — a matching amount alone is never sufficient to generate a suggestion.
+**Matching** is het proces waarbij Kaspert een banktransactie koppelt aan een verplichting. Kaspert gebruikt een scoring-algoritme dat de naam van de persoon vergelijkt met de transactiebeschrijving (zowel exact als met fuzzy matching), het betalingstypenaam en de mededeling van de verplichting vergelijkt met de transactiemededeling, en het bedrag controleert. Een transactie wordt alleen als match voorgesteld als er minstens een tekstuele aanwijzing wordt gevonden. Een matchend bedrag alleen is nooit voldoende om een suggestie te genereren.
 
-## Module sections
+## Modulesecties
 
 <CardGroup cols={2}>
-  <Card title="Payment Types" icon="folder" href="/modules/payments/payment-types">
-    Create and manage named categories for each payment event or fee.
+  <Card title="Betalingstypes" icon="folder" href="/modules/payments/payment-types">
+    Maak en beheer benoemde categorieen voor elke betalingsgebeurtenis of vergoeding.
   </Card>
-  <Card title="Obligations" icon="users" href="/modules/payments/obligations">
-    Add individual payment obligations manually or import them from Excel or CSV.
+  <Card title="Verplichtingen" icon="users" href="/modules/payments/obligations">
+    Voeg individuele betalingsverplichtingen handmatig toe of importeer ze uit Excel of CSV.
   </Card>
-  <Card title="Smart Matching" icon="link" href="/modules/payments/smart-matching">
-    Understand how Kaspert automatically links bank transactions to obligations.
+  <Card title="Slimme matching" icon="link" href="/modules/payments/smart-matching">
+    Begrijp hoe Kaspert automatisch banktransacties koppelt aan verplichtingen.
   </Card>
-  <Card title="Reminders" icon="mail" href="/modules/payments/reminders">
-    Send personalised e-mail reminders with payment details and IBAN to members who haven't paid.
+  <Card title="Herinneringen" icon="mail" href="/modules/payments/reminders">
+    Stuur gepersonaliseerde e-mailherinneringen met betalingsgegevens en IBAN naar leden die nog niet betaald hebben.
   </Card>
 </CardGroup>
 
-## Plan requirement
+## Planvereiste
 
 <Info>
-  The Betalingsopvolging module is available on the **Basic**, **Pro**, and **Premium** plans. It is not available on the Free plan. You can enable the module and manage your subscription from [Instellingen → Modules](/settings/modules).
+  De Betalingsopvolging module is beschikbaar op de **Basic**, **Pro**, en **Premium** plannen. Hij is niet beschikbaar op het Free plan. Je kunt de module inschakelen en je abonnement beheren via [Instellingen - Modules](/settings/modules).
 </Info>

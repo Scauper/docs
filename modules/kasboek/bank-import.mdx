@@ -1,125 +1,125 @@
 ---
-title: "Import bank CSV statements into your Kaspert kasboek"
-sidebarTitle: "Bank Import"
-description: "Download a CSV from KBC, Belfius, or ING and import it into your kasboek with automatic duplicate detection and category assignment."
+title: "Bank CSV-afschriften importeren in je Kaspert-kasboek"
+sidebarTitle: "Bankimport"
+description: "Download een CSV van KBC, Belfius of ING en importeer ze in je kasboek met automatische duplicatendetectie en categorie-toewijzing."
 ---
 
-Bank import lets you pull your actual bank statement directly into your Kaspert kasboek. Instead of typing every debit and credit by hand, you download a CSV export from your bank's online portal and upload it to Kaspert in seconds. Kaspert parses the file, detects any transactions you have already entered, and lets you assign categories before saving — so your kasboek stays clean and your numbers stay accurate.
+Bankimport laat je je echte bankafschrift rechtstreeks in je Kaspert-kasboek trekken. In plaats van elke debet- en creditboeking handmatig over te typen, download je een CSV-export van je online bankomgeving en upload je die in seconden naar Kaspert. Kaspert parseert het bestand, detecteert transacties die je al eerder hebt ingevoerd, en laat je categorieën toewijzen voordat je opslaat, zodat je kasboek schoon blijft en je cijfers accuraat zijn.
 
-## Requirements
+## Vereisten
 
-Bank import is available on the **Pro** (€8.99/month) and **Premium** (€14.99/month) plans. If you are on the Free or Basic plan, the import button is hidden. [Upgrade your plan](/plans-and-billing) to unlock this feature.
+Bankimport is beschikbaar op de **Pro** (€8,99/maand) en **Premium** (€14,99/maand) abonnementen. Als je op het Gratis of Basic abonnement zit, is de importknop verborgen. [Upgrade je abonnement](/plans-and-billing) om deze functie te ontgrendelen.
 
-## Supported banks
+## Ondersteunde banken
 
-| Bank | Support level | Notes |
-|---|---|---|
-| **KBC** | Native | Full column mapping including counterpart name, free reference, and debit/credit split. Windows-1252 encoding handled automatically. |
-| **Belfius** | Compatible | CSV exports with a similar column structure are parsed using the KBC rules. |
-| **ING** | Native | Detected automatically by distinct header columns (`Af bij`, `Bedrag (EUR)`). Date format (`YYYYMMDD`) is normalised to ISO 8601. |
+| Bank | Ondersteuningsniveau | Opmerkingen |
+| --- | --- | --- |
+| **KBC** | Native | Volledige kolommapping inclusief tegenpartijnaam, vrije mededeling en debet/credit-splitsing. Windows-1252-encoding wordt automatisch verwerkt. |
+| **Belfius** | Compatibel | CSV-exports met een vergelijkbare kolomstructuur worden geparsed met de KBC-regels. |
+| **ING** | Native | Automatisch gedetecteerd aan de hand van unieke kopteksten (`Af bij`, `Bedrag (EUR)`). Datumformaat (`YYYYMMDD`) wordt genormaliseerd naar ISO 8601. |
 
 <Note>
-  If your bank is not listed above, you can still import your CSV. When Kaspert does not recognise the file format automatically, it shows a **column mapping** step: you select which column contains the date, which contains the amount, and which contains the description. Your mapping is saved for next time, so you only need to configure it once.
+  Als je bank hierboven niet staat vermeld, kun je nog steeds je CSV importeren. Wanneer Kaspert het bestandsformaat niet automatisch herkent, verschijnt er een stap voor **kolommapping**: je selecteert welke kolom de datum bevat, welke het bedrag, en welke de omschrijving. Je mapping wordt opgeslagen voor de volgende keer, zodat je het maar één keer hoeft in te stellen.
 </Note>
 
-## Step 1: Download a CSV from your bank
+## Stap 1: Download een CSV van je bank
 
 <Tabs>
   <Tab title="KBC">
     <Steps>
-      <Step title="Log in to KBC Online">
-        Go to [kbc.be](https://www.kbc.be) and sign in with your KBC app or card reader.
+      <Step title="Log in op KBC Online">
+        Ga naar [kbc.be](https://www.kbc.be) en meld je aan met je KBC-app of kaartlezer.
       </Step>
-      <Step title="Open your account transactions">
-        Select the bank account your group uses. Navigate to the **Verrichtingen** (transactions) overview.
+      <Step title="Open je rekeningtransacties">
+        Selecteer de bankrekening die je groep gebruikt. Navigeer naar het overzicht **Verrichtingen**.
       </Step>
-      <Step title="Set the date range">
-        Use the date range filter to select the period you want to import (e.g. the full werkjaar from September to August).
+      <Step title="Stel de datumbereik in">
+        Gebruik de datumbereikfilter om de periode te selecteren die je wilt importeren (bijv. het volledige werkjaar van september tot augustus).
       </Step>
-      <Step title="Export as CSV">
-        Click the **Export** or **Download** button and choose **CSV** as the format. Save the file to your computer.
+      <Step title="Exporteer als CSV">
+        Klik op de knop **Export** of **Download** en kies **CSV** als formaat. Sla het bestand op je computer op.
       </Step>
     </Steps>
 
     <Note>
-      KBC exports use **Windows-1252** encoding, which means special characters like `é`, `ë`, and `ü` in counterpart names may appear as garbage in other tools. Kaspert reads the file with the correct encoding automatically, so all characters will display correctly in your kasboek.
+      KBC-exports gebruiken **Windows-1252**-encoding, wat betekent dat speciale tekens zoals `é`, `ë` en `ü` in tegenpartijnamen in andere tools als onleesbaar kunnen verschijnen. Kaspert leest het bestand met de juiste encoding, zodat alle tekens correct in je kasboek worden weergegeven.
     </Note>
   </Tab>
   <Tab title="ING">
     <Steps>
-      <Step title="Log in to ING Home'Bank">
-        Go to [mijnhomebank.ingbe.net](https://mijnhomebank.ingbe.net) and sign in.
+      <Step title="Log in op ING Home'Bank">
+        Ga naar [mijnhomebank.ingbe.net](https://mijnhomebank.ingbe.net) en meld je aan.
       </Step>
-      <Step title="Open your account transactions">
-        Select your group's account and navigate to the transaction history.
+      <Step title="Open je rekeningtransacties">
+        Selecteer de rekening van je groep en navigeer naar de transactiegeschiedenis.
       </Step>
-      <Step title="Export">
-        Click **Export** and choose the **CSV** format. Select your desired date range and download the file.
+      <Step title="Exporteer">
+        Klik op **Export** en kies het **CSV**-formaat. Selecteer je gewenste datumbereik en download het bestand.
       </Step>
     </Steps>
   </Tab>
 </Tabs>
 
-## Step 2: Import the CSV in Kaspert
+## Stap 2: Importeer de CSV in Kaspert
 
 <Steps>
-  <Step title="Open the import dialog">
-    On the Kasboek page, make sure you are on the **Transacties** tab. Click the **Importeer** button (bank icon) to the right of the "Recente Transacties" heading. The bank import dialog opens.
+  <Step title="Open het importdialoogvenster">
+    Op de Kasboek-pagina, zorg dat je op het tabblad **Transacties** zit. Klik op de knop **Importeer** (bank-icoon) rechts van de kop "Recente Transacties". Het bankimport-dialoogvenster opent.
   </Step>
-  <Step title="Select your CSV file">
-    Click the file selector in the dialog and choose the CSV file you downloaded from your bank. Kaspert reads and parses the file immediately — no upload to an external server.
+  <Step title="Selecteer je CSV-bestand">
+    Klik op de bestandsselector in het dialoogvenster en kies het CSV-bestand dat je van je bank hebt gedownload. Kaspert leest en parseert het bestand meteen: er wordt niets geüpload naar een externe server.
   </Step>
-  <Step title="Review the transaction preview">
-    Kaspert displays all transactions found in the file as a preview table. Each row shows the date, description, amount, and detected type (income or expense).
+  <Step title="Bekijk de transactievoorvertoning">
+    Kaspert toont alle transacties die in het bestand zijn gevonden als een voorvertoningstabel. Elke rij toont de datum, omschrijving, bedrag en het gedetecteerde type (inkomst of uitgave).
 
-    Rows that already exist in your kasboek are automatically **deselected** — they are still visible so you can review them, but they will not be imported again unless you manually re-check them.
+    Rijen die al in je kasboek bestaan, worden automatisch **gedeselecteerd**: ze zijn nog steeds zichtbaar zodat je ze kunt reviewen, maar ze worden niet opnieuw geïmporteerd tenzij je ze handmatig opnieuw aanvinkt.
   </Step>
-  <Step title="Assign categories">
-    For each transaction you want to import, select a category from the dropdown on that row. You can leave the category blank if you prefer to assign it after import.
+  <Step title="Wijs categorieën toe">
+    Voor elke transactie die je wilt importeren, selecteer je een categorie uit de dropdown op die rij. Je kunt de categorie ook leeg laten als je die liever na de import toewijst.
   </Step>
-  <Step title="Import">
-    Click **Importeer** at the bottom of the dialog to save all selected rows to your kasboek. Kaspert inserts the transactions in a single batch operation. The dialog closes on success and the new transactions appear immediately in the list.
+  <Step title="Importeren">
+    Klik op **Importeer** onderaan het dialoogvenster om alle geselecteerde rijen op te slaan in je kasboek. Kaspert voegt de transacties in als één batchoperatie. Het dialoogvenster sluit bij succes en de nieuwe transacties verschijnen meteen in de lijst.
   </Step>
 </Steps>
 
-## How duplicate detection works
+## Hoe duplicatendetectie werkt
 
-Before showing the preview, Kaspert compares each row in the CSV against every transaction already in your kasboek for the selected werkjaar. A row is flagged as a **duplicate** — and automatically deselected — when the date matches, the amount is within €0.01, and either:
+Voordat de voorvertoning wordt getoond, vergelijkt Kaspert elke rij in de CSV met elke transactie die al in je kasboek staat voor het geselecteerde werkjaar. Een rij wordt gemarkeerd als **duplicaat** en automatisch gedeselecteerd wanneer de datum overeenkomt, het bedrag binnen €0,01 ligt, en één van de volgende voorwaarden geldt:
 
-- the description text matches exactly, **or**
-- the existing transaction was itself a bank import or a reconciled entry of the same type.
+- de omschrijvingstekst komt exact overeen, **of**
+- de bestaande transactie zelf een bankimport was of een afgestemde boeking van hetzelfde type.
 
-This two-path check prevents re-importing the same bank row even if the description was edited after the first import.
+Deze dubbele controle voorkomt dat dezelfde bankrij opnieuw wordt geïmporteerd, zelfs als de omschrijving na de eerste import is bewerkt.
 
-Duplicates remain visible in the preview table so you can review them. If a transaction was wrongly flagged as a duplicate, simply re-check its checkbox before clicking **Importeer**.
+Duplicaten blijven zichtbaar in de voorvertoningstabel zodat je ze kunt reviewen. Als een transactie ten onrechte als duplicaat werd gemarkeerd, vink je het selectievakje ervan simpelweg opnieuw aan voordat je op **Importeer** klikt.
 
-## Smart matching with manual receipts
+## Slim matchen met handmatige bonnetjes
 
-When you import a CSV, Kaspert also looks for **manual entries** you already added that likely correspond to the same bank transaction (same type, amount within €0.01, date within three days). When a match is found, the preview row shows a **Bonnetje gevonden** badge. If you import that row, Kaspert links it to the existing manual entry — which keeps your receipt attachment and category — rather than creating a duplicate entry. The linked transaction's source badge changes to **Bevestigd**.
+Wanneer je een CSV importeert, zoekt Kaspert ook naar **handmatige boekingen** die je al hebt toegevoegd en die waarschijnlijk overeenkomen met dezelfde banktransactie (zelfde type, bedrag binnen €0,01, datum binnen drie dagen). Wanneer er een match wordt gevonden, toont de voorvertoningsrij een badge **Bonnetje gevonden**. Als je die rij importeert, linkt Kaspert ze aan de bestaande handmatige boeking (die het bonnetje en de categorie behoudt) in plaats van een duplicaat aan te maken. De bron-badge van de gelinkte transactie verandert in **Bevestigd**.
 
-This means you can record expenses from memory as they happen (using **Nieuw**) and then confirm them against your bank statement at month end, without any double-counting.
+Dit betekent dat je uitgaven uit het geheugen kunt boeken wanneer ze plaatsvinden (via **Nieuw**) en ze vervolgens aan het einde van de maand kunt bevestigen tegen je bankafschrift, zonder enige dubbele telling.
 
-## After import
+## Na de import
 
-Imported transactions appear in your kasboek with the source badge **Bank**. They behave exactly like manual entries — you can edit the description, date, amount, or category, attach a receipt, and delete them. You can also **link** a bank import transaction to a receipt by clicking the link icon (chain icon) that appears when you hover over the row.
+Geïmporteerde transacties verschijnen in je kasboek met de bron-badge **Bank**. Ze gedragen zich exact als handmatige boekingen: je kunt de omschrijving, datum, bedrag of categorie bewerken, een bonnetje bijvoegen en ze verwijderen. Je kunt een bankimport-transactie ook aan een bonnetje **linken** door op het link-icoon (ketting-icoon) te klikken dat verschijnt wanneer je over de rij hovert.
 
 <Warning>
-  The CSV file must contain at least a **Datum** (date) column and a **Bedrag** (amount) column. If Kaspert cannot locate these required columns — for example if the file is from an unsupported bank format or uses non-standard headers — it will display an error message and no transactions will be imported. Try exporting a fresh file from your bank, or check that you are downloading the CSV format rather than a PDF or XLS file.
+  Het CSV-bestand moet minstens een **Datum**-kolom en een **Bedrag**-kolom bevatten. Als Kaspert deze vereiste kolommen niet kan vinden, bijvoorbeeld omdat het bestand afkomstig is van een niet-ondersteund bankformaat of niet-standaard kopteksten gebruikt, toont het een foutmelding en worden er geen transacties geïmporteerd. Probeer een nieuw bestand te exporteren van je bank, of controleer dat je het CSV-formaat downloadt in plaats van een PDF- of XLS-bestand.
 </Warning>
 
-## Troubleshooting
+## Problemen oplossen
 
 <AccordionGroup>
-  <Accordion title="Characters like é or ü appear as question marks or boxes">
-    This only happens if the file was opened and re-saved in another programme (such as Excel) before uploading, which converts the encoding. Always upload the file exactly as downloaded from your bank. Kaspert handles the original KBC Windows-1252 encoding correctly.
+  <Accordion title="Tekens zoals é of ü verschijnen als vraagtekens of blokjes">
+    Dit gebeurt alleen als het bestand in een ander programma (zoals Excel) is geopend en opnieuw opgeslagen voor de upload, waardoor de encoding wordt gewijzigd. Upload het bestand altijd exact zoals je het van je bank hebt gedownload. Kaspert verwerkt de originele KBC Windows-1252-encoding correct.
   </Accordion>
-  <Accordion title="All rows are flagged as duplicates">
-    Check that the werkjaar selector in the top-right corner of the Kasboek page is set to the correct season before opening the import dialog. Kaspert only compares the uploaded rows against transactions in the currently selected werkjaar.
+  <Accordion title="Alle rijen worden als duplicaten gemarkeerd">
+    Controleer dat de werkjaarselector rechtsboven op de Kasboek-pagina is ingesteld op het juiste seizoen voordat je het importdialoogvenster opent. Kaspert vergelijkt de geüploade rijen alleen met transacties in het momenteel geselecteerde werkjaar.
   </Accordion>
-  <Accordion title="The import button is not visible">
-    Bank import requires a **Pro** or **Premium** plan. If you are on Free or Basic, the button is hidden. Visit **Beheer → Abonnement** to upgrade.
+  <Accordion title="De importknop is niet zichtbaar">
+    Bankimport vereist een **Pro** of **Premium** abonnement. Als je op Gratis of Basic zit, is de knop verborgen. Ga naar **Beheer → Abonnement** om te upgraden.
   </Accordion>
-  <Accordion title="The import succeeds but some rows are missing">
-    Rows with a zero amount, an unparseable date, or that are blank are silently skipped during parsing. Check the original CSV file to confirm those rows contain valid data.
+  <Accordion title="De import slaagt maar sommige rijen ontbreken">
+    Rijen met een nulbedrag, een niet-parseerbare datum of lege rijen worden stilzwijgend overgeslagen tijdens het parsen. Controleer het originele CSV-bestand om te bevestigen dat die rijen geldige data bevatten.
   </Accordion>
 </AccordionGroup>

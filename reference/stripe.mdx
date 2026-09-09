@@ -1,111 +1,111 @@
 ---
-title: "Set up Stripe Connect to accept payments in Kaspert"
+title: "Stripe Connect instellen om betalingen in Kaspert te accepteren"
 sidebarTitle: "Stripe"
-description: "Connect your organisation's Stripe Express account to Kaspert to accept Visa, Mastercard, and Bancontact in your webshop with automatic payouts."
+description: "Koppel je Stripe Express-account aan Kaspert om Visa, Mastercard en Bancontact in je webshop te accepteren, met automatische uitbetalingen."
 ---
 
-Kaspert uses **Stripe Connect** to let each organisation accept online payments and receive payouts directly into their own bank account. When you connect Stripe to Kaspert, your organisation becomes a Stripe Express account linked to the Kaspert platform — you own the customer relationship and funds flow directly to you, with Kaspert acting as the payment facilitator. This means no manual invoice chasing: buyers pay online at checkout, and Stripe handles the rest.
+Kaspert gebruikt **Stripe Connect** om elke organisatie online betalingen te laten accepteren en uitbetalingen rechtstreeks op hun eigen bankrekening te ontvangen. Wanneer je Stripe aan Kaspert koppelt, wordt je organisatie een Stripe Express-account gekoppeld aan het Kaspert-platform. Jij bent eigenaar van de klantrelatie en het geld stroomt rechtstreeks naar jou, terwijl Kaspert optreedt als betalingsfacilitator. Dit betekent geen handmatig achtervolgen van facturen: kopers betalen online bij het afrekenen, en Stripe regelt de rest.
 
-## What Stripe enables in Kaspert
+## Wat Stripe mogelijk maakt in Kaspert
 
 <CardGroup cols={2}>
-  <Card title="Credit and debit cards" icon="credit-card">
-    Accept Visa and Mastercard payments from buyers anywhere in the world. Works on desktop and mobile.
+  <Card title="Credit- en debetkaarten" icon="credit-card">
+    Accepteer Visa- en Mastercard-betalingen van kopers overal ter wereld. Werkt op desktop en mobiel.
   </Card>
   <Card title="Bancontact" icon="mobile-screen-button">
-    Accept Bancontact — Belgium's most popular payment method — directly from the webshop checkout. No separate Bancontact Pro account needed.
+    Accepteer Bancontact, de populairste betaalmethode in Belgie, rechtstreeks vanuit de webshop-afrekenpagina. Je hebt geen apart Bancontact Pro-account nodig.
   </Card>
-  <Card title="Automatic payouts" icon="bank">
-    Stripe pays out your collected funds to your organisation's IBAN on a rolling schedule (typically 2-7 business days). Manage payout timing from your Stripe Express dashboard.
+  <Card title="Automatische uitbetalingen" icon="bank">
+    Stripe betaalt je verzamelde fondsen uit naar het IBAN van je organisatie volgens een rollend schema (doorgaans 2 tot 7 werkdagen). Je beheert de uitbetalingsplanning vanuit je Stripe Express-dashboard.
   </Card>
-  <Card title="Receipts and invoices" icon="receipt">
-    Stripe automatically generates a payment receipt for every completed order, which buyers receive by email alongside Kaspert's order confirmation.
+  <Card title="Bonnetjes en facturen" icon="receipt">
+    Stripe genereert automatisch een betalingsbonnetje voor elke voltooide bestelling, dat kopers per e-mail ontvangen naast de bestelbevestiging van Kaspert.
   </Card>
 </CardGroup>
 
 ---
 
-## How to connect Stripe
+## Stripe koppelen
 
-Only **admins** can complete the Stripe onboarding. Make sure you have your organisation's Belgian IBAN and identity documents handy before you start.
+Alleen **admins** kunnen de Stripe-onboarding voltooien. Zorg dat je het Belgische IBAN en identiteitsdocumenten van je organisatie bij de hand hebt voordat je begint.
 
 <Steps>
-  <Step title="Go to Beheer > Organisatie > Betalingen">
-    Open your Kaspert dashboard, navigate to **Beheer (`/admin`)**, open the **Organisatie** tab, and scroll to the **Betalingen** section.
+  <Step title="Ga naar Beheer > Organisatie > Betalingen">
+    Open je Kaspert-dashboard, navigeer naar **Beheer (`/admin`)**, open het tabblad **Organisatie** en scroll naar de sectie **Betalingen**.
   </Step>
-  <Step title="Click 'Verbind met Stripe'">
-    Kaspert creates a Stripe Express account for your organisation (or reconnects to an existing one) and generates a secure onboarding link. You are redirected to Stripe's hosted onboarding form.
+  <Step title="Klik op 'Verbind met Stripe'">
+    Kaspert maakt een Stripe Express-account aan voor je organisatie (of koppelt opnieuw aan een bestaand account) en genereert een beveiligde onboarding-link. Je wordt doorgestuurd naar het gehoste onboardingformulier van Stripe.
   </Step>
-  <Step title="Complete Stripe's onboarding form">
-    Fill in your organisation's details, including:
-    - Organisation name and type
-    - Responsible person's name and date of birth (for identity verification)
-    - Belgian IBAN for payouts
-    - Mobile number for two-factor authentication
+  <Step title="Vul het onboardingformulier van Stripe in">
+    Vul de gegevens van je organisatie in, inclusief:
+    - Organisatienaam en type
+    - Naam en geboortedatum van de verantwoordelijke persoon (voor identiteitsverificatie)
+    - Belgisch IBAN voor uitbetalingen
+    - Mobiel nummer voor tweefactorauthenticatie
 
-    Stripe may request a copy of a government-issued ID to verify the responsible person.
+    Stripe kan een kopie van een door de overheid uitgegeven identiteitsbewijs vragen om de verantwoordelijke persoon te verifiëren.
   </Step>
-  <Step title="Return to Kaspert">
-    After completing the Stripe form, you are automatically redirected back to Kaspert. The Betalingen section now shows a **Verbonden** status badge.
+  <Step title="Keer terug naar Kaspert">
+    Nadat je het Stripe-formulier hebt ingevuld, word je automatisch teruggeleid naar Kaspert. De sectie Betalingen toont nu een badge **Verbonden**.
   </Step>
-  <Step title="Stripe is available at checkout">
-    Stripe (card and Bancontact) is now available as a payment method on all your webshop sales. Buyers can select it at checkout immediately.
+  <Step title="Stripe is beschikbaar bij het afrekenen">
+    Stripe (kaart en Bancontact) is nu beschikbaar als betaalmethode bij al je webshopverkopen. Kopers kunnen het onmiddellijk selecteren bij het afrekenen.
   </Step>
 </Steps>
 
 <Warning>
-  Stripe onboarding requires a valid Belgian bank account and identity verification of the responsible person. The verification process usually completes instantly, but Stripe may take **1-2 business days** if additional document review is needed. Your webshop will accept payments as soon as verification is complete.
+  Stripe-onboarding vereist een geldige Belgische bankrekening en identiteitsverificatie van de verantwoordelijke persoon. Het verificatieproces is meestal onmiddellijk, maar Stripe kan **1 tot 2 werkdagen** nodig hebben als extra documentcontrole vereist is. Je webshop accepteert betalingen zodra de verificatie is voltooid.
 </Warning>
 
 ---
 
-## Transaction fees
+## Transactiekosten
 
-Kaspert charges a platform fee on top of Stripe's own processing fees. The Kaspert fee depends on your plan:
+Kaspert rekent een platformvergoeding bovenop de eigen verwerkingskosten van Stripe. De Kaspert-vergoeding hangt af van je plan:
 
-| Plan | Kaspert platform fee |
-|---|---|
-| Free | 1% per order (max 0.50) |
-| Basic | 0.5% per order (max 0.25) |
+| Plan | Kaspert-platformvergoeding |
+| --- | --- |
+| Free | 1% per bestelling (max 0.50) |
+| Basic | 0.5% per bestelling (max 0.25) |
 | Pro | 0% |
 | Premium | 0% |
 
-These fees are **separate** from Stripe's own processing fees, which Stripe deducts directly from your payouts.
+Deze vergoedingen zijn **apart** van de eigen verwerkingskosten van Stripe, die Stripe rechtstreeks van je uitbetalingen inhoudt.
 
 <Info>
-  Stripe's typical rates for Belgian organisations are approximately **1.5% + 0.25** per successful card transaction and **1.4% + 0.25** per Bancontact transaction. Check [stripe.com/pricing](https://stripe.com/pricing) for current rates, as Stripe pricing may change.
+  De typische tarieven van Stripe voor Belgische organisaties zijn ongeveer **1,5% + 0,25** per succesvolle kaarttransactie en **1,4% + 0,25** per Bancontact-transactie. Bekijk [stripe.com/pricing](https://stripe.com/pricing) voor actuele tarieven, aangezien Stripe-prijzen kunnen wijzigen.
 </Info>
 
 ---
 
-## Accessing your Stripe Express dashboard
+## Je Stripe Express-dashboard openen
 
-Your Stripe Express dashboard gives you a real-time view of payments, payouts, disputes, and your bank account balance — directly from within Kaspert.
+Je Stripe Express-dashboard geeft je een real-time overzicht van betalingen, uitbetalingen, geschillen en je banksaldobalans, rechtstreeks vanuit Kaspert.
 
 <Steps>
-  <Step title="Open the Stripe dashboard link">
-    Go to **Beheer > Organisatie > Betalingen** and click **Stripe-dashboard openen**. Kaspert generates a short-lived login link and opens your Stripe Express dashboard in a new tab.
+  <Step title="Open de link naar het Stripe-dashboard">
+    Ga naar **Beheer > Organisatie > Betalingen** en klik op **Stripe-dashboard openen**. Kaspert genereert een kortstondige login-link en opent je Stripe Express-dashboard in een nieuw tabblad.
   </Step>
-  <Step title="View payouts and transactions">
-    In the Stripe dashboard you can see each payout batch, which transactions are included, any pending disputes or refund requests, and your current payout bank account.
+  <Step title="Bekijk uitbetalingen en transacties">
+    In het Stripe-dashboard zie je elke uitbetalingsbatch, welke transacties erin zijn opgenomen, eventuele openstaande geschillen of terugbetalingsverzoeken, en je huidige uitbetalingsbankrekening.
   </Step>
-  <Step title="Update bank account or business details">
-    If your organisation changes its IBAN or legal representative, update those details directly in the Stripe Express dashboard.
+  <Step title="Bankrekening of bedrijfsgegevens bijwerken">
+    Als je organisatie van IBAN of wettelijk vertegenwoordiger wijzigt, werk je die gegevens rechtstreeks bij in het Stripe Express-dashboard.
   </Step>
 </Steps>
 
 ---
 
-## How Stripe integrates with the kasboek
+## Hoe Stripe integreert met het kasboek
 
-When Stripe confirms a payment for a webshop order, Kaspert automatically creates an **income transaction** in your kasboek with the category `Verkoop`. The description is formatted as `[STRIPE] {customer name} - {order number}`. This keeps your ledger up to date without any manual entry.
+Wanneer Stripe een betaling bevestigt voor een webshopbestelling, maakt Kaspert automatisch een **inkomsten-transactie** aan in je kasboek met de categorie `Verkoop`. De beschrijving heeft het formaat `[STRIPE] {klantnaam} - {bestelnummer}`. Zo blijft je kasboek up-to-date zonder handmatige invoer.
 
-Kaspert deduplicates payment confirmations automatically — if the same payment event is received more than once (which can occasionally happen with payment processors), Kaspert detects the duplicate and does not create a second transaction. Your kasboek always reflects the correct number of entries.
+Kaspert dedupliceert betalingsbevestigingen automatisch. Als dezelfde betalingsgebeurtenis meer dan eens wordt ontvangen (wat incidenteel kan gebeuren met betalingsverwerkers), detecteert Kaspert het duplicaat en maakt geen tweede transactie aan. Je kasboek weerspiegelt altijd het juiste aantal boekingen.
 
 ---
 
-## Stripe Connect and data security
+## Stripe Connect en dataveiligheid
 
 <Note>
-  Kaspert never stores your customers' card numbers. All card data is handled exclusively by Stripe's PCI-compliant infrastructure. Only the minimal account identifier needed to generate dashboard login links is stored on Kaspert's side, and it is never used for anything other than providing you access to your own Stripe Express dashboard.
+  Kaspert slaat nooit de kaartnummers van je klanten op. Alle kaartdata wordt uitsluitend verwerkt door de PCI-conforme infrastructuur van Stripe. Aan de kant van Kaspert wordt alleen het minimale accountidentificatienummer opgeslagen dat nodig is om dashboard-loginlinks te genereren, en dit wordt nooit voor iets anders gebruikt dan jou toegang te geven tot je eigen Stripe Express-dashboard.
 </Note>

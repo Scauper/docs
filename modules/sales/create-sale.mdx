@@ -1,140 +1,141 @@
 ---
-title: "Create and publish a webshop sale in Kaspert"
-sidebarTitle: "Create a Sale"
-description: "Set up products, prices, and custom questions, choose payment methods, and share your public order URL in a few simple steps with Kaspert."
+title: "Maak en publiceer een webshopverkoop in Kaspert"
+sidebarTitle: "Verkoop aanmaken"
+description: "Stel producten, prijzen en aangepaste vragen in, kies betaalmethodes en deel je publieke bestel-URL in enkele eenvoudige stappen met Kaspert."
 ---
 
-Creating a sale in Kaspert takes only a few minutes. You define the products you want to sell, set your prices, optionally collect extra information from buyers (such as a T-shirt size or a dietary preference), choose how buyers will pay, and then flip a switch to go live. The resulting public order page is a clean, mobile-friendly URL you can drop into a newsletter, a Facebook post, or a WhatsApp group — no buyer account required.
+Een verkoop aanmaken in Kaspert duurt slechts enkele minuten. Je definieert de producten die je wilt verkopen, stelt je prijzen in, verzamelt optioneel extra informatie van kopers (zoals een T-shirtmaat of een dieetvoorkeur), kiest hoe kopers betalen en zet dan een schakelaar om om live te gaan. De resulterende publieke bestelpagina is een schone, mobielvriendelijke URL die je kunt delen in een nieuwsbrief, een Facebook-post of een WhatsApp-groep: geen koperaccount nodig.
 
-## Navigate to Verkoop
+## Navigeer naar Verkoop
 
-Open your Kaspert dashboard and click **Verkoop** in the sidebar (or go directly to `/verkoop`). This is the home of all your sales, both active and archived.
+Open je Kaspert-dashboard en klik op **Verkoop** in de zijbalk (of ga rechtstreeks naar `/verkoop`). Dit is de thuisbasis van al je verkopen, zowel actief als gearchiveerd.
 
-## Setting up your sale
+## Je verkoop instellen
 
 <Steps>
+  ### Maak een nieuwe verkoop
 
-### Create a new sale
+  Klik op de knop **Nieuwe verkoop** rechtsboven. Voer een beschrijvende naam in voor je verkoop, bijvoorbeeld `Wafelverkoop maart 2025` of `Kampinschrijving zomer 2025`, en klik op **Aanmaken**. Kaspert genereert automatisch een unieke URL-slug uit de naam; je kunt deze later wijzigen in de instellingen van de verkoop.
 
-Click the **Nieuwe verkoop** button in the top-right corner. Enter a descriptive name for your sale — for example, `Wafelverkoop maart 2025` or `Kampinschrijving zomer 2025` — and click **Aanmaken**. Kaspert generates a unique URL slug from the name automatically; you can change it later in the sale's settings.
+  ### Voeg producten toe
 
-### Add products
+  Binnen je nieuwe verkoop klik je op **Product toevoegen** om je eerste artikel toe te voegen. Elk product heeft de volgende velden:
 
-Inside your new sale, click **Product toevoegen** to add your first item. Each product has the following fields:
+  | Veld                      | Verplicht | Beschrijving                                                                        |
+  | ------------------------- | --------- | ----------------------------------------------------------------------------------- |
+  | **Naam**                  | ✅         | De productnaam op de bestelpagina, bijv. `Wafel`, `Groot pakket`, `Kampticket`      |
+  | **Prijs**                 | ✅         | Prijs per stuk in euro                                                              |
+  | **Beschrijving**          | ✗         | Een korte beschrijving onder de productnaam                                         |
+  | **Voorraadlimiet**        | ✗         | Maximaal totaal aantal beschikbaar over alle bestellingen: laat leeg voor onbeperkt |
+  | **Limiet per bestelling** | ✗         | Maximaal aantal dat één koper aan zijn winkelwagen kan toevoegen                    |
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| **Name** | ✅ | The product name shown on the order page, e.g. `Wafel`, `Groot pakket`, `Kampticket` |
-| **Price** | ✅ | Price per unit in euro |
-| **Description** | ✗ | A short description shown beneath the product name |
-| **Stock limit** | ✗ | Maximum total units available across all orders — leave empty for unlimited |
-| **Per-order limit** | ✗ | Maximum quantity a single buyer can add to their cart |
+  Herhaal deze stap voor elk product dat je wilt opnemen. Je kunt producten slepen en neerzetten om ze op de publieke pagina te herschikken.
 
-Repeat this step for every product you want to include. You can drag and drop products to reorder them on the public page.
+  <Tip>
+    Het groeperen van verwante producten in **categorieën** (bijv. "Dranken" en "Eten") houdt de bestelpagina overzichtelijk als je meer dan vier of vijf artikelen hebt. Voeg een categorie toe vanuit de verkoopdetailweergave voordat je producten toevoegt.
+  </Tip>
 
-<Tip>
-  Grouping related products into **categories** (e.g. "Dranken" and "Eten") keeps the order page tidy when you have more than four or five items. Add a category from the sale detail view before adding products.
-</Tip>
+  ### Voeg aangepaste vragen toe (optioneel)
 
-### Add custom questions (optional)
+  Als je extra informatie nodig hebt van kopers voor een specifiek product, bijvoorbeeld een T-shirtmaat, een vleeskeuze voor een barbecue of de naam van een kind voor een kamp, open je het product en klik je op **Vraag toevoegen** onder het tabblad **Vragen**.
 
-If you need extra information from buyers for a specific product — for example, a T-shirt size, a meat choice for a barbecue, or a child's name for a camp — open the product and click **Vraag toevoegen** under the **Vragen** tab.
+  Elke vraag heeft:
 
-Each question has:
+  * **Label**: de vraagtekst die de koper ziet, bijv. `Grootte T-shirt`
+  * **Hulptekst**: optionele extra uitleg onder het label
+  * **Vraagtype**: kies uit:
+    * **Single choice**: koper kiest precies één optie uit een lijst
+    * **Multiple choice**: koper kiest één of meer opties (min/max selecteerbaar)
+    * **Quantity per option**: koper voert een hoeveelheid in voor elke optie (bijv. 2× kip, 1× rund)
+    * **Number**: koper typt een getal (met optionele min/max validatie)
+    * **Free text**: koper typt een vrij antwoord
+    * **Checkbox**: een eenvoudig ja/nee vinkje
+  * **Verplicht**: schakel in om het afrekenen te blokkeren tot de koper heeft geantwoord
 
-- **Label** — the question text shown to the buyer, e.g. `Grootte T-shirt`
-- **Help text** — optional extra explanation shown beneath the label
-- **Question type** — choose from:
-  - **Single choice** — buyer picks exactly one option from a list
-  - **Multiple choice** — buyer picks one or more options (min/max selectable)
-  - **Quantity per option** — buyer enters a quantity for each option (e.g. 2× chicken, 1× beef)
-  - **Number** — buyer types a number (with optional min/max validation)
-  - **Free text** — buyer types a free-form answer
-  - **Checkbox** — a simple yes/no tick
-- **Required** — toggle on to block checkout until the buyer answers
+  Voor keuzevragen voeg je de individuele antwoordopties toe (bijv. `XS`, `S`, `M`, `L`, `XL`). Je kunt ook een prijsopslag koppelen aan elke optie, bijvoorbeeld een `XXL` optie aan +€2.
 
-For choice-type questions, add the individual answer options (e.g. `XS`, `S`, `M`, `L`, `XL`). You can also attach a price surcharge to any option — for example, an `XXL` option at +€2.
+  ### Configureer betaalmethodes
 
-### Configure payment methods
+  Ga naar **Instellingen → Betaalmethodes** binnen je verkoop. Kaspert ondersteunt vier betaalmethodes: schakel in welke van toepassing zijn op je verkoop:
 
-Go to **Instellingen → Betaalmethodes** inside your sale. Kaspert supports four payment methods — enable whichever ones apply to your sale:
+  <Tabs>
+    <Tab title="Bankoverschrijving">
+      De koper ontvangt je IBAN en een betalingsreferentie in de bevestigingsmail. Voer je **IBAN** en **begunstigdennaam** (de naam van je vereniging) in de instellingen in. Deze methode heeft geen verwerkingskosten buiten Kaspert's eigen transactietarief.
+    </Tab>
 
-<Tabs>
-  <Tab title="Bank transfer (overschrijving)">
-    The buyer receives your IBAN and a payment reference in the confirmation email. Enter your **IBAN** and **beneficiary name** (your organisation's name) in the settings. This method has no processing fee beyond Kaspert's own transaction fee.
-  </Tab>
-  <Tab title="EPC QR code">
-    A QR code following the European Payment Council (EPC) standard is shown at checkout. The buyer scans it with any Belgian banking app (KBC, ING, Belfius, etc.) to pre-fill the transfer details. No separate app subscription is required for this method.
-  </Tab>
-  <Tab title="Stripe (card & Bancontact via Stripe)">
-    Buyers pay online with a credit card or Bancontact via Stripe. Funds are paid out directly to your organisation's linked bank account. You must complete Stripe onboarding first — see the note below.
-  </Tab>
-  <Tab title="On-site payment">
-    No online payment is taken. The buyer places an order and pays in person at pick-up or delivery. The order is recorded with a pending (Openstaand) status; you mark it as paid manually in the Bestellingen tab once you collect the money.
-  </Tab>
-</Tabs>
+    <Tab title="EPC QR-code">
+      Een QR-code volgens de European Payment Council (EPC) standaard wordt getoond bij het afrekenen. De koper scant deze met elke Belgische bankapp (KBC, ING, Belfius, enz.) om de overschrijvingsgegevens vooraf in te vullen. Voor deze methode is geen aparte app-abonnement nodig.
+    </Tab>
 
-<Note>
-  **Stripe Connect setup required before accepting card payments.** Go to **Beheer → Organisatie → Betalingen** and click **Stripe koppelen** to start the onboarding flow. You will need your organisation's legal name, address, and bank account details. Once Stripe has verified and activated your account, the Stripe payment method becomes available to enable on your sales.
-</Note>
+    <Tab title="Stripe (kaart & Bancontact via Stripe)">
+      Kopers betalen online met een creditcard of Bancontact via Stripe. Gelden worden rechtstreeks uitbetaald aan de gekoppelde bankrekening van je vereniging. Je moet eerst de Stripe onboarding voltooien, zie de opmerking hieronder.
+    </Tab>
 
-### Write your shop description
+    <Tab title="Ter plaatse betalen">
+      Er wordt geen online betaling afgenomen. De koper plaatst een bestelling en betaalt bij afhaling of levering. De bestelling wordt geregistreerd met een openstaande status; je markeert deze handmatig als betaald in het tabblad Bestellingen zodra je het geld ontvangt.
+    </Tab>
+  </Tabs>
 
-Go to **Instellingen → Lay-out**. Here you can set:
+  <Note>
+    **Stripe Connect setup vereist voordat je kaartbetalingen accepteert.** Ga naar **Beheer → Organisatie → Betalingen** en klik op **Stripe koppelen** om de onboardingflow te starten. Je hebt de juridische naam, het adres en de bankrekeninggegevens van je vereniging nodig. Zodra Stripe je account heeft geverifieerd en geactiveerd, wordt de Stripe betaalmethode beschikbaar om in te schakelen op je verkopen.
+  </Note>
 
-- **Page title** — the large heading displayed at the top of your order page
-- **Description** — a paragraph below the title that explains the sale, event details, pick-up info, or anything else buyers should know
-- **Hero image** — an optional full-width banner photo (recommended: landscape, at least 1200 px wide, max 5 MB)
-- **Gallery photos** — optional additional photos shown at the bottom of the page
+  ### Schrijf je winkelbeschrijving
 
-Not sure what to write? Click the **Schrijf mijn teksten** button to open the AI copy assistant. It generates a title and description based on your sale name and a brief prompt — you can edit the result before saving.
+  Ga naar **Instellingen → Lay-out**. Hier kun je instellen:
 
-A live preview of your public order page is embedded directly in the layout editor so you can see changes before saving.
+  * **Paginatitel**: de grote kop bovenaan je bestelpagina
+  * **Beschrijving**: een alinea onder de titel die de verkoop, evenementdetails, afhaalinfo of alles wat kopers moeten weten uitlegt
+  * **Hero-afbeelding**: een optionele bannerfoto in volledige breedte (aanbevolen: landschap, minstens 1200 px breed, max 5 MB)
+  * **Galerijfoto's**: optionele extra foto's onderaan de pagina
 
-### Set the sale as active
+  Weet je niet wat je moet schrijven? Klik op de knop **Schrijf mijn teksten** om de AI-tekstassistent te openen. Deze genereert een titel en beschrijving op basis van je verkoopnaam en een korte prompt: je kunt het resultaat bewerken voordat je opslaat.
 
-Back in your sale overview, find the **Actief** toggle and turn it on. This makes the public order page accessible. While a sale is inactive, the order page shows a "closed" message and buyers cannot place orders.
+  Een live voorbeeld van je publieke bestelpagina is direct ingebed in de lay-outeditor, zodat je wijzigingen kunt zien voordat je opslaat.
 
-You can also configure automatic open and close times under **Instellingen → Open/sluit-tijden**. For example, set the shop to open on the day you publish your newsletter and close at midnight on the last order day.
+  ### Zet de verkoop op actief
 
-### Share the public link
+  Terug in je verkoopoverzicht, vind de **Actief** schakelaar en zet deze aan. Dit maakt de publieke bestelpagina toegankelijk. Terwijl een verkoop inactief is, toont de bestelpagina een "gesloten" bericht en kunnen kopers geen bestellingen plaatsen.
 
-Copy the public URL shown at the top of your sale detail page. The URL format is:
+  Je kunt ook automatische open- en sluittijden configureren onder **Instellingen → Open/sluit-tijden**. Bijvoorbeeld: zet de winkel open op de dag dat je je nieuwsbrief publiceert en sluit deze om middernacht op de laatste besteldag.
 
-```
-https://kaspert.be/bestellen/{companySlug}/{saleSlug}
-```
+  ### Deel de publieke link
 
-Share this link in your communication channels — a newsletter, Facebook event, WhatsApp group, or printed QR code. Buyers can open it on any device without logging in.
+  Kopieer de publieke URL die bovenaan je verkoopdetailpagina wordt getoond. De URL-indeling is:
 
+  ```
+  https://kaspert.be/bestellen/{companySlug}/{saleSlug}
+  ```
+
+  Deel deze link in je communicatiekanalen: een nieuwsbrief, Facebook-evenement, WhatsApp-groep of een geprinte QR-code. Kopers kunnen deze openen op elk apparaat zonder in te loggen.
 </Steps>
 
-## Managing orders
+## Bestellingen beheren
 
-Once buyers start placing orders, click on your sale in the Verkoop overview to see the **Bestellingen** tab. For each order you can see:
+Zodra kopers beginnen met bestellen, klik je op je verkoop in het Verkoop-overzicht om het tabblad **Bestellingen** te zien. Voor elke bestelling zie je:
 
-- Order number and creation date
-- Buyer name and email address
-- Products ordered and quantities
-- Total amount and payment status (**Betaald** or **Openstaand**)
-- Payment method used
-- Answers to any custom questions
+- Bestelnummer en aanmaakdatum
+- Naam en e-mailadres van de koper
+- Bestelde producten en hoeveelheden
+- Totaalbedrag en betalingsstatus (**Betaald** of **Openstaand**)
+- Gebruikte betaalmethode
+- Antwoorden op eventuele aangepaste vragen
 
-Click an order row to expand the full detail, including line items, question answers, and any discount code applied.
+Klik op een bestelrij om de volledige details te zien, inclusief regelitems, vraagantwoorden en eventuele toegepaste kortingscode.
 
 <Tip>
-  Click **Exporteren** to download all orders as an Excel file. This is useful for preparing pick-up lists, seating plans, or reporting to your group's national association.
+  Klik op **Exporteren** om alle bestellingen te downloaden als een Excel-bestand. Dit is handig voor het voorbereiden van afhaallijsten, zitplannen of rapportage aan je vereniging's nationale koepel.
 </Tip>
 
-## Confirmation email
+## Bevestigingsmail
 
-Kaspert automatically sends an order confirmation email to the buyer immediately after checkout. The email includes:
+Kaspert stuurt automatisch een bestelbevestigingsmail naar de koper onmiddellijk na het afrekenen. De e-mail bevat:
 
-- The buyer's name and order number
-- A full product overview with quantities and prices
-- Payment instructions (IBAN and payment reference for bank transfer, or EPC QR code if the EPC QR method is enabled) — or an on-site payment notice
-- Your custom intro and closing text
+- De naam en het bestelnummer van de koper
+- Een volledig productoverzicht met hoeveelheden en prijzen
+- Betalingsinstructies (IBAN en betalingsreferentie voor overschrijving, of een EPC QR-code als de EPC QR-methode is ingeschakeld), of een bericht voor ter plaatse betaling
+- Je aangepaste intro- en afsluitingstekst
 
-To customise the email, go to **Instellingen → Bevestigingsmail**. You can set a custom subject line and edit the intro and closing paragraphs using the rich text editor. The product table, totals, and payment block are generated automatically and cannot be removed.
+Om de e-mail aan te passen, ga je naar **Instellingen → Bevestigingsmail**. Je kunt een aangepast onderwerpregel instellen en de intro- en afsluitingsalinea's bewerken met de rich text editor. De producttabel, totalen en betalingsblok worden automatisch gegenereerd en kunnen niet worden verwijderd.
 
-You can also set one or more **notification email addresses** under **Instellingen → Meldingen** to receive an alert each time a new order arrives.
+Je kunt ook één of meer **notificatie-e-mailadressen** instellen onder **Instellingen → Meldingen** om een alert te ontvangen telkens wanneer er een nieuwe bestelling binnenkomt.

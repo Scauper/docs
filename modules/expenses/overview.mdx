@@ -1,51 +1,51 @@
 ---
-title: "Digitise expense approvals with Kaspert's expense module"
-sidebarTitle: "Overview"
-description: "Replace paper receipts with a digital flow: members submit expenses online, admins review and approve them, and approved costs land in the kasboek."
+title: "Digitaliseer onkosten goedkeuringen met Kaspert's onkostenmodule"
+sidebarTitle: "Overzicht"
+description: "Vervang papieren bonnetjes door een digitale flow: leden dienen onkosten online in, beheerders reviewen en keuren ze goed, en goedgekeurde kosten landen in het kasboek."
 ---
 
-Managing expenses in a youth organisation has always been a paper-heavy headache. Leaders buy food for a camp, materials for a workshop, or petrol for a transport run — and then hand a crumpled receipt to the treasurer at the next meeting (or, more often, forget to entirely). Kaspert's expense module replaces that chaotic paper trail with a structured, fully digital approval flow that saves your treasurer hours of back-and-forth every werkjaar.
+Het beheren van onkosten in een jeugdvereniging was altijd een papierintensieve hoofdpijn. Leiders kopen eten voor een kamp, materiaal voor een workshop of benzine voor een vervoersrit, en geven dan een verkreukeld bonnetje aan de penningmeester bij de volgende vergadering (of, vaker nog, vergeten het volledig). Kasperts onkostenmodule vervangt die chaotische papierstroom door een gestructureerde, volledig digitale goedkeuringsflow die je penningmeester uren heen-en-weer per werkjaar bespaart.
 
-## The problem it solves
+## Het probleem dat het oplost
 
-In a typical youth group, dozens of leaders and helpers make small purchases throughout the season. Each one needs to be documented, reviewed, and reimbursed. Without a system, receipts get lost, amounts get disputed, and the treasurer ends up chasing people for details months after the fact. Kaspert gives every member a simple way to submit a receipt from their phone — no app download, no account required — and gives the treasurer a single dashboard to review, approve, and pay everything in one place.
+In een typische jeugdvereniging doen tientallen leiders en helpers gedurende het seizoen kleine aankopen. Elke aankoop moet worden gedocumenteerd, gecontroleerd en terugbetaald. Zonder systeem raken bonnetjes kwijt, worden bedragen betwist, en moet de penningmeester maanden later mensen achtervolgen voor details. Kaspert geeft elk lid een eenvoudige manier om een bonnetje vanaf hun telefoon in te dienen: geen app-download, geen account nodig, en geeft de penningmeester één dashboard om alles te reviewen, goedkeuren en betalen op één plek.
 
-## How the expense flow works
+## Hoe de onkostenflow werkt
 
 <Steps>
-  <Step title="A member submits an expense">
-    Anyone who made a purchase on behalf of the group opens the public submission link your admin shares — `https://kaspert.be/[your-group-slug]/onkosten` — or uses the Onkosten page inside the Kaspert app if they have an account. No login is needed for the public form.
+  <Step title="Een lid dient een onkost in">
+    Iedereen die een aankoop heeft gedaan namens de groep opent de publieke indieningslink die je beheerder deelt: `https://kaspert.be/[your-group-slug]/onkosten`, of gebruikt de Onkosten-pagina binnen de Kaspert-app als hij of zij een account heeft. Geen login is nodig voor het publieke formulier.
   </Step>
-  <Step title="They fill in the details and attach a receipt">
-    The submitter enters their name, Belgian IBAN (for reimbursement), a description of the purchase, the amount in euros, and the date. They attach a photo of the receipt or upload a PDF — straight from their phone camera if needed.
+  <Step title="Hij of zij vult de details in en voegt een bonnetje toe">
+    De indiener voert zijn naam, Belgisch IBAN (voor terugbetaling), een beschrijving van de aankoop, het bedrag in euro's en de datum in. Hij of zij voegt een foto van het bonnetje toe of uploadt een PDF: rechtstreeks vanaf de telefooncamera indien nodig.
   </Step>
-  <Step title="AI reads the receipt automatically">
-    If your organisation is on the Basic plan or higher and OCR is enabled, Kaspert analyses the receipt image and attempts to pre-fill the amount, date, description, and category. Logged-in members benefit from the most complete auto-fill; the public form pre-fills what it can from the image. The submitter should always review all values before hitting submit.
+  <Step title="AI leest het bonnetje automatisch">
+    Als je vereniging op het Basic plan of hoger zit en OCR is ingeschakeld, analyseert Kaspert de bonnetjesfoto en probeert het bedrag, de datum, de beschrijving en de categorie vooraf in te vullen. Ingelogde leden profiteren van de meest complete auto-fill; het publieke formulier vult voor wat het kan uit de afbeelding. De indiener moet altijd alle waarden controleren voordat hij of zij op indienen klikt.
   </Step>
-  <Step title="The expense appears in the Onkosten dashboard">
-    The submitted expense shows up immediately under **Onkosten** (`/onkosten`) in the admin panel, tagged as pending. The treasurer sees the submitter's name, IBAN, amount, description, date, and a link to view the receipt photo.
+  <Step title="De onkost verschijnt in het Onkosten-dashboard">
+    De ingediende onkost verschijnt onmiddellijk onder **Onkosten** (`/onkosten`) in het admin-paneel, gemarkeerd als in afwachting. De penningmeester ziet de naam van de indiener, het IBAN, het bedrag, de beschrijving, de datum en een link om de bonnetjesfoto te bekijken.
   </Step>
-  <Step title="The admin reviews and approves or rejects">
-    The treasurer clicks the expense, checks the receipt, adjusts any details if necessary (such as assigning a kasboek category), and either approves or rejects it. If your kasboek module is enabled, they must choose a category before approving.
+  <Step title="De beheerder reviewt en keurt goed of wijst af">
+    De penningmeester klikt op de onkost, controleert het bonnetje, past indien nodig details aan (zoals het toewijzen van een kasboekcategorie), en keurt deze goed of wijst deze af. Als je kasboekmodule is ingeschakeld, moet hij of zij een categorie kiezen voordat goedkeuring mogelijk is.
   </Step>
-  <Step title="Approved expenses are booked automatically">
-    Approving an expense removes the pending flag and adds the transaction directly to the kasboek as an expense entry, using the category and date from the submission. The receipt photo URL is stored alongside the transaction as proof.
+  <Step title="Goedgekeurde onkosten worden automatisch geboekt">
+    Het goedkeuren van een onkost verwijdert de in-afwachting-vlag en voegt de transactie rechtstreeks toe aan het kasboek als een onkostenboeking, gebruikmakend van de categorie en datum uit de indiening. De URL van de bonnetjesfoto wordt opgeslagen naast de transactie als bewijs.
   </Step>
 </Steps>
 
-## Plan requirements
+## Planvereisten
 
 <Note>
-  The Onkosten module is available on the **Basic plan and higher** (€4.99/month). OCR-powered receipt scanning — which automatically pre-fills the amount, date, description, and category from a photo — requires the **Basic plan or higher** and must be enabled in your organisation's settings. The Free plan does not include expense submissions.
+  De Onkosten module is beschikbaar op het **Basic plan en hoger** (€4,99/maand). OCR-aangedreven bonnetjesscanning, die automatisch het bedrag, de datum, de beschrijving en de categorie vooraf invult uit een foto, vereist het **Basic plan of hoger** en moet worden ingeschakeld in de instellingen van je vereniging. Het Free plan bevat geen onkostenindieningen.
 </Note>
 
-## Explore the module
+## Verken de module
 
 <CardGroup cols={2}>
-  <Card title="Submitting Expenses" icon="receipt" href="/modules/expenses/submitting-expenses">
-    How members and leaders submit receipts using the public link or the Kaspert app — including OCR auto-fill.
+  <Card title="Onkosten indienen" icon="receipt" href="/modules/expenses/submitting-expenses">
+    Hoe leden en leiders bonnetjes indienen via de publieke link of de Kaspert-app, inclusief OCR auto-fill.
   </Card>
-  <Card title="Approvals" icon="circle-check" href="/modules/expenses/approvals">
-    How admins and treasurers review, edit, approve, and pay expense submissions from the Onkosten dashboard.
+  <Card title="Goedkeuringen" icon="circle-check" href="/modules/expenses/approvals">
+    Hoe beheerders en penningmeesters onkostenindieningen reviewen, bewerken, goedkeuren en betalen vanuit het Onkosten-dashboard.
   </Card>
 </CardGroup>

@@ -1,97 +1,97 @@
 ---
-title: "Manage werkjaren (fiscal years) for your organisation"
+title: "Beheer werkjaren (seizoenen) voor je organisatie"
 sidebarTitle: "Werkjaren"
-description: "Create, edit, and manage werkjaren — the date-bounded seasons that group all transactions, members, and reports in your Kaspert organisation."
+description: "Maak, bewerk en beheer werkjaren aan, de datumgebonden seizoenen die alle transacties, leden en rapporten in je Kaspert-organisatie groeperen."
 ---
 
-A **werkjaar** is the fundamental time boundary in Kaspert. Every transaction, member enrollment, and report belongs to exactly one werkjaar — the season during which it falls. By structuring your finances into discrete seasons (typically September through August for Flemish youth organisations), you can review last year's results in isolation, prepare the new season without mixing data, and hand off clean records to your successor as penningmeester.
+Een **werkjaar** is de fundamentele tijdgrens in Kaspert. Elke transactie, elke ledeninschrijving en elk rapport behoort tot precies één werkjaar, het seizoen waarin het valt. Door je financiën op te delen in afzonderlijke seizoenen (doorgaans september tot en met augustus voor Vlaamse jeugdverenigingen), kun je de resultaten van vorig jaar apart bekijken, het nieuwe seizoen voorbereiden zonder data door elkaar te halen, en nette boeken over te dragen aan je opvolger als penningmeester.
 
-Navigate to **Beheer** (`/admin`) > **Organisatie** tab and scroll down to the **Werkjaren** section to manage them.
+Navigeer naar **Beheer** (`/admin`) > **Organisatie** en scroll naar de sectie **Werkjaren** om ze te beheren.
 
-## What a werkjaar defines
+## Wat een werkjaar bepaalt
 
-Each werkjaar has three properties:
+Elk werkjaar heeft drie eigenschappen:
 
-| Property | Example | Notes |
-|----------|---------|-------|
-| **Label** | `2024-2025` | A human-readable name, unique within your organisation |
-| **Start date** | `2024-09-01` | First day of the season, inclusive |
-| **End date** | `2025-08-31` | Last day of the season, inclusive |
+| Eigenschap | Voorbeeld | Opmerkingen |
+| --- | --- | --- |
+| **Label** | `2024-2025` | Een leesbare naam, uniek binnen je organisatie |
+| **Startdatum** | `2024-09-01` | Eerste dag van het seizoen, inclusief |
+| **Einddatum** | `2025-08-31` | Laatste dag van het seizoen, inclusief |
 
-When you select a werkjaar in the kasboek, betalingen, or leden pages, Kaspert filters all data to show only records whose date falls within that range. Transactions outside the range are hidden — not deleted.
+Wanneer je een werkjaar selecteert in het kasboek, de betalingen of de ledenpagina's, filtert Kaspert alle data om alleen records te tonen waarvan de datum binnen dat bereik valt. Transacties buiten het bereik worden verborgen, niet verwijderd.
 
-The **active** werkjaar is determined automatically: Kaspert compares today's date to all your werkjaar ranges and highlights the one that matches with an **Actief** badge.
+Het **actieve** werkjaar wordt automatisch bepaald: Kaspert vergelijkt de datum van vandaag met al je werkjaarbereiken en markeert het passende werkjaar met een badge **Actief**.
 
-## Create a werkjaar
+## Een werkjaar aanmaken
 
 <Steps>
-  <Step title="Open the Werkjaren section">
-    Go to **Beheer** > **Organisatie** and scroll to **Werkjaren**.
+  <Step title="Open de Werkjaren-sectie">
+    Ga naar **Beheer** > **Organisatie** en scroll naar **Werkjaren**.
   </Step>
-  <Step title="Click 'Nieuw werkjaar'">
-    Click the **+ Nieuw werkjaar** button in the top-right of the section.
+  <Step title="Klik op 'Nieuw werkjaar'">
+    Klik op de knop **\+ Nieuw werkjaar** rechtsboven in de sectie.
   </Step>
-  <Step title="Fill in the label">
-    Enter a descriptive label such as `2025-2026`. This label must be unique within your organisation.
+  <Step title="Vul het label in">
+    Voer een beschrijvend label in, bijvoorbeeld `2025-2026`. Dit label moet uniek zijn binnen je organisatie.
   </Step>
-  <Step title="Set the start date">
-    Click the **Start** date picker and select the first day of the season (e.g. 1 September 2025).
+  <Step title="Stel de startdatum in">
+    Klik op de datumkiezer **Start** en selecteer de eerste dag van het seizoen (bijvoorbeeld 1 september 2025).
   </Step>
-  <Step title="Set the end date">
-    Click the **Einde** date picker and select the last day of the season (e.g. 31 August 2026).
+  <Step title="Stel de einddatum in">
+    Klik op de datumkiezer **Einde** en selecteer de laatste dag van het seizoen (bijvoorbeeld 31 augustus 2026).
   </Step>
-  <Step title="Save">
-    Click **Opslaan** (the checkmark button). The new werkjaar appears in the list immediately.
+  <Step title="Opslaan">
+    Klik op **Opslaan** (de knop met het vinkje). Het nieuwe werkjaar verschijnt onmiddellijk in de lijst.
   </Step>
 </Steps>
 
 <Tip>
-  Create the new werkjaar a few weeks before the season officially starts. This lets you begin enrolling members and pre-booking transactions (such as camp deposits) straight away, without waiting for the old season to end.
+  Maak het nieuwe werkjaar al een paar weken voor het seizoen officieel begint. Zo kun je meteen beginnen met het inschrijven van leden en het voorboeken van transacties (zoals kampdeposito's), zonder te wachten tot het oude seizoen voorbij is.
 </Tip>
 
-## Edit an existing werkjaar
+## Een bestaand werkjaar bewerken
 
 <Steps>
-  <Step title="Click the edit icon">
-    Find the werkjaar in the list and click the pencil icon on the right side.
+  <Step title="Klik op het bewerkicoon">
+    Zoek het werkjaar in de lijst en klik op het potloodicoon aan de rechterkant.
   </Step>
-  <Step title="Update the fields">
-    The row expands inline. Adjust the label, start date, or end date as needed.
+  <Step title="Werk de velden bij">
+    De rij klapt inline open. Pas het label, de startdatum of de einddatum naar wens aan.
   </Step>
-  <Step title="Save">
-    Click the checkmark button to save, or the X button to cancel without saving.
+  <Step title="Opslaan">
+    Klik op de knop met het vinkje om op te slaan, of op de X-knop om te annuleren zonder op te slaan.
   </Step>
 </Steps>
 
-## Delete a werkjaar
+## Een werkjaar verwijderen
 
-Click the trash icon on any werkjaar row. A confirmation dialog appears before anything is deleted.
+Klik op het prullenbakicoon op een werkjaar-rij. Er verschijnt eerst een bevestigingsvenster voordat er iets wordt verwijderd.
 
 <Warning>
-  Deleting a werkjaar does **not** delete the transactions or member records associated with it. However, those records will no longer appear in the kasboek or leden filters because there is no werkjaar range to match them. The data remains stored but becomes effectively invisible until you recreate a werkjaar covering the same date range. Avoid deleting werkjaren that contain real financial data.
+  Het verwijderen van een werkjaar verwijdert **niet** de transacties of ledenrecords die eraan gekoppeld zijn. Die records verschijnen echter niet meer in het kasboek of de ledenfilters omdat er geen werkjaarbereik meer is dat ze omvat. De data blijft opgeslagen maar wordt effectief onzichtbaar totdat je een werkjaar aanmaakt dat hetzelfde datumbereik dekt. Vermijd het verwijderen van werkjaren die echte financiele data bevatten.
 </Warning>
 
-## Switching between werkjaren in the app
+## Wisselen tussen werkjaren in de app
 
-Every page that is scoped to a werkjaar — the kasboek (`/dashboard`), betalingen (`/betalingen`), and leden (`/leden`) — has a **werkjaar dropdown** in the top area of the page. Click it to switch the view to a different season. The dropdown lists all werkjaren ordered by start date, newest first, and marks the current one as **Actief**.
+Elke pagina die aan een werkjaar is gekoppeld, het kasboek (`/dashboard`), de betalingen (`/betalingen`) en de leden (`/leden`), heeft een **werkjaar-dropdown** in de bovenste balk. Klik erop om de weergave naar een ander seizoen te schakelen. De dropdown toont alle werkjaren gesorteerd op startdatum, nieuwste eerst, en markeert het huidige als **Actief**.
 
-## Rules and validations
+## Regels en validaties
 
 <AccordionGroup>
-  <Accordion title="Label uniqueness">
-    Each werkjaar label must be unique within your organisation. If you try to create a duplicate — for example, two entries both labelled `2024-2025` — Kaspert rejects the save and shows the message: **Dit werkjaar bestaat al.**
+  <Accordion title="Label moet uniek zijn">
+    Elk werkjaar-label moet uniek zijn binnen je organisatie. Als je probeert een duplicaat aan te maken, bijvoorbeeld twee items met het label `2024-2025`, dan weigert Kaspert het opslaan en toont de melding: **Dit werkjaar bestaat al.**
   </Accordion>
-  <Accordion title="All fields are required">
-    You cannot save a werkjaar without a label, a start date, and an end date. The save button stays disabled until all three are provided.
+  <Accordion title="Alle velden zijn verplicht">
+    Je kunt een werkjaar niet opslaan zonder label, startdatum en einddatum. De opslaanknop blijft uitgeschakeld totdat alle drie zijn ingevuld.
   </Accordion>
-  <Accordion title="Date format">
-    Regardless of your browser's locale or language settings, Kaspert always stores dates in `YYYY-MM-DD` format internally (e.g. `2025-09-01`). The date pickers in the UI display dates in your local format, but the conversion to ISO format happens automatically before saving.
+  <Accordion title="Datumformaat">
+    Ongeacht de taalinstellingen van je browser slaat Kaspert datums altijd intern op in het formaat `YYYY-MM-DD` (bijvoorbeeld `2025-09-01`). De datumkiezers in de interface tonen datums in je lokale formaat, maar de conversie naar ISO-formaat gebeurt automatisch voor het opslaan.
   </Accordion>
-  <Accordion title="Overlapping date ranges">
-    Kaspert does not block you from creating werkjaren with overlapping date ranges. However, overlapping ranges are strongly discouraged: a transaction whose date falls in the overlap zone will appear in both werkjaren when each is selected, which makes financial reporting ambiguous. Design your werkjaren so their ranges do not overlap.
+  <Accordion title="Overlappende datumbereiken">
+    Kaspert blokkeert je niet als je werkjaren met overlappende datumbereiken aanmaakt. Overlappende bereiken worden echter sterk afgeraden: een transactie waarvan de datum in de overlap valt, verschijnt in beide werkjaren wanneer je elk ervan selecteert, wat financiele rapportage verwarrend maakt. Ontwerp je werkjaren zodat hun bereiken niet overlappen.
   </Accordion>
 </AccordionGroup>
 
 <Note>
-  The active werkjaar badge is determined by matching today's date to the conventional `YYYY-YYYY` season label (for example, September through August is labelled `2024-2025`). If you use non-standard labels (e.g. `Zomer 2025` instead of `2024-2025`), automatic detection may not work and you will need to select the correct werkjaar manually each time.
+  Het actieve werkjaar wordt bepaald door de datum van vandaag te matchen met het conventionele `YYYY-YYYY`-seizoenlabel (bijvoorbeeld september tot en met augustus wordt gelabeld als `2024-2025`). Als je niet-standaard labels gebruikt (bijvoorbeeld `Zomer 2025` in plaats van `2024-2025`), werkt de automatische detectie mogelijk niet en moet je het juiste werkjaar telkens handmatig selecteren.
 </Note>

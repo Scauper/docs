@@ -1,77 +1,77 @@
 ---
-title: "Import and export member data in Kaspert Ledenbeheer"
+title: "Importeer en exporteer ledengegevens in Kaspert Ledenbeheer"
 sidebarTitle: "Import & Export"
-description: "Bulk import members from an Excel or CSV file and export the full member list with custom question answers for federation reporting or archiving."
+description: "Importeer leden in bulk vanuit een Excel- of CSV-bestand en exporteer de volledige ledenlijst met antwoorden op eigen vragen voor federatierapportage of archivering."
 ---
 
-Kaspert supports both bulk import and export of member data, making it straightforward to migrate from another system or to prepare your annual federation report. The import wizard handles CSV and Excel files with AI-assisted column mapping so you don't have to match every column by hand. The export produces a clean `.xlsx` file that includes all standard fields as well as any custom enrollment question answers you've configured — ready to hand to your koepelorganisatie.
+Kaspert ondersteunt zowel bulkimport als export van ledengegevens, waardoor het eenvoudig is om over te stappen van een ander systeem of om je jaarlijkse federatierapport voor te bereiden. De importwizard verwerkt CSV- en Excel-bestanden met AI-ondersteunde kolomkoppeling, zodat je niet elke kolom handmatig hoeft te koppelen. De export levert een net `.xlsx`-bestand op dat alle standaardvelden bevat, evenals antwoorden op eventuele eigen inschrijvingsvragen die je hebt geconfigureerd: klaar om aan je koepelorganisatie te overhandigen.
 
-## Importing members
+## Leden importeren
 
 <Info>
-  The import tool creates members and their enrollments for the **currently selected werkjaar**. Before starting, make sure the correct season is selected in the top-right werkjaar dropdown on the Leden page.
+  De importtool maakt leden en hun inschrijvingen aan voor het **momenteel geselecteerde werkjaar**. Controleer voordat je begint of het juiste seizoen is geselecteerd in de werkjaar-dropdown rechtsboven op de pagina Leden.
 </Info>
 
 <Steps>
-  <Step title="Open the import dialog">
-    Navigate to **Leden** (`/leden`), confirm the correct werkjaar is selected in the top-right dropdown, and click **Importeer leden**.
+  <Step title="Open het importvenster">
+    Navigeer naar **Leden** (`/leden`), controleer of het juiste werkjaar is geselecteerd in de dropdown rechtsboven, en klik op **Importeer leden**.
   </Step>
-  <Step title="Prepare your file">
-    The import accepts `.xlsx`, `.xls`, `.csv`, and `.txt` files with up to **500 rows**. The first row must be a header row. Required columns are **Voornaam** and **Achternaam**; all others are optional:
+  <Step title="Bereid je bestand voor">
+    De import accepteert `.xlsx`, `.xls`, `.csv` en `.txt`-bestanden met maximaal **500 rijen**. De eerste rij moet een koprij zijn. Verplichte kolommen zijn **Voornaam** en **Achternaam**; alle andere zijn optioneel:
 
-    | Column | Required | Notes |
-    |--------|----------|-------|
-    | Voornaam | Yes | Member first name |
-    | Achternaam | Yes | Member last name |
-    | Geboortedatum | No | Accepts `DD/MM/YYYY`, `DD-MM-YYYY`, or `YYYY-MM-DD` |
-    | Straat | No | Street and house number |
-    | Postcode | No | Postal code |
-    | Gemeente | No | Municipality |
-    | Tak | No | Tak name (must match exactly, or you'll be asked to create it) |
-    | E-mail ouder | No | Guardian email — used to link or create a guardian record |
-    | Telefoon ouder | No | Guardian phone number |
-    | Naam ouder | No | Guardian full name; split into first and last name automatically |
+    | Kolom | Verplicht | Opmerkingen |
+    | --- | --- | --- |
+    | Voornaam | Ja | Voornaam van het lid |
+    | Achternaam | Ja | Achternaam van het lid |
+    | Geboortedatum | Nee | Accepteert `DD/MM/YYYY`, `DD-MM-YYYY` of `YYYY-MM-DD` |
+    | Straat | Nee | Straat en huisnummer |
+    | Postcode | Nee | Postcode |
+    | Gemeente | Nee | Gemeente |
+    | Tak | Nee | Taknaam (moet exact overeenkomen, anders wordt je gevraagd deze aan te maken) |
+    | E-mail ouder | Nee | E-mailadres van de ouder: gebruikt om een ouderrecord te koppelen of aan te maken |
+    | Telefoon ouder | Nee | Telefoonnummer van de ouder |
+    | Naam ouder | Nee | Volledige naam van de ouder: automatisch gesplitst in voornaam en achternaam |
 
   </Step>
-  <Step title="Upload the file">
-    Click the file input in the dialog and select your file. Kaspert reads the file in the browser — nothing is sent to the server until you confirm the import.
+  <Step title="Upload het bestand">
+    Klik op het bestandsinvoerveld in het venster en selecteer je bestand. Kaspert leest het bestand in de browser: er wordt niets naar de server verzonden totdat je de import bevestigt.
   </Step>
-  <Step title="Map the columns">
-    Kaspert first tries to match columns by name automatically (e.g. a column named *"Geboortedatum"* is mapped to birth date). It then makes an AI-assisted attempt to identify columns it couldn't match by name, using the actual data as context. You see a **"automatisch herkend"** badge on columns matched by AI.
+  <Step title="Koppel de kolommen">
+    Kaspert probeert kolommen eerst automatisch op naam te koppelen (bijvoorbeeld een kolom met de naam _"Geboortedatum"_ wordt gekoppeld aan geboortedatum). Vervolgens doet het een AI-ondersteunde poging om kolommen te identificeren die niet op naam zijn gematcht, met behulp van de feitelijke gegevens als context. Je ziet een badge **"automatisch herkend"** op kolommen die door AI zijn gekoppeld.
 
-    Review all mappings and correct any that are wrong using the dropdown next to each field. You only need to map **Voornaam** and **Achternaam** — all other fields are optional.
+    Controleer alle koppelingen en corrigeer eventuele fouten met de dropdown naast elk veld. Je hoeft alleen **Voornaam** en **Achternaam** te koppelen: alle andere velden zijn optioneel.
   </Step>
-  <Step title="Preview and confirm">
-    Click **Volgende**. Kaspert shows a preview of all rows with a status for each:
+  <Step title="Bekijk de voorvertoning en bevestig">
+    Klik op **Volgende**. Kaspert toont een voorvertoning van alle rijen met een status voor elke rij:
 
-    - **Nieuw lid** — will be created
-    - **Bestaand lid** — already exists (matched by first name + last name + birth date) and will be skipped
-    - **Fout** — missing required data or an unparseable birth date
+    - **Nieuw lid**: wordt aangemaakt
+    - **Bestaand lid**: bestaat al (gematcht op voornaam + achternaam + geboortedatum) en wordt overgeslagen
+    - **Fout**: ontbrekende verplichte gegevens of een onleesbare geboortedatum
 
-    If any rows reference a **tak name that does not exist**, a card appears listing the unknown takken. You can check a box next to each one to have Kaspert create the tak automatically with a €0 membership fee. You can update the fee later in the Takken tab.
+    Als rijen verwijzen naar een **taknaam die niet bestaat**, verschijnt een kaart met de onbekende takken. Je kunt een selectievakje aanvinken naast elke tak om Kaspert deze automatisch aan te laten maken met een lidgeld van €0. Je kunt het lidgeld later aanpassen op het tabblad Takken.
   </Step>
-  <Step title="Run the import">
-    Click **Importeer N leden**. Kaspert creates each new member, their guardian record (if email or name was provided), and an enrollment for the selected werkjaar. After completion, a summary shows the number of members created, skipped, and failed.
+  <Step title="Voer de import uit">
+    Klik op **Importeer N leden**. Kaspert maakt elk nieuw lid aan, het ouderrecord (als e-mail of naam is opgegeven) en een inschrijving voor het geselecteerde werkjaar. Na afronding toont een samenvatting hoeveel leden zijn aangemaakt, overgeslagen en mislukt.
   </Step>
 </Steps>
 
 <Warning>
-  Duplicate detection is based on first name + last name + birth date. If a member has no birth date in your file, two members with the same name will be treated as distinct. Always include birth dates when possible to avoid duplicate records.
+  Dubbeldetectie is gebaseerd op voornaam + achternaam + geboortedatum. Als een lid geen geboortedatum in je bestand heeft, worden twee leden met dezelfde naam als afzonderlijk beschouwd. Vermijd dubbele records door altijd geboortedata op te nemen wanneer mogelijk.
 </Warning>
 
-## Exporting members
+## Leden exporteren
 
-The export downloads all currently visible rows as an Excel file.
+De export downloadt alle momenteel zichtbare rijen als een Excel-bestand.
 
 <Steps>
-  <Step title="Select the right werkjaar">
-    Use the werkjaar dropdown in the top-right corner of the Leden page to choose the season you want to export.
+  <Step title="Selecteer het juiste werkjaar">
+    Gebruik de werkjaar-dropdown rechtsboven op de pagina Leden om het seizoen te kiezen dat je wilt exporteren.
   </Step>
-  <Step title="Apply filters (optional)">
-    Filter by tak using the tak dropdown, or search by name using the search box. Only the rows that pass the current filter are included in the export — use this to export a single tak at a time if needed.
+  <Step title="Pas filters toe (optioneel)">
+    Filter op tak met de tak-dropdown, of zoek op naam met het zoekveld. Alleen de rijen die de huidige filter doorstaan, worden opgenomen in de export. Gebruik dit om indien nodig één tak tegelijk te exporteren.
   </Step>
-  <Step title="Click 'Exporteer Excel'">
-    The button is in the top-right area of the **Leden** tab. Your browser downloads a file named:
+  <Step title="Klik op 'Exporteer Excel'">
+    De knop bevindt zich rechtsboven op het tabblad **Leden**. Je browser downloadt een bestand met de naam:
 
     ```text
     leden-{werkjaar}-{YYYY-MM-DD}.xlsx
@@ -79,32 +79,32 @@ The export downloads all currently visible rows as an Excel file.
   </Step>
 </Steps>
 
-### What the export includes
+### Wat de export bevat
 
-| Column | Notes |
-|--------|-------|
+| Kolom | Opmerkingen |
+| --- | --- |
 | Voornaam | |
 | Achternaam | |
 | Geboortedatum | |
-| Tak | Omitted in self-enrollment mode |
-| Lidgeld | Formatted as `€#,##0.00` |
-| Status | `Betaald` or `Openstaand` |
+| Tak | Weggelaten in zelfinschrijvingsmodus |
+| Lidgeld | Geformatteerd als `€#,##0.00` |
+| Status | `Betaald` of `Openstaand` |
 | Straat | |
 | Postcode | |
 | Gemeente | |
-| *Custom question columns* | One column per active custom question; medical questions are marked with a ⚕ symbol in the header |
+| _Eigen vraagkolommen_ | Één kolom per actieve eigen vraag; medische vragen zijn gemarkeerd met een ⚕-symbool in de kop |
 
-The export reflects the **filtered view** — if you've filtered by tak, only members of that tak are exported. Remove all filters before exporting to get the complete member list.
+De export weerspiegelt de **gefilterde weergave**: als je hebt gefilterd op tak, worden alleen leden van die tak geëxporteerd. Verwijder alle filters voordat je exporteert om de volledige ledenlijst te verkrijgen.
 
 <Tip>
-  Export the full list at the end of each season for your federation (koepelorganisatie) reporting. The Excel file includes all required fields formatted for straightforward copy-paste into federation systems. Clear any active filters first so every member is included.
+  Exporteer de volledige lijst aan het einde van elk seizoen voor je federatie (koepelorganisatie). Het Excel-bestand bevat alle vereiste velden, geformatteerd voor eenvoudig kopiëren en plakken in federatiesystemen. Verwijder eerst alle actieve filters zodat elk lid is opgenomen.
 </Tip>
 
-## Manually adding a single member
+## Handmatig een enkel lid toevoegen
 
-If you want to add one member without going through the import wizard, click **Lid toevoegen** on the **Leden** tab. A dialog lets you fill in:
+Als je één lid wilt toevoegen zonder de importwizard te doorlopen, klik je op **Lid toevoegen** op het tabblad **Leden**. Een venster laat je het volgende invullen:
 
-- **Kind**: first name, last name, birth date, address, tak
-- **Ouder / voogd** (optional): first name, last name, email, phone
+- **Kind**: voornaam, achternaam, geboortedatum, adres, tak
+- **Ouder / voogd** (optioneel): voornaam, achternaam, e-mail, telefoon
 
-Kaspert creates the member record, the guardian record (if provided), and an enrollment for the current werkjaar in one step. The membership fee is taken from the selected tak automatically.
+Kaspert maakt in één stap het ledenrecord aan, het ouderrecord (als opgegeven) en een inschrijving voor het huidige werkjaar. Het lidgeld wordt automatisch overgenomen van de geselecteerde tak.

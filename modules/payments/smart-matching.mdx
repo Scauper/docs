@@ -1,117 +1,117 @@
 ---
-title: "Automatically match bank transactions to obligations"
-sidebarTitle: "Smart Matching"
-description: "Kaspert scores bank transactions against open obligations using name, keywords, and amount signals to automatically suggest the right match."
+title: "Banktransacties automatisch matchen met verplichtingen"
+sidebarTitle: "Slimme matching"
+description: "Kaspert scoort banktransacties tegen openstaande verplichtingen met behulp van naam, trefwoorden, en bedragsignalen om automatisch de juiste match voor te stellen."
 ---
 
-Smart matching is the engine that saves you from manually comparing your bank statement line by line against a list of expected payers. When income transactions are recorded in your kasboek — whether entered manually or imported from a bank export — Kaspert automatically scores each unmatched transaction against every open obligation and surfaces the most likely candidates as inline suggestions. You review a suggestion, click **Koppel**, and Kaspert marks the obligation as paid and stores the link. No spreadsheet, no guesswork.
+Slimme matching is de motor die je bespaart van het handmatig regel voor regel je bankafschrift vergelijken met een lijst van verwachte betalers. Wanneer inkomsten-transacties in je kasboek worden opgenomen, hetzij handmatig ingevoerd hetzij geimporteerd uit een bankexport, scoort Kaspert automatisch elke niet-gekoppelde transactie tegen elke openstaande verplichting en toont de meest waarschijnlijke kandidaten als inline suggesties. Je bekijkt een suggestie, klikt **Koppel**, en Kaspert markeert de verplichting als betaald en slaat de koppeling op. Geen spreadsheet, geen giswerk.
 
-## How the scoring algorithm works
+## Hoe het scoring-algoritme werkt
 
-For each open obligation, Kaspert evaluates every unmatched income transaction and produces a relevance score. The score is assembled from four independent signals:
+Voor elke openstaande verplichting evalueert Kaspert elke niet-gekoppelde inkomsten-transactie en produceert een relevantiescore. De score wordt samengesteld uit vier onafhankelijke signalen:
 
-| Signal | Points | Notes |
-|---|---|---|
-| Exact name part found in transaction description | +30 per matching part | Each word of the name longer than 2 characters is checked individually |
-| Fuzzy name match (up to 2 character edits, via Levenshtein distance) | +15 per matching part | Catches spelling variants and common transcription errors |
-| Payment type keyword found in transaction description | +20 per keyword | Keywords are extracted from the payment type name, e.g. "kamp", "zomer" |
-| Obligation memo keyword found in transaction description | +10 per keyword | Keywords from the optional memo field on the obligation |
-| Exact amount match (within €0.01) | +10 bonus | Added on top of text signals, never as the sole basis |
-| Near amount match (within 10% of expected) | +5 bonus | For transactions where a small rounding difference exists |
+| Signaal | Punten | Opmerkingen |
+| --- | --- | --- |
+| Exact naamdeel gevonden in transactiebeschrijving | +30 per matchend deel | Elk woord van de naam langer dan 2 tekens wordt individueel gecontroleerd |
+| Fuzzy naam match (tot 2 tekens verschil, via Levenshtein-afstand) | +15 per matchend deel | Vangt spelvarianten en veelvoorkomende transcriptiefouten op |
+| Betalingstype-trefwoord gevonden in transactiebeschrijving | +20 per trefwoord | Trefwoorden worden geextraheerd uit de betalingstypenaam, bijv. "kamp", "zomer" |
+| Verplichtingsmededeling-trefwoord gevonden in transactiebeschrijving | +10 per trefwoord | Trefwoorden uit het optionele mededelingveld op de verplichting |
+| Exact bedragsmatch (binnen 0,01 euro) | +10 bonus | Opgeteld bovenop tekstsignalen, nooit als enige basis |
+| Nabije bedragsmatch (binnen 10% van verwacht) | +5 bonus | Voor transacties waar een kleine afrondingsafwijking bestaat |
 
 <Note>
-  A transaction is only surfaced as a suggestion if it reaches a minimum score of **25 points** AND contains at least one textual match — from the name, payment type, or memo. A transaction that has only a matching amount but a completely unrelated description will never be suggested automatically. This prevents false positives in busy bank accounts where multiple transactions share the same round amount.
+  Een transactie wordt alleen als suggestie getoond als hij een minimumscore bereikt van **25 punten** EN minstens een tekstuele match bevat, uit de naam, het betalingstype, of de mededeling. Een transactie die alleen een matchend bedrag heeft maar een volledig ongerelateerde beschrijving, wordt nooit automatisch voorgesteld. Dit voorkomt valse positieven in drukke bankrekeningen waar meerdere transacties hetzelfde ronde bedrag delen.
 </Note>
 
-When the top-scoring suggestion has a score of 40 or higher (indicating a confident full-name or name-plus-amount match), Kaspert narrows the suggestions to a maximum of 2 candidates that are within 5 points of the top score. For weaker matches, up to 5 candidates are shown.
+Wanneer de hoogst scorende suggestie een score heeft van 40 of hoger (wat wijst op een zekere volledige-naam of naam-plus-bedrag match), beperkt Kaspert de suggesties tot maximaal 2 kandidaten die binnen 5 punten van de topscore liggen. Bij zwakkere matches worden tot 5 kandidaten getoond.
 
-## Reading suggestions in the UI
+## Suggesties lezen in de interface
 
-For each open obligation, Kaspert displays matching suggestions inline beneath the person's name in the obligations table. Each suggestion card shows:
+Voor elke openstaande verplichting toont Kaspert matchingsuggesties inline onder de naam van de persoon in de verplichtingentabel. Elke suggestiekaart toont:
 
-- The **transaction date** (formatted in Belgian date notation, e.g. *15/04/2025*)
-- The **transaction description** as it appears in the kasboek
-- The **received amount**, coloured green if it exactly matches the obligation amount or orange if it differs
-- A **Koppel** button to accept the match
+- De **transactiedatum** (geformatteerd in Belgische datumnotatie, bijv. _15/04/2025_)
+- De **transactiebeschrijving** zoals deze in het kasboek verschijnt
+- Het **ontvangen bedrag**, in groen als het exact overeenkomt met het verplichtingsbedrag of in oranje als het afwijkt
+- Een **Koppel** knop om de match te accepteren
 
-If multiple suggestions exist, navigation arrows appear above the card. Use the **‹** and **›** arrows to browse through them, with the current index shown as "1/3". Only one suggestion is visible at a time to keep the table readable.
+Als er meerdere suggesties zijn, verschijnen navigatiepijlen boven de kaart. Gebruik de **‹** en **›** pijlen om erdoorheen te bladeren, met de huidige index getoond als "1/3". Slechts een suggestie is tegelijk zichtbaar om de tabel leesbaar te houden.
 
-## Match quality indicators
+## Matchkwaliteitsindicatoren
 
-Once an obligation is linked to a transaction, an icon appears next to the "Betaald" badge to communicate match quality:
+Zodra een verplichting is gekoppeld aan een transactie, verschijnt er een icoon naast de "Betaald" badge om de matchkwaliteit te communiceren:
 
 <CardGroup cols={2}>
-  <Card title="✅ Green checkmark" icon="circle-check">
-    The amount matches exactly **and** the person's full name was found in the transaction description. This is a high-confidence automatic match.
+  <Card title="Groen vinkje" icon="circle-check">
+    Het bedrag matcht exact **en** de volledige naam van de persoon werd gevonden in de transactiebeschrijving. Dit is een high-confidence automatische match.
   </Card>
-  <Card title="🟡 Orange question mark" icon="circle-question">
-    The amount matches exactly but the name was not clearly found in the transaction description. The payment may be from someone paying on behalf of the member, or the payer used a different name or reference. Click the icon to manually mark it as verified.
+  <Card title="Oranje vraagteken" icon="circle-question">
+    Het bedrag matcht exact maar de naam was niet duidelijk te vinden in de transactiebeschrijving. De betaling kan afkomstig zijn van iemand die namens het lid betaalt, of de betaler gebruikte een andere naam of mededeling. Klik het icoon om het handmatig als geverifieerd te markeren.
   </Card>
-  <Card title="🔶 Orange triangle" icon="triangle-exclamation">
-    The obligation is linked but the transaction amount does not match exactly. The discrepancy is shown in the linked transaction preview. This requires your attention — the payer may have transferred the wrong amount.
+  <Card title="Oranje driehoek" icon="triangle-exclamation">
+    De verplichting is gekoppeld maar het transactiebedrag matcht niet exact. De afwijking wordt getoond in de voorbeeldweergave van de gekoppelde transactie. Dit vereist je aandacht. De betaler heeft misschien het verkeerde bedrag overgemaakt.
   </Card>
-  <Card title="No icon" icon="circle-minus">
-    The obligation was marked as paid manually without a transaction link. No match quality indicator is shown.
+  <Card title="Geen icoon" icon="circle-minus">
+    De verplichting werd handmatig als betaald gemarkeerd zonder transactiekoppeling. Er wordt geen matchkwaliteitsindicator getoond.
   </Card>
 </CardGroup>
 
-You can click the green checkmark or orange question mark icon to manually toggle the verification status. This lets you override an uncertain match and mark it as confirmed, which changes the icon from 🟡 to ✅.
+Je kunt op het groene vinkje of het oranje vraagteken klikken om de verificatiestatus handmatig te wisselen. Dit laat je toe om een onzekere match te overschrijven en als bevestigd te markeren, wat het icoon verandert van 🟡 naar ✅.
 
-## Accept a suggestion
+## Een suggestie accepteren
 
 <Steps>
-  <Step title="Locate the suggestion">
-    Find the open obligation in the list. If Kaspert has found at least one candidate, a labelled suggestion card appears below the person's name.
+  <Step title="Localiseer de suggestie">
+    Zoek de openstaande verplichting in de lijst. Als Kaspert minstens een kandidaat heeft gevonden, verschijnt er een gelabelde suggestiekaart onder de naam van de persoon.
   </Step>
-  <Step title="Review the suggestion">
-    Check the transaction date, description, and amount. If the amount is shown in orange, the received amount differs from what was expected — consider whether this is the right payment.
+  <Step title="Beoordeel de suggestie">
+    Controleer de transactiedatum, beschrijving, en bedrag. Als het bedrag in oranje wordt getoond, wijkt het ontvangen bedrag af van wat verwacht werd. Overweeg of dit de juiste betaling is.
   </Step>
-  <Step title="Click 'Koppel'">
-    Click the **Koppel** button on the suggestion card. The obligation is immediately marked as "Betaald" and linked to that transaction. The suggestion panel disappears and the match quality indicator appears.
+  <Step title="Klik op 'Koppel'">
+    Klik de **Koppel** knop op de suggestiekaart. De verplichting wordt meteen als "Betaald" gemarkeerd en gekoppeld aan die transactie. Het suggestiepaneel verdwijnt en de matchkwaliteitsindicator verschijnt.
   </Step>
 </Steps>
 
-## Manual matching
+## Handmatig matchen
 
-When the automatic suggestions are insufficient — for example, because the payer used a completely different name or reference — you can search through all income transactions yourself.
+Wanneer de automatische suggesties onvoldoende zijn, bijvoorbeeld omdat de betaler een volledig andere naam of mededeling gebruikte, kun je zelf door alle inkomsten-transacties zoeken.
 
 <Steps>
-  <Step title="Open the match dialog">
-    Click the **link icon** (🔗) in the actions column of any open obligation. A full-screen search dialog opens, pre-populated with the person's name as the initial search query.
+  <Step title="Open het matchdialoog">
+    Klik het **link icoon** (🔗) in de actiekolom van elke openstaande verplichting. Een volledig scherm zoekdialoog opent, vooraf gevuld met de naam van de persoon als initiële zoekopdracht.
   </Step>
-  <Step title="Search for the transaction">
-    Type any part of the transaction description or amount in the search field. The list filters in real time, showing all unmatched income transactions ordered from most recent to oldest. Transactions with an amount exactly matching the obligation are highlighted in green.
+  <Step title="Zoek de transactie">
+    Typ elk deel van de transactiebeschrijving of het bedrag in het zoekveld. De lijst filtert in real time en toont alle niet-gekoppelde inkomsten-transacties, geordend van meest recent naar oudste. Transacties met een bedrag dat exact overeenkomt met de verplichting worden in groen gemarkeerd.
   </Step>
-  <Step title="Click a row to link it">
-    Click any row in the dialog to link that transaction to the obligation. The dialog closes and the obligation is marked as paid.
+  <Step title="Klik een rij om te koppelen">
+    Klik elke rij in het dialoog om die transactie te koppelen aan de verplichting. Het dialoog sluit en de verplichting wordt als betaald gemarkeerd.
   </Step>
 </Steps>
 
 <Note>
-  The manual match dialog only shows income transactions that have not yet been linked to another obligation. Transactions already matched elsewhere are excluded from the search results.
+  Het handmatig matchdialoog toont alleen inkomsten-transacties die nog niet aan een andere verplichting zijn gekoppeld. Transacties die elders al gematcht zijn, worden uit de zoekresultaten uitgesloten.
 </Note>
 
-## Unlink a transaction
+## Een transactie ontkoppelen
 
-If you linked the wrong transaction — or if you want to reset an obligation to "Openstaand" — you can unlink at any time:
+Als je de verkeerde transactie hebt gekoppeld, of als je een verplichting wilt terugzetten naar "Openstaand", kun je op elk moment ontkoppelen:
 
-1. Open the **three-dot menu** on the obligation row.
-2. Choose **Markeer als openstaand** (or the equivalent unlink option if it appears directly in the menu).
-3. The obligation reverts to "Openstaand" and the bank transaction is freed up for matching with other obligations.
+1. Open het **drie puntjes menu** op de verplichtingsrij.
+2. Kies **Markeer als openstaand** (of de equivalente ontkoppeloptie als deze direct in het menu verschijnt).
+3. De verplichting keert terug naar "Openstaand" en de banktransactie wordt vrijgegeven voor matching met andere verplichtingen.
 
 <Warning>
-  Unlinking only removes the connection between the obligation and the transaction in Kaspert. It does not affect the transaction itself in the kasboek — the income entry remains exactly as it was.
+  Ontkoppelen verwijdert alleen de verbinding tussen de verplichting en de transactie in Kaspert. Het heeft geen invloed op de transactie zelf in het kasboek. De inkomstenpost blijft exact zoals hij was.
 </Warning>
 
-## Tips for better automatic matching
+## Tips voor betere automatische matching
 
 <Note>
-  The quality of automatic suggestions depends entirely on the information in your bank transaction descriptions. The more closely the payment references match the names in your obligations list, the more accurate the suggestions will be.
+  De kwaliteit van automatische suggesties hangt volledig af van de informatie in je banktransactiebeschrijvingen. Hoe beter de betalingsmededelingen overeenkomen met de namen in je verplichtingenlijst, hoe nauwkeuriger de suggesties zullen zijn.
 </Note>
 
-Here are practical ways to improve match rates:
+Hier zijn praktische manieren om de matchratio te verbeteren:
 
-- **Ask payers to include their name** in the structured communication field when making the transfer. Most Belgian banking apps have a "mededeling" field specifically for this.
-- **Use a consistent memo format** in your obligations, such as "Kamp 2025 — Jan Janssen". The memo keywords are used as an additional signal in scoring.
-- **Match the payment type name to common phrasing** your members might use — if your type is "Kamp zomer 2025", the word "kamp" will be picked up from almost any transaction that mentions it.
-- **Import your bank statement** into the kasboek regularly so that Kaspert always has fresh transactions to score against.
+- **Vraag betalers om hun naam** in het gestructureerde mededelingenveld op te nemen bij het overmaken. De meeste Belgische bankapps hebben specifiek een "mededeling" veld hiervoor.
+- **Gebruik een consistent mededelingformaat** in je verplichtingen, zoals "Kamp 2025 - Jan Janssen". De mededelingstrefwoorden worden gebruikt als extra signaal bij de scoring.
+- **Laat de betalingstypenaam aansluiten bij veelgebruikte bewoordingen** die je leden gebruiken. Als je type "Kamp zomer 2025" heet, wordt het woord "kamp" opgepikt uit vrijwel elke transactie die het vermeldt.
+- **Importeer je bankafschrift** regelmatig in het kasboek, zodat Kaspert altijd verse transacties heeft om te scoren.

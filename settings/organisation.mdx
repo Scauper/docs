@@ -1,88 +1,88 @@
 ---
-title: "Configure your Kaspert organisation profile and slug"
-sidebarTitle: "Organisation"
-description: "Update your organisation URL slug, expense access code, and search visibility, and manage multiple organisations from a single Kaspert account."
+title: "Configureer je Kaspert-organisatieprofiel en -slug"
+sidebarTitle: "Organisatie"
+description: "Pas je organisatie-URL, toegangscode voor onkosten en vindbaarheid aan, en beheer meerdere organisaties vanuit één Kaspert-account."
 ---
 
-Every Kaspert account is anchored to one or more **organisations** (verenigingen). Your organisation profile controls the URL slug used in all public-facing links, the optional access code that protects your public expense submission page, and whether your pages appear in search engines. Keeping these settings accurate ensures that leaders, members, and parents always land on the right pages.
+Elk Kaspert-account is gekoppeld aan één of meer **organisaties** (verenigingen). Je organisatieprofiel bepaalt de URL-slug die in alle publieke links wordt gebruikt, de optionele toegangscode die je publieke onkostenpagina beschermt, en of je pagina's verschijnen in zoekmachines. Door deze instellingen correct te houden, zorg je ervoor dat leiders, leden en ouders altijd op de juiste pagina's terechtkomen.
 
-Navigate to **Beheer** (`/admin`) and open the **Organisatie** tab to access all organisation settings.
+Navigeer naar **Beheer** (`/admin`) en open het tabblad **Organisatie** om alle organisatie-instellingen te raadplegen.
 
-## URL slug
+## URL-slug
 
-The slug is a short, lowercase, URL-safe identifier that Kaspert uses in all public links for your organisation. For example:
+De slug is een korte, kleine, URL-veilige identificatiecode die Kaspert gebruikt in alle publieke links voor je organisatie. Bijvoorbeeld:
 
-```
+```text
 kaspert.be/bestellen/chiro-sint-jan/zomerkamp-2025
 ```
 
-Slugs may only contain lowercase letters (`a-z`), digits (`0-9`), and hyphens. Kaspert automatically strips invalid characters when you save. Every slug must be unique across all Kaspert organisations.
+Slugs mogen alleen kleine letters (`a-z`), cijfers (`0-9`) en koppeltekens bevatten. Kaspert verwijdert automatisch ongeldige tekens wanneer je opslaat. Elke slug moet uniek zijn binnen alle Kaspert-organisaties.
 
 <Warning>
-  Changing your slug immediately changes **every** public URL associated with your organisation — including your webshop order pages, public enrollment form, and public expense submission link. Any links you have already shared with members or parents will stop working. Update all shared links after changing the slug.
+  Als je je slug wijzigt, veranderen **alle** publieke URL's van je organisatie onmiddellijk, inclusief je webshopbestelpagina's, het publieke inschrijvingsformulier en de publieke link voor onkosten. Alle links die je al hebt gedeeld met leden of ouders werken dan niet meer. Update alle gedeelde links nadat je de slug hebt gewijzigd.
 </Warning>
 
-To set or update your slug:
+Je slug instellen of wijzigen doe je zo:
 
 <Steps>
   <Step title="Open Beheer > Organisatie">
-    Navigate to `/admin` and click the **Organisatie** tab.
+    Navigeer naar `/admin` en klik op het tabblad **Organisatie**.
   </Step>
-  <Step title="Enter the new slug">
-    Type the desired slug in the **URL-slug** field. A live preview shows the resulting public URL below the input.
+  <Step title="Voer de nieuwe slug in">
+    Typ de gewenste slug in het veld **URL-slug**. Een live voorbeeld toont de resulterende publieke URL onder het invoerveld.
   </Step>
-  <Step title="Save">
-    Click **Opslaan**. Kaspert validates uniqueness and saves the slug immediately.
+  <Step title="Opslaan">
+    Klik op **Opslaan**. Kaspert controleert de uniciteit en slaat de slug onmiddellijk op.
   </Step>
 </Steps>
 
-## Expense access code (toegangscode)
+## Toegangscode voor onkosten
 
-When the Onkosten (expenses) module is active, Kaspert generates a public expense submission link for your organisation. You can optionally protect this link with an access code so that only people who know the code can submit expense claims — useful for preventing spam from unknown visitors.
+Wanneer de Onkosten-module actief is, genereert Kaspert een publieke link voor het indienen van onkosten. Je kunt deze link optioneel beschermen met een toegangscode, zodat alleen mensen die de code kennen een onkostenclaim kunnen indienen. Dit is handig om spam van onbekende bezoekers te voorkomen.
 
-- Leave the field empty to allow anyone with the link to submit expenses.
-- Enter a code (e.g. `chiro2026`) to require it on the submission form.
-- Click **Opslaan** next to the access code field to apply the change immediately.
+- Laat het veld leeg om iedereen met de link onkosten te laten indienen.
+- Voer een code in (bijvoorbeeld `chiro2026`) om deze te verplichten op het indieningsformulier.
+- Klik op **Opslaan** naast het toegangscodeveld om de wijziging onmiddellijk toe te passen.
 
 <Note>
-  The expense access code only controls access to the public expense submission page. It is not a membership password and does not grant access to your Kaspert organisation's back-office.
+  De toegangscode voor onkosten bepaalt alleen wie de publieke onkostenpagina mag openen. Het is geen lidmaatschapswachtwoord en geeft geen toegang tot de back-office van je Kaspert-organisatie.
 </Note>
 
-## Search engine visibility
+## Vindbaarheid in zoekmachines
 
-By default, Kaspert allows search engines like Google to index your public pages (webshop, enrollment form, and organisation profile). You can disable this if you prefer that only people with a direct link can find your pages.
+Standaard laten zoekmachines zoals Google je publieke pagina's (webshop, inschrijvingsformulier en organisatieprofiel) indexeren. Je kunt dit uitschakelen als je wilt dat alleen mensen met een directe link je pagina's kunnen vinden.
 
-Toggle **Toon mijn pagina's in zoekmachines** in the **Vindbaarheid in Google** section to enable or disable indexing. The change takes effect immediately via a `noindex` meta tag on all your public pages.
+Schakel **Toon mijn pagina's in zoekmachines** in de sectie **Vindbaarheid in Google** in of uit. De wijziging wordt onmiddellijk doorgevoerd via een `noindex`-metatag op al je publieke pagina's.
 
-## Managing multiple organisations
+## Meerdere organisaties beheren
 
-If you are a leader in more than one youth group — for example, you are penningmeester for both a Chiro and a KSA chapter — you can manage them all from a single Kaspert account.
+Als je leider bent in meer dan één jeugdvereniging, bijvoorbeeld penningmeester bij zowel een Chiro als een KSA-groep, dan kun je ze allemaal beheren vanuit één Kaspert-account.
 
 <Steps>
-  <Step title="Open the organisation switcher">
-    Go to **Beheer** (`/admin`) and open the **Organisatie** tab. Your list of linked organisations is shown in the **Verenigingen** section.
+  <Step title="Open de organisatiewisselaar">
+    Ga naar **Beheer** (`/admin`) en open het tabblad **Organisatie**. Je lijst met gekoppelde organisaties staat in de sectie **Verenigingen**.
   </Step>
-  <Step title="Switch organisations">
-    Click **Wisselen** next to the organisation you want to make active. The entire app context — transactions, members, settings — switches to that organisation.
+  <Step title="Wissel van organisatie">
+    Klik op **Wisselen** naast de organisatie die je actief wilt maken. De volledige app-context, transacties, leden en instellingen, schakelt over naar die organisatie.
   </Step>
-  <Step title="Accept a pending invitation">
-    If another admin has invited you to their organisation, the invitation appears under **Openstaande uitnodigingen**. Click **Aanvaarden** to join and add it to your list.
+  <Step title="Accepteer een openstaande uitnodiging">
+    Als een andere admin je heeft uitgenodigd voor een organisatie, verschijnt de uitnodiging onder **Openstaande uitnodigingen**. Klik op **Aanvaarden** om lid te worden en de organisatie aan je lijst toe te voegen.
   </Step>
-  <Step title="Create a new organisation">
-    To start a brand-new organisation, enter the name in the **Nieuwe vereniging aanmaken** form and click **Aanmaken**. You become the admin of the new organisation automatically.
+  <Step title="Maak een nieuwe organisatie aan">
+    Om een gloednieuwe organisatie te starten, voer je de naam in het formulier **Nieuwe vereniging aanmaken** in en klik je op **Aanmaken**. Je wordt automatisch de admin van de nieuwe organisatie.
   </Step>
 </Steps>
 
 <Info>
-  Each organisation is completely isolated. Transactions, members, werkjaren, settings, and branding are never shared between organisations — even if the same person is an admin in both.
+  Elke organisatie is volledig afgeschermd. Transacties, leden, werkjaren, instellingen en branding worden nooit gedeeld tussen organisaties, zelfs niet als dezelfde persoon admin is in beide.
 </Info>
 
-## Danger zone: deleting your organisation
+## Gevarenzone: je organisatie verwijderen
 
-You can permanently delete your organisation from the **Danger Zone** section at the bottom of the Organisatie tab.
+Je kunt je organisatie permanent verwijderen via de sectie **Gevarenzone** onderaan het tabblad Organisatie.
 
 <Warning>
-  Deleting your organisation is **irreversible**. All data — including every transaction, member record, werkjaar, file upload, and configuration setting — is permanently erased. There is no recovery option. Export any reports or data you need before proceeding.
+  Het verwijderen van je organisatie is **onomkeerbaar**. Alle data, inclusief elke transactie, elk lid, elk werkjaar, elke bestandsupload en elke configuratie-instelling, wordt permanent gewist. Er is geen hersteloptie. Exporteer alle rapporten of data die je nodig hebt voordat je verdergaat.
 </Warning>
 
-A confirmation dialog requires you to type your organisation name before deletion is allowed. This prevents accidental deletion.
+Een bevestigingsvenster vereist dat je je organisatienaam typt voordat de verwijdering wordt toegestaan. Dit voorkomt onbedoelde verwijdering.

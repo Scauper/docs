@@ -1,156 +1,156 @@
 ---
-title: "Fix common Kaspert issues: imports, payments, access"
-sidebarTitle: "Troubleshooting"
-description: "Step-by-step fixes for the most common Kaspert problems: bank import errors, payment matching issues, Stripe setup, Payconiq QR codes, and login problems."
+title: "Los veelvoorkomende Kaspert-problemen op: imports, betalingen, toegang"
+sidebarTitle: "Probleemoplossing"
+description: "Stap-voor-stap oplossingen voor de meest voorkomende Kaspert-problemen: bankimportfouten, betalingsmatching, Stripe-setup, Payconiq QR-codes en loginproblemen."
 ---
 
-Most issues in Kaspert have a straightforward fix. This page organises the most common problems by module so you can find the relevant section quickly. Work through the steps for your issue — if you're still stuck after trying everything here, see the support note at the bottom of the page.
+De meeste problemen in Kaspert hebben een eenvoudige oplossing. Deze pagina groepeert de meest voorkomende problemen per module zodat je snel de juiste sectie kunt vinden. Doorloop de stappen voor jouw probleem. Als je er na het proberen van alles hier nog steeds niet uitkomt, zie de supportnota onderaan de pagina.
 
 ---
 
-## Kasboek & bank import
+## Kasboek en bankimport
 
-<Accordion title="My CSV import fails with an error">
-  If the import dialog shows an error when you upload your bank export, work through these checks in order:
+<Accordion title="Mijn CSV-import faalt met een foutmelding">
+  Als het importvenster een fout toont wanneer je je bankexport uploadt, doorloop je deze controles in volgorde:
 
-  1. **Check your plan** — Bank CSV import requires a **Pro or Premium** plan. Navigate to **Beheer > Organisatie > Abonnement** to confirm your current plan. If you're on Free or Basic, you'll need to upgrade.
+  1. **Controleer je plan** : Bank CSV-import vereist een **Pro- of Premium-plan**. Navigeer naar **Beheer > Organisatie > Abonnement** om je huidige plan te bevestigen. Als je op Free of Basic zit, moet je upgraden.
 
-  2. **Check the required columns** — Kaspert needs at least a `Datum` column and a `Bedrag` column in your CSV. Open the file in a plain text editor (not Excel) and check the first row. For ING, look for `Af Bij` or `Bedrag (EUR)` headers instead.
+  2. **Controleer de vereiste kolommen** : Kaspert heeft minimaal een `Datum`-kolom en een `Bedrag`-kolom nodig in je CSV. Open het bestand in een platte teksteditor (niet Excel) en controleer de eerste rij. Voor ING zoek je naar koppen als `Af Bij` of `Bedrag (EUR)`.
 
-  3. **Export a fresh file from your bank** — Log in to your bank's online portal and download a new CSV export. Don't use a file you downloaded weeks ago or one that has been forwarded by email — file corruption can occur.
+  3. **Exporteer een nieuw bestand van je bank** : Log in op het online portaal van je bank en download een nieuwe CSV-export. Gebruik geen bestand dat weken geleden is gedownload of dat is doorgestuurd per e-mail, want bestandscorruptie kan optreden.
 
-  4. **Do not open the file in Excel before importing** — Excel changes the file encoding when you save it, which corrupts accented characters and can alter the column structure. Always import the original downloaded file directly.
+  4. **Open het bestand niet in Excel voordat je het importeert** : Excel wijzigt de bestandscodering wanneer je opslaat, waardoor accenttekens beschadigd raken en de kolomstructuur kan veranderen. Importeer altijd het origineel rechtstreeks.
 
-  If the error message says `CSV-bestand bevat geen 'Datum' of 'Bedrag' kolom`, your file does not match the expected format. Check the [Bank CSV Format reference](/reference/bank-csv-import) to see which column names are supported.
+  Als de foutmelding zegt `CSV-bestand bevat geen 'Datum' of 'Bedrag' kolom`, dan komt je bestand niet overeen met het verwachte formaat. Bekijk de [Bank CSV-formaat referentie](/reference/bank-csv-import) om te zien welke kolomnamen worden ondersteund.
 </Accordion>
 
-<Accordion title="Characters in transaction descriptions look wrong (accented letters appear garbled)">
-  This is a character encoding issue caused by opening and re-saving the CSV in Excel before importing it.
+<Accordion title="Tekens in transactiebeschrijvingen zien er verkeerd uit (accentletters verschijnen als rommel)">
+  Dit is een tekencoderingsprobleem veroorzaakt door het openen en opnieuw opslaan van de CSV in Excel voordat je deze importeert.
 
-  KBC exports CSV files in **Windows-1252 encoding**. When Excel opens this file and you save it, Excel converts it to a different encoding. Belgian accented characters then get mangled into garbled sequences.
+  KBC exporteert CSV-bestanden in **Windows-1252-codering**. Wanneer Excel dit bestand opent en je het opslaat, converteert Excel het naar een andere codering. Belgische accenttekens worden dan vervormd tot onleesbare tekens.
 
-  **Fix:** Import the **original CSV file** as downloaded from your bank, without opening it in Excel first. If you need to inspect the file contents before importing, use a plain text editor such as Notepad (Windows) or TextEdit in plain text mode (Mac).
+  **Oplossing:** Importeer het **originele CSV-bestand** zoals gedownload van je bank, zonder het eerst in Excel te openen. Als je de inhoud wilt bekijken voordat je importeert, gebruik dan een platte teksteditor zoals Kladblok (Windows) of TextEdit in platte-tekstmodus (Mac).
 
-  If you've already saved over the original file, download a fresh export from your bank's online portal.
+  Als je het origineel al hebt overschreven, download dan een nieuwe export van het online portaal van je bank.
 </Accordion>
 
-<Accordion title="A transaction I deleted keeps reappearing">
-  This can happen if you had the bank import dialog open in two browser tabs simultaneously, or if your browser cached a previous import state.
+<Accordion title="Een transactie die ik heb verwijderd, blijft terugkomen">
+  Dit kan gebeuren als je het bankimportdialoogvenster in twee browsertabbladen tegelijkertijd open had staan, of als je browser een vorige importstatus in de cache had.
 
-  **Fix:**
-  1. Close all Kaspert tabs in your browser.
-  2. Open a fresh Kaspert tab and navigate to the kasboek.
-  3. If the transaction is still present, check whether someone else in your organisation re-imported the same CSV. Check with your co-admins.
-  4. If the problem persists, email support@kaspert.be with the transaction details.
+  **Oplossing:**
+  1. Sluit alle Kaspert-tabbladen in je browser.
+  2. Open een nieuw Kaspert-tabblad en navigeer naar het kasboek.
+  3. Als de transactie er nog steeds is, controleer dan of iemand anders in je organisatie dezelfde CSV opnieuw heeft geimporteerd. Vraag het na bij je mede-admins.
+  4. Als het probleem aanhoudt, mail dan [support@kaspert.be](mailto:support@kaspert.be) met de transactiedetails.
 </Accordion>
 
-<Accordion title="The kasboek shows transactions from the wrong year">
-  Kaspert scopes the kasboek view to the currently selected **werkjaar**. If transactions appear to be missing or you see unexpected entries, the werkjaar selector may be set to the wrong year.
+<Accordion title="Het kasboek toont transacties uit het verkeerde jaar">
+  Kaspert beperkt de kasboekweergave tot het momenteel geselecteerde **werkjaar**. Als transacties lijken te ontbreken of je onverwachte boekingen ziet, dan staat de werkjaarselector mogelijk op het verkeerde jaar.
 
-  **Fix:**
-  1. Look for the werkjaar selector in the top-right area of the kasboek page.
-  2. Click it and select the correct werkjaar (e.g. `2024-2025`).
-  3. The transaction list and balance totals update immediately for the selected year.
+  **Oplossing:**
+  1. Zoek de werkjaarselector in de rechterbovenhoek van de kasboekpagina.
+  2. Klik erop en selecteer het juiste werkjaar (bijvoorbeeld `2024-2025`).
+  3. De transactielijst en saldototalen worden onmiddellijk bijgewerkt voor het geselecteerde jaar.
 
-  Note that each transaction is assigned to a werkjaar based on its date. If a transaction's date falls outside the date range of the selected werkjaar, it will not appear in that view. To adjust the date range of a werkjaar, go to **Beheer > Organisatie > Werkjaren**.
+  Merk op dat elke transactie aan een werkjaar wordt toegewezen op basis van de datum. Als de datum van een transactie buiten het bereik van het geselecteerde werkjaar valt, verschijnt deze niet in die weergave. Om het datumbereik van een werkjaar aan te passen, ga je naar **Beheer > Organisatie > Werkjaren**.
 </Accordion>
 
 ---
 
 ## Betalingsopvolging
 
-<Accordion title="No matching suggestions appear for a payment obligation">
-  Kaspert's smart matching algorithm compares bank transaction descriptions against payment obligation records. If no suggestions appear, the bank transaction does not contain enough identifying text.
+<Accordion title="Er verschijnen geen match-suggesties voor een betalingsverplichting">
+  Het slimme matching-algoritme van Kaspert vergelijkt banktransactiebeschrijvingen met betalingsverplichtingsrecords. Als er geen suggesties verschijnen, bevat de banktransactie niet genoeg identificerende tekst.
 
-  **Common causes and fixes:**
+  **Veelvoorkomende oorzaken en oplossingen:**
 
-  - **Payer didn't include their name** — The most reliable fix. Ask payers to include their full name (and ideally a reference like "Lidgeld 2024-2025") in the payment communication field when they transfer. Share a payment reference template in your communication.
-  - **Name is spelled differently** — The algorithm requires a text overlap. A transaction from "Jan Janssens" will match an obligation for "Jan Janssens" but may not match "J. Janssens". You can manually link a transaction in the betalingsopvolging view by clicking **Handmatig koppelen**.
-  - **Wrong werkjaar selected** — Make sure the active werkjaar in the top-right matches the period when the obligation was created.
+  - **Betaler heeft zijn naam niet vermeld** : De meest betrouwbare oplossing. Vraag betalers om hun volledige naam (en idealiter een referentie zoals "Lidgeld 2024-2025") in het mededelingenveld van de overschrijving te zetten. Deel een betaalreferentiesjabloon in je communicatie.
+  - **Naam is anders gespeld** : Het algoritme vereist een tekstoverlap. Een transactie van "Jan Janssens" matcht met een verplichting voor "Jan Janssens", maar mogelijk niet met "J. Janssens". Je kunt handmatig een transactie koppelen in de betalingsopvolgingsweergave door op **Handmatig koppelen** te klikken.
+  - **Verkeerd werkjaar geselecteerd** : Zorg dat het actieve werkjaar rechtsboven overeenkomt met de periode waarin de verplichting is aangemaakt.
 
-  See the [Smart Matching documentation](/modules/payments/smart-matching) for a full explanation of the matching algorithm.
+  Zie de [Smart Matching-documentatie](/modules/payments/smart-matching) voor een volledige uitleg van het matching-algoritme.
 </Accordion>
 
-<Accordion title="The same transaction appears as a suggestion for multiple obligations">
-  This is expected — Kaspert shows a transaction as a candidate suggestion for every obligation it might match. However, a transaction can only be **linked** to one obligation.
+<Accordion title="Dezelfde transactie verschijnt als suggestie voor meerdere verplichtingen">
+  Dit is normaal: Kaspert toont een transactie als kandidaat-suggestie voor elke verplichting waarmee deze zou kunnen matchen. Een transactie kan echter maar aan **één** verplichting worden gekoppeld.
 
-  Once you link a transaction to an obligation (by clicking **Koppelen**), it is immediately removed from the suggestion list of all other obligations. If you see the same transaction still appearing elsewhere after linking, try refreshing the page.
+  Zodra je een transactie aan een verplichting koppelt (door op **Koppelen** te klikken), wordt deze onmiddellijk uit de suggestielijst van alle andere verplichtingen verwijderd. Als je dezelfde transactie elders nog steeds ziet verschijnen na het koppelen, vernieuw dan de pagina.
 </Accordion>
 
-<Accordion title="A payment reminder email was not received">
-  If a member reports they didn't receive a payment reminder:
+<Accordion title="Een betalingsherinnering is niet aangekomen">
+  Als een lid meldt dat hij of zij geen betalingsherinnering heeft ontvangen:
 
-  1. **Check the email address** — Open the obligation in betalingsopvolging and verify the email address is correct. Typos (`.con` instead of `.com`, missing a letter) are the most common cause.
-  2. **Check the spam folder** — Ask the recipient to check their spam or junk folder. Reminder emails from Kaspert come from a `@kaspert.be` address — recipients can whitelist this address to prevent future filtering.
-  3. **Wait up to 5 minutes** — There can be a short delivery delay depending on the recipient's email provider.
-  4. **Resend the reminder** — If none of the above resolves it, click **Herinnering sturen** again from the obligation detail view. Each send attempt generates a new email.
-</Accordion>
-
----
-
-## Webshop & payments
-
-<Accordion title="Stripe payments are not being received">
-  If buyers can check out but orders are not being marked as paid and you're not receiving funds:
-
-  1. **Verify Stripe onboarding is complete** — Go to **Beheer > Organisatie > Betalingen**. If the status shows anything other than **Verbonden**, your onboarding is incomplete. Click **Stripe-dashboard openen** to check for pending identity verification steps or bank account confirmation.
-
-  2. **Check the Stripe Express dashboard** — Look for any alerts, pending verifications, or payout issues under **Stripe-dashboard openen**. Stripe may have flagged your account for document review.
-
-  3. **If an order shows as Aangemaakt but the buyer was charged** — Contact support@kaspert.be with the order number. Kaspert support can manually reconcile the order.
-
-  4. **Ensure Stripe is enabled as a payment method** — Confirm Stripe is enabled on the specific sale under **Beheer > Verkoop**.
-</Accordion>
-
-<Accordion title="Order confirmation email was not sent to the buyer">
-  If a buyer didn't receive a confirmation email after a successful payment:
-
-  1. **Check the email template is configured** — Go to **Beheer > Verkoop** and open the sale. Confirm that an **E-mailsjabloon** (email template) is set. If the template is empty or disabled, no confirmation email is sent.
-  2. **Check the buyer's spam folder** — Confirmation emails come from a `@kaspert.be` address. Ask the buyer to check spam.
-  3. **Verify the buyer's email address** — Open the order in Verkoop > Bestellingen and check the email address recorded. If it's incorrect, contact the buyer directly.
-</Accordion>
-
-<Accordion title="The Payconiq QR code is not scanning">
-  If the buyer's phone can't scan the Payconiq QR code:
-
-  1. **Ensure good lighting** — The buyer should hold their phone at a well-lit angle. Avoid reflective screens.
-  2. **Check internet connectivity** — Both the device displaying the QR code and the buyer's phone need an active internet connection for the payment to complete.
-  3. **Refresh the order page** — Navigate away and back to the order page to generate a fresh QR code request.
-  4. **Try the deeplink instead** — On a mobile device, Kaspert shows a **Betaal met Payconiq** button that opens the app directly without scanning. Ask the buyer to use this option if scanning fails.
-  5. **Check that the order hasn't expired** — Payconiq payment requests are valid for 24 hours. If the order is older than 24 hours, the QR code has expired. The buyer needs to place a new order.
+  1. **Controleer het e-mailadres** : Open de verplichting in betalingsopvolging en controleer of het e-mailadres correct is. Typefouten (`.con` in plaats van `.com`, een ontbrekende letter) zijn de meest voorkomende oorzaak.
+  2. **Controleer de spammap** : Vraag de ontvanger om de spam- of junkmap te controleren. Herinneringsmails van Kaspert komen van een `@kaspert.be`-adres. Ontvangers kunnen dit adres whitelisten om toekomstige filtering te voorkomen.
+  3. **Wacht tot 5 minuten** : Afhankelijk van de e-mailprovider kan er een korte leveringsvertraging optreden.
+  4. **Stuur de herinnering opnieuw** : Als geen van bovenstaande helpt, klik dan opnieuw op **Herinnering sturen** vanuit de detailweergave van de verplichting. Elke verzendpoging genereert een nieuwe e-mail.
 </Accordion>
 
 ---
 
-## Account & access
+## Webshop en betalingen
 
-<Accordion title="I can't log in to Kaspert">
-  Try these steps in order:
+<Accordion title="Stripe-betalingen komen niet binnen">
+  Als kopers kunnen afrekenen maar bestellingen niet als betaald worden gemarkeerd en je ontvangt geen fondsen:
 
-  1. **Reset your password** — On the Kaspert login page, click **Wachtwoord vergeten** and enter your email address. You'll receive a password reset link within a few minutes. Check your spam folder if it doesn't arrive.
-  2. **Check you're using the right email** — Make sure you're entering the same email address you used when you created your account or were invited.
-  3. **Clear browser cache** — Sometimes a stale browser session causes login issues. Open Kaspert in an Incognito / Private window to test.
-  4. **Contact support** — If you still can't log in after resetting your password, email support@kaspert.be with your email address and organisation name.
+  1. **Controleer of de Stripe-onboarding is voltooid** : Ga naar **Beheer > Organisatie > Betalingen**. Als de status iets anders toont dan **Verbonden**, is je onboarding onvolledig. Klik op **Stripe-dashboard openen** om te controleren op openstaande identiteitsverificatiestappen of bevestiging van de bankrekening.
+
+  2. **Controleer het Stripe Express-dashboard** : Zoek naar meldingen, openstaande verificaties of uitbetalingsproblemen onder **Stripe-dashboard openen**. Stripe kan je account hebben gemarkeerd voor documentcontrole.
+
+  3. **Als een bestelling Aangemaakt toont maar de koper wel is afgerekend** : Neem contact op met [support@kaspert.be](mailto:support@kaspert.be) met het bestelnummer. Het Kaspert-supportteam kan de bestelling handmatig afstemmen.
+
+  4. **Zorg dat Stripe is ingeschakeld als betaalmethode** : Bevestig dat Stripe is ingeschakeld voor de specifieke verkoop onder **Beheer > Verkoop**.
 </Accordion>
 
-<Accordion title="I don't see a module in the navigation">
-  If a module (Betalingsopvolging, Onkosten, Leden, etc.) is missing from your Kaspert sidebar:
+<Accordion title="Bestelbevestigingsmail is niet naar de koper verstuurd">
+  Als een koper geen bevestigingsmail heeft ontvangen na een succesvolle betaling:
 
-  1. **Check the module is enabled** — Go to **Beheer > Modules** and verify the toggle for the missing module is switched on. Admins can enable or disable individual modules here.
-  2. **Check your plan** — Some modules require a paid plan. Basic and above unlock the expense module; Pro and above unlock bank import. If you're on Free, certain modules are greyed out or hidden. See [Plans & Billing](/plans-and-billing) for the full feature matrix.
-  3. **Check your role** — Members (non-admins) do not have access to Betalingsopvolging, Leden, or Beheer. If you should have admin access but don't, ask an existing admin to change your role in **Beheer > Leden**.
+  1. **Controleer of het e-mailsjabloon is geconfigureerd** : Ga naar **Beheer > Verkoop** en open de verkoop. Bevestig dat er een **E-mailsjabloon** is ingesteld. Als het sjabloon leeg of uitgeschakeld is, wordt er geen bevestigingsmail verstuurd.
+  2. **Controleer de spammap van de koper** : Bevestigingsmails komen van een `@kaspert.be`-adres. Vraag de koper om de spammap te controleren.
+  3. **Controleer het e-mailadres van de koper** : Open de bestelling in Verkoop > Bestellingen en controleer het geregistreerde e-mailadres. Als het onjuist is, neem dan rechtstreeks contact op met de koper.
 </Accordion>
 
-<Accordion title="A team member can't access the kasboek or a module">
-  If a team member reports they can see the navigation item but can't view or edit data:
+<Accordion title="De Payconiq QR-code scant niet">
+  Als de telefoon van de koper de Payconiq QR-code niet kan scannen:
 
-  1. **Check their role** — Go to **Beheer > Leden** and find the team member. Members have read-only access to the kasboek and no access to most other modules. If they need full access, change their role to **Admin**.
-  2. **Check they're in the right organisation** — If you manage multiple organisations in Kaspert, confirm the team member has been invited to the correct one. Each organisation is separate in Kaspert.
-  3. **Ask them to reload the app** — Role changes take effect the next time Kaspert loads. Ask them to close and reopen the app or hard-refresh the page (`Ctrl+Shift+R` / `Cmd+Shift+R`).
+  1. **Zorg voor goed licht** : De koper moet zijn telefoon onder een goed verlichte hoek houden. Vermijd reflecterende schermen.
+  2. **Controleer de internetverbinding** : Zowel het apparaat dat de QR-code toont als de telefoon van de koper hebben een actieve internetverbinding nodig om de betaling te voltooien.
+  3. **Ververs de bestelpagina** : Navigeer weg en terug naar de bestelpagina om een nieuw QR-codeverzoek te genereren.
+  4. **Probeer de deeplink in plaats daarvan** : Op een mobiel apparaat toont Kaspert een knop **Betaal met Payconiq** die de app direct opent zonder te scannen. Vraag de koper om deze optie te gebruiken als scannen niet lukt.
+  5. **Controleer of de bestelling niet is verlopen** : Payconiq-betalingsverzoeken zijn 24 uur geldig. Als de bestelling ouder is dan 24 uur, is de QR-code verlopen. De koper moet een nieuwe bestelling plaatsen.
+</Accordion>
+
+---
+
+## Account en toegang
+
+<Accordion title="Ik kan niet inloggen op Kaspert">
+  Probeer deze stappen in volgorde:
+
+  1. **Reset je wachtwoord** : Op de Kaspert-loginpagina klik je op **Wachtwoord vergeten** en voer je je e-mailadres in. Je ontvangt binnen enkele minuten een link om je wachtwoord te resetten. Controleer je spammap als deze niet arriveert.
+  2. **Controleer of je het juiste e-mailadres gebruikt** : Zorg dat je hetzelfde e-mailadres invoert dat je hebt gebruikt bij het aanmaken van je account of bij de uitnodiging.
+  3. **Leeg je browsercache** : Soms veroorzaakt een verouderde browsersessie loginproblemen. Open Kaspert in een Incognito- of Privévenster om te testen.
+  4. **Neem contact op met support** : Als je na het resetten van je wachtwoord nog steeds niet kunt inloggen, mail dan [support@kaspert.be](mailto:support@kaspert.be) met je e-mailadres en organisatienaam.
+</Accordion>
+
+<Accordion title="Ik zie een module niet in de navigatie">
+  Als een module (Betalingsopvolging, Onkosten, Leden, enz.) ontbreekt in je Kaspert-zijbalk:
+
+  1. **Controleer of de module is ingeschakeld** : Ga naar **Beheer > Modules** en controleer of de schakelaar voor de ontbrekende module aan staat. Admins kunnen hier individuele modules in- of uitschakelen.
+  2. **Controleer je plan** : Sommige modules vereisen een betaald plan. Basic en hoger ontgrendelt de onkostenmodule; Pro en hoger ontgrendelt bankimport. Als je op Free zit, zijn bepaalde modules grijs of verborgen. Zie [Plans & Billing](/plans-and-billing) voor de volledige functiematrix.
+  3. **Controleer je rol** : Leden (niet-admins) hebben geen toegang tot Betalingsopvolging, Leden of Beheer. Als je admin-toegang zou moeten hebben maar die niet hebt, vraag dan een bestaande admin om je rol te wijzigen in **Beheer > Leden**.
+</Accordion>
+
+<Accordion title="Een teamlid heeft geen toegang tot het kasboek of een module">
+  Als een teamlid meldt dat hij of zij het navigatie-item wel ziet maar geen data kan bekijken of bewerken:
+
+  1. **Controleer de rol** : Ga naar **Beheer > Leden** en zoek het teamlid. Leden hebben alleen-lezen toegang tot het kasboek en geen toegang tot de meeste andere modules. Als ze volledige toegang nodig hebben, wijzig dan hun rol naar **Admin**.
+  2. **Controleer of ze in de juiste organisatie zitten** : Als je meerdere organisaties beheert in Kaspert, controleer dan of het teamlid is uitgenodigd voor de juiste organisatie. Elke organisatie is in Kaspert apart.
+  3. **Vraag hen om de app te herladen** : Rolwijzigingen worden actief de volgende keer dat Kaspert laadt. Vraag hen om de app te sluiten en opnieuw te openen, of een harde vernieuwing uit te voeren (`Ctrl+Shift+R` / `Cmd+Shift+R`).
 </Accordion>
 
 ---
 
 <Note>
-  If none of the steps above resolve your issue, contact **support@kaspert.be** with a description of the problem, the module you were using, the error message (include a screenshot if possible), and your organisation name. We typically respond within one business day.
+  Als geen van bovenstaande stappen je probleem oplost, neem dan contact op met [**support@kaspert.be**](mailto:support@kaspert.be) met een beschrijving van het probleem, de module die je gebruikte, de foutmelding (voeg indien mogelijk een screenshot toe) en je organisatienaam. We reageren meestal binnen een werkdag.
 </Note>

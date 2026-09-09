@@ -1,119 +1,118 @@
 ---
-title: "Set up discount codes for your Kaspert webshop"
-sidebarTitle: "Discount Codes"
-description: "Create percentage or fixed-amount promo codes with optional usage limits, product targeting, and per-piece application rules for your Kaspert webshop."
+title: "Stel kortingscodes in voor je Kaspert webshop"
+sidebarTitle: "Kortingscodes"
+description: "Maak percentage- of vast-bedrag promocodes met optionele gebruikslimieten, producttargeting en per-stuk toepassingsregels voor je Kaspert webshop."
 ---
 
-Discount codes let you reward loyal members, run early-bird promotions, or simply give a little something back to parents who order often. Buyers enter their code during checkout and the discount is applied to their cart total before payment. You stay in full control: cap the number of redemptions, restrict the code to specific products, or activate and deactivate codes at any time — all from the **Kortingscodes** settings of your sale.
+Kortingscodes laten je trouwe leden belonen, early-bird promoties draaien, of gewoon iets teruggeven aan ouders die vaak bestellen. Kopers voeren hun code in tijdens het afrekenen en de korting wordt toegepast op hun winkelwagentotaal voor de betaling. Jij behoudt de volledige controle: beperk het aantal inwisselingen, beperk de code tot specifieke producten, of activeer en deactiveer codes op elk moment: alles vanuit de **Kortingscodes** instellingen van je verkoop.
 
-## Create a discount code
+## Een kortingscode aanmaken
 
 <Steps>
+  ### Open de Kortingscodes instellingen
 
-### Open the Kortingscodes settings
+  Ga naar **Verkoop**, open de verkoop waaraan je een code wilt toevoegen, en klik op **Instellingen → Kortingscodes**. Je ziet een lijst van alle bestaande codes voor deze verkoop (leeg wanneer je begint).
 
-Go to **Verkoop**, open the sale you want to add a code to, and click **Instellingen → Kortingscodes**. You will see a list of all existing codes for this sale (empty when you start).
+  ### Klik op "Kortingscode toevoegen"
 
-### Click "Kortingscode toevoegen"
+  Dit opent het kortingscodeformulier. Vul de vier hieronder beschreven secties in.
 
-This opens the discount code form. Fill in the four sections described below.
+  ### Sectie 1: Code & gebruikslimieten
 
-### Section 1 — Code & usage limits
+  <ParamField body="Code" type="string" required>
+    De code die kopers zullen intypen bij het afrekenen, bijv. `CHIRO10` of `ZOMER2025`. Codes worden in hoofdletters opgeslagen en case-insensitief gematcht. Klik op **Genereer** om Kaspert een willekeurige acht-tekencode voor je te laten genereren.
+  </ParamField>
 
-<ParamField body="Code" type="string" required>
-  The code buyers will type at checkout, e.g. `CHIRO10` or `ZOMER2025`. Codes are stored in uppercase and matched case-insensitively. Click **Genereer** to have Kaspert generate a random eight-character code for you.
-</ParamField>
+  <ParamField body="Maximum gebruik" type="integer">
+    Vink **Beperk het totale aantal keer** aan en voer een getal in om te beperken hoe vaak de code kan worden ingewisseld door alle kopers samen. Zodra de limiet is bereikt, wordt de code automatisch geweigerd. Laat uitgevinkt voor onbeperkt gebruik.
+  </ParamField>
 
-<ParamField body="Maximum uses" type="integer">
-  Tick **Beperk het totale aantal keer** and enter a number to cap how many times the code can be redeemed across all buyers. Once the limit is reached the code is automatically rejected. Leave unticked for unlimited use.
-</ParamField>
+  ### Sectie 2: Kortingstype & waarde
 
-### Section 2 — Discount type & value
+  Kies of de code een **percentage** korting of een **vast eurobedrag** geeft:
 
-Choose whether the code gives a **percentage** discount or a **fixed euro amount** off:
+  <Tabs>
+    <Tab title="Percentage (%)">
+      De korting wordt berekend als een percentage van het toepasselijke subtotaal. Bijvoorbeeld: een code van 10% op een bestelling van €25 bespaart de koper €2,50.
 
-<Tabs>
-  <Tab title="Percentage (%)">
-    The discount is calculated as a percentage of the applicable subtotal. For example, a 10% code on a €25 order saves the buyer €2.50.
+      ```
+      discount_amount = subtotal × (percentage / 100)
+      ```
 
-    ```
-    discount_amount = subtotal × (percentage / 100)
-    ```
+      Percentagewaarden moeten tussen 1 en 100 liggen.
+    </Tab>
 
-    Percentage values must be between 1 and 100.
-  </Tab>
-  <Tab title="Fixed amount (€)">
-    A flat euro amount is deducted from the applicable subtotal. The discount is capped at the subtotal — it can never result in a negative total.
+    <Tab title="Vast bedrag (€)">
+      Er wordt een vast eurobedrag afgetrokken van het toepasselijke subtotaal. De korting is gelimiteerd aan het subtotaal: het kan nooit leiden tot een negatief totaal.
 
-    ```
-    discount_amount = min(fixed_amount, subtotal)
-    ```
-  </Tab>
-</Tabs>
+      ```
+      discount_amount = min(fixed_amount, subtotal)
+      ```
+    </Tab>
+  </Tabs>
 
-### Section 3 — Product targeting (optional)
+  ### Sectie 3: Producttargeting (optioneel)
 
-By default a discount applies to the **entire cart**. If you want to restrict it to specific products, choose **Specifieke artikelen** and tick the products that qualify.
+  Standaard geldt een korting voor het **hele winkelwagentje**. Als je de code wilt beperken tot specifieke producten, kies je **Specifieke artikelen** en vink je de kwalificerende producten aan.
 
-When targeting specific products you also choose **how** the discount is applied:
+  Wanneer je specifieke producten target, kies je ook **hoe** de korting wordt toegepast:
 
-| Mode | Description |
-|------|-------------|
-| **On the subtotal** | The percentage or fixed amount is deducted once from the combined subtotal of the targeted products. |
-| **Per piece in the cart** | The discount is applied to each individual unit of the targeted products. You can further limit this to only the **first N units** per product. |
+  | Modus                              | Beschrijving                                                                                                                                                    |
+  | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Op het subtotaal**               | Het percentage of vaste bedrag wordt één keer afgetrokken van het gecombineerde subtotaal van de getargete producten.                                           |
+  | **Per stuk in het winkelwagentje** | De korting wordt toegepast op elke individuele eenheid van de getargete producten. Je kunt dit verder beperken tot alleen de **eerste N eenheden** per product. |
 
-<Accordion title="Example: 10% off the first 3 T-shirts">
-  Set discount type to **Percentage**, value to `10`, scope to **Specifieke artikelen**, select the T-shirt product, choose **Per piece**, and set the per-piece limit to `3`. A buyer who orders 5 T-shirts at €15 each gets 10% off the first three (saving €4.50), and pays full price for the remaining two.
-</Accordion>
+  <Accordion title="Voorbeeld: 10% korting op de eerste 3 T-shirts">
+    Stel het kortingstype in op **Percentage**, waarde op `10`, bereik op **Specifieke artikelen**, selecteer het T-shirt product, kies **Per stuk** en stel de per-stuk limiet in op `3`. Een koper die 5 T-shirts bestelt à €15 per stuk, krijgt 10% korting op de eerste drie (besparing €4,50) en betaalt de volle prijs voor de resterende twee.
+  </Accordion>
 
-### Section 4 — Bundle condition (optional)
+  ### Sectie 4: Bundelvoorwaarde (optioneel)
 
-You can make a discount code conditional on another product being in the cart. Click **Artikelvoorwaarde toevoegen** and choose:
+  Je kunt een kortingscode afhankelijk maken van een ander product in het winkelwagentje. Klik op **Artikelvoorwaarde toevoegen** en kies:
 
-- **Artikel** — the product that must be present
-- **Min. hoeveelheid** — the minimum quantity of that product required
+  * **Artikel**: het product dat aanwezig moet zijn
+  * **Min. hoeveelheid**: het minimum aantal van dat product dat vereist is
 
-This enables "buy X, get Y discount" bundles. For example: *Get a free drink token when you order at least 10 dinner tickets.*
+  Dit maakt "koop X, krijg Y korting" bundels mogelijk. Bijvoorbeeld: *Krijg een gratis dranktoken wanneer je minstens 10 diner tickets bestelt.*
 
-### Save the code
+  ### Sla de code op
 
-Click **Kortingscode aanmaken**. The code appears immediately in the list and is active by default.
-
+  Klik op **Kortingscode aanmaken**. De code verschijnt onmiddellijk in de lijst en is standaard actief.
 </Steps>
 
-## Managing existing codes
+## Bestaande codes beheren
 
-Each code in the list shows its current status, the number of times it has been used, and the total uses allowed (if capped). From the list you can:
+Elke code in de lijst toont de huidige status, het aantal keren dat deze is gebruikt, en het totale toegestane gebruik (indien gelimiteerd). Vanuit de lijst kun je:
 
-- **Activate / deactivate** — toggle the switch next to a code to enable or disable it without deleting it. A deactivated code is silently rejected at checkout.
-- **Edit** — click the pencil icon to open the code form and change any field.
-- **Delete** — remove the code permanently. Orders that already used the code are not affected.
+- **Activeren / deactiveren**: schakel de schakelaar naast een code in of uit om deze in of uit te schakelen zonder te verwijderen. Een gedeactiveerde code wordt stilzwijgend geweigerd bij het afrekenen.
+- **Bewerken**: klik op het potloodicoon om het codeformulier te openen en elk veld te wijzigen.
+- **Verwijderen**: verwijder de code permanent. Bestellingen die de code al hebben gebruikt, worden niet beïnvloed.
 
-## How discount codes work at checkout
+## Hoe kortingscodes werken bij het afrekenen
 
-When a buyer enters a code on the public order page, Kaspert runs the following checks in order:
+Wanneer een koper een code invoert op de publieke bestelpagina, voert Kaspert de volgende controles in volgorde uit:
 
-1. **Code exists** — the code must match an active discount on that specific sale (case-insensitive).
-2. **Usage limit** — if a maximum number of uses is set, the current `times_used` count must be below that limit.
-3. **Bundle condition** — if the code has a product condition, the buyer's cart must contain the required product at the required quantity.
-4. **Product scope** — if the code targets specific products, at least one of those products must be in the cart.
+1. **Code bestaat**: de code moet overeenkomen met een actieve korting op die specifieke verkoop (case-insensitief).
+2. **Gebruikslimiet**: als een maximum aantal gebruik is ingesteld, moet de huidige `times_used` telling onder die limiet liggen.
+3. **Bundelvoorwaarde**: als de code een productvoorwaarde heeft, moet het winkelwagentje van de koper het vereiste product in de vereiste hoeveelheid bevatten.
+4. **Productbereik**: als de code specifieke producten target, moet minstens één van die producten in het winkelwagentje zitten.
 
-If all checks pass, the discount amount is calculated and shown as a line item in the cart summary. The buyer sees the original total, the discount, and the final amount to pay.
+Als alle controles slagen, wordt het kortingsbedrag berekend en getoond als een regelitem in het winkelwagentotaal. De koper ziet het oorspronkelijke totaal, de korting, en het uiteindelijke te betalen bedrag.
 
 <Note>
-  The discount amount is recalculated server-side when the order is submitted, so it cannot be tampered with in the browser. If a code becomes invalid between the time a buyer enters it and the time they confirm payment (e.g. the last available use is taken by another buyer), the checkout will show an error and ask the buyer to review their order.
+  Het kortingsbedrag wordt server-side herberekend wanneer de bestelling wordt ingediend, dus het kan niet worden gemanipuleerd in de browser. Als een code ongeldig wordt tussen het moment dat een koper deze invoert en het moment dat ze de betaling bevestigen (bijv. de laatste beschikbare inwisseling wordt door een andere koper gebruikt), toont het afrekenen een foutmelding en wordt de koper gevraagd hun bestelling te herzien.
 </Note>
 
-## Tips for effective discount codes
+## Tips voor effectieve kortingscodes
 
 <Tip>
-  Use memorable codes that tie in with your organisation or event — for example `CHIRO15`, `SCOUTS2025`, or `WAFEL10`. Short, all-caps codes are easiest to type on a phone.
+  Gebruik herinnerbare codes die aansluiten bij je vereniging of evenement, bijvoorbeeld `CHIRO15`, `SCOUTS2025` of `WAFEL10`. Korte, hoofdlettercodes zijn het gemakkelijkst om op een telefoon in te typen.
 </Tip>
 
 <Tip>
-  Share codes in your newsletters or on social media rather than printing them on flyers, so you can deactivate them at any time if needed.
+  Deel codes in je nieuwsbrieven of op sociale media in plaats van ze op flyers te drukken, zodat je ze op elk moment kunt deactiveren indien nodig.
 </Tip>
 
 <Tip>
-  Set a **usage limit** equal to your estimated audience size to create urgency without risking an uncapped liability.
+  Stel een **gebruikslimiet** gelijk aan je geschatte publieksomvang in om urgentie te creëren zonder het risico van een ongelimiteerde aansprakelijkheid.
 </Tip>
