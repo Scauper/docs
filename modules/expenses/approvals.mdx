@@ -1,5 +1,5 @@
 ---
-title: "Review and approve expense submissions in Kaspert"
+title: "How to review and approve expense submissions in Kaspert"
 sidebarTitle: "Approvals"
 description: "Admins and treasurers: review receipts, assign kasboek categories, approve or reject pending expenses, and reimburse members via SEPA QR code."
 ---
@@ -13,7 +13,7 @@ Go to **Onkosten** in the app header, or navigate directly to `/onkosten`. The p
 At the top of the page you will see a badge showing how many expenses are currently awaiting your review. If there are no pending submissions, the page shows an empty state with instructions on how members can submit expenses using your public link.
 
 <Info>
-  To share your public submission link with members, look for the **QR code** icon on the Onkosten page. Your unique link is `https://kaspert.be/[companySlug]/onkosten`. You can share it via WhatsApp, your group's communication channel, or print the QR code to post at your meeting room.
+  To share your public submission link with members, look for the **QR code** icon on the Onkosten page. Your unique link is `https://kaspert.be/[your-group-slug]/onkosten`. You can share it via WhatsApp, your group's communication channel, or print the QR code to post at your meeting room.
 </Info>
 
 ## What you see for each pending expense
@@ -41,15 +41,15 @@ If no receipt was attached, the card shows *Geen bewijs* instead of the proof li
     Click **Bekijk bewijs** to open the receipt photo or PDF in a new tab. Check that the amount and date on the receipt match what the member entered in the form.
   </Step>
   <Step title="Assign a kasboek category (if kasboek module is enabled)">
-    If your organisation has the kasboek module active, a category dropdown appears on each expense card. You must select a category before you can approve. The available categories are: **Donaties**, **Evenementen**, **Materiaal**, **Vervoer**, **Eten**, and **Overig**. Choose the one that best matches the purchase.
+    If your organisation has the kasboek module active, a category dropdown appears on each expense card. You must select a category before you can approve. The dropdown shows your organisation's active kasboek categories — the same categories you manage under **Instellingen → Categorieën**. Choose the one that best matches the purchase.
   </Step>
   <Step title="Click the approve button">
-    Click the **Banknote** (approve) icon button on the right side of the card — labelled **Al betaald** on mobile. Kaspert removes the `[PENDING]` status, reformats the description as `[description] (door [name])`, and — if your kasboek module is enabled — immediately adds the transaction to the kasboek as an expense entry with the category and date from the submission.
+    Click the **Al betaald** button on the right side of the card. Kaspert marks the expense as approved, reformats the description as `[purchase description] (door [submitter name])`, and — if your kasboek module is enabled — immediately adds the transaction to the kasboek as an expense entry with the category and date from the submission.
   </Step>
 </Steps>
 
 <Note>
-  Approved expenses appear in the kasboek at `/dashboard` as expense transactions. The receipt photo URL is stored as the `receiptUrl` on the transaction, so you can always trace an expense back to its original proof. The transaction description is automatically formatted as `[purchase description] (door [submitter name])` so you can identify who incurred each cost.
+  Approved expenses appear in the kasboek as expense transactions. The receipt photo is stored alongside the kasboek entry, so you can always trace an expense back to its original proof. The transaction description is automatically formatted as `[purchase description] (door [submitter name])` so you can identify who incurred each cost.
 </Note>
 
 ## Paying via SEPA QR code
@@ -58,7 +58,7 @@ If the member provided their IBAN, a **QR code** button appears alongside the ap
 
 <Steps>
   <Step title="Click the QR button">
-    Tap the **QrCode** icon (labelled **QR betalen** on mobile) on the expense card. A panel expands below the card showing the QR code.
+    Tap the **QR betalen** button on the expense card. A panel expands below the card showing the QR code.
   </Step>
   <Step title="Scan with your banking app">
     Open your bank's mobile app, navigate to the payment/transfer section, and use the QR scanner. The amount, recipient name, IBAN, and a payment reference (Terugbetaling: [description]) are pre-filled automatically.
@@ -79,7 +79,7 @@ If the member provided their IBAN, a **QR code** button appears alongside the ap
 
 If a submission is incorrect, a duplicate, or lacks sufficient proof, you can reject it.
 
-Click the **XCircle** (reject) icon button on the expense card — labelled **Afwijzen** on mobile. Kaspert permanently removes the expense from the queue.
+Click the **Afwijzen** button on the expense card. Kaspert permanently removes the expense from the queue.
 
 <Warning>
   Rejecting an expense **permanently deletes** the submission from Kaspert. There is no undo and no "rejected" archive to review later. If you accidentally reject a legitimate expense, ask the member to resubmit the form with their receipt — they can use the same public link as before. The original receipt photo will no longer be accessible.

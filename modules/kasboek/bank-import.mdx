@@ -1,5 +1,5 @@
 ---
-title: "Import bank transactions via CSV into Kaspert"
+title: "Import bank CSV statements into your Kaspert kasboek"
 sidebarTitle: "Bank Import"
 description: "Download a CSV from KBC, Belfius, or ING and import it into your kasboek with automatic duplicate detection and category assignment."
 ---
@@ -19,7 +19,7 @@ Bank import is available on the **Pro** (€8.99/month) and **Premium** (€14.9
 | **ING** | Native | Detected automatically by distinct header columns (`Af bij`, `Bedrag (EUR)`). Date format (`YYYYMMDD`) is normalised to ISO 8601. |
 
 <Note>
-  If your bank is not listed above, try exporting a CSV and uploading it anyway — as long as the file contains a `Datum` (date) and `Bedrag` (amount) column, Kaspert can usually parse it.
+  If your bank is not listed above, you can still import your CSV. When Kaspert does not recognise the file format automatically, it shows a **column mapping** step: you select which column contains the date, which contains the amount, and which contains the description. Your mapping is saved for next time, so you only need to configure it once.
 </Note>
 
 ## Step 1: Download a CSV from your bank
@@ -84,13 +84,20 @@ Bank import is available on the **Pro** (€8.99/month) and **Premium** (€14.9
 
 ## How duplicate detection works
 
-Before showing the preview, Kaspert compares each row in the CSV against every transaction already in your kasboek for the selected werkjaar. A row is flagged as a **duplicate** — and automatically deselected — when all three of the following match an existing transaction:
+Before showing the preview, Kaspert compares each row in the CSV against every transaction already in your kasboek for the selected werkjaar. A row is flagged as a **duplicate** — and automatically deselected — when the date matches, the amount is within €0.01, and either:
 
-1. **Date** — the transaction date matches exactly (`YYYY-MM-DD`).
-2. **Amount** — the amount matches within a tolerance of less than €0.01 (to handle minor rounding differences).
-3. **Description** — the description text matches exactly (after normalising whitespace).
+- the description text matches exactly, **or**
+- the existing transaction was itself a bank import or a reconciled entry of the same type.
 
-Duplicates remain visible in the preview table with a strikethrough style so you can review them. If a transaction was wrongly flagged as a duplicate, simply re-check its checkbox before clicking **Importeer**.
+This two-path check prevents re-importing the same bank row even if the description was edited after the first import.
+
+Duplicates remain visible in the preview table so you can review them. If a transaction was wrongly flagged as a duplicate, simply re-check its checkbox before clicking **Importeer**.
+
+## Smart matching with manual receipts
+
+When you import a CSV, Kaspert also looks for **manual entries** you already added that likely correspond to the same bank transaction (same type, amount within €0.01, date within three days). When a match is found, the preview row shows a **Bonnetje gevonden** badge. If you import that row, Kaspert links it to the existing manual entry — which keeps your receipt attachment and category — rather than creating a duplicate entry. The linked transaction's source badge changes to **Bevestigd**.
+
+This means you can record expenses from memory as they happen (using **Nieuw**) and then confirm them against your bank statement at month end, without any double-counting.
 
 ## After import
 

@@ -1,13 +1,13 @@
 ---
-title: "Kaspert's AI assistant for financial insights"
+title: "Use Kaspert AI assistant for financial queries and tasks"
 sidebarTitle: "AI Assistant"
-description: "Query transactions, get financial summaries, track payment obligations, and create ledger entries using Kaspert's MCP-based AI tools with natural language."
+description: "Query transactions, get financial summaries, track payment obligations, and create ledger entries using Kaspert MCP-based AI tools with natural language."
 ---
 
 Kaspert exposes a set of AI-callable tools through the **Model Context Protocol (MCP)** that allow AI assistants — such as Claude — to query and interact with your organisation's financial data in natural language. Instead of manually filtering your kasboek to answer questions like "How much did we spend on camp this year?" or "Who still owes their membership fee?", you can ask your AI assistant directly and get a structured answer in seconds. All tools operate within the context of your logged-in organisation, so data from other groups is never accessible.
 
 <Note>
-  The AI assistant feature is accessible via the MCP endpoint at `/.lovable/mcp`. Contact **support@kaspert.be** for access credentials and setup instructions for your preferred AI client.
+  The AI assistant feature requires MCP access credentials. Contact **support@kaspert.be** for setup instructions for your preferred AI client (Claude Desktop, Cursor, etc.).
 </Note>
 
 ---
@@ -82,7 +82,7 @@ Returns total income, total expenses, running balance, transaction count, and a 
       Total expenses for the period in euros, rounded to 2 decimal places.
     </ResponseField>
     <ResponseField name="balance" type="number">
-      `income − expense`. Positive means your organisation is in credit; negative means you've spent more than you've received.
+      `income - expense`. Positive means your organisation is in credit; negative means you've spent more than you've received.
     </ResponseField>
     <ResponseField name="transaction_count" type="integer">
       Total number of transactions in the period.
@@ -278,7 +278,7 @@ Adds a new income or expense entry to your kasboek. Use `list_categories` first 
       "input": {
         "type": "expense",
         "amount": 45.50,
-        "description": "Materiaal kamp — verfborstels",
+        "description": "Materiaal kamp - verfborstels",
         "category": "Kamp",
         "date": "2025-07-15"
       }
@@ -309,7 +309,7 @@ Adds a new income or expense entry to your kasboek. Use `list_categories` first 
         "date": "2025-07-15",
         "type": "expense",
         "amount": 45.50,
-        "description": "Materiaal kamp — verfborstels",
+        "description": "Materiaal kamp - verfborstels",
         "category": "Kamp"
       }
     }
@@ -325,7 +325,7 @@ Adds a new income or expense entry to your kasboek. Use `list_categories` first 
 
 ## Authentication
 
-All five MCP tools require an authenticated user session. The MCP server uses OAuth with your Kaspert (Supabase Auth) account as the identity provider. When you connect your AI client to the MCP endpoint, you will be prompted to log in with your Kaspert credentials — the tools then automatically operate on your active organisation's data.
+All five MCP tools require an authenticated user session. When you connect your AI client to the Kaspert MCP endpoint, you will be prompted to log in with your Kaspert credentials — the tools then automatically operate on your active organisation's data.
 
 <Warning>
   Because `create_transaction` writes data to your live kasboek, be specific when asking your AI assistant to create entries. Review the response to confirm the amount, category, and description are correct before proceeding.

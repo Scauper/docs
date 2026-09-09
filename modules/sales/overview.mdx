@@ -1,7 +1,7 @@
 ---
 title: "Sell tickets and products online with Kaspert's webshop"
 sidebarTitle: "Overview"
-description: "Create a branded public order page, accept Stripe and Payconiq payments, apply discount codes, and track every sale directly in your kasboek."
+description: "Create a branded public order page, accept online payments, apply discount codes, and track every sale directly in your kasboek — all in one platform."
 ---
 
 Kaspert's **Verkoop** module gives your youth organisation a fully featured online webshop — no separate tool, no third-party plugin, and no technical know-how required. From a waffle sale to a summer-camp registration, you can create a public order page in minutes, start accepting online payments, and watch every completed order land automatically in your kasboek as an income transaction. Everything lives under one roof alongside your ledger, member records, and expense approvals.
@@ -20,13 +20,13 @@ Kaspert's webshop is designed around the real-world fundraising and activity nee
 
 <CardGroup cols={2}>
   <Card title="Public order page" icon="globe">
-    Every sale gets a shareable URL at `kaspert.be/bestellen/{slug}`. Buyers do not need a Kaspert account — they just open the link and order.
+    Every sale gets a shareable URL at `kaspert.be/bestellen/{companySlug}/{saleSlug}`. Buyers do not need a Kaspert account — they just open the link and order.
   </Card>
   <Card title="Stripe online payments" icon="credit-card">
     Accept credit cards and Bancontact via Stripe Connect. Payouts go directly to your organisation's linked bank account.
   </Card>
-  <Card title="Payconiq QR payments" icon="qrcode">
-    Display a Payconiq QR code at checkout. Buyers scan it with the Payconiq app and the payment status is checked automatically.
+  <Card title="Bancontact Pro & EPC QR payments" icon="qrcode">
+    Accept Bancontact Pro (formerly Payconiq) with automatic payment confirmation, or display an EPC QR code that buyers scan with any Belgian banking app.
   </Card>
   <Card title="Custom product questions" icon="circle-question">
     Add questions to any product — e.g. "T-shirt size", "Meat choice", or "Allergies". Questions can be single-choice, multiple-choice, free text, or number fields.
@@ -45,13 +45,13 @@ Kaspert's webshop is designed around the real-world fundraising and activity nee
   </Card>
 </CardGroup>
 
-## Automatic kasboek integration
+## Kasboek integration
 
-Every completed order is recorded as an income transaction in your kasboek automatically — no manual bookkeeping required. The transaction is linked to the correct werkjaar and labelled with the sale name, so your treasurer can always reconcile income at a glance.
+When a buyer pays online via Stripe or Bancontact Pro, Kaspert automatically records an income transaction in your kasboek — no manual bookkeeping required. The transaction is labelled with the sale name and linked to the correct werkjaar, so your treasurer can reconcile income at a glance. For orders paid by bank transfer or on-site, you mark them as paid manually in the Bestellingen tab; your treasurer can then add the corresponding kasboek entry.
 
 ## Transaction fees
 
-Kaspert keeps the platform's own transaction fee as low as possible so more money stays with your organisation. The fee applies on top of any Stripe or Payconiq processing costs.
+Kaspert keeps the platform's own transaction fee as low as possible so more money stays with your organisation. The fee applies on top of any Stripe or Bancontact Pro processing costs.
 
 | Plan | Kaspert transaction fee |
 |------|------------------------|
@@ -61,7 +61,7 @@ Kaspert keeps the platform's own transaction fee as low as possible so more mone
 | Premium | 0% |
 
 <Info>
-  The Kaspert transaction fee is separate from Stripe's own payment processing fee (typically ~1.4% + €0.25 for European cards on Stripe Connect). Payconiq pricing depends on your own Payconiq business agreement.
+  The Kaspert transaction fee is separate from Stripe's own payment processing fee (typically ~1.4% + €0.25 for European cards). Bancontact Pro pricing depends on your organisation's own Bancontact Pro business agreement.
 </Info>
 
 ## Get started
@@ -76,8 +76,8 @@ Kaspert keeps the platform's own transaction fee as low as possible so more mone
   <Card title="Public Order Page" icon="globe" href="/modules/sales/public-order-page">
     Learn how buyers browse, select, pay, and receive their confirmation.
   </Card>
-  <Card title="Verkoop dashboard" icon="chart-bar" href="/modules/sales/create-sale">
-    Go directly to the Verkoop section in your Kaspert dashboard.
+  <Card title="Sales Statistics" icon="chart-bar" href="/modules/sales/create-sale">
+    View revenue charts and order counts on the Statistieken tab inside any active sale.
   </Card>
 </CardGroup>
 

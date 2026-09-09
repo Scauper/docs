@@ -1,5 +1,5 @@
 ---
-title: "Troubleshoot common Kaspert issues"
+title: "Fix common Kaspert issues: imports, payments, access"
 sidebarTitle: "Troubleshooting"
 description: "Step-by-step fixes for the most common Kaspert problems: bank import errors, payment matching issues, Stripe setup, Payconiq QR codes, and login problems."
 ---
@@ -13,9 +13,9 @@ Most issues in Kaspert have a straightforward fix. This page organises the most 
 <Accordion title="My CSV import fails with an error">
   If the import dialog shows an error when you upload your bank export, work through these checks in order:
 
-  1. **Check your plan** — Bank CSV import requires a **Pro or Premium** plan. Navigate to **Beheer → Organisatie → Abonnement** to confirm your current plan. If you're on Free or Basic, you'll need to upgrade.
+  1. **Check your plan** — Bank CSV import requires a **Pro or Premium** plan. Navigate to **Beheer > Organisatie > Abonnement** to confirm your current plan. If you're on Free or Basic, you'll need to upgrade.
 
-  2. **Check the required columns** — Kaspert needs at least a `Datum` column and a `Bedrag` column in your CSV. Open the file in a plain text editor (not Excel) and check the first non-empty row. For ING, look for `Af Bij` or `Bedrag (EUR)` headers instead.
+  2. **Check the required columns** — Kaspert needs at least a `Datum` column and a `Bedrag` column in your CSV. Open the file in a plain text editor (not Excel) and check the first row. For ING, look for `Af Bij` or `Bedrag (EUR)` headers instead.
 
   3. **Export a fresh file from your bank** — Log in to your bank's online portal and download a new CSV export. Don't use a file you downloaded weeks ago or one that has been forwarded by email — file corruption can occur.
 
@@ -24,10 +24,10 @@ Most issues in Kaspert have a straightforward fix. This page organises the most 
   If the error message says `CSV-bestand bevat geen 'Datum' of 'Bedrag' kolom`, your file does not match the expected format. Check the [Bank CSV Format reference](/reference/bank-csv-import) to see which column names are supported.
 </Accordion>
 
-<Accordion title="Characters in transaction descriptions look wrong (é shows as Ã©)">
+<Accordion title="Characters in transaction descriptions look wrong (accented letters appear garbled)">
   This is a character encoding issue caused by opening and re-saving the CSV in Excel before importing it.
 
-  KBC exports CSV files in **Windows-1252 encoding**. When Excel opens this file and you save it, Excel converts it to a different encoding — typically UTF-8 with a BOM or its own format. The Belgian accented characters (é, ë, â, ï, etc.) then get mangled into sequences like `Ã©` or `â€™`.
+  KBC exports CSV files in **Windows-1252 encoding**. When Excel opens this file and you save it, Excel converts it to a different encoding. Belgian accented characters then get mangled into garbled sequences.
 
   **Fix:** Import the **original CSV file** as downloaded from your bank, without opening it in Excel first. If you need to inspect the file contents before importing, use a plain text editor such as Notepad (Windows) or TextEdit in plain text mode (Mac).
 
@@ -52,7 +52,7 @@ Most issues in Kaspert have a straightforward fix. This page organises the most 
   2. Click it and select the correct werkjaar (e.g. `2024-2025`).
   3. The transaction list and balance totals update immediately for the selected year.
 
-  Note that each transaction is assigned to a werkjaar based on its date. If a transaction's date falls outside the date range of the selected werkjaar, it will not appear in that view. To adjust the date range of a werkjaar, go to **Beheer → Werkjaren**.
+  Note that each transaction is assigned to a werkjaar based on its date. If a transaction's date falls outside the date range of the selected werkjaar, it will not appear in that view. To adjust the date range of a werkjaar, go to **Beheer > Organisatie > Werkjaren**.
 </Accordion>
 
 ---
@@ -93,21 +93,21 @@ Most issues in Kaspert have a straightforward fix. This page organises the most 
 <Accordion title="Stripe payments are not being received">
   If buyers can check out but orders are not being marked as paid and you're not receiving funds:
 
-  1. **Verify Stripe onboarding is complete** — Go to **Beheer → Organisatie → Betalingen**. If the status shows anything other than **Verbonden**, your onboarding is incomplete. Click **Stripe-dashboard openen** to check for pending identity verification steps or bank account confirmation.
+  1. **Verify Stripe onboarding is complete** — Go to **Beheer > Organisatie > Betalingen**. If the status shows anything other than **Verbonden**, your onboarding is incomplete. Click **Stripe-dashboard openen** to check for pending identity verification steps or bank account confirmation.
 
   2. **Check the Stripe Express dashboard** — Look for any alerts, pending verifications, or payout issues under **Stripe-dashboard openen**. Stripe may have flagged your account for document review.
 
-  3. **Check Stripe webhook delivery** — In rare cases, Stripe's webhook to Kaspert may have failed. If an order shows as **Aangemaakt** (not **Betaald**) but the buyer was charged, contact support@kaspert.be with the order number — Kaspert support can manually reconcile the order.
+  3. **If an order shows as Aangemaakt but the buyer was charged** — Contact support@kaspert.be with the order number. Kaspert support can manually reconcile the order.
 
-  4. **Ensure you're on a plan that supports Stripe** — All Kaspert plans support Stripe. There's no plan restriction, but confirm Stripe is enabled as a payment method on the specific sale under **Beheer → Verkoop**.
+  4. **Ensure Stripe is enabled as a payment method** — Confirm Stripe is enabled on the specific sale under **Beheer > Verkoop**.
 </Accordion>
 
 <Accordion title="Order confirmation email was not sent to the buyer">
   If a buyer didn't receive a confirmation email after a successful payment:
 
-  1. **Check the email template is configured** — Go to **Beheer → Verkoop** and open the sale. Confirm that an **E-mailsjabloon** (email template) is set. If the template is empty or disabled, no confirmation email is sent.
+  1. **Check the email template is configured** — Go to **Beheer > Verkoop** and open the sale. Confirm that an **E-mailsjabloon** (email template) is set. If the template is empty or disabled, no confirmation email is sent.
   2. **Check the buyer's spam folder** — Confirmation emails come from a `@kaspert.be` address. Ask the buyer to check spam.
-  3. **Verify the buyer's email address** — Open the order in Verkoop → Bestellingen and check the email address recorded. If it's incorrect, contact the buyer directly.
+  3. **Verify the buyer's email address** — Open the order in Verkoop > Bestellingen and check the email address recorded. If it's incorrect, contact the buyer directly.
 </Accordion>
 
 <Accordion title="The Payconiq QR code is not scanning">
@@ -136,15 +136,15 @@ Most issues in Kaspert have a straightforward fix. This page organises the most 
 <Accordion title="I don't see a module in the navigation">
   If a module (Betalingsopvolging, Onkosten, Leden, etc.) is missing from your Kaspert sidebar:
 
-  1. **Check the module is enabled** — Go to **Beheer → Modules** and verify the toggle for the missing module is switched on. Admins can enable or disable individual modules here.
+  1. **Check the module is enabled** — Go to **Beheer > Modules** and verify the toggle for the missing module is switched on. Admins can enable or disable individual modules here.
   2. **Check your plan** — Some modules require a paid plan. Basic and above unlock the expense module; Pro and above unlock bank import. If you're on Free, certain modules are greyed out or hidden. See [Plans & Billing](/plans-and-billing) for the full feature matrix.
-  3. **Check your role** — Members (non-admins) do not have access to Betalingsopvolging, Leden, or Beheer. If you should have admin access but don't, ask an existing admin to change your role in **Beheer → Leden**.
+  3. **Check your role** — Members (non-admins) do not have access to Betalingsopvolging, Leden, or Beheer. If you should have admin access but don't, ask an existing admin to change your role in **Beheer > Leden**.
 </Accordion>
 
 <Accordion title="A team member can't access the kasboek or a module">
   If a team member reports they can see the navigation item but can't view or edit data:
 
-  1. **Check their role** — Go to **Beheer → Leden** and find the team member. Members have read-only access to the kasboek and no access to most other modules. If they need full access, change their role to **Admin**.
+  1. **Check their role** — Go to **Beheer > Leden** and find the team member. Members have read-only access to the kasboek and no access to most other modules. If they need full access, change their role to **Admin**.
   2. **Check they're in the right organisation** — If you manage multiple organisations in Kaspert, confirm the team member has been invited to the correct one. Each organisation is separate in Kaspert.
   3. **Ask them to reload the app** — Role changes take effect the next time Kaspert loads. Ask them to close and reopen the app or hard-refresh the page (`Ctrl+Shift+R` / `Cmd+Shift+R`).
 </Accordion>

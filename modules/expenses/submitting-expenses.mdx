@@ -1,5 +1,5 @@
 ---
-title: "Submit expense receipts as a Kaspert member"
+title: "How to submit expense receipts for reimbursement in Kaspert"
 sidebarTitle: "Submitting Expenses"
 description: "Submit a receipt for reimbursement via the public Kaspert link or the app — including OCR auto-fill, required fields, and what happens after you submit."
 ---
@@ -15,7 +15,7 @@ As a leader or helper in a youth organisation, you often spend your own money on
     The link follows this format:
 
     ```text
-    https://kaspert.be/{companySlug}/onkosten
+    https://kaspert.be/[your-group-slug]/onkosten
     ```
 
     Ask your leiding or penningmeester for the exact URL for your group. Some organisations also protect the form with an **access code** — if you see a code prompt when you open the link, ask your leiding for the code before continuing.
@@ -60,23 +60,23 @@ As a leader or helper in a youth organisation, you often spend your own money on
 
 ## OCR auto-fill: letting AI read your receipt
 
-When you attach a receipt photo and your organisation has OCR enabled (Basic plan or higher), Kaspert automatically analyses the image using AI and pre-fills as many fields as possible.
+When you attach a receipt photo and your organisation has OCR enabled (Basic plan or higher), Kaspert automatically analyses the image and pre-fills as many fields as possible.
 
-The AI extracts the following information from the receipt:
+**What gets pre-filled depends on how you submit:**
 
-| Field | What it reads |
+| Submission path | Fields auto-filled from receipt |
 |---|---|
-| **Amount** | The total amount charged, in euros |
-| **Date** | The transaction date, converted to `YYYY-MM-DD` |
-| **Description** | A short Dutch description of the purchase (max 50 characters) |
-| **Category** | One of: Donaties, Evenementen, Materiaal, Vervoer, Eten, Overig |
+| **Public form** (no login) | Amount, Date |
+| **Kaspert app** (logged-in) | Amount, Date, Description, Category |
+
+Logged-in members benefit from the full AI-powered scan, which uses cloud AI to extract a short Dutch description of the purchase and suggest a kasboek category in addition to the amount and date. The public form performs a lighter scan and pre-fills the amount and date only — you will need to type in the description yourself.
 
 <Tip>
-  For best OCR results, take your receipt photo in good lighting on a flat, contrasting surface (e.g. a white table). Hold your phone directly above the receipt so it fills most of the frame. Make sure the **total amount** is clearly visible and not obscured by a fold or shadow. Blurry, dark, or heavily creased receipts may not scan correctly — in that case, simply fill in the details manually.
+  For best scan results, take your receipt photo in good lighting on a flat, contrasting surface (e.g. a white table). Hold your phone directly above the receipt so it fills most of the frame. Make sure the **total amount** is clearly visible and not obscured by a fold or shadow. Blurry, dark, or heavily creased receipts may not scan correctly — in that case, simply fill in the details manually.
 </Tip>
 
 <Warning>
-  OCR is not 100% accurate. Always **review the pre-filled values** before submitting. In particular, check that the amount matches the total on your receipt and that the date is correct. You are responsible for the accuracy of the information you submit.
+  Auto-fill is not 100% accurate. Always **review the pre-filled values** before submitting. In particular, check that the amount matches the total on your receipt and that the date is correct. You are responsible for the accuracy of the information you submit.
 </Warning>
 
 ## What happens after you submit

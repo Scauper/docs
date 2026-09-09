@@ -11,10 +11,10 @@ The guardian portal is a personalised web page that shows a family's existing ch
 The portal is accessible at:
 
 ```text
-https://kaspert.be/gezin/{companySlug}?token={personalToken}
+https://kaspert.be/gezin/{slug}?token={token}
 ```
 
-Each guardian receives a **unique, time-limited link** containing a cryptographically secure token. The token is valid for **30 days** from the moment it is generated. When a guardian opens their link they see:
+Each guardian receives a **unique personal link** that is valid for **30 days** from the moment it is generated. When a guardian opens their link they see:
 
 - Their own contact details (name, email, phone)
 - A card for each child linked to their guardian record from the previous season
@@ -80,7 +80,7 @@ The email is sent from `inschrijving@kaspert.be` on behalf of your organisation,
 
 If a guardian's link has expired or they have lost it, they can request a fresh one themselves. On the public enrollment form (`kaspert.be/inschrijven/{slug}`), a **"Was je kind vorig jaar al lid?"** card appears on the first step. The guardian enters their email address and clicks **Stuur mijn gezinslink**. If the email is found in your guardian records, a new personal link is sent immediately.
 
-The same self-service request is also available on the guardian portal page itself when the token is invalid or expired — the page shows a form to request a new link.
+The same self-service request is also available on the guardian portal page itself when the link is invalid or expired — the page shows a form to request a new link.
 
 <Tip>
   Send re-enrollment invitations two to four weeks before the start of the new season. Make sure your enrollment form is fully configured — correct takken, up-to-date membership fees, and the right IBAN — before you send, so that guardians see accurate information when they arrive at their family portal.

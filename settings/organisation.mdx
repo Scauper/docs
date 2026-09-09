@@ -1,22 +1,12 @@
 ---
-title: "Configure your organisation profile in Kaspert"
+title: "Configure your Kaspert organisation profile and slug"
 sidebarTitle: "Organisation"
-description: "Update your organisation name, URL slug, and invite code, and learn how to manage multiple organisations from a single Kaspert account."
+description: "Update your organisation URL slug, expense access code, and search visibility, and manage multiple organisations from a single Kaspert account."
 ---
 
-Every Kaspert account is anchored to one or more **organisations** (verenigingen). Your organisation profile controls the name displayed throughout the app, the URL slug used in all public-facing links, and the invite code that lets members join your group. Keeping these settings accurate ensures that leaders, members, and parents always land on the right pages.
+Every Kaspert account is anchored to one or more **organisations** (verenigingen). Your organisation profile controls the URL slug used in all public-facing links, the optional access code that protects your public expense submission page, and whether your pages appear in search engines. Keeping these settings accurate ensures that leaders, members, and parents always land on the right pages.
 
 Navigate to **Beheer** (`/admin`) and open the **Organisatie** tab to access all organisation settings.
-
-## Organisation name
-
-Your organisation name is the display name shown in:
-
-- The app header when you are logged in
-- All generated PDF reports and year-end summaries
-- Public pages such as the webshop, enrollment form, and expense submission page
-
-To update the name, edit it directly in the **Naam** field and click **Opslaan**.
 
 ## URL slug
 
@@ -26,7 +16,7 @@ The slug is a short, lowercase, URL-safe identifier that Kaspert uses in all pub
 kaspert.be/bestellen/chiro-sint-jan/zomerkamp-2025
 ```
 
-Slugs may only contain lowercase letters (`a–z`), digits (`0–9`), and hyphens. Kaspert automatically strips invalid characters when you save. Every slug must be unique across all Kaspert organisations.
+Slugs may only contain lowercase letters (`a-z`), digits (`0-9`), and hyphens. Kaspert automatically strips invalid characters when you save. Every slug must be unique across all Kaspert organisations.
 
 <Warning>
   Changing your slug immediately changes **every** public URL associated with your organisation — including your webshop order pages, public enrollment form, and public expense submission link. Any links you have already shared with members or parents will stop working. Update all shared links after changing the slug.
@@ -46,7 +36,7 @@ To set or update your slug:
   </Step>
 </Steps>
 
-## Invite code (toegangscode)
+## Expense access code (toegangscode)
 
 When the Onkosten (expenses) module is active, Kaspert generates a public expense submission link for your organisation. You can optionally protect this link with an access code so that only people who know the code can submit expense claims — useful for preventing spam from unknown visitors.
 
@@ -55,7 +45,7 @@ When the Onkosten (expenses) module is active, Kaspert generates a public expens
 - Click **Opslaan** next to the access code field to apply the change immediately.
 
 <Note>
-  The expense access code is **not** the same as a membership invite. It only controls access to the public expense submission page, not to your Kaspert organisation itself.
+  The expense access code only controls access to the public expense submission page. It is not a membership password and does not grant access to your Kaspert organisation's back-office.
 </Note>
 
 ## Search engine visibility
@@ -70,10 +60,10 @@ If you are a leader in more than one youth group — for example, you are pennin
 
 <Steps>
   <Step title="Open the organisation switcher">
-    Go to **Beheer** (`/admin`) and click the **Verenigingen** tab.
+    Go to **Beheer** (`/admin`) and open the **Organisatie** tab. Your list of linked organisations is shown in the **Verenigingen** section.
   </Step>
   <Step title="Switch organisations">
-    Your list of organisations is shown. Click **Wisselen** next to the organisation you want to make active. The entire app context — transactions, members, settings — switches to that organisation.
+    Click **Wisselen** next to the organisation you want to make active. The entire app context — transactions, members, settings — switches to that organisation.
   </Step>
   <Step title="Accept a pending invitation">
     If another admin has invited you to their organisation, the invitation appears under **Openstaande uitnodigingen**. Click **Aanvaarden** to join and add it to your list.

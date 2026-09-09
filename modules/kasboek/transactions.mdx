@@ -1,7 +1,7 @@
 ---
-title: "Booking transactions in the Kaspert kasboek"
+title: "How to book income and expenses in Kaspert kasboek"
 sidebarTitle: "Transactions"
-description: "Add, edit, delete, and filter income and expense entries in your kasboek, including bulk actions and receipt attachments."
+description: "Add, edit, delete, and filter income and expense entries in your kasboek, with bulk actions, CSV export, and optional receipt uploads."
 ---
 
 Transactions are the individual financial records that make up your kasboek. Every time money flows in or out of your group — a camp fee collected, a supplier invoice paid, a sponsor donation received — you record it here. Kaspert stores each booking with a date, amount, type, category, and an optional receipt attachment, giving you a complete and auditable financial history for every werkjaar.
@@ -14,10 +14,10 @@ Kaspert recognises three transaction types:
 |---|---|---|
 | `income` | Inkomsten | Money received by the organisation (e.g. membership fees, event tickets, sponsorship). |
 | `expense` | Uitgave | Money spent by the organisation (e.g. camp supplies, insurance, transport). |
-| `pending_expense` | Uitgave (onkosten) | An expense submitted by a member through the Onkosten module, awaiting admin approval before it appears as a confirmed booking in the kasboek. |
+| `pending_expense` | Uitgave | An expense entry that has not yet been confirmed. In the transaction form, clicking **Uitgave** sets this internal state; when you save, Kaspert stores the entry as a regular `expense`. |
 
 <Note>
-  `pending_expense` transactions are created automatically when a member submits an expense claim via **Onkosten**. You do not add them manually through the kasboek form. Once approved by an admin, they become regular `expense` entries.
+  `pending_expense` is an internal form state, not a type you will see on saved bookings. All expenses you record through the **Nieuw** form are stored as `expense` regardless of how the button was labelled when you clicked it.
 </Note>
 
 ## Transaction sources
@@ -125,8 +125,8 @@ export interface Transaction {
   description: string;
   date: string;          // ISO 8601: YYYY-MM-DD
   category: string;
-  receiptUrl?: string;   // URL to the attached receipt in Supabase Storage
-  source: TransactionSource;
+  receiptUrl?: string;   // optional URL to the attached receipt
+  source?: TransactionSource;
   linkedTransactionId?: string; // set when source === "reconciled"
 }
 ```

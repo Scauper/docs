@@ -1,5 +1,5 @@
 ---
-title: "Bank CSV import format reference for Kaspert"
+title: "Bank CSV import format and column reference for Kaspert"
 sidebarTitle: "Bank CSV Format"
 description: "Exact column names, date and amount formats, and encoding rules Kaspert's bank import parser expects from KBC, ING, and compatible CSV exports."
 ---
@@ -91,15 +91,15 @@ Regardless of the bank's original date format, Kaspert normalises every date to 
 
 ## File encoding (Windows-1252 / ISO-8859-1)
 
-KBC exports its CSV files in **Windows-1252** encoding (also known as ISO-8859-1). This encoding includes special Belgian characters such as `é`, `ë`, `â`, and `ï` that are common in Flemish names and descriptions.
+KBC exports its CSV files in **Windows-1252** encoding (also known as ISO-8859-1). This encoding includes special Belgian characters such as `e` with accent, `e` with umlaut, and others that are common in Flemish names and descriptions.
 
-Kaspert's import dialog reads the file with the `windows-1252` encoding setting in the browser's `FileReader` API, so accented characters appear correctly without any manual action on your part.
+Kaspert's import dialog reads the file with the `windows-1252` encoding setting in the browser's FileReader API, so accented characters appear correctly without any manual action on your part.
 
 <Warning>
-  If you open the CSV in Excel and then **re-save** it, Excel converts the encoding to UTF-8 or its own format. Characters like `é` then show up as `Ã©` in Kaspert. Always import the **original file directly from your bank** — never open and re-save it first.
+  If you open the CSV in Excel and then **re-save** it, Excel converts the encoding to UTF-8 or its own format. Accented characters then show up as garbled sequences in Kaspert. Always import the **original file directly from your bank** — never open and re-save it first.
 </Warning>
 
-Any remaining unrecognised characters (Unicode replacement character `\uFFFD`) are automatically replaced with an apostrophe (`'`) to avoid display issues.
+Any remaining unrecognised characters are automatically replaced with an apostrophe (`'`) to avoid display issues.
 
 ---
 
@@ -108,7 +108,7 @@ Any remaining unrecognised characters (Unicode replacement character `\uFFFD`) a
 When you import a CSV, Kaspert checks every row against your existing transactions to flag probable duplicates. A duplicate is detected when an existing transaction matches all three of the following criteria:
 
 - **Date**: exact match (`YYYY-MM-DD`)
-- **Amount**: difference less than €0.01
+- **Amount**: difference less than 0.01
 - **Description**: exact string match (case-sensitive)
 
 Duplicate rows are highlighted in the import preview with a warning badge. They are **not** automatically excluded — you can still select and import them if you need to (for example, if a legitimate double payment occurred). Deselect the duplicate rows you want to skip, then click **Importeer selectie**.
@@ -117,12 +117,9 @@ Duplicate rows are highlighted in the import preview with a warning badge. They 
 
 ## Sample KBC CSV structure
 
-Below is an example of the raw CSV structure produced by KBC's online banking export. The first two rows are account metadata that Kaspert skips; the header row appears later.
+Below is an example of the raw CSV structure that Kaspert expects. The **first row must be the header row** — Kaspert reads it to identify columns. Data rows follow immediately after.
 
 ```csv title="KBC Export Sample"
-"Rekeningnummer";"Naam van de rekening";"Rekeningtype";"Valuta";"BIC"
-"BE12 3456 7890 1234";"Kasrekening Chiro Sint-Pauwels";"Zichtrekening";"EUR";"KREDBEBB"
-
 "Datum";"Bedrag";"Valuta";"Omschrijving";"Naam tegenpartij";"Rekening tegenpartij";"Vrije mededeling"
 "01/09/2024";"-45,00";"EUR";"Betaling";"Brico";"";"Kamp materiaal verf"
 "15/09/2024";"120,00";"EUR";"Overschrijving";"Mama van Peeters";"BE98 0000 1234 5678";"Lidgeld Jan Janssen 2024-2025"
@@ -133,6 +130,6 @@ After import, these three rows become:
 
 | Date | Amount | Type | Description |
 |---|---|---|---|
-| 2024-09-01 | €45.00 | expense | Brico - Kamp materiaal verf |
-| 2024-09-15 | €120.00 | income | Mama van Peeters - Lidgeld Jan Janssen 2024-2025 |
-| 2024-09-22 | €18.50 | expense | Carrefour - Vergadering snacks |
+| 2024-09-01 | 45.00 | expense | Brico - Kamp materiaal verf |
+| 2024-09-15 | 120.00 | income | Mama van Peeters - Lidgeld Jan Janssen 2024-2025 |
+| 2024-09-22 | 18.50 | expense | Carrefour - Vergadering snacks |

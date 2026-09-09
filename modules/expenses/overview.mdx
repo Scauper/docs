@@ -14,13 +14,13 @@ In a typical youth group, dozens of leaders and helpers make small purchases thr
 
 <Steps>
   <Step title="A member submits an expense">
-    Anyone who made a purchase on behalf of the group opens the public submission link your admin shares — `https://kaspert.be/{companySlug}/onkosten` — or uses the Onkosten page inside the Kaspert app if they have an account. No login is needed for the public form.
+    Anyone who made a purchase on behalf of the group opens the public submission link your admin shares — `https://kaspert.be/[your-group-slug]/onkosten` — or uses the Onkosten page inside the Kaspert app if they have an account. No login is needed for the public form.
   </Step>
   <Step title="They fill in the details and attach a receipt">
     The submitter enters their name, Belgian IBAN (for reimbursement), a description of the purchase, the amount in euros, and the date. They attach a photo of the receipt or upload a PDF — straight from their phone camera if needed.
   </Step>
   <Step title="AI reads the receipt automatically">
-    If your organisation is on the Basic plan or higher, Kaspert's AI scans the receipt image and pre-fills the amount, date, description, and category for the submitter. They should always verify these values before hitting submit, but in most cases the scan is accurate enough to save significant typing.
+    If your organisation is on the Basic plan or higher and OCR is enabled, Kaspert analyses the receipt image and attempts to pre-fill the amount, date, description, and category. Logged-in members benefit from the most complete auto-fill; the public form pre-fills what it can from the image. The submitter should always review all values before hitting submit.
   </Step>
   <Step title="The expense appears in the Onkosten dashboard">
     The submitted expense shows up immediately under **Onkosten** (`/onkosten`) in the admin panel, tagged as pending. The treasurer sees the submitter's name, IBAN, amount, description, date, and a link to view the receipt photo.

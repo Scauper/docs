@@ -1,7 +1,7 @@
 ---
-title: "Transaction types and sources in Kaspert"
+title: "Transaction types and entry sources in Kaspert ledger"
 sidebarTitle: "Transaction Types"
-description: "Every kasboek entry carries a type (income, expense, or pending_expense) and a source (manual, bank_import, or reconciled) that together describe what it is and where it came from."
+description: "Learn how Kaspert classifies every kasboek entry by type (income, expense, pending_expense) and source (manual, bank_import, reconciled)."
 ---
 
 Every entry in Kaspert's kasboek is a **transaction** — a single financial event that either adds money to your organisation's balance or reduces it. To make reporting, filtering, and reconciliation reliable, every transaction carries two classification fields: a `type` that describes the economic direction of the money, and a `source` that records how the transaction entered the system. Understanding these two fields will help you make sense of every number you see in the ledger and in the annual report.
@@ -63,11 +63,11 @@ The `source` field answers the question: *how did this transaction enter Kaspert
 
 Kaspert stores all amounts as **positive numbers**, regardless of type. The `type` field — not a negative sign — determines whether the amount reduces or increases the balance:
 
-- `income` of `€50.00` → balance **increases** by €50.00
-- `expense` of `€50.00` → balance **decreases** by €50.00
-- `pending_expense` of `€50.00` → balance **unchanged** until approved
+- `income` of `€50.00` -> balance **increases** by €50.00
+- `expense` of `€50.00` -> balance **decreases** by €50.00
+- `pending_expense` of `€50.00` -> balance **unchanged** until approved
 
-This convention makes filtering and summing across a single `amount` column straightforward and avoids sign-confusion when reading raw database records.
+This convention makes filtering and summing across a single `amount` column straightforward and avoids sign-confusion when reading records.
 
 ---
 
@@ -104,7 +104,7 @@ The `linkedTransactionId` field is used by the betalingsopvolging module to crea
   | 2024-09-05 | Lidgeld Sara | `income` | `bank_import` | €45.00 |
   | 2024-10-12 | Kamp materiaal | `expense` | `manual` | €120.00 |
   | 2024-11-03 | Benzine terugbetaling | `pending_expense` | `manual` | €38.50 |
-  | 2024-11-04 | Benzine terugbetaling ✓ | `expense` | `manual` | €38.50 |
+  | 2024-11-04 | Benzine terugbetaling approved | `expense` | `manual` | €38.50 |
 
   In this example, the benzine request was submitted as a `pending_expense` on the 3rd and approved on the 4th — at that point the original pending record was replaced by a confirmed `expense`.
 </Accordion>

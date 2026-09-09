@@ -1,5 +1,5 @@
 ---
-title: "Manage fiscal years (werkjaren) in Kaspert"
+title: "Manage werkjaren (fiscal years) for your organisation"
 sidebarTitle: "Werkjaren"
 description: "Create, edit, and manage werkjaren — the date-bounded seasons that group all transactions, members, and reports in your Kaspert organisation."
 ---
@@ -53,22 +53,22 @@ The **active** werkjaar is determined automatically: Kaspert compares today's da
 
 <Steps>
   <Step title="Click the edit icon">
-    Find the werkjaar in the list and click the pencil (✏️) icon on the right side.
+    Find the werkjaar in the list and click the pencil icon on the right side.
   </Step>
   <Step title="Update the fields">
     The row expands inline. Adjust the label, start date, or end date as needed.
   </Step>
   <Step title="Save">
-    Click the checkmark (✓) button to save, or the ✕ button to cancel without saving.
+    Click the checkmark button to save, or the X button to cancel without saving.
   </Step>
 </Steps>
 
 ## Delete a werkjaar
 
-Click the trash icon (🗑️) on any werkjaar row. A confirmation dialog appears before anything is deleted.
+Click the trash icon on any werkjaar row. A confirmation dialog appears before anything is deleted.
 
 <Warning>
-  Deleting a werkjaar does **not** delete the transactions or member records associated with it. However, those records will no longer appear in the kasboek or leden filters because there is no werkjaar range to match them. The data remains in the database but becomes effectively invisible until you recreate a werkjaar covering the same date range. Avoid deleting werkjaren that contain real financial data.
+  Deleting a werkjaar does **not** delete the transactions or member records associated with it. However, those records will no longer appear in the kasboek or leden filters because there is no werkjaar range to match them. The data remains stored but becomes effectively invisible until you recreate a werkjaar covering the same date range. Avoid deleting werkjaren that contain real financial data.
 </Warning>
 
 ## Switching between werkjaren in the app
@@ -93,5 +93,5 @@ Every page that is scoped to a werkjaar — the kasboek (`/dashboard`), betaling
 </AccordionGroup>
 
 <Note>
-  The "active" werkjaar is determined by matching the label of the result of `getCurrentWerkjaar()` — a utility that derives the expected season label from today's date — against your existing werkjaar labels. If you use non-standard labels (e.g. `Zomer 2025` instead of `2024-2025`), automatic detection may not work and you will need to select the correct werkjaar manually each time.
+  The active werkjaar badge is determined by matching today's date to the conventional `YYYY-YYYY` season label (for example, September through August is labelled `2024-2025`). If you use non-standard labels (e.g. `Zomer 2025` instead of `2024-2025`), automatic detection may not work and you will need to select the correct werkjaar manually each time.
 </Note>

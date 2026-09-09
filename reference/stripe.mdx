@@ -1,5 +1,5 @@
 ---
-title: "Set up Stripe Connect to accept online payments"
+title: "Set up Stripe Connect to accept payments in Kaspert"
 sidebarTitle: "Stripe"
 description: "Connect your organisation's Stripe Express account to Kaspert to accept Visa, Mastercard, and Bancontact in your webshop with automatic payouts."
 ---
@@ -16,7 +16,7 @@ Kaspert uses **Stripe Connect** to let each organisation accept online payments 
     Accept Bancontact — Belgium's most popular payment method — directly from the webshop checkout. No separate Bancontact Pro account needed.
   </Card>
   <Card title="Automatic payouts" icon="bank">
-    Stripe pays out your collected funds to your organisation's IBAN on a rolling schedule (typically 2–7 business days). Manage payout timing from your Stripe Express dashboard.
+    Stripe pays out your collected funds to your organisation's IBAN on a rolling schedule (typically 2-7 business days). Manage payout timing from your Stripe Express dashboard.
   </Card>
   <Card title="Receipts and invoices" icon="receipt">
     Stripe automatically generates a payment receipt for every completed order, which buyers receive by email alongside Kaspert's order confirmation.
@@ -30,7 +30,7 @@ Kaspert uses **Stripe Connect** to let each organisation accept online payments 
 Only **admins** can complete the Stripe onboarding. Make sure you have your organisation's Belgian IBAN and identity documents handy before you start.
 
 <Steps>
-  <Step title="Go to Beheer → Organisatie → Betalingen">
+  <Step title="Go to Beheer > Organisatie > Betalingen">
     Open your Kaspert dashboard, navigate to **Beheer (`/admin`)**, open the **Organisatie** tab, and scroll to the **Betalingen** section.
   </Step>
   <Step title="Click 'Verbind met Stripe'">
@@ -54,7 +54,7 @@ Only **admins** can complete the Stripe onboarding. Make sure you have your orga
 </Steps>
 
 <Warning>
-  Stripe onboarding requires a valid Belgian bank account and identity verification of the responsible person. The verification process usually completes instantly, but Stripe may take **1–2 business days** if additional document review is needed. Your webshop will accept payments as soon as verification is complete.
+  Stripe onboarding requires a valid Belgian bank account and identity verification of the responsible person. The verification process usually completes instantly, but Stripe may take **1-2 business days** if additional document review is needed. Your webshop will accept payments as soon as verification is complete.
 </Warning>
 
 ---
@@ -65,15 +65,15 @@ Kaspert charges a platform fee on top of Stripe's own processing fees. The Kaspe
 
 | Plan | Kaspert platform fee |
 |---|---|
-| Free | 1% per order (max €0.50) |
-| Basic | 0.5% per order (max €0.25) |
+| Free | 1% per order (max 0.50) |
+| Basic | 0.5% per order (max 0.25) |
 | Pro | 0% |
 | Premium | 0% |
 
 These fees are **separate** from Stripe's own processing fees, which Stripe deducts directly from your payouts.
 
 <Info>
-  Stripe's typical rates for Belgian organisations are approximately **1.5% + €0.25** per successful card transaction and **1.4% + €0.25** per Bancontact transaction. Check [stripe.com/pricing](https://stripe.com/pricing) for current rates, as Stripe pricing may change.
+  Stripe's typical rates for Belgian organisations are approximately **1.5% + 0.25** per successful card transaction and **1.4% + 0.25** per Bancontact transaction. Check [stripe.com/pricing](https://stripe.com/pricing) for current rates, as Stripe pricing may change.
 </Info>
 
 ---
@@ -84,7 +84,7 @@ Your Stripe Express dashboard gives you a real-time view of payments, payouts, d
 
 <Steps>
   <Step title="Open the Stripe dashboard link">
-    Go to **Beheer → Organisatie → Betalingen** and click **Stripe-dashboard openen**. Kaspert generates a short-lived login link and opens your Stripe Express dashboard in a new tab.
+    Go to **Beheer > Organisatie > Betalingen** and click **Stripe-dashboard openen**. Kaspert generates a short-lived login link and opens your Stripe Express dashboard in a new tab.
   </Step>
   <Step title="View payouts and transactions">
     In the Stripe dashboard you can see each payout batch, which transactions are included, any pending disputes or refund requests, and your current payout bank account.
@@ -100,12 +100,12 @@ Your Stripe Express dashboard gives you a real-time view of payments, payouts, d
 
 When Stripe confirms a payment for a webshop order, Kaspert automatically creates an **income transaction** in your kasboek with the category `Verkoop`. The description is formatted as `[STRIPE] {customer name} - {order number}`. This keeps your ledger up to date without any manual entry.
 
-This automatic transaction creation is **idempotent** — if the same Stripe webhook event is delivered more than once (which can happen occasionally), Kaspert checks for an existing transaction with the same description and skips the insert if one already exists.
+Kaspert deduplicates payment confirmations automatically — if the same payment event is received more than once (which can occasionally happen with payment processors), Kaspert detects the duplicate and does not create a second transaction. Your kasboek always reflects the correct number of entries.
 
 ---
 
 ## Stripe Connect and data security
 
 <Note>
-  Kaspert never stores your full Stripe secret key or your customers' card numbers. The Stripe account ID is stored securely in the Kaspert database and is only used server-side to generate login links for your Express dashboard. All card data is handled exclusively by Stripe's PCI-compliant infrastructure.
+  Kaspert never stores your customers' card numbers. All card data is handled exclusively by Stripe's PCI-compliant infrastructure. Only the minimal account identifier needed to generate dashboard login links is stored on Kaspert's side, and it is never used for anything other than providing you access to your own Stripe Express dashboard.
 </Note>

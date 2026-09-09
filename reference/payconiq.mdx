@@ -1,5 +1,5 @@
 ---
-title: "Accept Payconiq payments in your Kaspert webshop"
+title: "Accept Payconiq by Bancontact in your Kaspert webshop"
 sidebarTitle: "Payconiq"
 description: "Enable Payconiq by Bancontact QR code payments for webshop orders and membership enrollment fees, with automatic order status updates."
 ---
@@ -32,13 +32,13 @@ Payconiq by Bancontact is one of Belgium's most widely used mobile payment metho
     The buyer opens their banking app (Payconiq, KBC Mobile, ING, Fintro, Hello Bank, etc.) and scans the QR code. Alternatively, on mobile the buyer can tap the **deeplink** button to open the app directly without scanning.
   </Step>
   <Step title="Kaspert receives the payment callback">
-    After the buyer approves the payment in their app, Bancontact Pro sends a secure callback to Kaspert's server. Kaspert **re-verifies** the payment status and amount directly with the Bancontact API before updating any data — it never trusts the callback body alone.
+    After the buyer approves the payment in their app, Bancontact Pro sends a secure callback to Kaspert's servers. Kaspert re-verifies the payment status and amount directly with the Bancontact API before updating any data — it never trusts the callback body alone.
   </Step>
   <Step title="Order is marked as paid">
-    Once the payment is verified, Kaspert updates the order status to **Betaald**. The buyer receives an order confirmation email, and the admin notification email (if configured) is sent to the address set in Beheer → Verkoop → E-mailsjabloon.
+    Once the payment is verified, Kaspert updates the order status to **Betaald**. The buyer receives an order confirmation email, and the admin notification email (if configured) is sent to the address set in Beheer > Verkoop > E-mailsjabloon.
   </Step>
   <Step title="Buyer is redirected">
-    The order page polls Kaspert's status endpoint every few seconds while the QR code is displayed. As soon as the payment is confirmed, the buyer is automatically redirected to the order confirmation page — no manual refresh needed.
+    The order page automatically refreshes when the payment is confirmed. The buyer is redirected to the order confirmation page — no manual refresh needed.
   </Step>
 </Steps>
 
@@ -66,7 +66,7 @@ Payconiq is configured at the platform level using your organisation's Bancontac
     If you already have a Bancontact Pro merchant account, share your API key with the Kaspert support team. If you don't have one yet, Kaspert can guide you through the Bancontact Pro merchant registration process.
   </Step>
   <Step title="Payconiq appears as a payment option">
-    Once configured, Payconiq will appear as an available payment method when you publish a new sale in Beheer → Verkoop and when buyers check out.
+    Once configured, Payconiq will appear as an available payment method when you publish a new sale in Beheer > Verkoop and when buyers check out.
   </Step>
 </Steps>
 

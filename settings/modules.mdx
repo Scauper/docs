@@ -1,5 +1,5 @@
 ---
-title: "Enable and configure modules in Kaspert"
+title: "Enable and disable Kaspert feature modules per plan"
 sidebarTitle: "Modules"
 description: "Enable or disable the kasboek, payments, webshop, expenses, and members modules for your organisation — each toggleable per plan from Beheer > Modules."
 ---
@@ -15,10 +15,6 @@ Kaspert is built around a modular architecture. Each module is an independent fe
 | **Verkoop** | All plans (Free+) | Create sales campaigns with public order pages for merchandise, camps, and events |
 | **Onkosten** | Basic, Pro, Premium | Let members submit expense claims with receipts; admins review and approve from the dashboard |
 | **Leden** | Basic, Pro, Premium | Manage member records, age sections (takken), enrollments, and a parent portal |
-
-<Note>
-  The **Kasboek** module is the core of Kaspert and **cannot be disabled**. All other modules depend on the kasboek for financial context. The toggle for Kasboek is always on.
-</Note>
 
 ## How to enable a module
 
@@ -47,7 +43,7 @@ Kaspert is built around a modular architecture. Each module is an independent fe
 
 Disabling a module:
 - Removes the module's entry from the navigation header for all users in your organisation
-- Does **not** delete any data — all transactions, member records, expenses, and orders remain stored in the database
+- Does **not** delete any data — all transactions, member records, expenses, and orders remain stored
 - Can be reversed at any time by toggling the module back on
 
 ## Module access by role
@@ -66,7 +62,7 @@ Disabling a module:
 Some modules are only available on certain plans. If a module requires a higher plan than your current one, the toggle is shown as disabled with an **Upgrade** badge next to the module name.
 
 <Warning>
-  If you **downgrade your plan** and the new plan does not include a module that is currently enabled, that module is **automatically disabled**. Your data is safely preserved in the database, but it becomes inaccessible until you upgrade your plan again or manually remove the data. You will see a warning listing which modules will be lost before you confirm a downgrade.
+  If you **downgrade your plan** and the new plan does not include a module that is currently enabled, that module is **automatically disabled**. Your data is safely preserved, but it becomes inaccessible until you upgrade your plan again or manually remove the data. You will see a warning listing which modules will be lost before you confirm a downgrade.
 </Warning>
 
 <Tabs>

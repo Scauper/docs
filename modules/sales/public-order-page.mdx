@@ -83,17 +83,20 @@ If you have enabled delivery, the buyer also enters a delivery address at this s
 The buyer sees only the payment methods you have enabled for this sale:
 
 <CardGroup cols={2}>
-  <Card title="Bank transfer" icon="building-columns">
-    The buyer receives your IBAN and a structured payment reference in the confirmation email. No online payment is taken at this step — the order is placed immediately and the buyer pays later.
+  <Card title="Bank transfer (Overschrijving)" icon="building-columns">
+    The buyer receives your IBAN and a payment reference in the confirmation email. No online payment is taken at checkout — the order is placed immediately and the buyer pays later by bank transfer.
   </Card>
-  <Card title="Payconiq QR" icon="qrcode">
-    A Payconiq QR code is displayed on screen. The buyer opens the Payconiq app, scans the code, and confirms the payment. Kaspert checks the payment status automatically and updates the order.
+  <Card title="EPC QR code" icon="qrcode">
+    An EPC-standard QR code is displayed at checkout. The buyer scans it with any Belgian banking app (KBC, ING, Belfius, etc.) to pre-fill the transfer. The order is placed immediately; payment is confirmed once you manually mark it as paid.
+  </Card>
+  <Card title="Bancontact Pro" icon="smartphone">
+    The buyer pays directly via the Bancontact Pro app (formerly Payconiq). Kaspert polls the payment status in the background and marks the order as paid automatically once the transaction is confirmed.
   </Card>
   <Card title="Stripe (card / Bancontact)" icon="credit-card">
-    The buyer is redirected to a Stripe-hosted checkout page to enter their card details or select Bancontact. After payment, they are returned to the Kaspert confirmation page.
+    The buyer is redirected to a Stripe-hosted checkout page to pay by credit card or Bancontact. After payment, they are returned to the Kaspert confirmation page.
   </Card>
   <Card title="On-site payment" icon="hand-holding-euro">
-    No payment is taken online. The order is recorded with a "te betalen ter plaatse" status. The buyer pays at pick-up.
+    No payment is taken online. The order is placed with a pending (Openstaand) status. The buyer pays at pick-up; you mark the order as paid manually in the Bestellingen tab.
   </Card>
 </CardGroup>
 
@@ -105,7 +108,7 @@ At the same moment, Kaspert sends an **order confirmation email** to the address
 
 - The order number and sale name
 - A full product and price breakdown
-- Payment instructions (IBAN + reference, Payconiq QR, or on-site notice — depending on the payment method)
+- Payment instructions (IBAN + reference for bank transfer, or an on-site payment notice — depending on the payment method chosen)
 - Your custom intro and closing text
 
 </Steps>
@@ -115,13 +118,13 @@ At the same moment, Kaspert sends an **order confirmation email** to the address
 Every completed order appears in your Kaspert dashboard immediately:
 
 - **Verkoop → [sale name] → Bestellingen** — the order row shows buyer name, products, total, and payment status in real time.
-- **Kasboek** — a corresponding income transaction is automatically created and linked to the correct werkjaar, so your treasurer's ledger stays up to date without any manual entry.
+- **Kasboek** — for orders paid via Stripe or Bancontact Pro, a corresponding income transaction is automatically created and linked to the correct werkjaar. For bank-transfer and on-site orders, you mark the order as paid manually in the Bestellingen tab.
 - **Notification email** — if you configured notification addresses under Instellingen → Meldingen, you receive an email alert for each new order.
 
 For Stripe payments, funds are batched and paid out to your linked bank account on Stripe's standard payout schedule (typically T+2 business days for Belgian accounts).
 
 <Note>
-  **Payconiq payment status.** When a buyer pays by Payconiq, Kaspert polls the payment status in the background. The status in your dashboard updates to `betaald` as soon as Payconiq confirms the transaction. This usually takes only a few seconds, but may occasionally take up to a minute.
+  **Bancontact Pro payment status.** When a buyer pays via Bancontact Pro, Kaspert polls the payment status in the background. The order status in your dashboard updates to **Betaald** as soon as the transaction is confirmed. This usually takes only a few seconds, but may occasionally take up to a minute.
 </Note>
 
 <Warning>

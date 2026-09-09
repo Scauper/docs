@@ -1,5 +1,5 @@
 ---
-title: "Understanding werkjaren (fiscal years) in Kaspert"
+title: "Understanding werkjaren — fiscal seasons in Kaspert"
 sidebarTitle: "Werkjaar"
 description: "A werkjaar is the date-bounded season that groups every transaction, member enrollment, and report in Kaspert — the foundation of all financial data."
 ---
@@ -8,26 +8,26 @@ A **werkjaar** (literally "work year") is Kaspert's fundamental unit of time. Ev
 
 ## What a werkjaar consists of
 
-Each werkjaar record in the database has three fields:
+Each werkjaar has three fields:
 
 <CardGroup cols={3}>
-  <Card title="label" icon="tag">
+  <Card title="Label" icon="tag">
     A human-readable identifier for the season, e.g. `"2024-2025"`. Must be unique within your organisation. This is what you'll see in every drop-down and report heading.
   </Card>
-  <Card title="start_date" icon="calendar-days">
-    The first day of the season, stored as `YYYY-MM-DD`. Typically `YYYY-09-01` (1 September). All transactions on or after this date belong to this werkjaar.
+  <Card title="Start date" icon="calendar-days">
+    The first day of the season, in `YYYY-MM-DD` format. Typically 1 September. All transactions on or after this date belong to this werkjaar.
   </Card>
-  <Card title="end_date" icon="calendar-check">
-    The last day of the season, stored as `YYYY-MM-DD`. Typically `YYYY-08-31` (31 August). Transactions up to and including this date fall within this werkjaar.
+  <Card title="End date" icon="calendar-check">
+    The last day of the season, in `YYYY-MM-DD` format. Typically 31 August. Transactions up to and including this date fall within this werkjaar.
   </Card>
 </CardGroup>
 
 ### Label format convention
 
-The conventional label format is `YYYY-YYYY` — for example, `"2024-2025"` for the season that runs from September 2024 through August 2025. The system does **not** enforce this pattern, so you could technically use any string, but sticking to the convention ensures labels sort correctly and are immediately recognisable to every team member.
+The conventional label format is `YYYY-YYYY` — for example, `"2024-2025"` for the season that runs from September 2024 through August 2025. Kaspert does **not** enforce this pattern, so you could technically use any string, but sticking to the convention ensures labels sort correctly and are immediately recognisable to every team member.
 
 <Note>
-  Labels must be unique per organisation. If you try to save a duplicate label, Kaspert will tell you **"Dit werkjaar bestaat al"** and block the save.
+  Labels must be unique per organisation. If you try to save a duplicate label, Kaspert will show **"Dit werkjaar bestaat al"** and block the save.
 </Note>
 
 ---
@@ -38,17 +38,17 @@ Kaspert automatically highlights the active werkjaar throughout the interface. T
 
 <Steps>
   <Step title="Check today's date">
-    Kaspert takes today's date and looks for a werkjaar whose `start_date` ≤ today ≤ `end_date`.
+    Kaspert takes today's date and derives the expected season label. For months September through December, the label is `YYYY-(YYYY+1)`. For January through August, the label is `(YYYY-1)-YYYY`.
   </Step>
-  <Step title="Match found → use it">
-    If exactly one werkjaar contains today's date, that werkjaar is considered current and is pre-selected in all filters.
+  <Step title="Match found — use it">
+    If a werkjaar in your organisation has a label matching today's expected season, that werkjaar is considered current and is pre-selected in all filters.
   </Step>
-  <Step title="No match → fall back to most recent">
-    If no werkjaar's date range contains today (e.g. you haven't created next season's werkjaar yet), Kaspert falls back to the most recently created werkjaar.
+  <Step title="No match — fall back to most recent">
+    If no werkjaar label matches (e.g. you haven't created next season's werkjaar yet, or you use non-standard labels), Kaspert falls back to the most recently created werkjaar.
   </Step>
 </Steps>
 
-The underlying utility function that drives this logic is `getCurrentWerkjaar()`:
+The underlying utility that drives this logic is published for transparency:
 
 ```typescript title="src/lib/werkjaar.ts"
 /**
@@ -72,8 +72,6 @@ export function getUniqueWerkjaren(werkjaren: string[]): string[] {
   return [...new Set(werkjaren)].sort().reverse();
 }
 ```
-
-`getCurrentWerkjaar()` accepts an optional `date` parameter (defaulting to `new Date()`) so it can be tested deterministically for any point in time.
 
 ---
 
@@ -100,14 +98,14 @@ Every major module in Kaspert is scoped to a werkjaar. Here is how each one uses
 
 ## Managing werkjaren
 
-Admins manage werkjaren under **Beheer (`/admin`) → Werkjaren**. From there you can:
+Admins manage werkjaren under **Beheer (`/admin`) > Organisatie > Werkjaren**. From there you can:
 
 - **Create** a new werkjaar by entering a label, a start date, and an end date.
 - **Edit** the label or dates of an existing werkjaar (changes take effect immediately for all filtered views).
-- **Delete** a werkjaar — only possible if no transactions, enrolments, or categories are linked to it.
+- **Delete** a werkjaar — a confirmation dialog is shown before deletion proceeds.
 
 <Warning>
-  Deleting a werkjaar that still has linked data is blocked at the database level. Archive old seasons rather than deleting them to preserve your financial history.
+  Deleting a werkjaar does not delete linked transactions or member records, but those records become effectively invisible because no werkjaar range covers them. Archive old seasons rather than deleting them to preserve your financial history.
 </Warning>
 
 <Tip>

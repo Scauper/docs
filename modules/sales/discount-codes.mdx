@@ -4,7 +4,7 @@ sidebarTitle: "Discount Codes"
 description: "Create percentage or fixed-amount promo codes with optional usage limits, product targeting, and per-piece application rules for your Kaspert webshop."
 ---
 
-Discount codes let you reward loyal members, run early-bird promotions, or simply give a little something back to parents who order often. Buyers enter their code during checkout and the discount is applied to their cart total before payment. You stay in full control: set an expiry, cap the number of redemptions, or restrict the code to specific products — all from the **Kortingscodes** settings of your sale.
+Discount codes let you reward loyal members, run early-bird promotions, or simply give a little something back to parents who order often. Buyers enter their code during checkout and the discount is applied to their cart total before payment. You stay in full control: cap the number of redemptions, restrict the code to specific products, or activate and deactivate codes at any time — all from the **Kortingscodes** settings of your sale.
 
 ## Create a discount code
 
@@ -37,16 +37,16 @@ Choose whether the code gives a **percentage** discount or a **fixed euro amount
     The discount is calculated as a percentage of the applicable subtotal. For example, a 10% code on a €25 order saves the buyer €2.50.
 
     ```
-    discounted_amount = subtotal × (1 - percentage / 100)
+    discount_amount = subtotal × (percentage / 100)
     ```
 
     Percentage values must be between 1 and 100.
   </Tab>
   <Tab title="Fixed amount (€)">
-    A flat euro amount is deducted from the applicable subtotal. The minimum discounted price is always €0 — the discount can never result in a negative total.
+    A flat euro amount is deducted from the applicable subtotal. The discount is capped at the subtotal — it can never result in a negative total.
 
     ```
-    discounted_amount = max(0, subtotal - fixed_amount)
+    discount_amount = min(fixed_amount, subtotal)
     ```
   </Tab>
 </Tabs>

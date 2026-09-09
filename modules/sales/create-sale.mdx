@@ -1,7 +1,7 @@
 ---
-title: "Create and publish a sale or event in Kaspert"
+title: "Create and publish a webshop sale in Kaspert"
 sidebarTitle: "Create a Sale"
-description: "Set up products, prices, and custom questions, configure Stripe or Payconiq payments, and share your public order URL in a few simple steps."
+description: "Set up products, prices, and custom questions, choose payment methods, and share your public order URL in a few simple steps with Kaspert."
 ---
 
 Creating a sale in Kaspert takes only a few minutes. You define the products you want to sell, set your prices, optionally collect extra information from buyers (such as a T-shirt size or a dietary preference), choose how buyers will pay, and then flip a switch to go live. The resulting public order page is a clean, mobile-friendly URL you can drop into a newsletter, a Facebook post, or a WhatsApp group — no buyer account required.
@@ -27,8 +27,8 @@ Inside your new sale, click **Product toevoegen** to add your first item. Each p
 | **Name** | ✅ | The product name shown on the order page, e.g. `Wafel`, `Groot pakket`, `Kampticket` |
 | **Price** | ✅ | Price per unit in euro |
 | **Description** | ✗ | A short description shown beneath the product name |
-| **Quantity limit** (`max_quantity`) | ✗ | Maximum total units available across all orders — leave empty for unlimited |
-| **Per-order limit** (`max_per_order`) | ✗ | Maximum quantity a single buyer can add to their cart |
+| **Stock limit** | ✗ | Maximum total units available across all orders — leave empty for unlimited |
+| **Per-order limit** | ✗ | Maximum quantity a single buyer can add to their cart |
 
 Repeat this step for every product you want to include. You can drag and drop products to reorder them on the public page.
 
@@ -63,27 +63,27 @@ Go to **Instellingen → Betaalmethodes** inside your sale. Kaspert supports fou
   <Tab title="Bank transfer (overschrijving)">
     The buyer receives your IBAN and a payment reference in the confirmation email. Enter your **IBAN** and **beneficiary name** (your organisation's name) in the settings. This method has no processing fee beyond Kaspert's own transaction fee.
   </Tab>
-  <Tab title="Payconiq QR">
-    A Payconiq QR code is shown at checkout. The buyer scans it with the Payconiq app. To enable this method, your organisation must have a Payconiq business key configured under **Beheer → Organisatie → Betalingen**.
+  <Tab title="EPC QR code">
+    A QR code following the European Payment Council (EPC) standard is shown at checkout. The buyer scans it with any Belgian banking app (KBC, ING, Belfius, etc.) to pre-fill the transfer details. No separate app subscription is required for this method.
   </Tab>
-  <Tab title="Stripe (card & Bancontact)">
-    Buyers pay online with a credit card or Bancontact. Funds are paid out to your linked bank account via Stripe Connect. You must complete Stripe Connect onboarding first — see the note below.
+  <Tab title="Stripe (card & Bancontact via Stripe)">
+    Buyers pay online with a credit card or Bancontact via Stripe. Funds are paid out directly to your organisation's linked bank account. You must complete Stripe onboarding first — see the note below.
   </Tab>
   <Tab title="On-site payment">
-    No online payment is taken. The buyer simply places an order and pays in person at pick-up. Kaspert records the order with payment status "ter plaatse".
+    No online payment is taken. The buyer places an order and pays in person at pick-up or delivery. The order is recorded with a pending (Openstaand) status; you mark it as paid manually in the Bestellingen tab once you collect the money.
   </Tab>
 </Tabs>
 
 <Note>
-  **Stripe Connect setup required before accepting card payments.** Go to **Beheer → Organisatie → Betalingen** and click **Stripe koppelen** to start the onboarding flow. You will need your organisation's legal name, address, and bank account details. Once Stripe marks your account as `charges_enabled`, the Stripe payment method becomes available to enable on your sales.
+  **Stripe Connect setup required before accepting card payments.** Go to **Beheer → Organisatie → Betalingen** and click **Stripe koppelen** to start the onboarding flow. You will need your organisation's legal name, address, and bank account details. Once Stripe has verified and activated your account, the Stripe payment method becomes available to enable on your sales.
 </Note>
 
 ### Write your shop description
 
 Go to **Instellingen → Lay-out**. Here you can set:
 
-- **Page title** (`hero_title`) — the large heading displayed at the top of your order page
-- **Description** (`hero_description`) — a paragraph below the title that explains the sale, event details, pick-up info, or anything else buyers should know
+- **Page title** — the large heading displayed at the top of your order page
+- **Description** — a paragraph below the title that explains the sale, event details, pick-up info, or anything else buyers should know
 - **Hero image** — an optional full-width banner photo (recommended: landscape, at least 1200 px wide, max 5 MB)
 - **Gallery photos** — optional additional photos shown at the bottom of the page
 
@@ -116,7 +116,7 @@ Once buyers start placing orders, click on your sale in the Verkoop overview to 
 - Order number and creation date
 - Buyer name and email address
 - Products ordered and quantities
-- Total amount and payment status (`betaald`, `open`, `ter plaatse`, `geannuleerd`)
+- Total amount and payment status (**Betaald** or **Openstaand**)
 - Payment method used
 - Answers to any custom questions
 
@@ -132,7 +132,7 @@ Kaspert automatically sends an order confirmation email to the buyer immediately
 
 - The buyer's name and order number
 - A full product overview with quantities and prices
-- Payment instructions (IBAN, reference, and Payconiq QR code if applicable) — or a "you pay on-site" notice
+- Payment instructions (IBAN and payment reference for bank transfer, or EPC QR code if the EPC QR method is enabled) — or an on-site payment notice
 - Your custom intro and closing text
 
 To customise the email, go to **Instellingen → Bevestigingsmail**. You can set a custom subject line and edit the intro and closing paragraphs using the rich text editor. The product table, totals, and payment block are generated automatically and cannot be removed.

@@ -1,5 +1,5 @@
 ---
-title: "Automatically match bank payments to obligations"
+title: "Automatically match bank transactions to obligations"
 sidebarTitle: "Smart Matching"
 description: "Kaspert scores bank transactions against open obligations using name, keywords, and amount signals to automatically suggest the right match."
 ---
@@ -13,7 +13,7 @@ For each open obligation, Kaspert evaluates every unmatched income transaction a
 | Signal | Points | Notes |
 |---|---|---|
 | Exact name part found in transaction description | +30 per matching part | Each word of the name longer than 2 characters is checked individually |
-| Fuzzy name match (within 2 typos, via Levenshtein distance) | +15 per matching part | Catches spelling variants and common transcription errors |
+| Fuzzy name match (up to 2 character edits, via Levenshtein distance) | +15 per matching part | Catches spelling variants and common transcription errors |
 | Payment type keyword found in transaction description | +20 per keyword | Keywords are extracted from the payment type name, e.g. "kamp", "zomer" |
 | Obligation memo keyword found in transaction description | +10 per keyword | Keywords from the optional memo field on the obligation |
 | Exact amount match (within €0.01) | +10 bonus | Added on top of text signals, never as the sole basis |
@@ -80,7 +80,7 @@ When the automatic suggestions are insufficient — for example, because the pay
     Click the **link icon** (🔗) in the actions column of any open obligation. A full-screen search dialog opens, pre-populated with the person's name as the initial search query.
   </Step>
   <Step title="Search for the transaction">
-    Type any part of the transaction description, memo, or amount in the search field. The list filters in real time, showing all unmatched income transactions ordered by closest amount match. Transactions with an amount exactly matching the obligation are highlighted in green.
+    Type any part of the transaction description or amount in the search field. The list filters in real time, showing all unmatched income transactions ordered from most recent to oldest. Transactions with an amount exactly matching the obligation are highlighted in green.
   </Step>
   <Step title="Click a row to link it">
     Click any row in the dialog to link that transaction to the obligation. The dialog closes and the obligation is marked as paid.
