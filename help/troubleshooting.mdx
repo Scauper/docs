@@ -1,0 +1,156 @@
+---
+title: "Troubleshoot common Kaspert issues"
+sidebarTitle: "Troubleshooting"
+description: "Step-by-step fixes for the most common Kaspert problems: bank import errors, payment matching issues, Stripe setup, Payconiq QR codes, and login problems."
+---
+
+Most issues in Kaspert have a straightforward fix. This page organises the most common problems by module so you can find the relevant section quickly. Work through the steps for your issue — if you're still stuck after trying everything here, see the support note at the bottom of the page.
+
+---
+
+## Kasboek & bank import
+
+<Accordion title="My CSV import fails with an error">
+  If the import dialog shows an error when you upload your bank export, work through these checks in order:
+
+  1. **Check your plan** — Bank CSV import requires a **Pro or Premium** plan. Navigate to **Beheer → Organisatie → Abonnement** to confirm your current plan. If you're on Free or Basic, you'll need to upgrade.
+
+  2. **Check the required columns** — Kaspert needs at least a `Datum` column and a `Bedrag` column in your CSV. Open the file in a plain text editor (not Excel) and check the first non-empty row. For ING, look for `Af Bij` or `Bedrag (EUR)` headers instead.
+
+  3. **Export a fresh file from your bank** — Log in to your bank's online portal and download a new CSV export. Don't use a file you downloaded weeks ago or one that has been forwarded by email — file corruption can occur.
+
+  4. **Do not open the file in Excel before importing** — Excel changes the file encoding when you save it, which corrupts accented characters and can alter the column structure. Always import the original downloaded file directly.
+
+  If the error message says `CSV-bestand bevat geen 'Datum' of 'Bedrag' kolom`, your file does not match the expected format. Check the [Bank CSV Format reference](/reference/bank-csv-import) to see which column names are supported.
+</Accordion>
+
+<Accordion title="Characters in transaction descriptions look wrong (é shows as Ã©)">
+  This is a character encoding issue caused by opening and re-saving the CSV in Excel before importing it.
+
+  KBC exports CSV files in **Windows-1252 encoding**. When Excel opens this file and you save it, Excel converts it to a different encoding — typically UTF-8 with a BOM or its own format. The Belgian accented characters (é, ë, â, ï, etc.) then get mangled into sequences like `Ã©` or `â€™`.
+
+  **Fix:** Import the **original CSV file** as downloaded from your bank, without opening it in Excel first. If you need to inspect the file contents before importing, use a plain text editor such as Notepad (Windows) or TextEdit in plain text mode (Mac).
+
+  If you've already saved over the original file, download a fresh export from your bank's online portal.
+</Accordion>
+
+<Accordion title="A transaction I deleted keeps reappearing">
+  This can happen if you had the bank import dialog open in two browser tabs simultaneously, or if your browser cached a previous import state.
+
+  **Fix:**
+  1. Close all Kaspert tabs in your browser.
+  2. Open a fresh Kaspert tab and navigate to the kasboek.
+  3. If the transaction is still present, check whether someone else in your organisation re-imported the same CSV. Check with your co-admins.
+  4. If the problem persists, email support@kaspert.be with the transaction details.
+</Accordion>
+
+<Accordion title="The kasboek shows transactions from the wrong year">
+  Kaspert scopes the kasboek view to the currently selected **werkjaar**. If transactions appear to be missing or you see unexpected entries, the werkjaar selector may be set to the wrong year.
+
+  **Fix:**
+  1. Look for the werkjaar selector in the top-right area of the kasboek page.
+  2. Click it and select the correct werkjaar (e.g. `2024-2025`).
+  3. The transaction list and balance totals update immediately for the selected year.
+
+  Note that each transaction is assigned to a werkjaar based on its date. If a transaction's date falls outside the date range of the selected werkjaar, it will not appear in that view. To adjust the date range of a werkjaar, go to **Beheer → Werkjaren**.
+</Accordion>
+
+---
+
+## Betalingsopvolging
+
+<Accordion title="No matching suggestions appear for a payment obligation">
+  Kaspert's smart matching algorithm compares bank transaction descriptions against payment obligation records. If no suggestions appear, the bank transaction does not contain enough identifying text.
+
+  **Common causes and fixes:**
+
+  - **Payer didn't include their name** — The most reliable fix. Ask payers to include their full name (and ideally a reference like "Lidgeld 2024-2025") in the payment communication field when they transfer. Share a payment reference template in your communication.
+  - **Name is spelled differently** — The algorithm requires a text overlap. A transaction from "Jan Janssens" will match an obligation for "Jan Janssens" but may not match "J. Janssens". You can manually link a transaction in the betalingsopvolging view by clicking **Handmatig koppelen**.
+  - **Wrong werkjaar selected** — Make sure the active werkjaar in the top-right matches the period when the obligation was created.
+
+  See the [Smart Matching documentation](/modules/payments/smart-matching) for a full explanation of the matching algorithm.
+</Accordion>
+
+<Accordion title="The same transaction appears as a suggestion for multiple obligations">
+  This is expected — Kaspert shows a transaction as a candidate suggestion for every obligation it might match. However, a transaction can only be **linked** to one obligation.
+
+  Once you link a transaction to an obligation (by clicking **Koppelen**), it is immediately removed from the suggestion list of all other obligations. If you see the same transaction still appearing elsewhere after linking, try refreshing the page.
+</Accordion>
+
+<Accordion title="A payment reminder email was not received">
+  If a member reports they didn't receive a payment reminder:
+
+  1. **Check the email address** — Open the obligation in betalingsopvolging and verify the email address is correct. Typos (`.con` instead of `.com`, missing a letter) are the most common cause.
+  2. **Check the spam folder** — Ask the recipient to check their spam or junk folder. Reminder emails from Kaspert come from a `@kaspert.be` address — recipients can whitelist this address to prevent future filtering.
+  3. **Wait up to 5 minutes** — There can be a short delivery delay depending on the recipient's email provider.
+  4. **Resend the reminder** — If none of the above resolves it, click **Herinnering sturen** again from the obligation detail view. Each send attempt generates a new email.
+</Accordion>
+
+---
+
+## Webshop & payments
+
+<Accordion title="Stripe payments are not being received">
+  If buyers can check out but orders are not being marked as paid and you're not receiving funds:
+
+  1. **Verify Stripe onboarding is complete** — Go to **Beheer → Organisatie → Betalingen**. If the status shows anything other than **Verbonden**, your onboarding is incomplete. Click **Stripe-dashboard openen** to check for pending identity verification steps or bank account confirmation.
+
+  2. **Check the Stripe Express dashboard** — Look for any alerts, pending verifications, or payout issues under **Stripe-dashboard openen**. Stripe may have flagged your account for document review.
+
+  3. **Check Stripe webhook delivery** — In rare cases, Stripe's webhook to Kaspert may have failed. If an order shows as **Aangemaakt** (not **Betaald**) but the buyer was charged, contact support@kaspert.be with the order number — Kaspert support can manually reconcile the order.
+
+  4. **Ensure you're on a plan that supports Stripe** — All Kaspert plans support Stripe. There's no plan restriction, but confirm Stripe is enabled as a payment method on the specific sale under **Beheer → Verkoop**.
+</Accordion>
+
+<Accordion title="Order confirmation email was not sent to the buyer">
+  If a buyer didn't receive a confirmation email after a successful payment:
+
+  1. **Check the email template is configured** — Go to **Beheer → Verkoop** and open the sale. Confirm that an **E-mailsjabloon** (email template) is set. If the template is empty or disabled, no confirmation email is sent.
+  2. **Check the buyer's spam folder** — Confirmation emails come from a `@kaspert.be` address. Ask the buyer to check spam.
+  3. **Verify the buyer's email address** — Open the order in Verkoop → Bestellingen and check the email address recorded. If it's incorrect, contact the buyer directly.
+</Accordion>
+
+<Accordion title="The Payconiq QR code is not scanning">
+  If the buyer's phone can't scan the Payconiq QR code:
+
+  1. **Ensure good lighting** — The buyer should hold their phone at a well-lit angle. Avoid reflective screens.
+  2. **Check internet connectivity** — Both the device displaying the QR code and the buyer's phone need an active internet connection for the payment to complete.
+  3. **Refresh the order page** — Navigate away and back to the order page to generate a fresh QR code request.
+  4. **Try the deeplink instead** — On a mobile device, Kaspert shows a **Betaal met Payconiq** button that opens the app directly without scanning. Ask the buyer to use this option if scanning fails.
+  5. **Check that the order hasn't expired** — Payconiq payment requests are valid for 24 hours. If the order is older than 24 hours, the QR code has expired. The buyer needs to place a new order.
+</Accordion>
+
+---
+
+## Account & access
+
+<Accordion title="I can't log in to Kaspert">
+  Try these steps in order:
+
+  1. **Reset your password** — On the Kaspert login page, click **Wachtwoord vergeten** and enter your email address. You'll receive a password reset link within a few minutes. Check your spam folder if it doesn't arrive.
+  2. **Check you're using the right email** — Make sure you're entering the same email address you used when you created your account or were invited.
+  3. **Clear browser cache** — Sometimes a stale browser session causes login issues. Open Kaspert in an Incognito / Private window to test.
+  4. **Contact support** — If you still can't log in after resetting your password, email support@kaspert.be with your email address and organisation name.
+</Accordion>
+
+<Accordion title="I don't see a module in the navigation">
+  If a module (Betalingsopvolging, Onkosten, Leden, etc.) is missing from your Kaspert sidebar:
+
+  1. **Check the module is enabled** — Go to **Beheer → Modules** and verify the toggle for the missing module is switched on. Admins can enable or disable individual modules here.
+  2. **Check your plan** — Some modules require a paid plan. Basic and above unlock the expense module; Pro and above unlock bank import. If you're on Free, certain modules are greyed out or hidden. See [Plans & Billing](/plans-and-billing) for the full feature matrix.
+  3. **Check your role** — Members (non-admins) do not have access to Betalingsopvolging, Leden, or Beheer. If you should have admin access but don't, ask an existing admin to change your role in **Beheer → Leden**.
+</Accordion>
+
+<Accordion title="A team member can't access the kasboek or a module">
+  If a team member reports they can see the navigation item but can't view or edit data:
+
+  1. **Check their role** — Go to **Beheer → Leden** and find the team member. Members have read-only access to the kasboek and no access to most other modules. If they need full access, change their role to **Admin**.
+  2. **Check they're in the right organisation** — If you manage multiple organisations in Kaspert, confirm the team member has been invited to the correct one. Each organisation is separate in Kaspert.
+  3. **Ask them to reload the app** — Role changes take effect the next time Kaspert loads. Ask them to close and reopen the app or hard-refresh the page (`Ctrl+Shift+R` / `Cmd+Shift+R`).
+</Accordion>
+
+---
+
+<Note>
+  If none of the steps above resolve your issue, contact **support@kaspert.be** with a description of the problem, the module you were using, the error message (include a screenshot if possible), and your organisation name. We typically respond within one business day.
+</Note>

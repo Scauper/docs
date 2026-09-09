@@ -1,0 +1,71 @@
+---
+title: "Create and manage payment types in Kaspert"
+sidebarTitle: "Payment Types"
+description: "Payment types group all obligations for a single event or fee category, such as a camp, a membership fee, or an event ticket."
+---
+
+A **payment type** is the top-level container for a set of payment obligations. Every obligation in the Betalingsopvolging module belongs to exactly one payment type, so you can cleanly separate different fee events from one another — your summer camp obligations stay completely separate from your annual membership fees. You can create as many payment types as you need, and switch between them at any time using the dropdown at the top of the Betalingen page (`/betalingen`).
+
+## When to create a new payment type
+
+Create a new payment type whenever you start tracking a distinct payment event. Common examples include:
+
+- **"Kamp 2025"** — camp fees for a specific season
+- **"Inschrijvingsgeld 2024–2025"** — annual membership fees for a werkjaar
+- **"Fuif oktober"** — event tickets where you want to track who has paid
+- **"Weekendkamp lente"** — a shorter trip with its own price and participant list
+
+Each of these becomes its own type, with its own list of obligations and its own statistics.
+
+## Create a payment type
+
+<Steps>
+  <Step title="Go to Betalingen">
+    Navigate to **Betalingen** in the sidebar, or go directly to `/betalingen`. You must have admin rights to create payment types.
+  </Step>
+  <Step title="Click 'Nieuw type'">
+    Click the **Nieuw type** button to the right of the payment type dropdown. A small dialog appears.
+  </Step>
+  <Step title="Enter a name and confirm">
+    Type a descriptive name for the payment type — for example, "Kamp zomer 2025". Names must be unique within your organisation. Click **Toevoegen** to save. The new type is immediately selected in the dropdown.
+  </Step>
+</Steps>
+
+<Tip>
+  Choose names that are specific and include the year or season. This makes it easy to distinguish between types as your list grows over multiple werkjaren.
+</Tip>
+
+## Switch between payment types
+
+Use the dropdown at the top of the Betalingen page to switch between your payment types. All statistics, obligations, and matching suggestions shown on the page update instantly to reflect the selected type.
+
+## Understanding the statistics summary
+
+Once a payment type has at least one obligation, Kaspert displays two summary cards at the top of the page:
+
+- **Betaald** — the number of obligations marked as paid, shown as a fraction of the total (e.g. *12/40*), with a progress bar that turns green when you're above 80%.
+- **Ontvangen** — the total amount received so far versus the total expected amount (e.g. *€540.00 / €1,800.00*), also with a progress bar.
+
+These statistics are calculated from all obligations in the current type, regardless of any active search filter or status filter you may have applied.
+
+## Delete a payment type
+
+<Warning>
+  Deleting a payment type is permanent and cannot be undone. All obligations linked to that type — including their payment status and any transaction links — are deleted along with it.
+</Warning>
+
+<Steps>
+  <Step title="Select the type to delete">
+    Use the dropdown to select the payment type you want to remove.
+  </Step>
+  <Step title="Click the trash icon">
+    Click the red trash icon that appears to the right of the dropdown. A confirmation dialog appears, showing the name of the type and warning that all linked obligations will be permanently deleted.
+  </Step>
+  <Step title="Confirm deletion">
+    Click **Verwijderen** to confirm. The type and all its obligations are removed immediately. If you were viewing that type, the page resets to an empty state until you select or create another type.
+  </Step>
+</Steps>
+
+<Note>
+  Only admins (penningmeester or organisatiebeheerder) can create and delete payment types. Regular members can view the Betalingen page in read-only mode if they have been granted access.
+</Note>

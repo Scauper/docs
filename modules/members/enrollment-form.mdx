@@ -1,0 +1,213 @@
+---
+title: "Configure and share your public enrollment form"
+sidebarTitle: "Enrollment Form"
+description: "Set up your public online enrollment form with custom questions, open/close controls, IBAN settings, and a shareable link parents can use without an account."
+---
+
+Your public enrollment form lets parents enroll their children in your organisation from any device, without creating a Kaspert account. The form lives at a fixed URL that belongs to your group, and you control when it is open, what it asks, and how payment instructions are presented. Once a parent submits the form, the child appears in your **Leden** list immediately and a payment obligation is automatically created in **Betalingsopvolging** — no manual data entry needed.
+
+## Your form URL
+
+Every organisation has a unique public form URL:
+
+```text
+https://kaspert.be/inschrijven/{companySlug}
+```
+
+You can find and copy this link in **Leden → Instellingen**. Share it in your newsletter, on your website, or on social media.
+
+<Note>
+  Parents do **not** need a Kaspert account to fill in the form. The URL is all they need. If enrollment is closed, the page shows a clear message that sign-ups are not currently available.
+</Note>
+
+## Opening and closing enrollment
+
+<Steps>
+  <Step title="Go to Leden → Instellingen">
+    Navigate to **Leden** (`/leden`) and click the **Instellingen** tab.
+  </Step>
+  <Step title="Toggle the enrollment switch">
+    Find the **Inschrijvingen open** toggle and flip it on or off. Click **Opslaan** to save.
+  </Step>
+</Steps>
+
+When the toggle is **off**, the public form URL shows a message that enrollment is currently closed. Guardians cannot submit new enrollments. The [re-enrollment invite button](/modules/members/guardian-portal) is also disabled while enrollment is closed.
+
+## Setting your IBAN
+
+The IBAN you enter here is used to generate payment instructions and a scannable EPC QR code that appears both on the confirmation screen and in the confirmation email sent to the parent.
+
+<Steps>
+  <Step title="Go to Leden → Instellingen">
+    Navigate to **Leden** (`/leden`) and click the **Instellingen** tab.
+  </Step>
+  <Step title="Enter your IBAN">
+    Type or paste your organisation's IBAN in the **IBAN voor lidgeld** field. Kaspert validates the format before saving.
+  </Step>
+  <Step title="Save">
+    Click **Opslaan**. The IBAN is now used in all future enrollment confirmation emails and payment screens.
+  </Step>
+</Steps>
+
+## Configuring the form
+
+Go to **Leden → Formulier** to access all form settings.
+
+### Form mode
+
+Choose between two modes depending on your organisation type:
+
+<Tabs>
+  <Tab title="Guardian mode (default)">
+    **Ouder of voogd schrijft in** — the standard mode for youth organisations (Chiro, Scouts, KSA, KLJ, etc.). The form collects guardian contact details, the child's personal data, age-based section (tak) selection, and an optional medical record. One guardian can enroll multiple children in a single session.
+  </Tab>
+  <Tab title="Self-enrollment mode">
+    **Het lid schrijft zichzelf in** — designed for service clubs, adult sports clubs, or any organisation where members register themselves. The form skips age-based sections (takken) and uses a single flat membership fee. Extra fields for role/category, profession, and billing details can be enabled.
+  </Tab>
+</Tabs>
+
+### Visibility
+
+Control who can find and access the form:
+
+<Tabs>
+  <Tab title="Openbaar (default)">
+    The form is publicly accessible and may appear in search engines. Anyone with the link can enroll.
+  </Tab>
+  <Tab title="Enkel via link">
+    The form is only accessible to people who have the direct link. It is not indexed by search engines and does not appear on your public organisation page. Useful when you want to control who receives the link.
+  </Tab>
+</Tabs>
+
+### Standard fields
+
+In the **Standaardvelden** card you can show or hide the following fields, and mark them as required or optional:
+
+| Field | Default | Notes |
+|-------|---------|-------|
+| Child's address | Shown, optional | Street, postal code, and municipality |
+| Guardian's phone | Shown, optional | Mobile or landline |
+| Photo consent | Shown | Checkbox for permission to use photos |
+| Second guardian | Shown | Name, phone, and email of an optional second parent |
+
+### Custom questions
+
+You can add your own questions that appear on every enrollment. Go to **Leden → Formulier** and scroll to **Eigen vragen**.
+
+<Steps>
+  <Step title="Click 'Vraag toevoegen'">
+    The question form expands inline.
+  </Step>
+  <Step title="Fill in the question details">
+
+    | Setting | Description |
+    |---------|-------------|
+    | **Vraag** | The question text shown to parents, e.g. *"Does your child have any food allergies?"* |
+    | **Hulptekst** | An optional hint displayed below the question label. |
+    | **Type** | `Tekst` (free text), `Getal` (numeric), `Keuzelijst` (dropdown), or `Aanvinkvakje` (checkbox). |
+    | **Toepasselijk op** | *Voor elk kind* (asked once per child) or *Voor de ouder* (asked once per form session). |
+    | **Verplicht** | Toggle on to make answering mandatory before the form can be submitted. |
+    | **Medisch gevoelig** | Mark the question as medical — answers are displayed separately in the member's detail panel and are only visible to admins. |
+
+  </Step>
+  <Step title="Click 'Vraag opslaan'">
+    The question is added to the list. It appears immediately on the live form.
+  </Step>
+</Steps>
+
+You can reorder questions using the **↑ / ↓** buttons, temporarily hide them with the active/inactive toggle, or delete them permanently with the trash icon.
+
+<Warning>
+  Deleting a custom question also permanently deletes all existing answers to that question. Consider deactivating the question instead if you want to preserve historical data.
+</Warning>
+
+**Example custom questions:**
+
+```text title="Useful questions for youth groups"
+"Does your child have a photo restriction?" (checkbox, medical)
+"T-shirt size for camp" (select: XS / S / M / L / XL)
+"Name of family doctor" (text, medical)
+"Does your child participate in the annual trip?" (checkbox)
+```
+
+### Medical record settings
+
+The medical record step is enabled by default and collects:
+
+- Allergies
+- Medication
+- Medical conditions / notes
+- Dietary requirements
+- Family doctor (name and phone)
+- Emergency contact (name and phone)
+- Whether the child can swim
+
+You can toggle the entire medical record step on or off, and individually enable or disable each field. When you mark a custom question as **medisch gevoelig**, it appears in the medical step of the form regardless of whether the standard medical record is enabled.
+
+<Tip>
+  Guardians must explicitly tick a consent checkbox before their medical data is saved. Without consent, filled-in medical data is discarded — so the field will never appear empty in the record by accident.
+</Tip>
+
+### Receipt settings
+
+If your organisation issues official membership receipts (e.g. for a service club billing members), enable **Lidgeldnota bij de bevestiging**. This attaches a formatted receipt to the confirmation email. You need to supply:
+
+- Your **ondernemingsnummer** (company registration number or VAT number)
+- An optional **btw-percentage** (leave at 0 for VAT-exempt associations)
+- An optional footnote printed at the bottom of the receipt
+
+When this option is enabled, billing details (company name, VAT number, and billing address) are automatically requested from the member on the enrollment form.
+
+## What the enrollment form collects
+
+The form is a multi-step wizard. Here is a summary of what parents fill in during a standard (guardian-mode) enrollment:
+
+<Accordion title="Step 1 — Guardian contact details">
+- First and last name (required)
+- Email address (required)
+- Phone number (configurable: shown/hidden, required/optional)
+- Second guardian: name, phone, email (optional block, can be hidden entirely)
+- Any custom questions scoped to the guardian
+</Accordion>
+
+<Accordion title="Step 2 — Child details (one card per child)">
+- First and last name (required)
+- Birth date (required) — automatically suggests a tak based on age on 31 December
+- Address: street, postal code, municipality (configurable)
+- Tak (age section) selection (required in guardian mode)
+- Photo consent checkbox (configurable)
+- Any custom questions scoped to the child
+- Parents can add multiple children in the same session (up to 10)
+</Accordion>
+
+<Accordion title="Step 3 — Medical record (optional)">
+- Allergies, medication, conditions, dietary requirements
+- Doctor name and phone
+- Emergency contact name and phone
+- Swimming ability
+- Any custom questions marked as medical
+- Explicit consent checkbox — without it, data in this step is not saved
+</Accordion>
+
+<Accordion title="Step 4 — Overview and confirmation">
+- Summary of all enrolled children with their section and fee
+- Total membership fee due
+- Terms and privacy policy acceptance checkbox
+- Submit button
+</Accordion>
+
+## What happens after submission
+
+1. The child appears in the **Leden** list under the current werkjaar.
+2. A payment obligation for the membership fee is created in **Betalingsopvolging**.
+3. A confirmation email is sent to the guardian's email address. The email includes:
+   - A summary of enrolled children with tak and fee
+   - The payment reference (mededeling) per child
+   - The organisation's IBAN
+   - A scannable EPC QR code per child (compatible with all Belgian banking apps)
+   - A **Beheer je gezin** button linking to the guardian's personal family portal
+4. If receipt generation is enabled, the confirmation email also includes an official membership receipt.
+
+<Info>
+  The confirmation email is sent via Kaspert's email infrastructure (`inschrijving@kaspert.be`) on behalf of your organisation. The sender name displayed to parents is your organisation's name.
+</Info>

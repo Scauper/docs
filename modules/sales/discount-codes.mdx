@@ -1,0 +1,119 @@
+---
+title: "Set up discount codes for your Kaspert webshop"
+sidebarTitle: "Discount Codes"
+description: "Create percentage or fixed-amount promo codes with optional usage limits, product targeting, and per-piece application rules for your Kaspert webshop."
+---
+
+Discount codes let you reward loyal members, run early-bird promotions, or simply give a little something back to parents who order often. Buyers enter their code during checkout and the discount is applied to their cart total before payment. You stay in full control: set an expiry, cap the number of redemptions, or restrict the code to specific products — all from the **Kortingscodes** settings of your sale.
+
+## Create a discount code
+
+<Steps>
+
+### Open the Kortingscodes settings
+
+Go to **Verkoop**, open the sale you want to add a code to, and click **Instellingen → Kortingscodes**. You will see a list of all existing codes for this sale (empty when you start).
+
+### Click "Kortingscode toevoegen"
+
+This opens the discount code form. Fill in the four sections described below.
+
+### Section 1 — Code & usage limits
+
+<ParamField body="Code" type="string" required>
+  The code buyers will type at checkout, e.g. `CHIRO10` or `ZOMER2025`. Codes are stored in uppercase and matched case-insensitively. Click **Genereer** to have Kaspert generate a random eight-character code for you.
+</ParamField>
+
+<ParamField body="Maximum uses" type="integer">
+  Tick **Beperk het totale aantal keer** and enter a number to cap how many times the code can be redeemed across all buyers. Once the limit is reached the code is automatically rejected. Leave unticked for unlimited use.
+</ParamField>
+
+### Section 2 — Discount type & value
+
+Choose whether the code gives a **percentage** discount or a **fixed euro amount** off:
+
+<Tabs>
+  <Tab title="Percentage (%)">
+    The discount is calculated as a percentage of the applicable subtotal. For example, a 10% code on a €25 order saves the buyer €2.50.
+
+    ```
+    discounted_amount = subtotal × (1 - percentage / 100)
+    ```
+
+    Percentage values must be between 1 and 100.
+  </Tab>
+  <Tab title="Fixed amount (€)">
+    A flat euro amount is deducted from the applicable subtotal. The minimum discounted price is always €0 — the discount can never result in a negative total.
+
+    ```
+    discounted_amount = max(0, subtotal - fixed_amount)
+    ```
+  </Tab>
+</Tabs>
+
+### Section 3 — Product targeting (optional)
+
+By default a discount applies to the **entire cart**. If you want to restrict it to specific products, choose **Specifieke artikelen** and tick the products that qualify.
+
+When targeting specific products you also choose **how** the discount is applied:
+
+| Mode | Description |
+|------|-------------|
+| **On the subtotal** | The percentage or fixed amount is deducted once from the combined subtotal of the targeted products. |
+| **Per piece in the cart** | The discount is applied to each individual unit of the targeted products. You can further limit this to only the **first N units** per product. |
+
+<Accordion title="Example: 10% off the first 3 T-shirts">
+  Set discount type to **Percentage**, value to `10`, scope to **Specifieke artikelen**, select the T-shirt product, choose **Per piece**, and set the per-piece limit to `3`. A buyer who orders 5 T-shirts at €15 each gets 10% off the first three (saving €4.50), and pays full price for the remaining two.
+</Accordion>
+
+### Section 4 — Bundle condition (optional)
+
+You can make a discount code conditional on another product being in the cart. Click **Artikelvoorwaarde toevoegen** and choose:
+
+- **Artikel** — the product that must be present
+- **Min. hoeveelheid** — the minimum quantity of that product required
+
+This enables "buy X, get Y discount" bundles. For example: *Get a free drink token when you order at least 10 dinner tickets.*
+
+### Save the code
+
+Click **Kortingscode aanmaken**. The code appears immediately in the list and is active by default.
+
+</Steps>
+
+## Managing existing codes
+
+Each code in the list shows its current status, the number of times it has been used, and the total uses allowed (if capped). From the list you can:
+
+- **Activate / deactivate** — toggle the switch next to a code to enable or disable it without deleting it. A deactivated code is silently rejected at checkout.
+- **Edit** — click the pencil icon to open the code form and change any field.
+- **Delete** — remove the code permanently. Orders that already used the code are not affected.
+
+## How discount codes work at checkout
+
+When a buyer enters a code on the public order page, Kaspert runs the following checks in order:
+
+1. **Code exists** — the code must match an active discount on that specific sale (case-insensitive).
+2. **Usage limit** — if a maximum number of uses is set, the current `times_used` count must be below that limit.
+3. **Bundle condition** — if the code has a product condition, the buyer's cart must contain the required product at the required quantity.
+4. **Product scope** — if the code targets specific products, at least one of those products must be in the cart.
+
+If all checks pass, the discount amount is calculated and shown as a line item in the cart summary. The buyer sees the original total, the discount, and the final amount to pay.
+
+<Note>
+  The discount amount is recalculated server-side when the order is submitted, so it cannot be tampered with in the browser. If a code becomes invalid between the time a buyer enters it and the time they confirm payment (e.g. the last available use is taken by another buyer), the checkout will show an error and ask the buyer to review their order.
+</Note>
+
+## Tips for effective discount codes
+
+<Tip>
+  Use memorable codes that tie in with your organisation or event — for example `CHIRO15`, `SCOUTS2025`, or `WAFEL10`. Short, all-caps codes are easiest to type on a phone.
+</Tip>
+
+<Tip>
+  Share codes in your newsletters or on social media rather than printing them on flyers, so you can deactivate them at any time if needed.
+</Tip>
+
+<Tip>
+  Set a **usage limit** equal to your estimated audience size to create urgency without risking an uncapped liability.
+</Tip>

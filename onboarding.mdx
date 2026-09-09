@@ -1,0 +1,177 @@
+---
+title: "Set up your organisation in Kaspert"
+sidebarTitle: "Onboarding"
+description: "A step-by-step guide to the Kaspert onboarding wizard: choose modules, invite your team, set branding, configure your first werkjaar, and pick a plan."
+---
+
+When you create a new organisation in Kaspert and log in for the first time, the platform launches a five-step onboarding wizard. The wizard collects the minimum information needed to make Kaspert immediately useful — which features to activate, who else is on your team, how your public pages should look, and which fiscal season you are currently in. This page walks through every step in detail so you know exactly what to expect and why each choice matters.
+
+<Note>
+  The onboarding wizard runs **once per organisation**. After you click **Afronden en starten** on the final step, the wizard is marked as complete and will not appear again. All settings you configure here can be changed later in the **Beheer** section of the app.
+</Note>
+
+---
+
+## The five wizard steps
+
+<Steps>
+
+  <Step title="Step 1 — Choose your modules">
+    The first screen asks which parts of Kaspert you want to activate. Every module maps to a section in the top navigation bar.
+
+    | Module | Navigation URL | Description | Minimum plan |
+    |--------|---------------|-------------|--------------|
+    | **Kasboek** | `/dashboard` | Income & expense ledger, categories, bank import, annual report | Free |
+    | **Verkoop** | `/verkoop` | Webshop with public order pages, discount codes, online payments | Free |
+    | **Betalingsopvolging** | `/betalingen` | Track payment obligations (lidgeld, bar tabs), smart matching, reminders | Basic |
+    | **Onkosten** | `/onkosten` | Members submit expense claims with receipt photos; OCR auto-fills amounts | Basic |
+    | **Leden** | `/leden` | Member administration, enrolment forms, medical records, guardian portal | Basic |
+
+    Toggle each module on or off with its switch. Modules that require a higher plan than your current one are shown with an **Upgrade** badge and their switches are disabled until you upgrade.
+
+    **Kasboek is recommended for everyone** — it is the core of the platform and available on all plans, including Free.
+
+    You can revisit these toggles at any time in **Beheer > Modules** (`/admin`, Modules tab).
+  </Step>
+
+  <Step title="Step 2 — Invite your team">
+    Kaspert is built for collaboration. This step lets you invite co-admins, co-treasurers, or other leaders before you even start using the app.
+
+    1. Type the email address of the person you want to invite in the input field.
+    2. Click **Uitnodigen** (or press Enter).
+    3. Kaspert creates an invitation record and sends the person a personalised email containing a registration link.
+    4. Repeat for as many people as you like.
+
+    Each successfully sent invitation appears as a green confirmation row beneath the input. Invited people sign up via the link in their email and choose **Ik ben uitgenodigd** — Kaspert automatically links them to your organisation.
+
+    <Tip>
+      This step is **optional** — click **Overslaan** to skip it and continue. You can always invite more people later from **Beheer > Leden**.
+    </Tip>
+
+    **Plan limits on admins:**
+    - **Free** — 1 admin
+    - **Basic** — up to 3 admins
+    - **Pro & Premium** — unlimited admins
+  </Step>
+
+  <Step title="Step 3 — Set your organisation profile">
+    This step controls how your organisation appears on public-facing pages (webshop, order confirmation emails, payment requests) and inside the app header.
+
+    **URL slug**
+
+    The slug is a short, lowercase, hyphenated identifier used in all public links. For example, if your slug is `chiro-sint-jan`, your public webshop URLs will look like:
+
+    ```
+    kaspert.be/bestellen/chiro-sint-jan/naam-van-je-verkoop
+    ```
+
+    Kaspert automatically suggests a slug derived from your organisation name. You can edit it here — only lowercase letters, numbers, and hyphens are allowed. If the slug you want is already taken by another organisation, Kaspert shows an error and asks you to choose a different one.
+
+    **Logo**
+
+    Click **Upload logo** to upload your group's logo. Supported formats: PNG, JPG, SVG. Maximum file size: 2 MB. The logo appears in the app header, on public order pages, and in outgoing emails.
+
+    **Primary colour**
+
+    Click the colour swatch to open a colour picker, or type a hex code directly in the text field (e.g. `#1a8a6e` for green). The primary colour is used as the accent colour across buttons, highlights, and your public pages. Choose a colour that matches your group's identity — Chiro red, Scouts khaki, KSA blue, etc.
+  </Step>
+
+  <Step title="Step 4 — Create your first werkjaar">
+    A **werkjaar** (literally "work year" or fiscal season) is the period that all your transactions, payment obligations, sales, and expense claims are grouped under. Every entry in Kaspert belongs to a werkjaar, which makes it easy to filter your kasboek by season and produce clean annual reports.
+
+    Youth organisations in Flanders almost universally run from **1 September to 31 August**. The wizard pre-fills these dates for the current season.
+
+    Fill in three fields:
+
+    <ParamField path="Label" type="string" required>
+      A human-readable name for the werkjaar. Use the format `YYYY-YYYY` (e.g. `2024-2025`). This label appears in dropdown filters throughout the app and in report headers.
+    </ParamField>
+
+    <ParamField path="Start date" type="date" required>
+      The first day of the season. Typically `YYYY-09-01` (1 September). Transactions dated before this date will not appear when filtering by this werkjaar.
+    </ParamField>
+
+    <ParamField path="End date" type="date" required>
+      The last day of the season. Typically `YYYY+1-08-31` (31 August of the following year). The end date must be later than the start date.
+    </ParamField>
+
+    Click **Volgende** to save. Kaspert confirms the werkjaar with a green check and displays the formatted date range. If a werkjaar with the same label already exists for your organisation (e.g. you are rejoining after a trial), the step skips automatically.
+
+    <Tip>
+      You can add additional werkjaren (past seasons for archival, or future seasons for planning) at any time under **Beheer > Organisatie**. There is no limit on the number of werkjaren per organisation.
+    </Tip>
+  </Step>
+
+  <Step title="Step 5 — Pick a plan">
+    The final step shows a plan comparison so you can decide whether to stay on the **Free** plan or upgrade immediately.
+
+    | Plan | Monthly | Yearly | Key inclusions |
+    |------|---------|--------|----------------|
+    | **Free** | €0 | €0 | Kasboek, Verkoop, 1 admin, email support |
+    | **Basic** | €4.99 | €49/yr | + Onkosten with OCR, Betalingsopvolging, up to 3 admins |
+    | **Pro** | €8.99 | €89/yr | + CSV bank import, unlimited admins, priority support |
+    | **Premium** | €14.99 | €149/yr | + Early access to new features |
+
+    You can click **Afronden en starten** without selecting a paid plan — you will start on Free and can upgrade at any time from **Beheer > Abonnement**.
+
+    See the [Plans & Billing](/plans-and-billing) page for a full breakdown including transaction fees and cancellation policies.
+  </Step>
+
+</Steps>
+
+---
+
+## After onboarding: your dashboard layout
+
+Once you click **Afronden en starten**, Kaspert redirects you to the first active module (usually the kasboek at `/dashboard`). The top navigation bar contains links to every module you enabled:
+
+<CardGroup cols={2}>
+  <Card title="Kasboek" icon="book-open" href="/modules/kasboek/overview">
+    Your financial ledger. Record income and expenses, filter by werkjaar and category, and view running balances.
+  </Card>
+  <Card title="Betalingen" icon="credit-card" href="/modules/payments/overview">
+    Payment obligations per member or tak. See who has paid, who is overdue, and send reminders.
+  </Card>
+  <Card title="Verkoop" icon="shopping-cart" href="/modules/sales/overview">
+    Create and manage webshop sales. Each sale gets its own public order page you can share with parents and members.
+  </Card>
+  <Card title="Onkosten" icon="receipt" href="/modules/expenses/overview">
+    Review, approve, or reject expense submissions from your members. Approved expenses feed directly into the kasboek.
+  </Card>
+  <Card title="Leden" icon="users" href="/modules/members/overview">
+    Full member administration: takken (age groups), enrolment forms, medical records, and a guardian portal.
+  </Card>
+  <Card title="Beheer" icon="settings" href="/settings/organisation">
+    Organisation settings, modules, billing, branding, team members, and werkjaren management.
+  </Card>
+</CardGroup>
+
+---
+
+## Sharing your organisation with members
+
+Beyond inviting admins by email, you can share your organisation's **invite code** — a short uppercase code that members can enter when they register with the **Ik ben uitgenodigd** path. Anyone who registers using your invite code is automatically linked to your organisation as a member (not an admin).
+
+<Tip>
+  Find your organisation's invite code in **Beheer > Leden**. Share it in your group's chat, newsletter, or parent communication so members can self-enrol without you needing to send individual invitation emails.
+</Tip>
+
+---
+
+## Frequently asked questions about onboarding
+
+<Accordion title="Can I change my organisation name after onboarding?">
+  Yes. Navigate to **Beheer > Organisatie** and update the name field. The URL slug is not automatically updated when you change the name — update it manually if needed to keep your public links consistent.
+</Accordion>
+
+<Accordion title="What happens if I skip the werkjaar step?">
+  Clicking **Overslaan** on the werkjaar step means no werkjaar is created during onboarding. You can create one at any time from **Beheer > Organisatie > Werkjaren**. Until a werkjaar exists, some filtering and reporting features in the kasboek will show an empty state.
+</Accordion>
+
+<Accordion title="Can I undo module toggles set during onboarding?">
+  Absolutely. Go to **Beheer > Modules** at any time to toggle modules on or off. Disabling a module only hides it from navigation — your existing data (transactions, payments, etc.) is preserved and reappears if you re-enable the module.
+</Accordion>
+
+<Accordion title="I closed the wizard before finishing — what now?">
+  If you navigated away before clicking **Afronden en starten**, the wizard considers itself incomplete and will relaunch the next time you log in. Your partially entered data (module choices, slug, logo, werkjaar) may or may not have been saved depending on which step you left on. Steps are saved when you click **Volgende** on each screen.
+</Accordion>

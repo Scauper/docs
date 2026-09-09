@@ -1,0 +1,95 @@
+---
+title: "Accept Payconiq payments in your Kaspert webshop"
+sidebarTitle: "Payconiq"
+description: "Enable Payconiq by Bancontact QR code payments for webshop orders and membership enrollment fees, with automatic order status updates."
+---
+
+Payconiq by Bancontact is one of Belgium's most widely used mobile payment methods, letting customers pay instantly by scanning a QR code with their banking app. Kaspert integrates Payconiq as a payment option in your webshop and on the public enrollment form for membership fees, so buyers can complete their payment on their phone without needing a credit card or manual bank transfer.
+
+## Where Payconiq is available in Kaspert
+
+<CardGroup cols={2}>
+  <Card title="Webshop orders" icon="cart-shopping">
+    When a buyer places an order in your webshop and selects Payconiq at checkout, Kaspert generates a QR code they scan to pay. The order status updates to **Betaald** automatically once payment is confirmed.
+  </Card>
+  <Card title="Enrollment fee payments" icon="users">
+    On the public enrollment form, guardians can choose to pay the membership fee immediately via Payconiq. No manual follow-up is required — Kaspert marks the payment obligation as paid as soon as Payconiq confirms.
+  </Card>
+</CardGroup>
+
+---
+
+## How a Payconiq payment works
+
+<Steps>
+  <Step title="Buyer places an order">
+    The buyer fills in the order form at your public webshop URL and selects **Payconiq** as the payment method before confirming.
+  </Step>
+  <Step title="QR code is generated">
+    Kaspert creates a Payconiq payment request via the Bancontact Pro API for the exact order amount in euros. The buyer sees a QR code on the order confirmation page.
+  </Step>
+  <Step title="Buyer scans and pays">
+    The buyer opens their banking app (Payconiq, KBC Mobile, ING, Fintro, Hello Bank, etc.) and scans the QR code. Alternatively, on mobile the buyer can tap the **deeplink** button to open the app directly without scanning.
+  </Step>
+  <Step title="Kaspert receives the payment callback">
+    After the buyer approves the payment in their app, Bancontact Pro sends a secure callback to Kaspert's server. Kaspert **re-verifies** the payment status and amount directly with the Bancontact API before updating any data — it never trusts the callback body alone.
+  </Step>
+  <Step title="Order is marked as paid">
+    Once the payment is verified, Kaspert updates the order status to **Betaald**. The buyer receives an order confirmation email, and the admin notification email (if configured) is sent to the address set in Beheer → Verkoop → E-mailsjabloon.
+  </Step>
+  <Step title="Buyer is redirected">
+    The order page polls Kaspert's status endpoint every few seconds while the QR code is displayed. As soon as the payment is confirmed, the buyer is automatically redirected to the order confirmation page — no manual refresh needed.
+  </Step>
+</Steps>
+
+---
+
+## Payment expiry
+
+A Payconiq payment request is valid for **24 hours** from the moment the order is created. If the buyer does not scan and pay within that window, the payment request expires and the QR code stops working. The buyer can return to your webshop to place a new order.
+
+<Info>
+  Kaspert blocks payment initiation for orders older than 24 hours to prevent abuse. If a buyer contacts you about an expired QR code, ask them to place a new order.
+</Info>
+
+---
+
+## Setting up Payconiq for your organisation
+
+Payconiq is configured at the platform level using your organisation's Bancontact Pro merchant credentials. Unlike Stripe, you do not set this up yourself through a self-service flow.
+
+<Steps>
+  <Step title="Contact Kaspert support">
+    Email **support@kaspert.be** and request Payconiq activation for your organisation. Include your organisation name and the email address of your admin account.
+  </Step>
+  <Step title="Provide your Bancontact Pro API key">
+    If you already have a Bancontact Pro merchant account, share your API key with the Kaspert support team. If you don't have one yet, Kaspert can guide you through the Bancontact Pro merchant registration process.
+  </Step>
+  <Step title="Payconiq appears as a payment option">
+    Once configured, Payconiq will appear as an available payment method when you publish a new sale in Beheer → Verkoop and when buyers check out.
+  </Step>
+</Steps>
+
+---
+
+## Payouts
+
+<Note>
+  Payconiq payments are processed through Kaspert's Bancontact Pro merchant account. Payouts to your organisation's bank account are handled separately and are not automatic in the same way as Stripe Connect payouts. Contact **support@kaspert.be** to discuss the payout schedule and process for your organisation.
+</Note>
+
+---
+
+## Payment statuses
+
+Kaspert maps the Bancontact Pro payment statuses to the following internal states:
+
+| Bancontact Pro status | Kaspert order status | Meaning |
+|---|---|---|
+| `SUCCEEDED` / `SUCCESS` | Betaald | Payment confirmed and verified |
+| `FAILED` | Onbetaald | Payment declined or failed |
+| `EXPIRED` | Onbetaald | QR code expired without payment |
+| `CANCELLED` | Onbetaald | Buyer cancelled the payment in their app |
+| `AUTHORIZATION_FAILED` | Onbetaald | Bank refused the authorisation |
+
+For `FAILED` and `AUTHORIZATION_FAILED` statuses, the Kaspert support team receives an automatic alert. No action is required from your side, but you may want to follow up with the buyer directly.

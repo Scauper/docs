@@ -1,0 +1,79 @@
+---
+title: "Customise your organisation's branding in Kaspert"
+sidebarTitle: "Branding"
+description: "Upload your organisation's logo and set a primary colour that appears across the app header, webshop, enrollment form, and generated PDF reports."
+---
+
+Kaspert lets you tailor the visual identity of your public-facing pages so that members and parents immediately recognise your organisation. Your logo and primary colour appear in the app header when logged in, across all public webshop pages, the enrollment form, and in generated PDF reports and receipts. You configure branding in **Beheer** (`/admin`) > **Organisatie** tab > **Huisstijl aanpassen** section.
+
+## What you can customise
+
+<CardGroup cols={2}>
+  <Card title="Logo" icon="image">
+    Upload a PNG, JPEG, or SVG image. The logo appears in the app header, webshop order pages, the public enrollment form, and PDF exports.
+  </Card>
+  <Card title="Primary colour" icon="palette">
+    Set the accent colour used for buttons and interactive elements on all public pages. Enter a hex code or use the colour picker.
+  </Card>
+</CardGroup>
+
+## Upload or change your logo
+
+<Steps>
+  <Step title="Open the Huisstijl section">
+    Go to **Beheer** > **Organisatie** and scroll down to **Huisstijl aanpassen**.
+  </Step>
+  <Step title="Click 'Upload logo' or 'Wijzig logo'">
+    Click the button under the logo preview area. A file picker opens.
+  </Step>
+  <Step title="Select your image file">
+    Choose a PNG, JPEG, or SVG file. The maximum file size is **2 MB**. Kaspert rejects files larger than this.
+  </Step>
+  <Step title="Wait for the upload to complete">
+    A loading spinner appears while the image is uploaded to Kaspert's storage. Once finished, a toast notification confirms the upload and the new logo appears in the preview immediately.
+  </Step>
+</Steps>
+
+<Note>
+  PNG files with a **transparent background** work best in the app header and PDF exports. Avoid wide landscape logos — a square or portrait format (at minimum 200 × 200 px) fits best in the circular header slot and in PDF headers. Logos narrower than 200 px may appear blurry on high-density displays.
+</Note>
+
+### Remove your logo
+
+If you want to revert to the default (first letter of your organisation name), click the red **Verwijder** button below the logo preview. The logo is immediately removed from storage and replaced with the default placeholder across all pages.
+
+## Set a primary colour
+
+The primary colour is the accent used for buttons, highlighted links, and UI elements on all your public pages — the webshop, the enrollment form, and the public expense submission page.
+
+<Steps>
+  <Step title="Open the colour picker">
+    In the **Hoofdkleur** row, click the colour swatch on the left to open a native colour picker, or type a hex code directly in the text input next to it.
+  </Step>
+  <Step title="Choose your colour">
+    Select a colour using the picker or type the exact hex code (e.g. `#1a7f4a`). The input accepts 6-character hex codes in uppercase or lowercase.
+  </Step>
+  <Step title="Save">
+    Click **Opslaan** to apply the colour. Changes take effect immediately on all live public pages — no cache clearing needed.
+  </Step>
+  <Step title="Reset to default (optional)">
+    Click **Reset** to revert to Kaspert's default green (`#1a8a6e`) at any time.
+  </Step>
+</Steps>
+
+<Tip>
+  Use your organisation's official brand colour for the primary colour. For example, Chiro groups typically use red, while many Scouts chapters use green or blue. Matching your public pages to your group's identity makes the webshop and enrollment form look professional and immediately recognisable to parents.
+</Tip>
+
+## Where branding appears
+
+| Location | Logo | Primary colour |
+|----------|------|---------------|
+| App header (logged in) | ✅ | — |
+| Public webshop order pages | ✅ | ✅ |
+| Public enrollment form | ✅ | ✅ |
+| Public expense submission page | ✅ | ✅ |
+| Generated PDF reports | ✅ | — |
+| Email notifications | — | — |
+
+Branding changes propagate instantly. There is no separate "publish" step — saving a new logo or colour is sufficient.

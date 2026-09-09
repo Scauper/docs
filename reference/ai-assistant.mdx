@@ -1,0 +1,332 @@
+---
+title: "Kaspert's AI assistant for financial insights"
+sidebarTitle: "AI Assistant"
+description: "Query transactions, get financial summaries, track payment obligations, and create ledger entries using Kaspert's MCP-based AI tools with natural language."
+---
+
+Kaspert exposes a set of AI-callable tools through the **Model Context Protocol (MCP)** that allow AI assistants — such as Claude — to query and interact with your organisation's financial data in natural language. Instead of manually filtering your kasboek to answer questions like "How much did we spend on camp this year?" or "Who still owes their membership fee?", you can ask your AI assistant directly and get a structured answer in seconds. All tools operate within the context of your logged-in organisation, so data from other groups is never accessible.
+
+<Note>
+  The AI assistant feature is accessible via the MCP endpoint at `/.lovable/mcp`. Contact **support@kaspert.be** for access credentials and setup instructions for your preferred AI client.
+</Note>
+
+---
+
+## Available tools
+
+Kaspert's MCP server exposes five tools. Each tool requires authentication — they use the OAuth session of the logged-in user and automatically scope all queries to that user's active organisation.
+
+<CardGroup cols={2}>
+  <Card title="financial_summary" icon="chart-pie">
+    Get totals for income, expenses, balance, and a per-category breakdown for any date range.
+  </Card>
+  <Card title="list_transactions" icon="list">
+    Retrieve a filtered list of transactions by type, category, and date range.
+  </Card>
+  <Card title="list_categories" icon="tags">
+    Get all active categories defined for your organisation, optionally filtered by werkjaar.
+  </Card>
+  <Card title="list_payment_obligations" icon="circle-check">
+    List payment obligations (membership fees, camp fees, etc.) with paid/unpaid status and person search.
+  </Card>
+  <Card title="create_transaction" icon="plus">
+    Add a new income or expense entry directly to the kasboek.
+  </Card>
+</CardGroup>
+
+---
+
+### `financial_summary`
+
+Returns total income, total expenses, running balance, transaction count, and a breakdown of amounts by category for the specified period. Both `from` and `to` are optional — omitting them returns all-time figures.
+
+<Tabs>
+  <Tab title="Request">
+    ```json title="financial_summary request"
+    {
+      "tool": "financial_summary",
+      "input": {
+        "from": "2024-09-01",
+        "to": "2025-08-31"
+      }
+    }
+    ```
+
+    <ParamField body="from" type="string">
+      Start date in `YYYY-MM-DD` format (optional). If omitted, no lower date bound is applied.
+    </ParamField>
+    <ParamField body="to" type="string">
+      End date in `YYYY-MM-DD` format (optional). If omitted, no upper date bound is applied.
+    </ParamField>
+  </Tab>
+  <Tab title="Response">
+    ```json title="financial_summary response"
+    {
+      "period": { "from": "2024-09-01", "to": "2025-08-31" },
+      "income": 3450.00,
+      "expense": 2180.50,
+      "balance": 1269.50,
+      "transaction_count": 47,
+      "by_category": {
+        "Kamp": { "income": 2100.00, "expense": 1850.00 },
+        "Lidgeld": { "income": 1200.00, "expense": 0 },
+        "Materiaal": { "income": 150.00, "expense": 330.50 }
+      }
+    }
+    ```
+
+    <ResponseField name="income" type="number">
+      Total income for the period in euros, rounded to 2 decimal places.
+    </ResponseField>
+    <ResponseField name="expense" type="number">
+      Total expenses for the period in euros, rounded to 2 decimal places.
+    </ResponseField>
+    <ResponseField name="balance" type="number">
+      `income − expense`. Positive means your organisation is in credit; negative means you've spent more than you've received.
+    </ResponseField>
+    <ResponseField name="transaction_count" type="integer">
+      Total number of transactions in the period.
+    </ResponseField>
+    <ResponseField name="by_category" type="object">
+      Each key is a category name. Each value has `income` and `expense` sub-totals for that category.
+    </ResponseField>
+  </Tab>
+</Tabs>
+
+---
+
+### `list_transactions`
+
+Returns a list of individual transactions matching the provided filters, sorted newest-first. Results are capped at 200 per request; use narrower date ranges for large data sets.
+
+<Tabs>
+  <Tab title="Request">
+    ```json title="list_transactions request"
+    {
+      "tool": "list_transactions",
+      "input": {
+        "from": "2024-09-01",
+        "to": "2024-12-31",
+        "type": "expense",
+        "category": "Kamp",
+        "limit": 50
+      }
+    }
+    ```
+
+    <ParamField body="type" type="string">
+      Filter to `"income"` or `"expense"`. Omit to return both types.
+    </ParamField>
+    <ParamField body="category" type="string">
+      Filter by exact category name (case-sensitive). Use `list_categories` to get valid names.
+    </ParamField>
+    <ParamField body="from" type="string">
+      Start date `YYYY-MM-DD` (optional).
+    </ParamField>
+    <ParamField body="to" type="string">
+      End date `YYYY-MM-DD` (optional).
+    </ParamField>
+    <ParamField body="limit" type="integer" default="50">
+      Maximum number of results to return. Must be between 1 and 200.
+    </ParamField>
+  </Tab>
+  <Tab title="Response">
+    ```json title="list_transactions response"
+    {
+      "transactions": [
+        {
+          "id": "a1b2c3d4-...",
+          "date": "2024-11-12",
+          "type": "expense",
+          "amount": 312.50,
+          "description": "Kampmateriaal tenten",
+          "category": "Kamp",
+          "source": "manual"
+        },
+        {
+          "id": "e5f6g7h8-...",
+          "date": "2024-10-03",
+          "type": "expense",
+          "amount": 45.00,
+          "description": "Brico - verf lokaal",
+          "category": "Kamp",
+          "source": "bank_import"
+        }
+      ]
+    }
+    ```
+
+    <ResponseField name="transactions" type="array">
+      Array of transaction objects. Each object includes `id`, `date`, `type`, `amount`, `description`, `category`, and `source` (`"manual"` or `"bank_import"`).
+    </ResponseField>
+  </Tab>
+</Tabs>
+
+---
+
+### `list_categories`
+
+Returns all categories defined for your organisation. Use this tool before calling `create_transaction` to make sure you use a valid category name.
+
+<Tabs>
+  <Tab title="Request">
+    ```json title="list_categories request"
+    {
+      "tool": "list_categories",
+      "input": {
+        "werkjaar": "2024-2025",
+        "only_active": true
+      }
+    }
+    ```
+
+    <ParamField body="werkjaar" type="string">
+      Filter by werkjaar label (e.g. `"2024-2025"`). Omit to return categories for all werkjaren.
+    </ParamField>
+    <ParamField body="only_active" type="boolean" default="true">
+      When `true` (default), only active categories are returned. Set to `false` to include archived categories.
+    </ParamField>
+  </Tab>
+  <Tab title="Response">
+    ```json title="list_categories response"
+    {
+      "categories": [
+        { "id": "cat-001", "name": "Kamp", "werkjaar": "2024-2025", "is_active": true },
+        { "id": "cat-002", "name": "Lidgeld", "werkjaar": "2024-2025", "is_active": true },
+        { "id": "cat-003", "name": "Materiaal", "werkjaar": "2024-2025", "is_active": true },
+        { "id": "cat-004", "name": "Vergaderingen", "werkjaar": "2024-2025", "is_active": true }
+      ]
+    }
+    ```
+
+    <ResponseField name="categories" type="array">
+      Array of category objects, each with `id`, `name`, `werkjaar`, and `is_active`.
+    </ResponseField>
+  </Tab>
+</Tabs>
+
+---
+
+### `list_payment_obligations`
+
+Lists payment obligations — membership fees, camp fees, or any other tracked payment — with their paid/unpaid status. Useful for answering questions like "Who still hasn't paid their camp fee?".
+
+<Tabs>
+  <Tab title="Request">
+    ```json title="list_payment_obligations request"
+    {
+      "tool": "list_payment_obligations",
+      "input": {
+        "is_paid": false,
+        "search": "Janssen",
+        "limit": 50
+      }
+    }
+    ```
+
+    <ParamField body="is_paid" type="boolean">
+      Filter to paid (`true`) or unpaid (`false`) obligations. Omit to return both.
+    </ParamField>
+    <ParamField body="search" type="string">
+      Case-insensitive partial search on the person's name (e.g. `"Janssen"` matches `"Jan Janssen"` and `"Lies Janssens"`).
+    </ParamField>
+    <ParamField body="limit" type="integer" default="50">
+      Maximum number of results. Must be between 1 and 200.
+    </ParamField>
+  </Tab>
+  <Tab title="Response">
+    ```json title="list_payment_obligations response"
+    {
+      "obligations": [
+        {
+          "id": "obl-001",
+          "person_name": "Jan Janssen",
+          "amount": 85.00,
+          "description": "Kamp 2025",
+          "is_paid": false,
+          "created_at": "2025-01-15T10:30:00Z"
+        },
+        {
+          "id": "obl-002",
+          "person_name": "Lies Janssens",
+          "amount": 85.00,
+          "description": "Kamp 2025",
+          "is_paid": false,
+          "created_at": "2025-01-15T10:31:00Z"
+        }
+      ]
+    }
+    ```
+
+    <ResponseField name="obligations" type="array">
+      Array of payment obligation objects with `id`, `person_name`, `amount`, `description`, `is_paid`, and `created_at`.
+    </ResponseField>
+  </Tab>
+</Tabs>
+
+---
+
+### `create_transaction`
+
+Adds a new income or expense entry to your kasboek. Use `list_categories` first to ensure you pass a valid category name. This is the only tool that **writes** data — all other tools are read-only.
+
+<Tabs>
+  <Tab title="Request">
+    ```json title="create_transaction request"
+    {
+      "tool": "create_transaction",
+      "input": {
+        "type": "expense",
+        "amount": 45.50,
+        "description": "Materiaal kamp — verfborstels",
+        "category": "Kamp",
+        "date": "2025-07-15"
+      }
+    }
+    ```
+
+    <ParamField body="type" type="string" required>
+      `"income"` for money received, `"expense"` for money spent.
+    </ParamField>
+    <ParamField body="amount" type="number" required>
+      Amount in euros. Must be a positive number (e.g. `45.50`). Never pass a negative value.
+    </ParamField>
+    <ParamField body="description" type="string" required>
+      A short description of the transaction. Maximum 300 characters.
+    </ParamField>
+    <ParamField body="category" type="string" required>
+      Category name. Must exactly match an existing active category for your organisation. Call `list_categories` first if unsure.
+    </ParamField>
+    <ParamField body="date" type="string">
+      Date in `YYYY-MM-DD` format. Defaults to today if omitted.
+    </ParamField>
+  </Tab>
+  <Tab title="Response">
+    ```json title="create_transaction response"
+    {
+      "transaction": {
+        "id": "txn-9f3a2b...",
+        "date": "2025-07-15",
+        "type": "expense",
+        "amount": 45.50,
+        "description": "Materiaal kamp — verfborstels",
+        "category": "Kamp"
+      }
+    }
+    ```
+
+    <ResponseField name="transaction" type="object">
+      The newly created transaction with its `id`, `date`, `type`, `amount`, `description`, and `category`.
+    </ResponseField>
+  </Tab>
+</Tabs>
+
+---
+
+## Authentication
+
+All five MCP tools require an authenticated user session. The MCP server uses OAuth with your Kaspert (Supabase Auth) account as the identity provider. When you connect your AI client to the MCP endpoint, you will be prompted to log in with your Kaspert credentials — the tools then automatically operate on your active organisation's data.
+
+<Warning>
+  Because `create_transaction` writes data to your live kasboek, be specific when asking your AI assistant to create entries. Review the response to confirm the amount, category, and description are correct before proceeding.
+</Warning>

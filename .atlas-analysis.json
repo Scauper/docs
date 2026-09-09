@@ -1,12 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "name": "Kaspert",
+  "projectType": "saas",
+  "projectName": "Kaspert",
+  "projectDescription": "Kaspert is een alles-in-één boekhoud- en beheerplatform voor jeugdverenigingen (Chiro, Scouts, KSA, KLJ e.a.) in Vlaanderen, met modules voor kasboek, betalingsopvolging, webshop, onkostenbeheer en ledenbeheer.",
   "theme": "almond",
-  "colors": {
-    "primary": "#0e7490",
-    "light": "#e0f2fe",
-    "dark": "#0c4a6e"
-  },
+  "primaryColor": "#0e7490",
+  "lightColor": "#e0f2fe",
+  "darkColor": "#0c4a6e",
   "navigation": {
     "tabs": [
       {
@@ -69,7 +68,7 @@
             ]
           },
           {
-            "group": "Organisatie & Instellingen",
+            "group": "Organisation & Settings",
             "pages": [
               "settings/organisation",
               "settings/team-members",
@@ -111,14 +110,40 @@
       }
     ]
   },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Aan de slag",
-      "href": "https://kaspert.be/auth"
-    }
-  },
-  "footer": {
-    "socials": {}
-  }
+  "keyFeatures": [
+    "Kasboek met live balans, categorieën en werkjaarfilter",
+    "Automatische bankimport via CSV (KBC, Belfius, ING)",
+    "Slimme betalingsopvolging met fuzzy matching",
+    "Webshop voor wafelverkoop, kampen en andere verkoopmomenten",
+    "Onkostenbeheer met OCR bonnetjescan voor leiders",
+    "Volledig ledenbeheer met takken, inschrijvingsformulier en medische fiche",
+    "Ouder- en voogdportal voor herinschrijving",
+    "Jaarrapport genereren in één klik",
+    "Admin- en memberrollen met auditkoppeling",
+    "AI-assistent voor financiële inzichten",
+    "Aanpasbare huisstijl (logo, primaire kleur) in webshop",
+    "Betalingsherinneringen per e-mail met IBAN en QR-code",
+    "Multi-vereniging (company switching)",
+    "Abonnementen: Free, Basic, Pro, Premium"
+  ],
+  "publicApiSurface": [
+    "GET /dashboard — kasboek met transacties, balans en categorieën",
+    "GET /betalingen — betalingsopvolging per betalingstype",
+    "GET /verkoop — webshop- en verkoopbeheer",
+    "GET /onkosten — onkostengoedkeuringen",
+    "GET /leden — ledenbeheer, takken, inschrijvingsformulier",
+    "GET /admin — organisatiebeheer, leden, abonnement en modules",
+    "GET /bestellen/:companySlug/:saleSlug — publieke bestelpagina",
+    "GET /inschrijven/:companySlug — publiek inschrijvingsformulier",
+    "GET /gezin/:companySlug — ouderportal voor herinschrijving",
+    "GET /:companySlug/onkosten — publieke onkostendeclaratie voor leiders",
+    "MCP tool: financial_summary — financieel overzicht per periode",
+    "MCP tool: list_transactions — transacties ophalen",
+    "MCP tool: list_categories — categorieën ophalen",
+    "MCP tool: list_payment_obligations — betalingsverplichtingen ophalen",
+    "MCP tool: create_transaction — nieuwe transactie aanmaken",
+    "Stripe Checkout voor online betalingen in de webshop",
+    "Payconiq voor inschrijvingsbetalingen",
+    "CSV bankimport (KBC-formaat, windows-1252 encoding)"
+  ]
 }

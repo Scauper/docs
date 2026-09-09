@@ -1,0 +1,87 @@
+---
+title: "Generate an annual financial report in Kaspert"
+sidebarTitle: "Annual Report"
+description: "Download a PDF annual report with your organisation's income, expenses, net balance, and category breakdown for any werkjaar."
+---
+
+At the end of every season your group needs a clear, presentable financial overview — for the board, for the *algemene vergadering*, or simply to close the books cleanly before the next werkjaar begins. Kaspert generates this report as a downloadable PDF in a single click, pulling every transaction for the selected season into a neatly formatted document that includes your organisation's name, logo, a summary of income and expenses, and a full category breakdown.
+
+## What the annual report contains
+
+The PDF includes the following sections:
+
+<CardGroup cols={2}>
+  <Card title="Organisation header" icon="building">
+    Your organisation's name and logo (if configured in Beheer → Instellingen), plus the werkjaar label and the season's start and end date.
+  </Card>
+  <Card title="Financial summary" icon="chart-bar">
+    Total income, total expenses, and the net balance (income minus expenses) for the selected werkjaar.
+  </Card>
+  <Card title="Income by category" icon="circle-arrow-up">
+    A breakdown of all income transactions grouped by category, with the total per category and the overall income total.
+  </Card>
+  <Card title="Expenses by category" icon="circle-arrow-down">
+    A breakdown of all expense transactions grouped by category, with the total per category and the overall expense total.
+  </Card>
+</CardGroup>
+
+## How to generate the annual report
+
+<Steps>
+  <Step title="Navigate to the Analyse tab">
+    On the Kasboek page (`/dashboard`), click the **Analyse** tab in the navigation bar below the balance summary.
+  </Step>
+  <Step title="Select the correct werkjaar">
+    Use the **werkjaar selector** in the top-right corner of the page to choose the season you want to report on. The label displays the active werkjaar (e.g. `2024-2025`). The Analyse tab updates immediately to reflect the transactions for that season.
+  </Step>
+  <Step title="Click Download PDF">
+    Click the **Download PDF** button (with the download icon) next to the "Jaarverslag" heading. While Kaspert generates the PDF, the button shows **Genereren...** with a loading indicator.
+  </Step>
+  <Step title="Open or save the file">
+    Once the PDF is ready, your browser either opens it in a new tab or downloads it automatically, depending on your browser settings. The file is named `Jaarverslag_<werkjaar>.pdf` (e.g. `Jaarverslag_2024-2025.pdf`).
+  </Step>
+</Steps>
+
+## Tips for your AV (algemene vergadering)
+
+<Tip>
+  Generate the report **at least one week before your AV** so your treasurer has time to review it and flag any discrepancies before the meeting.
+</Tip>
+
+Before you generate the final report, run through this checklist:
+
+<AccordionGroup>
+  <Accordion title="Verify all transactions are entered">
+    Make sure every income and expense for the werkjaar has been recorded — either by importing your bank statement CSV (Pro/Premium) or by adding transactions manually. Check the balance against your actual bank account balance to confirm nothing is missing.
+  </Accordion>
+  <Accordion title="Check category consistency">
+    Open the **Categorieën** tab and look for any transactions that ended up in a generic or misspelled category. Reassign them before generating the report so the category breakdown is clean and readable.
+  </Accordion>
+  <Accordion title="Confirm your organisation details are up to date">
+    Go to **Beheer → Instellingen** and verify that your organisation's name and logo are correct. These appear in the header of every report.
+  </Accordion>
+  <Accordion title="Archive the CSV export as a backup">
+    After generating the PDF, also click **Exporteer CSV** in the Transacties tab to download a machine-readable backup of all transactions. Store both files together with your other administrative records for the season.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  The annual report only includes transactions whose booking **date falls within the selected werkjaar's start and end date**. If you entered a transaction with an incorrect date (e.g. a September payment dated in August), it will appear in the wrong werkjaar's report. Correct the date on the transaction before generating the final PDF.
+</Note>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I generate a report for a past werkjaar?">
+    Yes. Use the werkjaar selector in the top-right corner to switch to any previous season. The report will reflect the transactions recorded for that period.
+  </Accordion>
+  <Accordion title="The report shows no transactions even though I have bookings">
+    Check that the werkjaar selector is set to the correct season and that your transactions have dates within that season's date range. Transactions with dates outside the range are excluded from the report.
+  </Accordion>
+  <Accordion title="My organisation logo is not appearing in the report">
+    Upload your logo in **Beheer → Instellingen**. The logo must be a publicly accessible URL — logos uploaded directly in Kaspert are stored in Supabase Storage and work automatically.
+  </Accordion>
+  <Accordion title="Can I customise the PDF layout?">
+    The PDF layout is fixed. If you need a custom format, export the data as CSV and use a spreadsheet tool to create a presentation-ready version.
+  </Accordion>
+</AccordionGroup>

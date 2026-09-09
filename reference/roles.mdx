@@ -1,0 +1,81 @@
+---
+title: "User roles and permissions in Kaspert"
+sidebarTitle: "Roles"
+description: "Kaspert has two roles — admin and member — controlling who can view, edit, and manage finances, members, and organisation settings."
+---
+
+Every person you invite to your Kaspert organisation is assigned a **role** that determines what they can see and do across all modules. Kaspert keeps this model deliberately simple: there are exactly two roles, **admin** and **member**, so you always know who can change things and who can only observe. Admins — typically the treasurer (*penningmeester*) and group leaders — have full control over the organisation's data, while members get enough visibility to stay informed and submit their own expense requests.
+
+## Role comparison
+
+The table below lists every significant action in Kaspert and whether each role can perform it.
+
+| Action | Admin | Member |
+|---|:---:|:---:|
+| View kasboek (ledger) | ✅ | ✅ (read-only) |
+| Add / edit / delete transactions | ✅ | ❌ |
+| Import bank CSV | ✅ | ❌ |
+| Manage categories | ✅ | ❌ |
+| View betalingsopvolging | ✅ | ❌ |
+| Manage payment obligations | ✅ | ❌ |
+| Manage webshop | ✅ | ❌ |
+| Submit expense requests | ✅ | ✅ |
+| Approve / reject expense requests | ✅ | ❌ |
+| View members list | ✅ | ❌ |
+| Add / edit / delete members | ✅ | ❌ |
+| Change organisation settings | ✅ | ❌ |
+| Invite / remove team members | ✅ | ❌ |
+| Change plan / billing | ✅ | ❌ |
+
+---
+
+## How roles are assigned
+
+<Steps>
+  <Step title="Organisation creator becomes admin automatically">
+    The first user who creates an organisation in Kaspert is granted the **admin** role immediately. No manual assignment is needed.
+  </Step>
+  <Step title="Choose a role when sending an invitation">
+    When you invite someone via **Beheer → Leden → Uitnodigen**, you select either **Admin** or **Member** before sending the invitation email. The invited person inherits that role as soon as they accept.
+  </Step>
+  <Step title="Change a role at any time">
+    Admins can promote a member to admin — or demote an admin to member — at any time from **Beheer (`/admin`) → Leden**. Role changes take effect the next time the affected user loads the app.
+  </Step>
+</Steps>
+
+<Warning>
+  Your organisation must always have at least one active admin. Kaspert will block an action that would leave the organisation without any admin (e.g. the last admin demoting themselves).
+</Warning>
+
+---
+
+## Read-only mode for members
+
+Members can open the kasboek at `/dashboard` and see the full transaction list and running balance for any werkjaar — but they cannot add, edit, or delete anything. Kaspert makes this state visible with a **"Read-only"** banner in the page header, so members are never confused about why the "Add transaction" button is absent.
+
+<Info>
+  Read-only access to the kasboek is intentional. Sharing financial transparency with your team builds trust and makes it easier for members to reconcile their own expense submissions against the ledger — without risking accidental edits.
+</Info>
+
+---
+
+## What members *can* do
+
+Even without write access to the kasboek, members are not locked out of participation:
+
+<CardGroup cols={2}>
+  <Card title="Submit expense requests" icon="receipt">
+    Members can navigate to **Onkosten (`/onkosten`)** and submit a reimbursement request with a description, amount, date, and an optional photo of the receipt. The request enters the queue as a `pending_expense` and awaits admin approval.
+  </Card>
+  <Card title="View the kasboek" icon="eye">
+    Members see the full transaction history and balance for any werkjaar in read-only mode. This gives them insight into how group funds are being used without granting edit rights.
+  </Card>
+</CardGroup>
+
+---
+
+## Public pages (no account required)
+
+<Note>
+  Several Kaspert pages are **fully public** — no Kaspert account is needed to access them. This covers the webshop order page, the member enrolment form, and the expense submission form. Parents ordering camp gear, new members signing up, or volunteers submitting receipts can all do so without creating an account. Only the back-office data (approvals, ledger, reports) requires a login.
+</Note>

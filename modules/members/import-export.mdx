@@ -1,0 +1,110 @@
+---
+title: "Import and export member data in Kaspert"
+sidebarTitle: "Import & Export"
+description: "Bulk import members from an Excel or CSV file and export the full member list with custom question answers for federation reporting or archiving."
+---
+
+Kaspert supports both bulk import and export of member data, making it straightforward to migrate from another system or to prepare your annual federation report. The import wizard handles CSV and Excel files with AI-assisted column mapping so you don't have to match every column by hand. The export produces a clean `.xlsx` file that includes all standard fields as well as any custom enrollment question answers you've configured — ready to hand to your koepelorganisatie.
+
+## Importing members
+
+<Info>
+  The import tool creates members and their enrollments for the **currently selected werkjaar**. Before starting, make sure the correct season is selected in the top-right werkjaar dropdown on the Leden page.
+</Info>
+
+<Steps>
+  <Step title="Open the import dialog">
+    Navigate to **Leden** (`/leden`), confirm the correct werkjaar is selected in the top-right dropdown, and click **Importeer leden**.
+  </Step>
+  <Step title="Prepare your file">
+    The import accepts `.xlsx`, `.xls`, `.csv`, and `.txt` files with up to **500 rows**. The first row must be a header row. Required columns are **Voornaam** and **Achternaam**; all others are optional:
+
+    | Column | Required | Notes |
+    |--------|----------|-------|
+    | Voornaam | Yes | Member first name |
+    | Achternaam | Yes | Member last name |
+    | Geboortedatum | No | Accepts `DD/MM/YYYY`, `DD-MM-YYYY`, or `YYYY-MM-DD` |
+    | Straat | No | Street and house number |
+    | Postcode | No | Postal code |
+    | Gemeente | No | Municipality |
+    | Tak | No | Tak name (must match exactly, or you'll be asked to create it) |
+    | E-mail ouder | No | Guardian email — used to link or create a guardian record |
+    | Telefoon ouder | No | Guardian phone number |
+    | Naam ouder | No | Guardian full name; split into first and last name automatically |
+
+  </Step>
+  <Step title="Upload the file">
+    Click the file input in the dialog and select your file. Kaspert reads the file in the browser — nothing is sent to the server until you confirm the import.
+  </Step>
+  <Step title="Map the columns">
+    Kaspert first tries to match columns by name automatically (e.g. a column named *"Geboortedatum"* is mapped to birth date). It then makes an AI-assisted attempt to identify columns it couldn't match by name, using the actual data as context. You see a **"automatisch herkend"** badge on columns matched by AI.
+
+    Review all mappings and correct any that are wrong using the dropdown next to each field. You only need to map **Voornaam** and **Achternaam** — all other fields are optional.
+  </Step>
+  <Step title="Preview and confirm">
+    Click **Volgende**. Kaspert shows a preview of all rows with a status for each:
+
+    - **Nieuw lid** — will be created
+    - **Bestaand lid** — already exists (matched by first name + last name + birth date) and will be skipped
+    - **Fout** — missing required data or an unparseable birth date
+
+    If any rows reference a **tak name that does not exist**, a card appears listing the unknown takken. You can check a box next to each one to have Kaspert create the tak automatically with a €0 membership fee. You can update the fee later in the Takken tab.
+  </Step>
+  <Step title="Run the import">
+    Click **Importeer N leden**. Kaspert creates each new member, their guardian record (if email or name was provided), and an enrollment for the selected werkjaar. After completion, a summary shows the number of members created, skipped, and failed.
+  </Step>
+</Steps>
+
+<Warning>
+  Duplicate detection is based on first name + last name + birth date. If a member has no birth date in your file, two members with the same name will be treated as distinct. Always include birth dates when possible to avoid duplicate records.
+</Warning>
+
+## Exporting members
+
+The export downloads all currently visible rows as an Excel file.
+
+<Steps>
+  <Step title="Select the right werkjaar">
+    Use the werkjaar dropdown in the top-right corner of the Leden page to choose the season you want to export.
+  </Step>
+  <Step title="Apply filters (optional)">
+    Filter by tak using the tak dropdown, or search by name using the search box. Only the rows that pass the current filter are included in the export — use this to export a single tak at a time if needed.
+  </Step>
+  <Step title="Click 'Exporteer Excel'">
+    The button is in the top-right area of the **Leden** tab. Your browser downloads a file named:
+
+    ```text
+    leden-{werkjaar}-{YYYY-MM-DD}.xlsx
+    ```
+  </Step>
+</Steps>
+
+### What the export includes
+
+| Column | Notes |
+|--------|-------|
+| Voornaam | |
+| Achternaam | |
+| Geboortedatum | |
+| Tak | Omitted in self-enrollment mode |
+| Lidgeld | Formatted as `€#,##0.00` |
+| Status | `Betaald` or `Openstaand` |
+| Straat | |
+| Postcode | |
+| Gemeente | |
+| *Custom question columns* | One column per active custom question; medical questions are marked with a ⚕ symbol in the header |
+
+The export reflects the **filtered view** — if you've filtered by tak, only members of that tak are exported. Remove all filters before exporting to get the complete member list.
+
+<Tip>
+  Export the full list at the end of each season for your federation (koepelorganisatie) reporting. The Excel file includes all required fields formatted for straightforward copy-paste into federation systems. Clear any active filters first so every member is included.
+</Tip>
+
+## Manually adding a single member
+
+If you want to add one member without going through the import wizard, click **Lid toevoegen** on the **Leden** tab. A dialog lets you fill in:
+
+- **Kind**: first name, last name, birth date, address, tak
+- **Ouder / voogd** (optional): first name, last name, email, phone
+
+Kaspert creates the member record, the guardian record (if provided), and an enrollment for the current werkjaar in one step. The membership fee is taken from the selected tak automatically.

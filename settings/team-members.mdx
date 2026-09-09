@@ -1,0 +1,93 @@
+---
+title: "Invite and manage your team in Kaspert"
+sidebarTitle: "Team Members"
+description: "Invite admins and members via email, manage roles, and remove users from your Kaspert organisation — all from the Beheer > Leden tab."
+---
+
+Kaspert lets you build a shared workspace for your entire leadership team. Admins can book transactions, manage members, approve expenses, and change settings together in real time. Members get read-only access to the kasboek and can submit expense claims through the Onkosten module. You manage everyone from **Beheer** (`/admin`) > **Leden** tab.
+
+## Roles in Kaspert
+
+<CardGroup cols={2}>
+  <Card title="Admin" icon="shield-check">
+    Full access to every enabled module. Admins can book and edit transactions, manage members and their data, approve or reject expense claims, configure organisation settings, and invite or remove other users.
+  </Card>
+  <Card title="Member" icon="user">
+    Limited access intended for leaders who need visibility but not full control. Members can view the kasboek in read-only mode and submit expense requests through the public Onkosten link. They cannot change settings or book transactions.
+  </Card>
+</CardGroup>
+
+<Note>
+  The number of admins you can have depends on your plan. The **Free** plan allows **1 admin**, **Basic** allows up to **3 admins**, and **Pro** and **Premium** allow **unlimited admins**. If you reach the limit, you will see a notification in the Leden tab with a link to upgrade your plan.
+</Note>
+
+## Invite a team member
+
+<Steps>
+  <Step title="Open Beheer > Leden">
+    Navigate to `/admin` and click the **Leden** tab.
+  </Step>
+  <Step title="Enter the email address">
+    Type the person's email address in the **Lid uitnodigen** field at the top of the page.
+  </Step>
+  <Step title="Send the invitation">
+    Click **Uitnodigen**. Kaspert sends an email to that address with a sign-up link for your organisation.
+  </Step>
+  <Step title="Wait for acceptance">
+    The invitation appears in the **Uitnodigingen** section with a **Wachtend** (pending) badge until the person accepts. Once they create their account and accept, they move to the **Leden** list.
+  </Step>
+</Steps>
+
+<Tip>
+  Invite your whole leadership team as admins at the very start of the season so everyone can start booking transactions and managing the kasboek together straight away — no need to wait for a single treasurer to process everything.
+</Tip>
+
+All new invitees join with **Member** role by default. Promote them to Admin immediately after they accept if they need full access (see below).
+
+## Change a member's role
+
+You can promote a member to admin or demote an admin to member at any time, as long as your plan's admin limit allows it.
+
+<Steps>
+  <Step title="Find the person in the Leden list">
+    Scroll down to the **Leden** section in Beheer > Leden.
+  </Step>
+  <Step title="Click the role icon">
+    - To **promote to admin**: click the shield-with-check icon (🛡️✓) next to the member. Confirm in the dialog.
+    - To **demote to member**: click the shield-minus icon (🛡️−) next to the admin. Confirm in the dialog.
+  </Step>
+</Steps>
+
+<Note>
+  Kaspert always requires at least one admin per organisation. You cannot demote the last remaining admin. You also cannot demote or remove yourself — use another admin account to do so if needed.
+</Note>
+
+## Remove a member from your organisation
+
+Removing a member revokes their access to your organisation immediately. Their Kaspert account is not deleted — they simply lose membership in your organisation.
+
+<Steps>
+  <Step title="Find the person in the Leden list">
+    Go to Beheer > Leden and locate the member.
+  </Step>
+  <Step title="Click the remove icon">
+    Click the trash icon (🗑️) next to their name.
+  </Step>
+  <Step title="Confirm">
+    A confirmation dialog warns you that this action cannot be undone. Click **Verwijderen** to proceed.
+  </Step>
+</Steps>
+
+<Warning>
+  Removing a member is immediate and cannot be undone from the UI. If you remove someone by mistake, you can re-invite them by sending a new invitation to the same email address.
+</Warning>
+
+## Revoke a pending invitation
+
+If you sent an invitation to the wrong address or the invite was shared too widely, you can revoke it before it is accepted.
+
+In the **Uitnodigingen** section, click the trash icon (🗑️) next to the pending invitation. It is deleted immediately and the sign-up link in the email becomes invalid.
+
+## Audit log
+
+Every change to transactions — who booked what, when, and what was modified — is recorded in the **Wijzigingslogboek** (audit log). Click **Bekijk alle transactiewijzigingen** in the Leden tab to open the full audit trail. This is useful for accountability within a larger leadership team.

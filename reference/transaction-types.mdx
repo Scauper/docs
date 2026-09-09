@@ -1,0 +1,110 @@
+---
+title: "Transaction types and sources in Kaspert"
+sidebarTitle: "Transaction Types"
+description: "Every kasboek entry carries a type (income, expense, or pending_expense) and a source (manual, bank_import, or reconciled) that together describe what it is and where it came from."
+---
+
+Every entry in Kaspert's kasboek is a **transaction** — a single financial event that either adds money to your organisation's balance or reduces it. To make reporting, filtering, and reconciliation reliable, every transaction carries two classification fields: a `type` that describes the economic direction of the money, and a `source` that records how the transaction entered the system. Understanding these two fields will help you make sense of every number you see in the ledger and in the annual report.
+
+---
+
+## Transaction types
+
+The `type` field answers the question: *what kind of financial event is this?*
+
+| Type | Description |
+|---|---|
+| `income` | Money **received** by the organisation — e.g. membership fees paid by parents, sales from the webshop, fundraising proceeds, or donations. |
+| `expense` | Money **spent** by the organisation — e.g. camp costs, materials, insurance premiums, activity fees. |
+| `pending_expense` | An expense **submitted by a member** via the Onkosten module, awaiting admin approval. Not yet counted in the balance. |
+
+### How `pending_expense` works
+
+When a member (or an admin on behalf of someone) submits a reimbursement request in the **Onkosten** module at `/onkosten`, Kaspert creates a `pending_expense` transaction. This keeps the request visible in the ledger alongside other entries without distorting the current balance — the amount is held in a separate queue until an admin acts on it.
+
+<Steps>
+  <Step title="Member submits an expense">
+    The member fills in the amount, description, date, and optionally attaches a receipt photo. Kaspert creates a `pending_expense` transaction linked to their account.
+  </Step>
+  <Step title="Admin reviews the request">
+    Admins see all pending expense requests in **Onkosten (`/onkosten`)**. They can open each request, inspect the receipt, and choose to approve or reject it.
+  </Step>
+  <Step title="Approval converts the type">
+    Once approved, the transaction's `type` changes from `pending_expense` to `expense`. The amount is now included in the balance calculation and appears in the ledger as a regular expense.
+  </Step>
+  <Step title="Rejection removes it">
+    If the request is rejected, the `pending_expense` transaction is removed from the ledger entirely and the member is notified.
+  </Step>
+</Steps>
+
+<Note>
+  Only `income` and `expense` transactions affect the kasboek balance. A `pending_expense` is visible in the transaction list but is **excluded from the running total** until it is approved.
+</Note>
+
+---
+
+## Transaction sources
+
+The `source` field answers the question: *how did this transaction enter Kaspert?*
+
+| Source | Description |
+|---|---|
+| `manual` | Entered by hand directly in the kasboek by an admin. The most common source for day-to-day bookkeeping. |
+| `bank_import` | Imported from a bank statement CSV file. Kaspert parses the file and creates one transaction per row, preserving the original bank reference in the description. |
+| `reconciled` | Automatically linked to a payment obligation in the betalingsopvolging module. Kaspert creates or tags this transaction when an incoming payment is matched to an open obligation. |
+
+<Info>
+  The `source` field is optional in the data model (it can be `undefined` for legacy records), but all new transactions created through the Kaspert interface always carry an explicit source value.
+</Info>
+
+---
+
+## Amount conventions
+
+Kaspert stores all amounts as **positive numbers**, regardless of type. The `type` field — not a negative sign — determines whether the amount reduces or increases the balance:
+
+- `income` of `€50.00` → balance **increases** by €50.00
+- `expense` of `€50.00` → balance **decreases** by €50.00
+- `pending_expense` of `€50.00` → balance **unchanged** until approved
+
+This convention makes filtering and summing across a single `amount` column straightforward and avoids sign-confusion when reading raw database records.
+
+---
+
+## TypeScript reference
+
+The complete type definitions used throughout the Kaspert frontend:
+
+```typescript title="src/types/transaction.ts"
+export interface Transaction {
+  id: string;
+  type: "income" | "expense" | "pending_expense";
+  amount: number;               // always positive (> 0)
+  description: string;
+  date: string;                 // YYYY-MM-DD
+  category: string;
+  receiptUrl?: string;          // URL to receipt image in storage
+  source?: "manual" | "bank_import" | "reconciled";
+  linkedTransactionId?: string; // links income to expense for reconciliation
+}
+```
+
+The `linkedTransactionId` field is used by the betalingsopvolging module to create a two-way reference between an incoming payment (`income`, source `reconciled`) and the obligation it settles — making it easy to trace which bank transfer paid off which outstanding fee.
+
+---
+
+## Putting it all together
+
+<Accordion title="Example: a complete season's transaction mix">
+  A typical werkjaar for a Chiro group might contain the following mix of types and sources:
+
+  | Date | Description | Type | Source | Amount |
+  |---|---|---|---|---|
+  | 2024-09-05 | Lidgeld Tibo | `income` | `reconciled` | €45.00 |
+  | 2024-09-05 | Lidgeld Sara | `income` | `bank_import` | €45.00 |
+  | 2024-10-12 | Kamp materiaal | `expense` | `manual` | €120.00 |
+  | 2024-11-03 | Benzine terugbetaling | `pending_expense` | `manual` | €38.50 |
+  | 2024-11-04 | Benzine terugbetaling ✓ | `expense` | `manual` | €38.50 |
+
+  In this example, the benzine request was submitted as a `pending_expense` on the 3rd and approved on the 4th — at that point the original pending record was replaced by a confirmed `expense`.
+</Accordion>

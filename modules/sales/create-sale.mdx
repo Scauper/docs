@@ -1,0 +1,140 @@
+---
+title: "Create and publish a sale or event in Kaspert"
+sidebarTitle: "Create a Sale"
+description: "Set up products, prices, and custom questions, configure Stripe or Payconiq payments, and share your public order URL in a few simple steps."
+---
+
+Creating a sale in Kaspert takes only a few minutes. You define the products you want to sell, set your prices, optionally collect extra information from buyers (such as a T-shirt size or a dietary preference), choose how buyers will pay, and then flip a switch to go live. The resulting public order page is a clean, mobile-friendly URL you can drop into a newsletter, a Facebook post, or a WhatsApp group — no buyer account required.
+
+## Navigate to Verkoop
+
+Open your Kaspert dashboard and click **Verkoop** in the sidebar (or go directly to `/verkoop`). This is the home of all your sales, both active and archived.
+
+## Setting up your sale
+
+<Steps>
+
+### Create a new sale
+
+Click the **Nieuwe verkoop** button in the top-right corner. Enter a descriptive name for your sale — for example, `Wafelverkoop maart 2025` or `Kampinschrijving zomer 2025` — and click **Aanmaken**. Kaspert generates a unique URL slug from the name automatically; you can change it later in the sale's settings.
+
+### Add products
+
+Inside your new sale, click **Product toevoegen** to add your first item. Each product has the following fields:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| **Name** | ✅ | The product name shown on the order page, e.g. `Wafel`, `Groot pakket`, `Kampticket` |
+| **Price** | ✅ | Price per unit in euro |
+| **Description** | ✗ | A short description shown beneath the product name |
+| **Quantity limit** (`max_quantity`) | ✗ | Maximum total units available across all orders — leave empty for unlimited |
+| **Per-order limit** (`max_per_order`) | ✗ | Maximum quantity a single buyer can add to their cart |
+
+Repeat this step for every product you want to include. You can drag and drop products to reorder them on the public page.
+
+<Tip>
+  Grouping related products into **categories** (e.g. "Dranken" and "Eten") keeps the order page tidy when you have more than four or five items. Add a category from the sale detail view before adding products.
+</Tip>
+
+### Add custom questions (optional)
+
+If you need extra information from buyers for a specific product — for example, a T-shirt size, a meat choice for a barbecue, or a child's name for a camp — open the product and click **Vraag toevoegen** under the **Vragen** tab.
+
+Each question has:
+
+- **Label** — the question text shown to the buyer, e.g. `Grootte T-shirt`
+- **Help text** — optional extra explanation shown beneath the label
+- **Question type** — choose from:
+  - **Single choice** — buyer picks exactly one option from a list
+  - **Multiple choice** — buyer picks one or more options (min/max selectable)
+  - **Quantity per option** — buyer enters a quantity for each option (e.g. 2× chicken, 1× beef)
+  - **Number** — buyer types a number (with optional min/max validation)
+  - **Free text** — buyer types a free-form answer
+  - **Checkbox** — a simple yes/no tick
+- **Required** — toggle on to block checkout until the buyer answers
+
+For choice-type questions, add the individual answer options (e.g. `XS`, `S`, `M`, `L`, `XL`). You can also attach a price surcharge to any option — for example, an `XXL` option at +€2.
+
+### Configure payment methods
+
+Go to **Instellingen → Betaalmethodes** inside your sale. Kaspert supports four payment methods — enable whichever ones apply to your sale:
+
+<Tabs>
+  <Tab title="Bank transfer (overschrijving)">
+    The buyer receives your IBAN and a payment reference in the confirmation email. Enter your **IBAN** and **beneficiary name** (your organisation's name) in the settings. This method has no processing fee beyond Kaspert's own transaction fee.
+  </Tab>
+  <Tab title="Payconiq QR">
+    A Payconiq QR code is shown at checkout. The buyer scans it with the Payconiq app. To enable this method, your organisation must have a Payconiq business key configured under **Beheer → Organisatie → Betalingen**.
+  </Tab>
+  <Tab title="Stripe (card & Bancontact)">
+    Buyers pay online with a credit card or Bancontact. Funds are paid out to your linked bank account via Stripe Connect. You must complete Stripe Connect onboarding first — see the note below.
+  </Tab>
+  <Tab title="On-site payment">
+    No online payment is taken. The buyer simply places an order and pays in person at pick-up. Kaspert records the order with payment status "ter plaatse".
+  </Tab>
+</Tabs>
+
+<Note>
+  **Stripe Connect setup required before accepting card payments.** Go to **Beheer → Organisatie → Betalingen** and click **Stripe koppelen** to start the onboarding flow. You will need your organisation's legal name, address, and bank account details. Once Stripe marks your account as `charges_enabled`, the Stripe payment method becomes available to enable on your sales.
+</Note>
+
+### Write your shop description
+
+Go to **Instellingen → Lay-out**. Here you can set:
+
+- **Page title** (`hero_title`) — the large heading displayed at the top of your order page
+- **Description** (`hero_description`) — a paragraph below the title that explains the sale, event details, pick-up info, or anything else buyers should know
+- **Hero image** — an optional full-width banner photo (recommended: landscape, at least 1200 px wide, max 5 MB)
+- **Gallery photos** — optional additional photos shown at the bottom of the page
+
+Not sure what to write? Click the **Schrijf mijn teksten** button to open the AI copy assistant. It generates a title and description based on your sale name and a brief prompt — you can edit the result before saving.
+
+A live preview of your public order page is embedded directly in the layout editor so you can see changes before saving.
+
+### Set the sale as active
+
+Back in your sale overview, find the **Actief** toggle and turn it on. This makes the public order page accessible. While a sale is inactive, the order page shows a "closed" message and buyers cannot place orders.
+
+You can also configure automatic open and close times under **Instellingen → Open/sluit-tijden**. For example, set the shop to open on the day you publish your newsletter and close at midnight on the last order day.
+
+### Share the public link
+
+Copy the public URL shown at the top of your sale detail page. The URL format is:
+
+```
+https://kaspert.be/bestellen/{companySlug}/{saleSlug}
+```
+
+Share this link in your communication channels — a newsletter, Facebook event, WhatsApp group, or printed QR code. Buyers can open it on any device without logging in.
+
+</Steps>
+
+## Managing orders
+
+Once buyers start placing orders, click on your sale in the Verkoop overview to see the **Bestellingen** tab. For each order you can see:
+
+- Order number and creation date
+- Buyer name and email address
+- Products ordered and quantities
+- Total amount and payment status (`betaald`, `open`, `ter plaatse`, `geannuleerd`)
+- Payment method used
+- Answers to any custom questions
+
+Click an order row to expand the full detail, including line items, question answers, and any discount code applied.
+
+<Tip>
+  Click **Exporteren** to download all orders as an Excel file. This is useful for preparing pick-up lists, seating plans, or reporting to your group's national association.
+</Tip>
+
+## Confirmation email
+
+Kaspert automatically sends an order confirmation email to the buyer immediately after checkout. The email includes:
+
+- The buyer's name and order number
+- A full product overview with quantities and prices
+- Payment instructions (IBAN, reference, and Payconiq QR code if applicable) — or a "you pay on-site" notice
+- Your custom intro and closing text
+
+To customise the email, go to **Instellingen → Bevestigingsmail**. You can set a custom subject line and edit the intro and closing paragraphs using the rich text editor. The product table, totals, and payment block are generated automatically and cannot be removed.
+
+You can also set one or more **notification email addresses** under **Instellingen → Meldingen** to receive an alert each time a new order arrives.

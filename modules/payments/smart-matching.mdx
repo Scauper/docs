@@ -1,0 +1,117 @@
+---
+title: "Automatically match bank payments to obligations"
+sidebarTitle: "Smart Matching"
+description: "Kaspert scores bank transactions against open obligations using name, keywords, and amount signals to automatically suggest the right match."
+---
+
+Smart matching is the engine that saves you from manually comparing your bank statement line by line against a list of expected payers. When income transactions are recorded in your kasboek — whether entered manually or imported from a bank export — Kaspert automatically scores each unmatched transaction against every open obligation and surfaces the most likely candidates as inline suggestions. You review a suggestion, click **Koppel**, and Kaspert marks the obligation as paid and stores the link. No spreadsheet, no guesswork.
+
+## How the scoring algorithm works
+
+For each open obligation, Kaspert evaluates every unmatched income transaction and produces a relevance score. The score is assembled from four independent signals:
+
+| Signal | Points | Notes |
+|---|---|---|
+| Exact name part found in transaction description | +30 per matching part | Each word of the name longer than 2 characters is checked individually |
+| Fuzzy name match (within 2 typos, via Levenshtein distance) | +15 per matching part | Catches spelling variants and common transcription errors |
+| Payment type keyword found in transaction description | +20 per keyword | Keywords are extracted from the payment type name, e.g. "kamp", "zomer" |
+| Obligation memo keyword found in transaction description | +10 per keyword | Keywords from the optional memo field on the obligation |
+| Exact amount match (within €0.01) | +10 bonus | Added on top of text signals, never as the sole basis |
+| Near amount match (within 10% of expected) | +5 bonus | For transactions where a small rounding difference exists |
+
+<Note>
+  A transaction is only surfaced as a suggestion if it reaches a minimum score of **25 points** AND contains at least one textual match — from the name, payment type, or memo. A transaction that has only a matching amount but a completely unrelated description will never be suggested automatically. This prevents false positives in busy bank accounts where multiple transactions share the same round amount.
+</Note>
+
+When the top-scoring suggestion has a score of 40 or higher (indicating a confident full-name or name-plus-amount match), Kaspert narrows the suggestions to a maximum of 2 candidates that are within 5 points of the top score. For weaker matches, up to 5 candidates are shown.
+
+## Reading suggestions in the UI
+
+For each open obligation, Kaspert displays matching suggestions inline beneath the person's name in the obligations table. Each suggestion card shows:
+
+- The **transaction date** (formatted in Belgian date notation, e.g. *15/04/2025*)
+- The **transaction description** as it appears in the kasboek
+- The **received amount**, coloured green if it exactly matches the obligation amount or orange if it differs
+- A **Koppel** button to accept the match
+
+If multiple suggestions exist, navigation arrows appear above the card. Use the **‹** and **›** arrows to browse through them, with the current index shown as "1/3". Only one suggestion is visible at a time to keep the table readable.
+
+## Match quality indicators
+
+Once an obligation is linked to a transaction, an icon appears next to the "Betaald" badge to communicate match quality:
+
+<CardGroup cols={2}>
+  <Card title="✅ Green checkmark" icon="circle-check">
+    The amount matches exactly **and** the person's full name was found in the transaction description. This is a high-confidence automatic match.
+  </Card>
+  <Card title="🟡 Orange question mark" icon="circle-question">
+    The amount matches exactly but the name was not clearly found in the transaction description. The payment may be from someone paying on behalf of the member, or the payer used a different name or reference. Click the icon to manually mark it as verified.
+  </Card>
+  <Card title="🔶 Orange triangle" icon="triangle-exclamation">
+    The obligation is linked but the transaction amount does not match exactly. The discrepancy is shown in the linked transaction preview. This requires your attention — the payer may have transferred the wrong amount.
+  </Card>
+  <Card title="No icon" icon="circle-minus">
+    The obligation was marked as paid manually without a transaction link. No match quality indicator is shown.
+  </Card>
+</CardGroup>
+
+You can click the green checkmark or orange question mark icon to manually toggle the verification status. This lets you override an uncertain match and mark it as confirmed, which changes the icon from 🟡 to ✅.
+
+## Accept a suggestion
+
+<Steps>
+  <Step title="Locate the suggestion">
+    Find the open obligation in the list. If Kaspert has found at least one candidate, a labelled suggestion card appears below the person's name.
+  </Step>
+  <Step title="Review the suggestion">
+    Check the transaction date, description, and amount. If the amount is shown in orange, the received amount differs from what was expected — consider whether this is the right payment.
+  </Step>
+  <Step title="Click 'Koppel'">
+    Click the **Koppel** button on the suggestion card. The obligation is immediately marked as "Betaald" and linked to that transaction. The suggestion panel disappears and the match quality indicator appears.
+  </Step>
+</Steps>
+
+## Manual matching
+
+When the automatic suggestions are insufficient — for example, because the payer used a completely different name or reference — you can search through all income transactions yourself.
+
+<Steps>
+  <Step title="Open the match dialog">
+    Click the **link icon** (🔗) in the actions column of any open obligation. A full-screen search dialog opens, pre-populated with the person's name as the initial search query.
+  </Step>
+  <Step title="Search for the transaction">
+    Type any part of the transaction description, memo, or amount in the search field. The list filters in real time, showing all unmatched income transactions ordered by closest amount match. Transactions with an amount exactly matching the obligation are highlighted in green.
+  </Step>
+  <Step title="Click a row to link it">
+    Click any row in the dialog to link that transaction to the obligation. The dialog closes and the obligation is marked as paid.
+  </Step>
+</Steps>
+
+<Note>
+  The manual match dialog only shows income transactions that have not yet been linked to another obligation. Transactions already matched elsewhere are excluded from the search results.
+</Note>
+
+## Unlink a transaction
+
+If you linked the wrong transaction — or if you want to reset an obligation to "Openstaand" — you can unlink at any time:
+
+1. Open the **three-dot menu** on the obligation row.
+2. Choose **Markeer als openstaand** (or the equivalent unlink option if it appears directly in the menu).
+3. The obligation reverts to "Openstaand" and the bank transaction is freed up for matching with other obligations.
+
+<Warning>
+  Unlinking only removes the connection between the obligation and the transaction in Kaspert. It does not affect the transaction itself in the kasboek — the income entry remains exactly as it was.
+</Warning>
+
+## Tips for better automatic matching
+
+<Note>
+  The quality of automatic suggestions depends entirely on the information in your bank transaction descriptions. The more closely the payment references match the names in your obligations list, the more accurate the suggestions will be.
+</Note>
+
+Here are practical ways to improve match rates:
+
+- **Ask payers to include their name** in the structured communication field when making the transfer. Most Belgian banking apps have a "mededeling" field specifically for this.
+- **Use a consistent memo format** in your obligations, such as "Kamp 2025 — Jan Janssen". The memo keywords are used as an additional signal in scoring.
+- **Match the payment type name to common phrasing** your members might use — if your type is "Kamp zomer 2025", the word "kamp" will be picked up from almost any transaction that mentions it.
+- **Import your bank statement** into the kasboek regularly so that Kaspert always has fresh transactions to score against.

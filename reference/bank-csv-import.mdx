@@ -1,0 +1,138 @@
+---
+title: "Bank CSV import format reference for Kaspert"
+sidebarTitle: "Bank CSV Format"
+description: "Exact column names, date and amount formats, and encoding rules Kaspert's bank import parser expects from KBC, ING, and compatible CSV exports."
+---
+
+Kaspert's bank import parser reads the CSV files that Belgian banks produce when you export your account history. It is optimised for KBC's export format but also supports ING and any other bank that produces a CSV with at minimum a date and an amount column. This page explains the exact column names, date formats, amount conventions, and encoding rules so you always know what to expect — and how to fix problems — when importing transactions from your bank.
+
+## Supported banks
+
+Kaspert automatically detects the bank format based on the column headers present in the first row of your CSV.
+
+<CardGroup cols={2}>
+  <Card title="KBC" icon="building-columns">
+    Detected when the file contains a `Datum` and `Bedrag` column. The parser also reads `Naam tegenpartij`, `Vrije mededeling`, and `Omschrijving` for the transaction description, along with optional `Debet` / `Credit` columns for income/expense direction.
+  </Card>
+  <Card title="ING" icon="building-columns">
+    Detected when the file contains an `Af Bij` or `Bedrag (EUR)` column header. ING exports use a fixed column order (date in column 0, description in column 1, direction in column 5, amount in column 6, message in column 8).
+  </Card>
+</CardGroup>
+
+<Note>
+  Other banks (Belfius, BNP Paribas Fortis, etc.) may work if their CSV contains compatible `Datum` and `Bedrag` columns. Test with a small export first. If the import fails, email support@kaspert.be with a (sanitised) sample file.
+</Note>
+
+---
+
+## Required columns
+
+The parser requires at least these two columns to be present in the header row. Column name matching is **case-insensitive**.
+
+| Column | Accepted name(s) | Format |
+|---|---|---|
+| Date | `Datum`, `date` | `DD/MM/YYYY` or `YYYY-MM-DD` |
+| Amount | `Bedrag`, `amount` | Decimal, comma **or** dot as separator (e.g. `45,00` or `45.00`) |
+
+If either column is missing, the import dialog shows the following error and no transactions are imported:
+
+```
+CSV-bestand bevat geen 'Datum' of 'Bedrag' kolom.
+Controleer of dit een KBC of ING export is.
+```
+
+---
+
+## Optional columns
+
+These columns are read when present. Their absence does not cause an error.
+
+| Column | Accepted name(s) | Used for |
+|---|---|---|
+| Free communication | `Vrije mededeling` | Transaction description |
+| Counterparty name | `Naam tegenpartij` | Prepended to the description |
+| General description | `Omschrijving` | Fallback description if no counterparty or free communication |
+| Debet | `Debet` | Explicit expense indicator (KBC enhanced export) |
+| Credit | `Credit` | Explicit income indicator (KBC enhanced export) |
+| Counterparty account | `Rekening tegenpartij` | Ignored during import |
+
+When multiple description columns are present, Kaspert builds the transaction description by combining `Naam tegenpartij` and `Vrije mededeling` with a dash separator (e.g. `Jan Janssen - Lidgeld 2024-2025`). If all description columns are empty, the description falls back to `Bankverrichting`.
+
+---
+
+## Amount handling
+
+Kaspert always stores the **absolute value** of the amount. The direction of the money flow is recorded separately in the `type` field.
+
+| Condition | Stored `type` |
+|---|---|
+| `Debet` column non-zero | `expense` |
+| `Credit` column non-zero | `income` |
+| No Debet/Credit columns, amount negative | `expense` |
+| No Debet/Credit columns, amount positive | `income` |
+| ING direction column = `Af` | `expense` |
+| ING direction column = `Bij` | `income` |
+
+A row is silently skipped if the parsed amount evaluates to `0` or `NaN`.
+
+---
+
+## Date format normalisation
+
+Regardless of the bank's original date format, Kaspert normalises every date to ISO 8601 (`YYYY-MM-DD`) before storing it. Rows with unparseable dates are skipped.
+
+| Bank format | Example input | Stored as |
+|---|---|---|
+| KBC Belgian format | `01/09/2024` | `2024-09-01` |
+| ISO 8601 (already normalised) | `2024-09-01` | `2024-09-01` |
+| ING compact format | `20240901` | `2024-09-01` |
+
+---
+
+## File encoding (Windows-1252 / ISO-8859-1)
+
+KBC exports its CSV files in **Windows-1252** encoding (also known as ISO-8859-1). This encoding includes special Belgian characters such as `é`, `ë`, `â`, and `ï` that are common in Flemish names and descriptions.
+
+Kaspert's import dialog reads the file with the `windows-1252` encoding setting in the browser's `FileReader` API, so accented characters appear correctly without any manual action on your part.
+
+<Warning>
+  If you open the CSV in Excel and then **re-save** it, Excel converts the encoding to UTF-8 or its own format. Characters like `é` then show up as `Ã©` in Kaspert. Always import the **original file directly from your bank** — never open and re-save it first.
+</Warning>
+
+Any remaining unrecognised characters (Unicode replacement character `\uFFFD`) are automatically replaced with an apostrophe (`'`) to avoid display issues.
+
+---
+
+## Duplicate detection
+
+When you import a CSV, Kaspert checks every row against your existing transactions to flag probable duplicates. A duplicate is detected when an existing transaction matches all three of the following criteria:
+
+- **Date**: exact match (`YYYY-MM-DD`)
+- **Amount**: difference less than €0.01
+- **Description**: exact string match (case-sensitive)
+
+Duplicate rows are highlighted in the import preview with a warning badge. They are **not** automatically excluded — you can still select and import them if you need to (for example, if a legitimate double payment occurred). Deselect the duplicate rows you want to skip, then click **Importeer selectie**.
+
+---
+
+## Sample KBC CSV structure
+
+Below is an example of the raw CSV structure produced by KBC's online banking export. The first two rows are account metadata that Kaspert skips; the header row appears later.
+
+```csv title="KBC Export Sample"
+"Rekeningnummer";"Naam van de rekening";"Rekeningtype";"Valuta";"BIC"
+"BE12 3456 7890 1234";"Kasrekening Chiro Sint-Pauwels";"Zichtrekening";"EUR";"KREDBEBB"
+
+"Datum";"Bedrag";"Valuta";"Omschrijving";"Naam tegenpartij";"Rekening tegenpartij";"Vrije mededeling"
+"01/09/2024";"-45,00";"EUR";"Betaling";"Brico";"";"Kamp materiaal verf"
+"15/09/2024";"120,00";"EUR";"Overschrijving";"Mama van Peeters";"BE98 0000 1234 5678";"Lidgeld Jan Janssen 2024-2025"
+"22/09/2024";"-18,50";"EUR";"Betaling";"Carrefour";"";"Vergadering snacks"
+```
+
+After import, these three rows become:
+
+| Date | Amount | Type | Description |
+|---|---|---|---|
+| 2024-09-01 | €45.00 | expense | Brico - Kamp materiaal verf |
+| 2024-09-15 | €120.00 | income | Mama van Peeters - Lidgeld Jan Janssen 2024-2025 |
+| 2024-09-22 | €18.50 | expense | Carrefour - Vergadering snacks |

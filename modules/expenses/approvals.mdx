@@ -1,0 +1,114 @@
+---
+title: "Review and approve expense submissions in Kaspert"
+sidebarTitle: "Approvals"
+description: "Admins and treasurers: review receipts, assign kasboek categories, approve or reject pending expenses, and reimburse members via SEPA QR code."
+---
+
+As the treasurer or admin of your youth organisation, the Onkosten dashboard is your single point of control for every expense your members submit. Instead of collecting paper receipts at meetings and manually entering them into a spreadsheet, you review each submission digitally, check the attached proof, and either approve or reject it — all in a few taps. Approved expenses flow straight into the kasboek without any extra data entry on your part.
+
+## Navigating to the Onkosten dashboard
+
+Go to **Onkosten** in the app header, or navigate directly to `/onkosten`. The page is only accessible to users with an admin role.
+
+At the top of the page you will see a badge showing how many expenses are currently awaiting your review. If there are no pending submissions, the page shows an empty state with instructions on how members can submit expenses using your public link.
+
+<Info>
+  To share your public submission link with members, look for the **QR code** icon on the Onkosten page. Your unique link is `https://kaspert.be/[companySlug]/onkosten`. You can share it via WhatsApp, your group's communication channel, or print the QR code to post at your meeting room.
+</Info>
+
+## What you see for each pending expense
+
+Each pending submission appears as a card with the following information:
+
+| Field | Description |
+|---|---|
+| **Description** | What the member bought (e.g. *Drank aankoop Colruyt*) |
+| **Amount** | The total in euros, shown as a negative (expense) figure |
+| **Date** | The date of the purchase |
+| **Submitted by** | The name the member entered when submitting |
+| **IBAN** | The member's Belgian bank account number for reimbursement |
+| **Proof** | A link labelled **Bekijk bewijs** — click it to open the receipt photo or PDF in a new tab |
+
+If no receipt was attached, the card shows *Geen bewijs* instead of the proof link. It is your call whether to approve an expense without proof — for small amounts from trusted leaders this may be fine, but for larger claims you may want to ask the member to resubmit with a receipt attached.
+
+## Approving an expense
+
+<Steps>
+  <Step title="Open the pending expense card">
+    Locate the expense in the list. Pending expenses are ordered with the most recent at the top.
+  </Step>
+  <Step title="Review the receipt">
+    Click **Bekijk bewijs** to open the receipt photo or PDF in a new tab. Check that the amount and date on the receipt match what the member entered in the form.
+  </Step>
+  <Step title="Assign a kasboek category (if kasboek module is enabled)">
+    If your organisation has the kasboek module active, a category dropdown appears on each expense card. You must select a category before you can approve. The available categories are: **Donaties**, **Evenementen**, **Materiaal**, **Vervoer**, **Eten**, and **Overig**. Choose the one that best matches the purchase.
+  </Step>
+  <Step title="Click the approve button">
+    Click the **Banknote** (approve) icon button on the right side of the card — labelled **Al betaald** on mobile. Kaspert removes the `[PENDING]` status, reformats the description as `[description] (door [name])`, and — if your kasboek module is enabled — immediately adds the transaction to the kasboek as an expense entry with the category and date from the submission.
+  </Step>
+</Steps>
+
+<Note>
+  Approved expenses appear in the kasboek at `/dashboard` as expense transactions. The receipt photo URL is stored as the `receiptUrl` on the transaction, so you can always trace an expense back to its original proof. The transaction description is automatically formatted as `[purchase description] (door [submitter name])` so you can identify who incurred each cost.
+</Note>
+
+## Paying via SEPA QR code
+
+If the member provided their IBAN, a **QR code** button appears alongside the approve and reject buttons. This generates a SEPA EPC QR code — the international standard used by Belgian banking apps such as KBC Mobile, Belfius, ING, and Argenta.
+
+<Steps>
+  <Step title="Click the QR button">
+    Tap the **QrCode** icon (labelled **QR betalen** on mobile) on the expense card. A panel expands below the card showing the QR code.
+  </Step>
+  <Step title="Scan with your banking app">
+    Open your bank's mobile app, navigate to the payment/transfer section, and use the QR scanner. The amount, recipient name, IBAN, and a payment reference (Terugbetaling: [description]) are pre-filled automatically.
+  </Step>
+  <Step title="Confirm the payment in your banking app">
+    Review the pre-filled details in your banking app and confirm the transfer. The payment is processed through your bank's normal channels.
+  </Step>
+  <Step title="Mark as paid in Kaspert">
+    After confirming the bank transfer, click **Betaald – markeer als afgehandeld** below the QR code. This approves the expense in Kaspert and (if kasboek is enabled) adds it to the kasboek, just like clicking the standard approve button.
+  </Step>
+</Steps>
+
+<Tip>
+  Using the QR code flow is the fastest way to reimburse a member: you pay and approve in one go without switching between your bank app and a manual transfer form. It is especially handy at the end of a camp when you have a stack of expenses to process.
+</Tip>
+
+## Rejecting an expense
+
+If a submission is incorrect, a duplicate, or lacks sufficient proof, you can reject it.
+
+Click the **XCircle** (reject) icon button on the expense card — labelled **Afwijzen** on mobile. Kaspert permanently removes the expense from the queue.
+
+<Warning>
+  Rejecting an expense **permanently deletes** the submission from Kaspert. There is no undo and no "rejected" archive to review later. If you accidentally reject a legitimate expense, ask the member to resubmit the form with their receipt — they can use the same public link as before. The original receipt photo will no longer be accessible.
+</Warning>
+
+## Managing the queue efficiently
+
+<AccordionGroup>
+  <Accordion title="Processing a high volume of expenses (e.g. after a camp)">
+    After a camp or major event, you may have many pending submissions at once. Work through them top-to-bottom — the most recent submissions appear first. For each one: open the proof, verify the amount and date, assign a category, and approve. Using the SEPA QR code button lets you pay and approve each expense without switching to a separate banking interface.
+  </Accordion>
+  <Accordion title="What if the receipt photo is unreadable?">
+    If the receipt is too blurry, dark, or incomplete to verify, reject the expense and contact the submitter directly. Ask them to re-photograph the receipt in better lighting and resubmit using the same public link. The rejection removes the unreadable submission from your queue.
+  </Accordion>
+  <Accordion title="What if the amount on the receipt differs from what was submitted?">
+    Always trust the receipt over the submitted amount. Before approving, edit the amount on the expense card to match the total on the physical receipt. This ensures the kasboek entry reflects the actual cost. If the discrepancy is large, consider contacting the submitter for clarification before approving.
+  </Accordion>
+  <Accordion title="Expenses without a kasboek module">
+    If your organisation does not have the kasboek module enabled, you can still use the Onkosten module to track and approve expenses. The category selector does not appear, and approved expenses are simply marked as handled — they do not create any kasboek entries. You can upgrade your plan at any time to enable the kasboek integration.
+  </Accordion>
+</AccordionGroup>
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="Submitting Expenses" icon="receipt" href="/modules/expenses/submitting-expenses">
+    Guide for members on how to submit receipts via the public form or the app.
+  </Card>
+  <Card title="Expenses Overview" icon="file-invoice" href="/modules/expenses/overview">
+    A full overview of how the Onkosten module works and plan requirements.
+  </Card>
+</CardGroup>

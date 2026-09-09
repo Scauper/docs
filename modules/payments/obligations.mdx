@@ -1,0 +1,136 @@
+---
+title: "Add and manage payment obligations per person"
+sidebarTitle: "Obligations"
+description: "Add obligations manually or import from Excel/CSV, then track paid and unpaid status, export results, and download PDF payment receipts."
+---
+
+A **payment obligation** represents a single person's expected payment within a payment type. It is the core record that Kaspert uses to track whether someone has paid. Each obligation stores the person's name, the amount they owe in euros, and an optional memo or description that can help Kaspert match the obligation to a bank transaction. Once an obligation is marked as paid — either manually or through smart matching — it shows a green "Betaald" badge and can optionally be linked to the specific bank transaction that settled it.
+
+## What an obligation contains
+
+| Field | Required | Description |
+|---|---|---|
+| **Naam** | Yes | The full name of the person who should pay. Used in smart matching. |
+| **Bedrag** | Yes | The exact amount expected, in euros. |
+| **Mededeling** | No | A free-text note, such as "Kamp 2025". Used as an additional keyword in matching. |
+
+## Add a single obligation
+
+<Steps>
+  <Step title="Select a payment type">
+    On the Betalingen page (`/betalingen`), make sure the correct payment type is selected in the dropdown at the top of the page.
+  </Step>
+  <Step title="Open the add dialog">
+    Click **Toevoegen** in the top-right area of the obligations list. A dialog appears with three fields.
+  </Step>
+  <Step title="Fill in the details">
+    Enter the person's name, the expected amount, and optionally a memo. For example:
+    - **Naam**: Jan Janssen
+    - **Bedrag**: 45.00
+    - **Mededeling**: Kamp 2025
+  </Step>
+  <Step title="Save the obligation">
+    Click **Toevoegen** to save. The obligation appears immediately in the list with the status "Openstaand".
+  </Step>
+</Steps>
+
+## Import from Excel or CSV
+
+If you have a list of participants in a spreadsheet, you can import all obligations at once instead of entering them one by one. Kaspert accepts `.xlsx`, `.xls`, and `.csv` files.
+
+<Steps>
+  <Step title="Prepare your spreadsheet">
+    Make sure your spreadsheet has at least two columns: one for the person's name and one for the amount. A third column for the memo is optional. Kaspert recognises the following column headers (case-insensitive):
+
+    - **Name column**: `Naam`, `Name`, `Persoon`, `Lid`
+    - **Amount column**: `Bedrag`, `Amount`, `Prijs`, `Price`
+    - **Memo column**: `Mededeling`, `Description`, `Omschrijving`, `Desc`, `Memo`
+
+    The first row must contain the headers.
+  </Step>
+  <Step title="Example file format">
+    Here is an example CSV file that Kaspert can import:
+
+    ```csv title="kamp_2025_deelnemers.csv"
+    Naam;Bedrag;Mededeling
+    Jan Janssen;45.00;Kamp 2025
+    Marie Peeters;45.00;Kamp 2025
+    Tom De Smet;45.00;Kamp 2025
+    Lena Van den Berg;45.00;Kamp 2025
+    ```
+  </Step>
+  <Step title="Click 'Importeren'">
+    On the Betalingen page, click the **Importeren** button above the obligations list. Your file browser opens — select your prepared `.xlsx` or `.csv` file.
+  </Step>
+  <Step title="Review the result">
+    Kaspert reads the file, detects the columns automatically, and skips any rows where the name and amount combination already exists in the current payment type (duplicate detection). A toast notification confirms how many obligations were added and how many duplicates were skipped.
+  </Step>
+</Steps>
+
+<Note>
+  Duplicate detection compares the person's name (case-insensitive) and the amount. If a row with "Jan Janssen" and "45.00" already exists in the selected payment type, that row will be skipped even if the memo is different.
+</Note>
+
+## Mark an obligation as paid manually
+
+If a payment was received outside of your kasboek (for example, in cash), or if you prefer not to use smart matching, you can mark any obligation as paid directly:
+
+- Open the **three-dot menu** (⋯) on the obligation row and choose **Markeer als betaald**.
+- Alternatively, click the status badge ("Openstaand") directly — it toggles between paid and unpaid.
+
+When you mark an obligation as paid manually (without linking a bank transaction), no transaction link is stored. The status badge turns green ("Betaald") but no match quality indicator appears.
+
+To reverse a manual payment, open the three-dot menu again and choose **Markeer als openstaand**, or click the green "Betaald" badge.
+
+## Edit an obligation
+
+To correct a name, amount, or memo after creation:
+
+1. Open the three-dot menu on the obligation row.
+2. Choose **Bewerken**.
+3. Update the fields in the dialog and click **Opslaan**.
+
+<Warning>
+  Editing the name or description of a paid obligation that has an active transaction link does not change the linked transaction in the kasboek. If the edit significantly changes the person's name, you may want to verify the match quality indicator afterwards.
+</Warning>
+
+## Delete an obligation
+
+Open the three-dot menu and choose **Verwijderen**. The obligation is immediately removed. If it was linked to a bank transaction, the transaction link is removed as well — the bank transaction itself remains in the kasboek.
+
+## Search, filter, and sort
+
+The obligations list includes a search bar and filter controls above the table:
+
+- **Search**: type a name or memo keyword to filter the list in real time.
+- **Status filter**: switch between **Alle**, **Openstaand**, and **Betaald** to focus on a specific subset.
+- **Sort**: choose from Name (A–Z), Name (Z–A), Amount (low to high), or Amount (high to low).
+
+The list always shows unpaid obligations first within each sort group, so you can immediately see who still needs to pay without scrolling past the already-settled rows.
+
+## Pagination
+
+Large lists are paginated at **25 obligations per page**. Navigation controls appear below the table when there is more than one page. The current page resets to page 1 whenever you change the search or filter.
+
+## Export to CSV
+
+Click the **Download** icon (export button) above the obligations list to download a CSV of the current payment type's obligations. The export includes:
+
+- Name, amount, memo, and status (Betaald / Openstaand) for every obligation in the current view
+- A summary footer with total paid amount and total outstanding amount
+
+The file is named automatically using the payment type name and today's date, for example: `betalingen_Kamp_zomer_2025_2025-06-01.csv`.
+
+## Download a payment receipt PDF
+
+For any obligation with status "Betaald", a **PDF receipt** can be generated:
+
+1. Find the paid obligation in the list — a document icon (📄) appears in the actions column.
+2. Click the icon. Kaspert generates a PDF on the spot using your organisation's name and logo (if configured).
+3. The file downloads automatically, named for example `bewijs_Jan_Janssen_2025.pdf`.
+
+The receipt includes the person's name, the amount paid, the description, the payment date (taken from the linked bank transaction if available, otherwise today's date), your organisation's name, and the status "VOLDAAN".
+
+<Tip>
+  Payment receipts are useful for members who need proof of payment for reimbursement or administrative purposes. You can generate as many receipts as needed for the same obligation.
+</Tip>

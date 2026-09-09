@@ -1,0 +1,135 @@
+---
+title: "How buyers place orders on your Kaspert shop page"
+sidebarTitle: "Order Page"
+description: "Understand how customers browse your public shop, select products, answer questions, apply discount codes, pay, and receive their order confirmation."
+---
+
+The public order page is what your buyers see — parents ordering camp tickets, neighbours buying waffles for the fundraiser, or members picking up their new hoodie. It is a clean, mobile-first page hosted by Kaspert that reflects your organisation's branding and requires no login whatsoever from the buyer. You share a single link, and the rest takes care of itself.
+
+## The public order URL
+
+Every sale you publish gets its own unique URL:
+
+```
+https://kaspert.be/bestellen/{companySlug}/{saleSlug}
+```
+
+For example, a Chiro group called *De Beemdratten* selling waffles might have:
+
+```
+https://kaspert.be/bestellen/beemdratten/wafelverkoop-2025
+```
+
+You can find and copy this URL at the top of your sale's detail page in the Kaspert dashboard. Share it anywhere — a newsletter, a Facebook event, a printed QR code, or a WhatsApp message.
+
+<Info>
+  **No account required for buyers.** Anyone with the link can browse and order. Kaspert does not ask buyers to create a profile or remember a password.
+</Info>
+
+## What buyers see on the page
+
+When a buyer opens the order URL, they land on a page that includes:
+
+- Your **organisation logo** and primary brand colour
+- The **hero title and description** you set under Instellingen → Lay-out
+- An optional **hero image** and gallery photos
+- All your **products** grouped by category (if you created categories), with names, descriptions, prices, and product photos
+- A **shopping cart** that updates in real time as the buyer selects items
+
+## The buying flow
+
+<Steps>
+
+### Open the URL and browse
+
+The buyer opens the link on any device. Products are displayed in a grid or list depending on screen size. If a product has a stock limit set and is sold out, it is shown as unavailable.
+
+### Select products and quantities
+
+The buyer uses **+** and **−** buttons to set the quantity for each product. The running cart total updates instantly. If you set a per-order limit on a product, the quantity picker stops at that maximum.
+
+### Answer custom questions
+
+If any product has questions configured (e.g. "Grootte T-shirt", "Vleeskeuze"), a form appears when the buyer adds that product to their cart. Required questions must be answered before the buyer can proceed to checkout. Optional questions can be skipped.
+
+Question types the buyer may encounter:
+
+| Type | What the buyer does |
+|------|---------------------|
+| Single choice | Selects one option from a radio list |
+| Multiple choice | Ticks one or more checkboxes |
+| Quantity per option | Enters a number next to each option (e.g. 2× Kip, 1× Worst) |
+| Number | Types a number |
+| Free text | Types a free-form answer |
+| Checkbox | Ticks a single yes/no box |
+
+Some answer options may add a price surcharge — this is shown next to the option label.
+
+### Enter a discount code (optional)
+
+In the cart summary, the buyer can expand the **Kortingscode** field and type a promo code. Kaspert validates the code immediately:
+
+- If valid, the discount amount appears as a deduction in the cart total.
+- If invalid (wrong code, expired, or limit reached), an error message explains why.
+
+### Enter contact details
+
+The buyer fills in their **name** and **email address** — these are used to send the order confirmation. Depending on the settings you chose under Instellingen → Klantvelden, they may also be asked for a **phone number** or a **department/section** (tak).
+
+If you have enabled delivery, the buyer also enters a delivery address at this step.
+
+### Choose a payment method
+
+The buyer sees only the payment methods you have enabled for this sale:
+
+<CardGroup cols={2}>
+  <Card title="Bank transfer" icon="building-columns">
+    The buyer receives your IBAN and a structured payment reference in the confirmation email. No online payment is taken at this step — the order is placed immediately and the buyer pays later.
+  </Card>
+  <Card title="Payconiq QR" icon="qrcode">
+    A Payconiq QR code is displayed on screen. The buyer opens the Payconiq app, scans the code, and confirms the payment. Kaspert checks the payment status automatically and updates the order.
+  </Card>
+  <Card title="Stripe (card / Bancontact)" icon="credit-card">
+    The buyer is redirected to a Stripe-hosted checkout page to enter their card details or select Bancontact. After payment, they are returned to the Kaspert confirmation page.
+  </Card>
+  <Card title="On-site payment" icon="hand-holding-euro">
+    No payment is taken online. The order is recorded with a "te betalen ter plaatse" status. The buyer pays at pick-up.
+  </Card>
+</CardGroup>
+
+### Complete payment and receive confirmation
+
+After a successful payment (or after placing an on-site order), the buyer is redirected to a **confirmation page** that shows their order number and a summary of what they ordered.
+
+At the same moment, Kaspert sends an **order confirmation email** to the address the buyer provided. The email contains:
+
+- The order number and sale name
+- A full product and price breakdown
+- Payment instructions (IBAN + reference, Payconiq QR, or on-site notice — depending on the payment method)
+- Your custom intro and closing text
+
+</Steps>
+
+## What happens on your side
+
+Every completed order appears in your Kaspert dashboard immediately:
+
+- **Verkoop → [sale name] → Bestellingen** — the order row shows buyer name, products, total, and payment status in real time.
+- **Kasboek** — a corresponding income transaction is automatically created and linked to the correct werkjaar, so your treasurer's ledger stays up to date without any manual entry.
+- **Notification email** — if you configured notification addresses under Instellingen → Meldingen, you receive an email alert for each new order.
+
+For Stripe payments, funds are batched and paid out to your linked bank account on Stripe's standard payout schedule (typically T+2 business days for Belgian accounts).
+
+<Note>
+  **Payconiq payment status.** When a buyer pays by Payconiq, Kaspert polls the payment status in the background. The status in your dashboard updates to `betaald` as soon as Payconiq confirms the transaction. This usually takes only a few seconds, but may occasionally take up to a minute.
+</Note>
+
+<Warning>
+  **Inactive sales show a closed page.** If you toggle the **Actief** switch off (or if the sale has passed its automatic close time), the public order page displays a "closed" message and new orders cannot be placed. Existing orders and completed payments are not affected in any way — only new orders are blocked.
+</Warning>
+
+## Fulfilment and pick-up slots
+
+If your sale involves physical pick-up (e.g. a waffle sale with multiple collection time windows), you can configure **fulfilment slots** under Instellingen → Afhalen & leveren. Each slot has a label (e.g. `17u – 18u`) and an optional capacity. Buyers choose a slot at checkout and the slot's booking count is updated in real time, preventing overbooking.
+
+For sales with home delivery, you can enable the delivery address field and configure a delivery cost that is added to the order total automatically.

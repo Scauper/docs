@@ -1,0 +1,97 @@
+---
+title: "Enable and configure modules in Kaspert"
+sidebarTitle: "Modules"
+description: "Enable or disable the kasboek, payments, webshop, expenses, and members modules for your organisation — each toggleable per plan from Beheer > Modules."
+---
+
+Kaspert is built around a modular architecture. Each module is an independent feature area that you can switch on or off for your organisation. Disabling a module removes it from the navigation immediately, but your data is always preserved — re-enabling a module restores full access to everything that was there before. You manage modules in **Beheer** (`/admin`) > **Modules** tab.
+
+## Available modules
+
+| Module | Minimum plan | Description |
+|--------|-------------|-------------|
+| **Kasboek** | All plans (Free+) | Record income and expenses per werkjaar, import bank statements, and generate year-end reports |
+| **Betalingsopvolging** | Basic, Pro, Premium | Track payment obligations (membership fees, drink tabs, etc.) and match incoming payments |
+| **Verkoop** | All plans (Free+) | Create sales campaigns with public order pages for merchandise, camps, and events |
+| **Onkosten** | Basic, Pro, Premium | Let members submit expense claims with receipts; admins review and approve from the dashboard |
+| **Leden** | Basic, Pro, Premium | Manage member records, age sections (takken), enrollments, and a parent portal |
+
+<Note>
+  The **Kasboek** module is the core of Kaspert and **cannot be disabled**. All other modules depend on the kasboek for financial context. The toggle for Kasboek is always on.
+</Note>
+
+## How to enable a module
+
+<Steps>
+  <Step title="Open Beheer > Modules">
+    Navigate to `/admin` and click the **Modules** tab.
+  </Step>
+  <Step title="Toggle the module on">
+    Click the switch next to the module you want to enable. If your plan includes the module, the switch activates immediately and a confirmation toast appears.
+  </Step>
+  <Step title="Find the module in the navigation">
+    The module's entry appears in the top navigation bar straight away — no page reload required. You can start using it immediately.
+  </Step>
+</Steps>
+
+## How to disable a module
+
+<Steps>
+  <Step title="Open Beheer > Modules">
+    Navigate to `/admin` and click the **Modules** tab.
+  </Step>
+  <Step title="Toggle the module off">
+    Click the active switch next to the module. It turns off immediately.
+  </Step>
+</Steps>
+
+Disabling a module:
+- Removes the module's entry from the navigation header for all users in your organisation
+- Does **not** delete any data — all transactions, member records, expenses, and orders remain stored in the database
+- Can be reversed at any time by toggling the module back on
+
+## Module access by role
+
+<CardGroup cols={2}>
+  <Card title="Admin" icon="shield-check">
+    Admins can access all enabled modules in full. They can read and write transactions, manage members, approve expenses, and configure module settings.
+  </Card>
+  <Card title="Member" icon="user">
+    Members have limited module access regardless of which modules are enabled. They can view the kasboek in read-only mode and submit expense requests via the public Onkosten link. They cannot access Betalingsopvolging, Verkoop settings, or Leden admin pages.
+  </Card>
+</CardGroup>
+
+## Modules and plan limits
+
+Some modules are only available on certain plans. If a module requires a higher plan than your current one, the toggle is shown as disabled with an **Upgrade** badge next to the module name.
+
+<Warning>
+  If you **downgrade your plan** and the new plan does not include a module that is currently enabled, that module is **automatically disabled**. Your data is safely preserved in the database, but it becomes inaccessible until you upgrade your plan again or manually remove the data. You will see a warning listing which modules will be lost before you confirm a downgrade.
+</Warning>
+
+<Tabs>
+  <Tab title="Free plan">
+    **Included modules:** Kasboek, Verkoop
+
+    The Free plan is ideal for small groups that want to track their finances and run a simple webshop without a subscription fee. Advanced features like payment tracking, expense management, and member administration require a paid plan.
+  </Tab>
+  <Tab title="Basic plan (€4.99/mo)">
+    **Included modules:** Kasboek, Betalingsopvolging, Verkoop, Onkosten, Leden
+
+    All five modules are available on Basic. This is the recommended starting point for most active youth organisations.
+  </Tab>
+  <Tab title="Pro plan (€8.99/mo)">
+    **Included modules:** All modules + bank import, OCR receipt scanning
+
+    Pro adds power-user features on top of all Basic modules: automatic bank statement import and AI-powered OCR for scanning expense receipts.
+  </Tab>
+  <Tab title="Premium plan (€14.99/mo)">
+    **Included modules:** All Pro features + benchmark reports, unlimited admins
+
+    Premium is designed for large organisations or umbrella groups that need advanced analytics and unlimited team members.
+  </Tab>
+</Tabs>
+
+<Tip>
+  Choose **yearly billing** in Beheer > Abonnement to get approximately two months free on any paid plan (roughly 17% off the monthly rate).
+</Tip>

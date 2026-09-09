@@ -1,0 +1,118 @@
+---
+title: "Import bank transactions via CSV into Kaspert"
+sidebarTitle: "Bank Import"
+description: "Download a CSV from KBC, Belfius, or ING and import it into your kasboek with automatic duplicate detection and category assignment."
+---
+
+Bank import lets you pull your actual bank statement directly into your Kaspert kasboek. Instead of typing every debit and credit by hand, you download a CSV export from your bank's online portal and upload it to Kaspert in seconds. Kaspert parses the file, detects any transactions you have already entered, and lets you assign categories before saving — so your kasboek stays clean and your numbers stay accurate.
+
+## Requirements
+
+Bank import is available on the **Pro** (€8.99/month) and **Premium** (€14.99/month) plans. If you are on the Free or Basic plan, the import button is hidden. [Upgrade your plan](/plans-and-billing) to unlock this feature.
+
+## Supported banks
+
+| Bank | Support level | Notes |
+|---|---|---|
+| **KBC** | Native | Full column mapping including counterpart name, free reference, and debit/credit split. Windows-1252 encoding handled automatically. |
+| **Belfius** | Compatible | CSV exports with a similar column structure are parsed using the KBC rules. |
+| **ING** | Native | Detected automatically by distinct header columns (`Af bij`, `Bedrag (EUR)`). Date format (`YYYYMMDD`) is normalised to ISO 8601. |
+
+<Note>
+  If your bank is not listed above, try exporting a CSV and uploading it anyway — as long as the file contains a `Datum` (date) and `Bedrag` (amount) column, Kaspert can usually parse it.
+</Note>
+
+## Step 1: Download a CSV from your bank
+
+<Tabs>
+  <Tab title="KBC">
+    <Steps>
+      <Step title="Log in to KBC Online">
+        Go to [kbc.be](https://www.kbc.be) and sign in with your KBC app or card reader.
+      </Step>
+      <Step title="Open your account transactions">
+        Select the bank account your group uses. Navigate to the **Verrichtingen** (transactions) overview.
+      </Step>
+      <Step title="Set the date range">
+        Use the date range filter to select the period you want to import (e.g. the full werkjaar from September to August).
+      </Step>
+      <Step title="Export as CSV">
+        Click the **Export** or **Download** button and choose **CSV** as the format. Save the file to your computer.
+      </Step>
+    </Steps>
+
+    <Note>
+      KBC exports use **Windows-1252** encoding, which means special characters like `é`, `ë`, and `ü` in counterpart names may appear as garbage in other tools. Kaspert reads the file with the correct encoding automatically, so all characters will display correctly in your kasboek.
+    </Note>
+  </Tab>
+  <Tab title="ING">
+    <Steps>
+      <Step title="Log in to ING Home'Bank">
+        Go to [mijnhomebank.ingbe.net](https://mijnhomebank.ingbe.net) and sign in.
+      </Step>
+      <Step title="Open your account transactions">
+        Select your group's account and navigate to the transaction history.
+      </Step>
+      <Step title="Export">
+        Click **Export** and choose the **CSV** format. Select your desired date range and download the file.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Step 2: Import the CSV in Kaspert
+
+<Steps>
+  <Step title="Open the import dialog">
+    On the Kasboek page, make sure you are on the **Transacties** tab. Click the **Importeer** button (bank icon) to the right of the "Recente Transacties" heading. The bank import dialog opens.
+  </Step>
+  <Step title="Select your CSV file">
+    Click the file selector in the dialog and choose the CSV file you downloaded from your bank. Kaspert reads and parses the file immediately — no upload to an external server.
+  </Step>
+  <Step title="Review the transaction preview">
+    Kaspert displays all transactions found in the file as a preview table. Each row shows the date, description, amount, and detected type (income or expense).
+
+    Rows that already exist in your kasboek are automatically **deselected** — they are still visible so you can review them, but they will not be imported again unless you manually re-check them.
+  </Step>
+  <Step title="Assign categories">
+    For each transaction you want to import, select a category from the dropdown on that row. You can leave the category blank if you prefer to assign it after import.
+  </Step>
+  <Step title="Import">
+    Click **Importeer** at the bottom of the dialog to save all selected rows to your kasboek. Kaspert inserts the transactions in a single batch operation. The dialog closes on success and the new transactions appear immediately in the list.
+  </Step>
+</Steps>
+
+## How duplicate detection works
+
+Before showing the preview, Kaspert compares each row in the CSV against every transaction already in your kasboek for the selected werkjaar. A row is flagged as a **duplicate** — and automatically deselected — when all three of the following match an existing transaction:
+
+1. **Date** — the transaction date matches exactly (`YYYY-MM-DD`).
+2. **Amount** — the amount matches within a tolerance of less than €0.01 (to handle minor rounding differences).
+3. **Description** — the description text matches exactly (after normalising whitespace).
+
+Duplicates remain visible in the preview table with a strikethrough style so you can review them. If a transaction was wrongly flagged as a duplicate, simply re-check its checkbox before clicking **Importeer**.
+
+## After import
+
+Imported transactions appear in your kasboek with the source badge **Bank**. They behave exactly like manual entries — you can edit the description, date, amount, or category, attach a receipt, and delete them. You can also **link** a bank import transaction to a receipt by clicking the link icon (chain icon) that appears when you hover over the row.
+
+<Warning>
+  The CSV file must contain at least a **Datum** (date) column and a **Bedrag** (amount) column. If Kaspert cannot locate these required columns — for example if the file is from an unsupported bank format or uses non-standard headers — it will display an error message and no transactions will be imported. Try exporting a fresh file from your bank, or check that you are downloading the CSV format rather than a PDF or XLS file.
+</Warning>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Characters like é or ü appear as question marks or boxes">
+    This only happens if the file was opened and re-saved in another programme (such as Excel) before uploading, which converts the encoding. Always upload the file exactly as downloaded from your bank. Kaspert handles the original KBC Windows-1252 encoding correctly.
+  </Accordion>
+  <Accordion title="All rows are flagged as duplicates">
+    Check that the werkjaar selector in the top-right corner of the Kasboek page is set to the correct season before opening the import dialog. Kaspert only compares the uploaded rows against transactions in the currently selected werkjaar.
+  </Accordion>
+  <Accordion title="The import button is not visible">
+    Bank import requires a **Pro** or **Premium** plan. If you are on Free or Basic, the button is hidden. Visit **Beheer → Abonnement** to upgrade.
+  </Accordion>
+  <Accordion title="The import succeeds but some rows are missing">
+    Rows with a zero amount, an unparseable date, or that are blank are silently skipped during parsing. Check the original CSV file to confirm those rows contain valid data.
+  </Accordion>
+</AccordionGroup>

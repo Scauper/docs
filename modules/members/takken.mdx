@@ -1,0 +1,71 @@
+---
+title: "Set up age-based sections (takken) for your group"
+sidebarTitle: "Takken"
+description: "Create takken with age ranges and membership fees that auto-fill the enrollment form and calculate payment obligations for every new member."
+---
+
+A **tak** (plural: **takken**) is an age-based section within your youth organisation. In Chiro, for example, children move from Rakwis to Tito's to Keti's as they grow older; in Scouts the progression runs from Welpen through Jonggivers up to Rovers. Kaspert uses your takken to populate the section dropdown on the public enrollment form and to set the correct membership fee for each new member automatically. Each tak has an optional age range that lets Kaspert suggest the right section when a parent enters a child's birth date — the parent can always override the suggestion.
+
+## Creating a tak
+
+<Steps>
+  <Step title="Open the Takken tab">
+    Navigate to **Leden** (`/leden`) and click the **Takken** tab in the top navigation.
+  </Step>
+  <Step title="Fill in the tak details">
+    In the **Nieuwe tak toevoegen** card at the top of the page, complete the four fields:
+
+    | Field | Required | Description |
+    |-------|----------|-------------|
+    | **Naam** | Yes | The display name, e.g. *Rakwis* or *Welpen*. |
+    | **Leeftijd vanaf** | No | Minimum age (inclusive) used for automatic section suggestions. |
+    | **Leeftijd tot** | No | Maximum age (inclusive). Leave both age fields empty to show the tak for all ages. |
+    | **Lidgeld (€)** | No | The membership fee for this section. Defaults to €0. |
+  </Step>
+  <Step title="Click Toevoegen">
+    The tak is added to the list immediately and will appear in the enrollment form dropdown on your next save.
+  </Step>
+</Steps>
+
+## Editing a tak
+
+Click the **pencil icon** (✏️) on any tak row to open the edit dialog. You can change the name, age range, and membership fee. Click **Opslaan** to confirm. Changes take effect immediately — the updated fee applies to new enrollments going forward, but does not retroactively change existing enrollment records.
+
+## Reordering takken
+
+Use the **↑** and **↓** arrow buttons on each tak row to change the sort order. The order is reflected directly in the enrollment form dropdown, so put the most common sections near the top.
+
+## Activating and deactivating
+
+Each tak has an **active/inactive toggle** (the switch on the right side of the row). When a tak is deactivated:
+
+- It no longer appears in the enrollment form dropdown — parents cannot select it for new enrollments.
+- It no longer appears in the admin **filter by tak** dropdown on the Leden tab.
+- Existing enrollments linked to that tak are unaffected.
+
+Deactivation is the safe way to "hide" a tak that is no longer in use without losing historical data.
+
+## Deleting a tak
+
+Click the **trash icon** (🗑️) on a tak row and confirm the alert dialog. Deleting a tak is permanent and cannot be undone.
+
+<Warning>
+  Deleting a tak does **not** delete any members or enrollments. Existing enrollments that referenced the deleted tak will simply show no tak. If you want to preserve the historical link, consider deactivating the tak instead.
+</Warning>
+
+## Example takken for a Chiro group
+
+| Tak | Leeftijd | Lidgeld |
+|-----|----------|---------|
+| Ribbels | 6–8 jaar | €30.00 |
+| Speelclub | 8–10 jaar | €30.00 |
+| Rakwis | 10–12 jaar | €35.00 |
+| Tito's | 12–14 jaar | €35.00 |
+| Keti's | 14–17 jaar | €40.00 |
+| Aspi's | 17+ jaar | €40.00 |
+
+You can model your own group after a similar table — the exact names, age ranges, and fees are entirely up to you.
+
+<Tip>
+  Set a realistic membership fee on each tak before opening enrollment. The fee is pre-filled in the enrollment form and used automatically to create a payment obligation in Betalingsopvolging when a parent enrolls a child. Getting this right up front saves manual corrections later.
+</Tip>

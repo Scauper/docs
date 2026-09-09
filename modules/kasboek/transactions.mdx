@@ -1,0 +1,136 @@
+---
+title: "Booking transactions in the Kaspert kasboek"
+sidebarTitle: "Transactions"
+description: "Add, edit, delete, and filter income and expense entries in your kasboek, including bulk actions and receipt attachments."
+---
+
+Transactions are the individual financial records that make up your kasboek. Every time money flows in or out of your group — a camp fee collected, a supplier invoice paid, a sponsor donation received — you record it here. Kaspert stores each booking with a date, amount, type, category, and an optional receipt attachment, giving you a complete and auditable financial history for every werkjaar.
+
+## Transaction types
+
+Kaspert recognises three transaction types:
+
+| Type | Label in UI | Description |
+|---|---|---|
+| `income` | Inkomsten | Money received by the organisation (e.g. membership fees, event tickets, sponsorship). |
+| `expense` | Uitgave | Money spent by the organisation (e.g. camp supplies, insurance, transport). |
+| `pending_expense` | Uitgave (onkosten) | An expense submitted by a member through the Onkosten module, awaiting admin approval before it appears as a confirmed booking in the kasboek. |
+
+<Note>
+  `pending_expense` transactions are created automatically when a member submits an expense claim via **Onkosten**. You do not add them manually through the kasboek form. Once approved by an admin, they become regular `expense` entries.
+</Note>
+
+## Transaction sources
+
+Each transaction carries a `source` field that records how it entered your kasboek:
+
+| Source | Badge | Meaning |
+|---|---|---|
+| `manual` | **Bon** | Typed in by hand through the "Nieuw" form. |
+| `bank_import` | **Bank** | Imported from a bank CSV file. |
+| `reconciled` | **Bevestigd** | Matched to a payment obligation from the Betalingen module. |
+
+## How to add a transaction
+
+<Steps>
+  <Step title="Open the transaction form">
+    On the Kasboek page (`/dashboard`), click the **Nieuw** button in the top-right corner. A dialog opens with the transaction form.
+  </Step>
+  <Step title="Attach a receipt (optional)">
+    Click the upload area at the top of the form to attach a receipt photo or PDF. On **Basic, Pro, and Premium** plans, Kaspert will automatically scan the receipt using AI (OCR) and pre-fill the amount, date, description, and category for you. On the Free plan, the file is stored as a reference but not scanned.
+  </Step>
+  <Step title="Choose the transaction type">
+    Click **Inkomsten** or **Uitgave** to set the type. This determines whether the amount adds to or subtracts from your balance.
+  </Step>
+  <Step title="Fill in the details">
+    Enter the following fields:
+    - **Bedrag (€)** — the transaction amount as a positive number (e.g. `45.00`).
+    - **Datum** — the date of the transaction in `YYYY-MM-DD` format (the date picker handles this for you).
+    - **Categorie** — select a category from the dropdown. Only active categories appear here.
+    - **Omschrijving** — a short description of what the transaction was for (e.g. "Kampvoedsel augustus").
+  </Step>
+  <Step title="Save">
+    Click **Transactie Toevoegen**. The transaction appears immediately in the list and the balance summary updates in real time.
+  </Step>
+</Steps>
+
+## How to edit a transaction
+
+Find the transaction in the list and hover over the row to reveal the action icons on the right side. Click the **pencil icon** (Bewerken) to open the edit dialog. Update any field and click **Opslaan** to save your changes.
+
+<Note>
+  Both admins and members with write access can edit transactions. However, transactions imported via bank CSV (`source: bank_import`) can also be **linked** to a receipt by clicking the link icon that appears on hover.
+</Note>
+
+## How to delete a transaction
+
+Hover over any transaction row and click the **trash icon** on the right. A confirmation dialog will appear — click **Verwijderen** to confirm. The deletion is permanent and cannot be undone.
+
+<Warning>
+  Only **admins** can delete transactions. Member accounts have read-only access to the kasboek.
+
+  If you delete an `income` transaction that is linked to a payment obligation (i.e. its `source` is `reconciled`), Kaspert will automatically **unlink** it from the obligation and reset the obligation's paid status. The payment obligation itself is not deleted.
+</Warning>
+
+## Bulk delete
+
+For admin users, a checkbox column appears on the left side of the transaction list. Select one or more rows by clicking their checkboxes, then click **Verwijder (n)** in the bulk action bar that appears above the list. Confirm the deletion in the dialog.
+
+To select all rows on the current page at once, click the checkbox in the header of the bulk action bar. Kaspert deletes in batches of 100, so even large selections complete reliably.
+
+<Tip>
+  Use bulk delete after a bank import to quickly remove any test or duplicate rows before they affect your balance.
+</Tip>
+
+## Filtering and sorting
+
+The filter bar above the transaction list gives you several ways to narrow the view:
+
+<AccordionGroup>
+  <Accordion title="Search by description">
+    Type in the search field (magnifying glass icon) to filter transactions by description text. The filter is applied as you type and is case-insensitive.
+  </Accordion>
+  <Accordion title="Filter by type">
+    Use the **Type** dropdown to show only income (`Inkomsten`) or only expenses (`Uitgaven`). Selecting **Alle types** removes the filter.
+  </Accordion>
+  <Accordion title="Filter by category">
+    Use the **Categorie** dropdown to show only transactions tagged with a specific category. All categories currently in use in the kasboek are listed, including archived ones.
+  </Accordion>
+  <Accordion title="Filter by period">
+    The **Periode** dropdown offers quick filters for **Deze maand** (current calendar month) or **Dit jaar** (current calendar year), in addition to the werkjaar filter already applied at the page level.
+  </Accordion>
+  <Accordion title="Sort">
+    The **Sorteer** dropdown lets you order transactions by date (newest first is the default), date (oldest first), amount (highest first), or amount (lowest first).
+  </Accordion>
+</AccordionGroup>
+
+Use the werkjaar selector in the top-right corner of the page to switch between seasons. All filters and the balance summary update to reflect the selected werkjaar.
+
+## Export to CSV
+
+Click **Exporteer CSV** (the download button in the filter bar) to download a semicolon-delimited CSV file of all transactions currently visible after your filters are applied. The file includes a summary row at the bottom with total income, total expenses, and the net balance.
+
+## Transaction data structure
+
+The following TypeScript interface defines the shape of a transaction object throughout the application:
+
+```typescript transaction.ts
+export type TransactionType = "income" | "expense" | "pending_expense";
+export type TransactionSource = "manual" | "bank_import" | "reconciled";
+
+export interface Transaction {
+  id: string;
+  type: TransactionType;
+  amount: number;        // always a positive number
+  description: string;
+  date: string;          // ISO 8601: YYYY-MM-DD
+  category: string;
+  receiptUrl?: string;   // URL to the attached receipt in Supabase Storage
+  source: TransactionSource;
+  linkedTransactionId?: string; // set when source === "reconciled"
+}
+```
+
+<Info>
+  The `amount` field is **always stored as a positive number**. Whether a transaction increases or decreases your balance is determined entirely by the `type` field. This applies to both manually entered transactions and bank imports.
+</Info>

@@ -1,0 +1,115 @@
+---
+title: "Submit expense receipts as a Kaspert member"
+sidebarTitle: "Submitting Expenses"
+description: "Submit a receipt for reimbursement via the public Kaspert link or the app — including OCR auto-fill, required fields, and what happens after you submit."
+---
+
+As a leader or helper in a youth organisation, you often spend your own money on behalf of the group — whether that's a supermarket run for camp food, craft materials, or a bag of charcoal for the barbecue. Kaspert makes it straightforward to request reimbursement: fill in a short form, attach a photo of your receipt, and your treasurer handles the rest digitally, without you needing to chase anyone at the next meeting.
+
+## Two ways to submit an expense
+
+<Tabs>
+  <Tab title="Public form (no login required)">
+    Your admin or treasurer shares a unique link for your organisation. You do not need a Kaspert account — just open the link on any device, including your phone.
+
+    The link follows this format:
+
+    ```text
+    https://kaspert.be/{companySlug}/onkosten
+    ```
+
+    Ask your leiding or penningmeester for the exact URL for your group. Some organisations also protect the form with an **access code** — if you see a code prompt when you open the link, ask your leiding for the code before continuing.
+
+    <Steps>
+      <Step title="Open the link on your phone">
+        Tap the link your admin shared. The form loads in your browser — no app installation needed. You will see your organisation's name and logo at the top.
+      </Step>
+      <Step title="Upload your receipt">
+        Tap the upload area and either choose a photo from your gallery or take a new photo with your camera. You can also upload a PDF invoice. Once the file is uploaded, Kaspert will attempt to scan it automatically if OCR is enabled for your organisation.
+      </Step>
+      <Step title="Fill in your personal details">
+        Enter your **full name** (first and last) and your **Belgian IBAN** (format: `BE00 0000 0000 0000`). Your IBAN is required so the treasurer can reimburse you directly to your bank account. Kaspert only uses it for this purpose.
+      </Step>
+      <Step title="Fill in the expense details">
+        Enter a short **description** of what you purchased (e.g. *Drank aankoop Colruyt*), the **amount** in euros, and the **date** of the purchase. If OCR scanned your receipt successfully, these fields may already be pre-filled — check them before continuing.
+      </Step>
+      <Step title="Submit">
+        Tap **Indienen voor terugbetaling**. You will see a confirmation screen. Your treasurer is automatically notified and your expense appears in their review queue.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Via the Kaspert app (logged-in members)">
+    If you have a Kaspert account and are logged in, you can submit expenses directly from the app without leaving the platform.
+
+    <Steps>
+      <Step title="Navigate to Onkosten">
+        Click **Onkosten** in the app header. This takes you to `/onkosten`.
+      </Step>
+      <Step title="Open the submission form">
+        Click **Onkost indienen** to open the expense form. The fields and upload area are the same as the public form.
+      </Step>
+      <Step title="Upload your receipt and fill in the details">
+        Attach a photo or PDF of your receipt, then fill in or verify your name, IBAN, description, amount, and date. If your organisation's plan includes OCR, the form will scan the receipt and pre-fill as many fields as it can.
+      </Step>
+      <Step title="Submit">
+        Click **Indienen voor terugbetaling**. Your expense is added to the treasurer's review queue immediately.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## OCR auto-fill: letting AI read your receipt
+
+When you attach a receipt photo and your organisation has OCR enabled (Basic plan or higher), Kaspert automatically analyses the image using AI and pre-fills as many fields as possible.
+
+The AI extracts the following information from the receipt:
+
+| Field | What it reads |
+|---|---|
+| **Amount** | The total amount charged, in euros |
+| **Date** | The transaction date, converted to `YYYY-MM-DD` |
+| **Description** | A short Dutch description of the purchase (max 50 characters) |
+| **Category** | One of: Donaties, Evenementen, Materiaal, Vervoer, Eten, Overig |
+
+<Tip>
+  For best OCR results, take your receipt photo in good lighting on a flat, contrasting surface (e.g. a white table). Hold your phone directly above the receipt so it fills most of the frame. Make sure the **total amount** is clearly visible and not obscured by a fold or shadow. Blurry, dark, or heavily creased receipts may not scan correctly — in that case, simply fill in the details manually.
+</Tip>
+
+<Warning>
+  OCR is not 100% accurate. Always **review the pre-filled values** before submitting. In particular, check that the amount matches the total on your receipt and that the date is correct. You are responsible for the accuracy of the information you submit.
+</Warning>
+
+## What happens after you submit
+
+Once you tap **Indienen voor terugbetaling**, your expense enters the treasurer's review queue.
+
+- You see a **confirmation screen** with a green tick and a message confirming your submission to your organisation's penningmeester.
+- The treasurer reviews your receipt and either approves or rejects it. On approval, the expense is booked and you will receive a bank transfer to the IBAN you provided.
+- If you need to submit another expense right away, tap **Nog een onkost indienen** on the confirmation screen — your name and IBAN are remembered so you only need to fill in the new purchase details.
+
+<Info>
+  There is no in-app notification when your expense is approved or rejected. If you want to follow up, contact your treasurer directly. Once approved, the reimbursement arrives via a standard bank transfer to the IBAN you provided — timing depends on when your treasurer processes the payment.
+</Info>
+
+## Form fields reference
+
+<AccordionGroup>
+  <Accordion title="Voor- en achternaam (Full name)">
+    Your first and last name. This appears in the treasurer's overview so they know who submitted the expense. Required.
+  </Accordion>
+  <Accordion title="IBAN (for reimbursement)">
+    Your Belgian bank account number in IBAN format: `BE00 0000 0000 0000`. Kaspert validates the format before allowing submission. This is where your reimbursement will be transferred. Required.
+  </Accordion>
+  <Accordion title="Omschrijving (Description)">
+    A brief description of what you bought, e.g. *Materiaal workshop* or *Eten supermarkt*. Keep it short and clear so the treasurer can identify the purchase at a glance. Required.
+  </Accordion>
+  <Accordion title="Bedrag (Amount)">
+    The total amount of the expense in euros, with two decimal places (e.g. `12.50`). This should match the total on your receipt. Required.
+  </Accordion>
+  <Accordion title="Datum (Date)">
+    The date on the receipt. Defaults to today. Change it if you are submitting an older receipt. Required.
+  </Accordion>
+  <Accordion title="Ticket / Bonnetje (Receipt)">
+    A photo (JPG, PNG, etc.) or PDF of your receipt or invoice. Not strictly required by the form, but strongly recommended — the treasurer may reject expenses submitted without proof. Large images are accepted up to 5 MB.
+  </Accordion>
+</AccordionGroup>

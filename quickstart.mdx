@@ -1,47 +1,128 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get started with Kaspert in under 10 minutes"
+sidebarTitle: "Quickstart"
+description: "Create your account, set up your organisation, configure your first werkjaar, and book your first transaction — all in under 10 minutes."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+Kaspert gets your youth group's finances up and running fast. By the end of this guide you will have a live account, a configured organisation, an active werkjaar (season), at least one bookkeeping category, and your very first transaction in the kasboek. If you want to bring a co-admin along for the ride, you will have sent them an invitation too. Let's get started.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
 
-    ```bash
-    npm install your-package
-    ```
-  </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Create your account at kaspert.be">
+    Open [kaspert.be](https://kaspert.be) in your browser and click **Gratis starten** in the top navigation bar. You will land on the registration page.
 
-    ```bash
-    your-cli init
-    ```
-  </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+    The registration wizard walks you through two paths:
 
-    ```bash
-    your-cli start
-    ```
+    - **Ik ben uitgenodigd** — use this if your group's treasurer or lead admin has already sent you an invitation email. Register with the exact email address the invitation was sent to; Kaspert automatically links you to the correct organisation.
+    - **Nieuwe vereniging starten** — use this if you are the first person from your group to sign up. You become the founding admin.
+
+    For a brand-new group, choose **Nieuwe vereniging starten**, then:
+
+    1. Fill in your **first name**, **last name**, **phone number**, and **email address**.
+    2. Enter your **organisation name** (e.g. "Chiro Sint-Jan Gent").
+    3. Choose a **password** (minimum 6 characters).
+    4. Accept the Terms & Conditions and Privacy Policy, complete the security check, and click **Account aanmaken**.
+
+    Kaspert sends a confirmation email to the address you provided. Open that email and click the confirmation link to activate your account. After confirmation you are redirected to the login screen — sign in with your email and password.
+
+    <Tip>
+      If you registered via an invitation link shared by your group (a URL containing `?ref=…`), a **€20 welcome credit** is automatically added to your new organisation's balance.
+    </Tip>
   </Step>
+
+  <Step title="Name your organisation and set your branding">
+    After your first login, Kaspert opens the onboarding wizard automatically. On the **Jullie profiel** step you can refine how your organisation looks across public-facing pages and outgoing emails:
+
+    - **URL slug** — a short, URL-safe identifier for your group (e.g. `chiro-sint-jan`). Kaspert pre-fills a suggestion based on your organisation name; you can adjust it here. It appears in public webshop links: `kaspert.be/bestellen/chiro-sint-jan/naam-verkoop`.
+    - **Logo** — upload a PNG, JPG, or SVG (max 2 MB). Click **Upload logo**, select your file, and Kaspert stores it immediately.
+    - **Primary colour** — click the colour swatch to open the colour picker, or type a hex code directly (e.g. `#E63946` for red). This colour is used as the accent colour across your dashboard and public pages.
+
+    None of these fields are mandatory right now — you can always update them later under **Beheer > Organisatie**.
+  </Step>
+
+  <Step title="Complete the onboarding wizard">
+    The wizard runs through five steps before dropping you into your dashboard. Two of these need your attention now:
+
+    **Choose your modules (Step 1)**
+
+    Toggle on the features your group wants to use. Kaspert comes with five modules:
+
+    | Module | What it does | Minimum plan |
+    |--------|-------------|--------------|
+    | Kasboek | Income & expense ledger, reports, bank import | Free |
+    | Verkoop | Online webshop & order pages | Free |
+    | Betalingsopvolging | Track who owes what (lidgeld, bar tabs) | Basic |
+    | Onkosten | Member expense submissions with receipt OCR | Basic |
+    | Leden | Member admin, enrolments, medical records | Basic |
+
+    You can enable or disable any module later in **Beheer > Modules**.
+
+    **Set your first werkjaar (Step 4)**
+
+    A **werkjaar** is the fiscal season your transactions, payments, and reports are grouped under. Youth groups in Flanders typically run from **1 September** to **31 August**.
+
+    - **Label** — use the format `2024-2025` so it is immediately recognisable in filters and reports.
+    - **Start date** — e.g. `2024-09-01`.
+    - **End date** — e.g. `2025-08-31`.
+
+    Click **Volgende** to save the werkjaar. Once saved, a green confirmation badge appears. You can add more werkjaren later under **Beheer > Organisatie**.
+
+    <Note>
+      The onboarding wizard runs only once per organisation. All settings you configure here — modules, branding, werkjaar — can be changed later in the **Beheer** section.
+    </Note>
+  </Step>
+
+  <Step title="Book your first transaction">
+    After completing the wizard you land on the kasboek dashboard at `/dashboard`. You are now ready to record your first financial entry.
+
+    1. Click **Nieuw** (the green button in the top-right corner of the kasboek).
+    2. Choose the transaction type:
+       - **Inkomst** — money coming in (membership fees, fundraising revenue, grants).
+       - **Uitgave** — money going out (camp supplies, equipment, travel).
+    3. Fill in the details:
+       - **Bedrag** — the amount in euros (e.g. `45.00`).
+       - **Omschrijving** — a short description (e.g. "Lidgeld Jana Claes 2024-2025").
+       - **Categorie** — select or create a category. Common starting categories: **Lidgeld**, **Kamp**, **Uitstap**, **Materiaal**. If you have not created any yet, click the **+** icon next to the dropdown to add one on the spot.
+       - **Datum** — defaults to today; change it if you are recording a past transaction.
+    4. Click **Opslaan**. The entry appears instantly in your kasboek, sorted by date.
+
+    <Tip>
+      Use descriptive names for categories from the start — they power your annual report and make audits painless. You can archive unused categories later but cannot delete ones that already have transactions linked to them.
+    </Tip>
+  </Step>
+
+  <Step title="Invite a co-admin">
+    Youth group finances are rarely a one-person job. Invite your co-treasurer or group leader so they can help manage the kasboek from day one.
+
+    1. Navigate to **Beheer** (`/admin`) in the top navigation.
+    2. Open the **Leden** tab.
+    3. Click **Uitnodigen**.
+    4. Enter the email address of the person you want to invite and click **Verstuur**.
+
+    Kaspert sends them an invitation email with a personal registration link. When they sign up through that link and choose **Ik ben uitgenodigd**, they are automatically joined to your organisation. You can manage their role (admin or member) from the same Leden tab.
+
+    <Note>
+      Invited team members on the **Free** plan are limited to **1 admin**. Upgrade to **Basic** for up to 3 admins, or **Pro/Premium** for unlimited admins.
+    </Note>
+  </Step>
+
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## What's next?
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+Your organisation is live. Here is a quick map of where everything lives:
+
+<CardGroup cols={2}>
+  <Card title="Kasboek" icon="book-open" href="/modules/kasboek/overview">
+    Record income and expenses, import bank statements, and generate your annual financial report.
+  </Card>
+  <Card title="Betalingsopvolging" icon="credit-card" href="/modules/payments/overview">
+    Track membership fees and other payment obligations. Send automated reminders to members who are behind.
+  </Card>
+  <Card title="Plans & Billing" icon="receipt" href="/plans-and-billing">
+    Compare Free, Basic, Pro, and Premium. Upgrade when your group needs more modules or more admins.
+  </Card>
+  <Card title="Onboarding deep-dive" icon="rocket" href="/onboarding">
+    A detailed walkthrough of every onboarding wizard step, including branding, werkjaar setup, and module selection.
+  </Card>
+</CardGroup>

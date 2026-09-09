@@ -1,0 +1,62 @@
+---
+title: "Manage your youth organisation's members in Kaspert"
+sidebarTitle: "Overview"
+description: "A complete guide to the Ledenbeheer module: member profiles, age-based sections (takken), enrollment forms, guardian portal, and payment tracking."
+---
+
+The **Ledenbeheer** (members management) module is your central hub for everything to do with the people in your organisation. From the moment a parent fills in your online enrollment form to the day you export your full member list for federation reporting, Kaspert tracks each step. Every member has a personal profile with contact details, guardian information, and a medical record, all connected to their enrollment for the current **werkjaar** (season). The module is designed for Flemish youth organisations — Chiro, Scouts, KSA, KLJ, and others — and reflects the way those groups actually work: age-based sections, annual re-enrollment, and membership fees tied to each section.
+
+## What you get with Ledenbeheer
+
+- **Central member directory** — first and last name, birth date, address, photo consent, notes, and a full enrollment history across all seasons.
+- **Guardian records** — one or two guardians per member, with name, email, phone, and optionally a second contact.
+- **Medical records** — allergies, medication, conditions, dietary requirements, doctor details, emergency contact, and swimming ability, collected with explicit guardian consent.
+- **Age-based sections (takken)** — define your own sections with optional age ranges and a membership fee. The enrollment form uses this list automatically.
+- **Public online enrollment form** — parents enroll their children from any device, without a Kaspert account, at `kaspert.be/inschrijven/{slug}`.
+- **Guardian portal** — a personalised family page at `kaspert.be/gezin/{slug}` where returning guardians can re-enroll their children in seconds with pre-filled data.
+- **Excel import** — bulk-import members from an existing spreadsheet in CSV or `.xlsx` format, with AI-assisted column mapping.
+- **Excel export** — download the full member list with custom enrollment question answers included, ready for your federation (koepelorganisatie).
+- **Payment tracking per member** — membership fees are automatically linked to Betalingsopvolging, and you can toggle the paid/unpaid status directly in the member list.
+- **Enrollment confirmation emails** — sent automatically to the guardian's email address after a successful online enrollment, including per-child payment references and a scannable EPC QR code.
+- **Re-enrollment invitation emails** — send a personalised family link to every guardian on file in one click; guardians who were invited in the last 7 days are skipped automatically.
+
+## Quick links
+
+<CardGroup cols={2}>
+  <Card
+    title="Takken"
+    icon="users"
+    href="/modules/members/takken"
+  >
+    Create and manage age-based sections with membership fees.
+  </Card>
+  <Card
+    title="Enrollment Form"
+    icon="clipboard-list"
+    href="/modules/members/enrollment-form"
+  >
+    Configure custom questions, visibility, and IBAN settings for your public form.
+  </Card>
+  <Card
+    title="Guardian Portal"
+    icon="house-user"
+    href="/modules/members/guardian-portal"
+  >
+    Let returning families re-enroll with pre-filled data via a personal link.
+  </Card>
+  <Card
+    title="Import & Export"
+    icon="file-excel"
+    href="/modules/members/import-export"
+  >
+    Bulk import from Excel and export for federation reporting.
+  </Card>
+</CardGroup>
+
+## Activating the module
+
+The Ledenbeheer module is available on all Kaspert plans, including the Free plan. If you don't see the **Leden** item in your navigation, go to **Beheer** (`/admin`) and enable it under **Modules**.
+
+<Note>
+  Each module must be activated per organisation. Only users with the **admin** role can enable or disable modules in Beheer.
+</Note>
